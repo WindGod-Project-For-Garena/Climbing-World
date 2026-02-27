@@ -17,7 +17,7 @@ graph C_P_Climbing {
 	IngameUI entity = nil
 	frame int = 0
 	Curent_height Vector3 = Vector3{0, 0, 0}
-	ishanging bool = false
+	ishanging bool = false   
 
 	func isclimb(isclimb bool, ishanging bool, player entity<Player>) {
 		// ECA 内为复杂逻辑：SetLocalPlayerPositon、动画与状态等

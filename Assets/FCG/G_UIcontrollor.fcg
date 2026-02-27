@@ -19,7 +19,7 @@ graph G_UIcontrollor {
 	InvisibleUI entity = nil
 	Climbing_UI Map<object, object> = nil
 
-	event OnAwake() {
+	event OnAwake() {       
 		Climbing_button = map.New()
 		Climbing_UI = map.New()
 	}
