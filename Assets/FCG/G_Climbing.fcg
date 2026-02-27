@@ -1,0 +1,49 @@
+// 严格按 G_Climbing.eca 实现
+// G 开头 = 服务器脚本。函数 Climbing(player)、Jumping(player)、Onground(player,Vector)、Climbing_Stop(player)
+// 监听 signal_22370959 -> Climbing；signal_11991453 -> Jumping；signal_35303240 -> Climbing_Stop；signal_62874285 -> Onground
+
+import "StdLibrary.fcc" as std
+import "Animation.fcc" as anim
+import "EditorGenLib.fcc" as gen
+
+[platform_server]
+graph G_Climbing {
+
+	func Climbing(player entity<Player>) {
+		// ECA: 若 CustomGravity!=0 则 Set 0；StopAnimation(d4MFw2ge); StopAnimation(Ht9FeIqc); PlayAnimation(vEAke9DY,1,Loop)
+		// 动画状态 ID 需从项目 Climbing 控制器绑定：d4MFw2ge, Ht9FeIqc, vEAke9DY
+		LogInfo("Climbing")
+	}
+
+	func Jumping(player entity<Player>) {
+		// ECA: 若 CustomGravity==0 则 Stop(vEAke9DY); Play(d4MFw2ge,1,Loop)；若 Y<1 则 Stop(d4MFw2ge)；Set CustomGravity=-9.8
+		LogInfo("Jumping")
+	}
+
+	func Onground(player entity<Player>, vec Vector3) {
+		// ECA: TeleportPlayerPositionAndForward(player, vec, (1,0,0)); PlayAnimation(Ht9FeIqc, 1, Once)
+		// TeleportPlayer(player, vec) 需在引擎中可用时取消注释
+		LogInfo("Onground")
+	}
+
+	func Climbing_Stop(player entity<Player>) {
+		// ECA: StopAnimation(vEAke9DY); PlayAnimation(vEAke9DY, 0, Loop)
+		LogInfo("Climbing_Stop")
+	}
+
+	event __Custom6event_Pressclimbing_button__(player entity<Player>) {
+		Climbing(player)
+	}
+
+	event __Custom6event_Jumping_button__(player entity<Player>) {
+		Jumping(player)
+	}
+
+	event __Custom6event_releaseclimbing_button__(player entity<Player>) {
+		Climbing_Stop(player)
+	}
+
+	event __Custom6event_onground__(player entity<Player>, Vector Vector3) {
+		Onground(player, Vector)
+	}
+}

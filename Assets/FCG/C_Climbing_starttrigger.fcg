@@ -1,0 +1,29 @@
+// 一比一转换自 C_Climbing_starttrigger.eca（未修改 ECA）
+// variables: entercount(Int=0), Climbing_UI(CustomHud=null)
+// block OnAwake -> grs vLRKSrNUC=1
+// block OnPlayerEnter(P1:Player) -> slsv4 signal_36346128(ow=GetGlobalEntity,P1)
+// block OnPlayerLeave(P1:Player) -> slsv4 signal_87440986(ow=GetGlobalEntity,P1)
+// block signal_36606368(ow,P1) -> ife1: if entercount==1 then grs entercount+=1; print PrintString("进入了")
+
+import "StdLibrary.fcc" as std
+import "LevelObject.fcc" as levelobject
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_Climbing_starttrigger {
+	entercount int = 0
+	Climbing_UI entity = nil
+
+	event OnAwake() {
+		entercount = 1
+	}
+
+	event OnPlayerEnter(player entity<Player>) {
+		LogInfo("进入了")
+		DispatchEventToEntity(__Custom6event_entertrigger__, globalEntity, PlatformType.Server, List<object>{player})
+	}
+
+	event OnPlayerLeave(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_leavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
+	}
+}

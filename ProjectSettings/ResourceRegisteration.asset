@@ -1,0 +1,153 @@
+{
+  "_tag": {
+    "type": "ResourceRegisteration"
+  },
+  "_entityId": "1Qaa5pVT",
+  "Resource": {
+    "ui": {
+      "id": "ui",
+      "children": [
+        {
+          "refer": {
+            "fileId": "ebrrsuaw5ok-mm0h58c5-oqukbtub5b",
+            "filePath": "Assets\\UI\\G_IngameHud.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "G_IngamHud",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "cvbrrbbv3y-mm1whn2s-sl3xu3owc97",
+            "filePath": "Assets\\UI\\Avatar.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Avatar",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "a3kdf4hozb-mlelmem9-3gcnijsvjmj",
+            "filePath": "Assets\\UI\\Climbing.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "ClimbingUI",
+          "children": []
+        }
+      ]
+    },
+    "scene": {
+      "id": "scene",
+      "children": []
+    },
+    "prefab": {
+      "id": "prefab",
+      "children": []
+    },
+    "ugcscript": {
+      "id": "ugcscript",
+      "children": [
+        {
+          "refer": null,
+          "scriptName": "Key",
+          "children": []
+        }
+      ]
+    },
+    "eca": {
+      "id": "eca",
+      "children": []
+    },
+    "texture": {
+      "id": "texture",
+      "children": []
+    },
+    "effecttype": {
+      "id": "effecttype",
+      "children": []
+    },
+    "sound": {
+      "id": "sound",
+      "children": []
+    },
+    "fitem": {
+      "id": "fitem",
+      "children": []
+    },
+    "fScenePrefab": {
+      "id": "fScenePrefab",
+      "children": []
+    },
+    "clothskin": {
+      "id": "clothskin",
+      "children": []
+    },
+    "weaponskin": {
+      "id": "weaponskin",
+      "children": []
+    },
+    "vehicleskin": {
+      "id": "vehicleskin",
+      "children": []
+    },
+    "emoteskin": {
+      "id": "emoteskin",
+      "children": []
+    },
+    "csv": {
+      "id": "csv",
+      "children": []
+    },
+    "internalhudtype": {
+      "id": "internalhudtype",
+      "children": []
+    },
+    "textureResource": {
+      "id": "textureResource",
+      "children": []
+    },
+    "mesh": {
+      "id": "mesh",
+      "children": []
+    },
+    "material": {
+      "id": "material",
+      "children": []
+    },
+    "ac": {
+      "id": "ac",
+      "children": []
+    },
+    "particles": {
+      "id": "particles",
+      "children": []
+    },
+    "playerdata": {
+      "id": "playerdata",
+      "children": []
+    },
+    "xbt": {
+      "id": "xbt",
+      "children": []
+    },
+    "pfm": {
+      "id": "pfm",
+      "children": []
+    },
+    "skilltype": {
+      "id": "skilltype",
+      "children": []
+    }
+  },
+  "children": []
+}
+//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}

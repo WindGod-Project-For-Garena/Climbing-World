@@ -1,0 +1,30 @@
+// 严格按 C_P_Climbing.eca 实现（骨架：ECA 体量大，仅实现 declare graph 与主要函数签名）
+// C 开头 = 客户端脚本。变量 receivecount, a, isclimb, player, Speed_muti, isfall, Player_fall, IngameUI, frame, Curent_height, ishanging
+// 函数 isclimb(isclimb bool, ishanging bool, player Player)、isfall(isfall bool, ishanging bool, player any)
+
+import "StdLibrary.fcc" as std
+import "Animation.fcc" as anim
+
+[platform_client]
+graph C_P_Climbing {
+	receivecount int = 0
+	a int = 0
+	isclimb_val bool = false
+	player entity<Player> = nil
+	Speed_muti int = 0
+	isfall_val bool = false
+	Player_fall entity<Player> = nil
+	IngameUI entity = nil
+	frame int = 0
+	Curent_height Vector3 = Vector3{0, 0, 0}
+	ishanging bool = false
+
+	func isclimb(isclimb bool, ishanging bool, player entity<Player>) {
+		// ECA 内为复杂逻辑：SetLocalPlayerPositon、动画与状态等
+		LogInfo("isclimb")
+	}
+
+	func isfall(isfall bool, ishanging bool, player entity<Player>) {
+		LogInfo("isfall")
+	}
+}

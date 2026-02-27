@@ -1,0 +1,16 @@
+{
+  "_entityName": "Bodypart",
+  "_tag": {
+    "type": "BodyPartEntity"
+  },
+  "_entityId": "QRw3vAYH",
+  "children": [],
+  "prefabVariant": null,
+  "activeValue": null,
+  "unlockedValue": null,
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "skeleton": null,
+  "bodyparts": []
+}
+//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}

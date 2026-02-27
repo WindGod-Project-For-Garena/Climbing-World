@@ -1,0 +1,9 @@
+import "StdLibrary.fcc" as std
+
+[platform_client]
+graph C_ClimbingHeightReporter {
+
+	event OnAwake() {
+		LogInfo("C_ClimbingHeightReporter ready")
+	}
+}

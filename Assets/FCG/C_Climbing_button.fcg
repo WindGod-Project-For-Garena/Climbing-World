@@ -1,0 +1,67 @@
+// 严格按 C_Climbing_button.eca 实现
+// C 开头 = 客户端脚本。变量 isclimb, isfall, Taptime, CustomUI, Hanging
+// OnAwake: Taptime=1
+// 按钮 Jumping: isfall=T,Hanging=F,isclimb=F -> StopAnimation -> PlayAnimation -> isclimb -> isfall -> Dispatch
+// 按钮 Climbing Press: isclimb=T,Hanging=F -> isclimb -> Dispatch Pressclimbing_button
+// 按钮 Climbing Release: isclimb=F,Hanging=T -> isclimb -> Dispatch releaseclimbing_button
+// 按钮 AutoClimbing Click: Taptime=1; 若 !isclimb 则 isclimb=T,Hanging=F, isclimb, Dispatch Press; 否则 isclimb=F,Hanging=T, PlayAnimation(0 DontChange), isclimb
+
+import "StdLibrary.fcc" as std
+import "Hud.fcc" as hud
+import "Animation.fcc" as anim
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_Climbing_button {
+	isclimb bool = false
+	isfall bool = false
+	Taptime int = 0
+	CustomUI entity = nil
+	Hanging bool = false
+
+	event OnAwake() {
+		Taptime = 1
+	}
+
+	func Jumping_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		isfall = true
+		isclimb = false
+		Hanging = false
+		// ECA: StopAnimationByController(player,vEAke9DY); PlayAnimationByController(player,d4MFw2ge,1,Loop)
+		// 需从项目动画控制器绑定状态 ID 后取消注释：
+		// anim.StopAnimation(triggerPlayer, "vEAke9DY")
+		// anim.PlayAnimation(triggerPlayer, "d4MFw2ge", 1, AnimationOverrideLoopType.Loop)
+		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)、isfall(isfall, Hanging, player)
+		DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	func Pressclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		isclimb = true
+		Hanging = false
+		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
+		DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	func releaseclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		isclimb = false
+		Hanging = true
+		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
+		DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	func AutoClimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		Taptime = 1
+		if isclimb == false {
+			isclimb = true
+			Hanging = false
+			// ECA 此处调用 C_P_Climbing.isclimb
+			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		} else {
+			isclimb = false
+			Hanging = true
+			// ECA: PlayAnimationByController(player, vEAke9DY, 0, DontChange)
+			// anim.PlayAnimation(triggerPlayer, "vEAke9DY", 0, AnimationOverrideLoopType.DontChange)
+			// ECA 此处调用 C_P_Climbing.isclimb
+		}
+	}
+}

@@ -1,0 +1,394 @@
+{
+  "_entityName": "ACEntity",
+  "_tag": {
+    "type": "ACEntity"
+  },
+  "_entityId": "dDDL8CdC",
+  "children": [
+    {
+      "_entityName": "Idle",
+      "_tag": {
+        "type": "ACStateEntity"
+      },
+      "_entityId": "j6rbI9ro",
+      "children": [
+        {
+          "_entityName": "Base Layer",
+          "_tag": {
+            "type": "ACLayerEntity"
+          },
+          "_entityId": "JgCHzXsN",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "isLoop": false,
+          "isBaseLayer": true,
+          "mute": false,
+          "bodypartId": null,
+          "DisableChanged": false
+        }
+      ],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "isLoop": true,
+      "_eventFrameList": [],
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "VW5xyjY7",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": {
+          "selfValue": true,
+          "valueTag": "activeValue"
+        },
+        "unlockedValue": {
+          "selfValue": true,
+          "valueTag": "unlockedValue"
+        },
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      },
+      "selectedBodyparts": [],
+      "muteEvent": false,
+      "DisableChanged": true
+    },
+    {
+      "_entityName": "Climbing",
+      "_tag": {
+        "type": "ACStateEntity"
+      },
+      "_entityId": "vEAke9DY",
+      "children": [
+        {
+          "_entityName": "Base Layer",
+          "_tag": {
+            "type": "ACLayerEntity"
+          },
+          "_entityId": "SbUpmVtP",
+          "children": [
+            {
+              "_entityName": "Climbing_Remove2.anim",
+              "_tag": {
+                "type": "ACClipEntity"
+              },
+              "_entityId": "GTTVGMGC",
+              "children": [],
+              "prefabVariant": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
+              "editorLockValue": false,
+              "editorVisibleValue": true,
+              "speed": 1,
+              "loop": false,
+              "fadeInTime": 0.3,
+              "enablefadeTime": true,
+              "clipRefer": {
+                "fileId": "bnjscp4mfx7-mlg1o1vn-m8etbkl6kvc-Climbing_Remove2.Anim",
+                "filePath": "fab://Assets\\Animation\\Base_Male_062d52bdf9804163b7d4124e65de6072.FBX\\Climbing_Remove2.anim",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "anim"
+              },
+              "wrapMode": 0,
+              "postExtrapolate": 0,
+              "startTime": 0,
+              "endTime": 2
+            }
+          ],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "isLoop": false,
+          "isBaseLayer": true,
+          "mute": false,
+          "bodypartId": null,
+          "DisableChanged": false
+        }
+      ],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "isLoop": false,
+      "_eventFrameList": [],
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "C3hbh0N6",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": {
+          "selfValue": true,
+          "valueTag": "activeValue"
+        },
+        "unlockedValue": {
+          "selfValue": true,
+          "valueTag": "unlockedValue"
+        },
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      },
+      "selectedBodyparts": [],
+      "muteEvent": false,
+      "DisableChanged": false
+    },
+    {
+      "_entityName": "Falling",
+      "_tag": {
+        "type": "ACStateEntity"
+      },
+      "_entityId": "d4MFw2ge",
+      "children": [
+        {
+          "_entityName": "Base Layer",
+          "_tag": {
+            "type": "ACLayerEntity"
+          },
+          "_entityId": "gkjUCGlX",
+          "children": [
+            {
+              "_entityName": "defaultClipName.anim",
+              "_tag": {
+                "type": "ACClipEntity"
+              },
+              "_entityId": "WGnc6SZY",
+              "children": [],
+              "prefabVariant": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
+              "editorLockValue": false,
+              "editorVisibleValue": true,
+              "speed": 1,
+              "loop": false,
+              "fadeInTime": 0.3,
+              "enablefadeTime": true,
+              "clipRefer": {
+                "fileId": "2i634n3xudy-mlgeic2j-uxry8zgrhxc-defaultClipName.Anim",
+                "filePath": "fab://Assets\\Animation\\Base_Male_f6a2169af5a34bfbb9c107bf0c720beb.FBX\\defaultClipName.anim",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "anim"
+              },
+              "wrapMode": 0,
+              "postExtrapolate": 0,
+              "startTime": 0,
+              "endTime": 4.5
+            }
+          ],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "isLoop": false,
+          "isBaseLayer": true,
+          "mute": false,
+          "bodypartId": null,
+          "DisableChanged": false
+        }
+      ],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "isLoop": false,
+      "_eventFrameList": [],
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "PK7nNRr3",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": {
+          "selfValue": true,
+          "valueTag": "activeValue"
+        },
+        "unlockedValue": {
+          "selfValue": true,
+          "valueTag": "unlockedValue"
+        },
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      },
+      "selectedBodyparts": [],
+      "muteEvent": false,
+      "DisableChanged": false
+    },
+    {
+      "_entityName": "Dance",
+      "_tag": {
+        "type": "ACStateEntity"
+      },
+      "_entityId": "Ht9FeIqc",
+      "children": [
+        {
+          "_entityName": "Base Layer",
+          "_tag": {
+            "type": "ACLayerEntity"
+          },
+          "_entityId": "RKkwMIcZ",
+          "children": [
+            {
+              "_entityName": "defaultClipName.anim",
+              "_tag": {
+                "type": "ACClipEntity"
+              },
+              "_entityId": "KK9yHcmf",
+              "children": [],
+              "prefabVariant": null,
+              "activeValue": null,
+              "unlockedValue": null,
+              "editorLockValue": false,
+              "editorVisibleValue": true,
+              "speed": 1,
+              "loop": false,
+              "fadeInTime": 0.3,
+              "enablefadeTime": true,
+              "clipRefer": {
+                "fileId": "9jmkz52nlvv-mm00ahdd-rbyubb4r9tc-defaultClipName.Anim",
+                "filePath": "fab://Assets\\Animation\\Dancemale.FBX\\defaultClipName.anim",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "anim"
+              },
+              "wrapMode": 0,
+              "postExtrapolate": 0,
+              "startTime": 0,
+              "endTime": 2.2
+            }
+          ],
+          "prefabVariant": null,
+          "activeValue": null,
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "isLoop": false,
+          "isBaseLayer": true,
+          "mute": false,
+          "bodypartId": null,
+          "DisableChanged": false
+        }
+      ],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": null,
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "isLoop": false,
+      "_eventFrameList": [],
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "pCHu9TKG",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      },
+      "selectedBodyparts": [],
+      "muteEvent": false,
+      "DisableChanged": false
+    }
+  ],
+  "prefabVariant": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "version": 3,
+  "preModel": {
+    "fileId": "UMA_102000004",
+    "filePath": "lib://ffuma/102000004",
+    "_tag": {
+      "type": "GFileRefer"
+    },
+    "fileType": "uma"
+  },
+  "bpcFile": null
+}
+//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}

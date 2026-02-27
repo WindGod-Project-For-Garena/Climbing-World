@@ -1,0 +1,55 @@
+// 一比一转换自 G_UIcontrollor.eca（未修改 ECA）
+// variables: Climbing_button(Map), VisibleUI(CustomHud), InvisibleUI(CustomHud), Climbing_UI(Map)
+// OnAwake -> grs Climbing_button=New Map(Player,CustomHud); grs Climbing_UI=New Map(Player,CustomHud)
+// slr signal_36346128(player) -> PrintString("1") -> ife1 MapContainKey? prs OpenState:CustomHud=true : CreateCustomHudV2+MapSetValue
+// slr signal_87440986(player) -> prs OpenState:CustomHud=false
+// slr signal_44946959(player,height) -> prs AnchorPosition:HudWidget=NewVector(-331,height,0)
+// e OnPlayerAdd(Player) -> CreateCustomHudV2 x2 -> MapSetValue(Climbing_UI,Player,Created Entity2) -> PrintString(Climbing_UI)
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Player.fcc" as player
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+
+[platform_server]
+graph G_UIcontrollor {
+	Climbing_button Map<object, object> = nil
+	VisibleUI entity = nil
+	InvisibleUI entity = nil
+	Climbing_UI Map<object, object> = nil
+
+	event OnAwake() {
+		Climbing_button = map.New()
+		Climbing_UI = map.New()
+	}
+
+	event OnPlayerJoin(player entity<Player>) {
+		CreateCustomUI(out var G_IngamHud, player, EResUI.G_IngamHud)
+		CreateCustomUI(out var Avatar, player, EResUI.Avatar)
+		Climbing_UI[player] = Avatar
+		LogInfo(Climbing_UI)
+	}
+
+	event __Custom6event_entertrigger__(player entity<Player>) {
+		LogInfo("1")
+		if ContainKey(Climbing_button, player) {
+			var hudEntity = Climbing_button[player] as entity
+			hudEntity<CustomUI>.IsVisible = true
+		} else {
+			CreateCustomUI(out var createdEntity, player, EResUI.ClimbingUI)
+			Climbing_button[player] = createdEntity
+		}
+	}
+
+	event __Custom6event_leavetrigger__(player entity<Player>) {
+		var hudEntity = Climbing_button[player] as entity
+		hudEntity<CustomUI>.IsVisible = false
+	}
+
+	event __Custom6event_ClimbUI__(player entity<Player>, height float) {
+		var customHud = Climbing_UI[player]
+		var AvetarPanleEntity = GetWidgetByPath(player, customHud as entity<CustomUI>, "/Panel (1)")
+		AvetarPanleEntity<UIWidget>.AnchorPosition = Vector3{-331, height, 0}
+	}
+}

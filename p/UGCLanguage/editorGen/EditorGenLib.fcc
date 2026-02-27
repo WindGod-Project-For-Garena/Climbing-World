@@ -1,0 +1,204 @@
+import "StdLibrary.fcc" as StdLibrary
+import "Hud.fcc" as Hud
+
+
+
+
+
+
+// Custom event_Jumping_button(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_Jumping_button__( player entity<Player>)
+
+// Custom event_onground(player Player, Vector Vector3)
+[platform_client]
+[platform_server]
+event __Custom6event_onground__( player entity<Player>,  Vector Vector3)
+
+// Custom event_CreateIngameUI(IngameUI Map)
+[platform_client]
+[platform_server]
+event __Custom6event_CreateIngameUI__( IngameUI Map<object, object>)
+
+// Custom event_Pressclimbing_button(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_Pressclimbing_button__( player entity<Player>)
+
+// Custom event_releaseclimbing_button(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_releaseclimbing_button__( player entity<Player>)
+
+// Custom event_entertrigger(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_entertrigger__( player entity<Player>)
+
+// Custom event_entertriggeragain(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_entertriggeragain__( player entity<Player>)
+
+// Custom event_leavetrigger(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_leavetrigger__( player entity<Player>)
+
+// Custom event_ClimbUI(player Player, height Float)
+[platform_client]
+[platform_server]
+event __Custom6event_ClimbUI__( player entity<Player>,  height float)
+
+
+// Assets\ECA\C_P_Climbing.eca
+[platform_client]
+declare graph __AssetsA3ECAA3C_P_Climbingneca__ {
+    // receivecount
+    receivecount int
+
+    // a
+    a int
+
+    // isclimb
+    isclimb bool
+
+    // player
+    player entity<Player>
+
+    // Speed_muti
+    Speed_muti int
+
+    // isfall
+    isfall bool
+
+    // Player_fall
+    Player_fall entity<Player>
+
+    // IngameUI
+    IngameUI entity<CustomUI>
+
+    // frame
+    frame int
+
+    // Curent_height
+    Curent_height Vector3
+
+    // ishanging
+    ishanging bool
+
+    // isclimb(isclimb Bool, ishanging Bool, player Player)
+    func isclimb( isclimb bool,  ishanging bool,  player entity<Player>) 
+
+    // isfall(isfall Bool, ishanging Bool, player any)
+    func isfall( isfall bool,  ishanging bool,  player object) 
+
+}
+
+// Assets\ECA\G_Climbing.eca
+[platform_server]
+declare graph __AssetsA3ECAA3G_Climbingneca__ {
+    // Climbing(player any)
+    func Climbing( player object) 
+
+    // Jumping(player any)
+    func Jumping( player object) 
+
+    // Onground(player Player, Vector Vector3)
+    func Onground( player entity<Player>,  Vector Vector3) 
+
+    // Climbing_Stop(Player any)
+    func Climbing_Stop( Player object) 
+
+}
+
+// Assets\ECA\C_Climbing_button.eca
+[platform_client]
+declare graph __AssetsA3ECAA3C_Climbing_buttonneca__ {
+    // isclimb
+    isclimb bool
+
+    // isfall
+    isfall bool
+
+    // Taptime
+    Taptime int
+
+    // CustomUI
+    CustomUI object
+
+    // Hanging
+    Hanging bool
+
+}
+
+// Assets\ECA\C_Climbing_starttrigger.eca
+[platform_client]
+declare graph __AssetsA3ECAA3C_Climbing_starttriggerneca__ {
+    // entercount
+    entercount int
+
+    // Climbing_UI
+    Climbing_UI entity<CustomUI>
+
+}
+
+// Assets\ECA\G_UIcontrollor.eca
+[platform_server]
+declare graph __AssetsA3ECAA3G_UIcontrollorneca__ {
+    // Climbing_button
+    Climbing_button Map<object, object>
+
+    // VisibleUI
+    VisibleUI entity<CustomUI>
+
+    // InvisibleUI
+    InvisibleUI entity<CustomUI>
+
+    // Climbing_UI
+    Climbing_UI Map<object, object>
+
+}
+
+
+
+
+
+enum EPhase {
+    // Start
+    Start = 362
+
+    // Preparation
+    Preparation = 2209
+
+    // Rounds
+    Rounds = 4213
+
+    // Rounds / Stages
+    Stages = 5888
+
+    // Rounds / Stages
+    Stages_1 = 7522
+
+    // End
+    End = 9417
+
+}
+
+
+
+enum EPhysicalLayer {
+    // 0:Default
+    Default = 0
+
+}
+
+
+enum EVisibilityLayer {
+    // 0:Default
+    Default = 0
+
+}
+
+

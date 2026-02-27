@@ -1,0 +1,225 @@
+{
+  "blocks": {
+    "languageVersion": 0,
+    "blocks": [
+      {
+        "type": "e",
+        "id": "=h3]Amx1YV$^u9eV|H:9",
+        "x": -565,
+        "y": -98,
+        "extraState": {
+          "X": 138,
+          "L": [],
+          "O": [],
+          "T": "OnAwake",
+          "OT": "Entity"
+        },
+        "next": {
+          "block": {
+            "type": "grs",
+            "id": "83I`ol:q|kL{npNS;]QJ",
+            "fields": {
+              "VR": "vLRKSrNUC",
+              "O": "UK"
+            },
+            "inputs": {
+              "V": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "~*@ugByaMpTn514pNtA5",
+                  "extraState": "Int"
+                },
+                "block": {
+                  "type": "ipi",
+                  "id": "@TEv.::%hQ3njAJ?h=;c",
+                  "fields": {
+                    "V": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "e",
+        "id": "3kXJ|%)87A^#w0f!m)v[",
+        "x": -568,
+        "y": 36,
+        "extraState": {
+          "X": 150,
+          "L": [
+            1
+          ],
+          "O": [
+            "o"
+          ],
+          "T": "OnPlayerEnter",
+          "OT": "CustomizeTrigger"
+        },
+        "fields": {
+          "P1": {
+            "name": "Player",
+            "type": "Player"
+          }
+        },
+        "next": {
+          "block": {
+            "type": "slsv4",
+            "id": "pSt;0kJ.q6(3OLT.WEUm",
+            "extraState": {
+              "X": 0,
+              "L": [
+                1
+              ],
+              "O": [
+                "o",
+                "o"
+              ],
+              "T": "signal_36346128",
+              "OT": "Component"
+            },
+            "fields": {
+              "TO": "2"
+            },
+            "inputs": {
+              "ow": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "fF{]G:AFk}DmE5%e7.,+",
+                  "extraState": "Component"
+                },
+                "block": {
+                  "type": "v",
+                  "id": "YH1l7p5)AxQ/m./JIAHA",
+                  "extraState": {
+                    "X": 95,
+                    "L": [],
+                    "O": [],
+                    "T": "GetGlobalEntity",
+                    "OT": null
+                  }
+                }
+              },
+              "P1": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "#_s[KNz.fuUTup/IAT5y",
+                  "extraState": "Player"
+                },
+                "block": {
+                  "type": "lcg",
+                  "id": "HI_yZc]`/XDS5,#Iv0q`",
+                  "extraState": "3kXJ|%)87A^#w0f!m)v[P1",
+                  "fields": {
+                    "VR": "Player"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "type": "e",
+        "id": "+[g76y$f~xM4%ZFJa2Nj",
+        "x": -569,
+        "y": 187,
+        "extraState": {
+          "X": 151,
+          "L": [
+            1
+          ],
+          "O": [
+            "o"
+          ],
+          "T": "OnPlayerLeave",
+          "OT": "CustomizeTrigger"
+        },
+        "fields": {
+          "P1": {
+            "name": "Player",
+            "type": "Player"
+          }
+        },
+        "next": {
+          "block": {
+            "type": "slsv4",
+            "id": "4/s,s@5zd-3_]Yk:^+tf",
+            "extraState": {
+              "X": 0,
+              "L": [
+                1
+              ],
+              "O": [
+                "o",
+                "o"
+              ],
+              "T": "signal_87440986",
+              "OT": "Component"
+            },
+            "fields": {
+              "TO": "2"
+            },
+            "inputs": {
+              "ow": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "022v=7?(7)N!$_-QYcy9",
+                  "extraState": "Component"
+                },
+                "block": {
+                  "type": "v",
+                  "id": ".y5fQIVM9})Y(U(%CV^#",
+                  "extraState": {
+                    "X": 95,
+                    "L": [],
+                    "O": [],
+                    "T": "GetGlobalEntity",
+                    "OT": null
+                  }
+                }
+              },
+              "P1": {
+                "shadow": {
+                  "type": "tys",
+                  "id": "JJ.?6tYaLee4.#iKFk,.",
+                  "extraState": "Player"
+                },
+                "block": {
+                  "type": "lcg",
+                  "id": "_TU/[t^=ZW}p7~p~G_HS",
+                  "extraState": "+[g76y$f~xM4%ZFJa2NjP1",
+                  "fields": {
+                    "VR": "Player"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "variables": [
+    {
+      "id": "vLRKSrNUC",
+      "name": "entercount",
+      "type": "Int",
+      "value": 0
+    },
+    {
+      "id": "v0p7u5chY",
+      "name": "Climbing_UI",
+      "type": "CustomHud",
+      "value": null
+    }
+  ],
+  "graphData": {
+    "ownerType": "Entity",
+    "componentTypes": "Entity",
+    "isStatic": false,
+    "platform": 1
+  }
+}
+//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
