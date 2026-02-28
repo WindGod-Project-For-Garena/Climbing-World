@@ -1,0 +1,3 @@
+[platform_client]
+[platform_server]
+event OnJumpingBtnClicked( player entity<Player>)

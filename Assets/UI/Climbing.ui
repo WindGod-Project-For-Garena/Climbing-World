@@ -582,7 +582,14 @@
           "disabled": "#494949",
           "onClicks": [],
           "enableBorderImage": true,
-          "clickHandlers": [],
+          "clickHandlers": [
+            {
+              "eventName": "OnClick",
+              "funcKey": "AutoClimbing_button",
+              "type": "ugcscript",
+              "fileID": "2cbpz26xswv-mm3bn2ek-3bsyiq2oyjd"
+            }
+          ],
           "disableCollider": false,
           "fillType": 1,
           "slicedBorder": {

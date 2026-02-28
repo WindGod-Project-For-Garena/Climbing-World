@@ -67,8 +67,8 @@
   "ecaScript": null,
   "ecaScripts": [
     {
-      "fileId": "1tikkq6ckvq-mm3bn2f9-3ptelrtf2z8",
-      "filePath": "Assets\\FCG\\C_P_Climbing.fcg",
+      "fileId": "i8kwxz8v8z-mm5yrtot-4vl4vggrasm",
+      "filePath": "Assets\\FCG\\CustomFCG\\Player\\C_P_Climbing2.fcg",
       "_tag": {
         "type": "GFileRefer"
       },

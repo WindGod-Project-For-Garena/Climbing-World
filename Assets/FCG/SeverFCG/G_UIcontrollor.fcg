@@ -27,7 +27,11 @@ graph G_UIcontrollor {
 	event OnPlayerJoin(player entity<Player>) {
 		CreateCustomUI(out var G_IngamHud, player, EResUI.G_IngamHud)
 		CreateCustomUI(out var Avatar, player, EResUI.Avatar)
+		CreateCustomUI(out var P_IngameHudEntity, player, EResUI.P_IngameHud)
 		Climbing_UI[player] = Avatar
+		var ingameUIMap = map.New()
+		ingameUIMap["P_IngameHud"] = P_IngameHudEntity
+		DispatchEventToEntity(__Custom6event_CreateIngameUI__, player, PlatformType.Client, List<object>{ingameUIMap})
 		LogInfo(Climbing_UI)
 	}
 
