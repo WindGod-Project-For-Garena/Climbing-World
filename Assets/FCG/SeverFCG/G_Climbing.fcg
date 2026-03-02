@@ -18,70 +18,72 @@ graph G_Climbing {
 	playerCustomGravity Map<entity<Player>, float> = nil
 	PlayerCurentHeight Map<entity<Player>, float> = nil
 	forward1 Vector3 = Vector3{1, 0, 0}
+	Switch int = 0
+	Switch2 int = 0
 	event OnAwake() {       
 		playerCustomGravity = map.New()
 		PlayerCurentHeight = map.New()
+		
 	}
 
 	func Climbing(player entity<Player>) {
 		// ECA: if CustomGravity!=0 then Set 0; StopAnimation(Falling); StopAnimation(Dance); PlayAnimation(Climbing,1,Loop)
-		LogInfo("AAA")
-
-		var grav = 0.0
-		if playerCustomGravity != nil && ContainKey(playerCustomGravity, player) {
-			grav = playerCustomGravity[player]
-		}
-		if grav != 0 {
-			if playerCustomGravity == nil {
-				playerCustomGravity = map.New()
-			}
-			playerCustomGravity[player] = 0
-		}
-		anim.StopAnimation(player, "Falling")
-		anim.StopAnimation(player, "Dance")
-		anim.PlayAnimation(player, "Climbing", 1, LoopType.Loop)
-		//设置玩家位置，用teleport,查一下gen库
+		// 攀爬中每帧都会派发 Pressclimbing_button，此处加守卫：已在攀爬状态（Gravity==0）则跳过，确保逻辑只执行一次
 		
+		if Switch == 1 {
+			return
+		}
+		Switch = 1
+		player<Player>.Gravity = 0
+		StopAnimation(player, "Falling")
+		StopAnimation(player, "Dance")
+		PlayAnimation(player, "Climbing", 1, LoopType.Loop)
+		//设置玩家位置，用teleport,查一下gen库
 	}
 
 	func Jumping(player entity<Player>) {
+		if Switch2 == 1 {
+			return
+		}
+		Switch2 = 1
+		
+		
 		// ECA: if CustomGravity==0 then Stop(Climbing); Play(Falling,1,Loop); if DirectPositionVec3.Y<1 then Stop(Falling) else Set CustomGravity=-9.8
-		var grav = 0.0
-		if playerCustomGravity != nil && ContainKey(playerCustomGravity, player) {
-			grav = playerCustomGravity[player]
-		}
-		if grav == 0 {
-			anim.StopAnimation(player, "Climbing")
-			anim.PlayAnimation(player, "Falling", 1, LoopType.Loop)
-			if player<Transform>.Position.Y < 1 {
-				anim.StopAnimation(player, "Falling")
-			} else {
-				if playerCustomGravity == nil {
-					playerCustomGravity = map.New()
-				}
-				playerCustomGravity[player] = -9.8
-			}
-		}
+		
+		
+			player<Player>.Gravity = -9.8
+
+			StopAnimation(player, "Climbing")
+			PlayAnimation(player, "Falling", 1, LoopType.Loop)
+			if player<Player>.Position.Y < 1 {
+				StopAnimation(player, "Falling")
+			} 
+		
 	}
 
 	func Onground(player entity<Player>, vec Vector3) {
 		// ECA: TeleportPlayerPositionAndForward(player, vec, (1,0,0)); PlayAnimation(Dance, 1, Once)
 		Teleport(player, vec, forward1)
-		anim.PlayAnimation(player, "Dance", 1, LoopType.Once)
+		Switch2 = 0
+		PlayAnimation(player, "Dance", 1, LoopType.Once)
 	}
 
 	func Climbing_Stop(player entity<Player>) {
+		Switch = 0
+		player<Player>.Gravity = 0
 		// ECA: StopAnimation(Climbing); PlayAnimation(Climbing, 0, Loop)
-		anim.StopAnimation(player, "Climbing")
-		anim.PlayAnimation(player, "Climbing", 0, LoopType.Loop)
+		StopAnimation(player, "Climbing")
+		PlayAnimation(player, "Climbing", 0, LoopType.Loop)
 	}
 	event __Custom6event_Pressclimbing_button__(player entity<Player>) {
 		LogInfo("喵喵喵")
+		
 		Climbing(player)
 	}
 
 	event __Custom6event_Jumping_button__(player entity<Player>) {
 		Jumping(player)
+		
 	}
 
 	event __Custom6event_releaseclimbing_button__(player entity<Player>) {
