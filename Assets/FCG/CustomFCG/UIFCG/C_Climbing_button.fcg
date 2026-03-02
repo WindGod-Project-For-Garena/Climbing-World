@@ -11,6 +11,8 @@ import "Hud.fcc" as hud
 import "Animation.fcc" as anim
 import "EditorGenLib.fcc" as gen
 import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+import "Math.fcc" as Math
+import "Player.fcc" as playerlib
 
 [platform_client]
 graph C_Climbing_button {
@@ -21,6 +23,9 @@ graph C_Climbing_button {
 	Hanging bool = false
 
 	event OnAwake() {
+	
+
+		
 		Taptime = 1
 	}
 
@@ -28,34 +33,46 @@ graph C_Climbing_button {
 		isfall = true
 		isclimb = false
 		Hanging = false
-		LogInfo("aaa")
+		
+		triggerPlayer<C_P_Climbing2>.bIsClimb= false
+		triggerPlayer<C_P_Climbing2>.ishanging = false
+		triggerPlayer<C_P_Climbing2>.bIsFall = true
+		LogInfo(C_P_Climbing2.bIsFall)
+		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
+		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 		// ECA: StopAnimationByController(player,vEAke9DY); PlayAnimationByController(player,d4MFw2ge,1,Loop)
 		// 需从项目动画控制器绑定状态 ID 后取消注释：
 		// anim.StopAnimation(triggerPlayer, "vEAke9DY")
 		// anim.PlayAnimation(triggerPlayer, "d4MFw2ge", 1, AnimationOverrideLoopType.Loop)
-		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)、isfall(isfall, Hanging, player)
-		C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
-		C_P_Climbing2.isfall(isclimb, Hanging, triggerPlayer)
+		
 		DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
 	func Pressclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		triggerPlayer<C_P_Climbing2>.bIsClimb= true
+		triggerPlayer<C_P_Climbing2>.ishanging = false
+		triggerPlayer<C_P_Climbing2>.player = triggerPlayer
+		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+	
+		LogInfo(C_P_Climbing2.bIsClimb)
 		LogInfo("bbb")
 		LogInfo(triggerPlayer<Player>.Position)
 		LogInfo(triggerPlayer)
-		isclimb = true
-		Hanging = false
+		
 		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
 		//C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
-		triggerPlayer<C_P_Climbing2>.isclimb(isclimb, Hanging, triggerPlayer)
+	
 		DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
 	func releaseclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		isclimb = false
 		Hanging = true
-		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
-		C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
+		triggerPlayer<C_P_Climbing2>.bIsClimb= false
+		triggerPlayer<C_P_Climbing2>.ishanging = true
+		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
+		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+	
 		DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
@@ -64,16 +81,24 @@ graph C_Climbing_button {
 		if isclimb == false {
 			isclimb = true
 			Hanging = false
-			// ECA 此处调用 C_P_Climbing.isclimb
-			C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
+			triggerPlayer<C_P_Climbing2>.bIsClimb= true
+			triggerPlayer<C_P_Climbing2>.ishanging =false
+			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
+			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+	
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 		} else {
 			isclimb = false
 			Hanging = true
-			// ECA: PlayAnimationByController(player, vEAke9DY, 0, DontChange)
+			/*triggerPlayer<C_P_Climbing2>.bIsClimb= false
+			triggerPlayer<C_P_Climbing2>.ishanging = true*/
+			triggerPlayer<C_P_Climbing2>.bIsClimb = false
+			triggerPlayer<C_P_Climbing2>.ishanging = true
+			LogInfo("悬挂前")
+			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
+			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			// anim.PlayAnimation(triggerPlayer, "vEAke9DY", 0, AnimationOverrideLoopType.DontChange)
-			// ECA 此处调用 C_P_Climbing.isclimb
-			C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
+			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})  // 添加此行
 		}
 	}
 }

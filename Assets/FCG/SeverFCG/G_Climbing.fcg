@@ -9,22 +9,31 @@ import "Animation.fcc" as anim
 import "Math.fcc" as math
 import "EditorGenLib.fcc" as gen
 import "Player.fcc" as playerlib
+import "Map.fcc" as map
 
 [platform_server]
 graph G_Climbing {
+	
 	// 使用本地 Map 存储玩家重力状态，避免使用未在实体上注册的 CustomGravity 属性（PropID:-97000）
 	playerCustomGravity Map<entity<Player>, float> = nil
+	PlayerCurentHeight Map<entity<Player>, float> = nil
+	forward1 Vector3 = Vector3{1, 0, 0}
+	event OnAwake() {       
+		playerCustomGravity = map.New()
+		PlayerCurentHeight = map.New()
+	}
 
 	func Climbing(player entity<Player>) {
 		// ECA: if CustomGravity!=0 then Set 0; StopAnimation(Falling); StopAnimation(Dance); PlayAnimation(Climbing,1,Loop)
 		LogInfo("AAA")
+
 		var grav = 0.0
-		if playerCustomGravity != nil {
+		if playerCustomGravity != nil && ContainKey(playerCustomGravity, player) {
 			grav = playerCustomGravity[player]
 		}
 		if grav != 0 {
 			if playerCustomGravity == nil {
-				playerCustomGravity = Map<entity<Player>, float>{}
+				playerCustomGravity = map.New()
 			}
 			playerCustomGravity[player] = 0
 		}
@@ -38,7 +47,7 @@ graph G_Climbing {
 	func Jumping(player entity<Player>) {
 		// ECA: if CustomGravity==0 then Stop(Climbing); Play(Falling,1,Loop); if DirectPositionVec3.Y<1 then Stop(Falling) else Set CustomGravity=-9.8
 		var grav = 0.0
-		if playerCustomGravity != nil {
+		if playerCustomGravity != nil && ContainKey(playerCustomGravity, player) {
 			grav = playerCustomGravity[player]
 		}
 		if grav == 0 {
@@ -48,7 +57,7 @@ graph G_Climbing {
 				anim.StopAnimation(player, "Falling")
 			} else {
 				if playerCustomGravity == nil {
-					playerCustomGravity = Map<entity<Player>, float>{}
+					playerCustomGravity = map.New()
 				}
 				playerCustomGravity[player] = -9.8
 			}
@@ -57,7 +66,7 @@ graph G_Climbing {
 
 	func Onground(player entity<Player>, vec Vector3) {
 		// ECA: TeleportPlayerPositionAndForward(player, vec, (1,0,0)); PlayAnimation(Dance, 1, Once)
-		player<Transform>.Position = vec
+		Teleport(player, vec, forward1)
 		anim.PlayAnimation(player, "Dance", 1, LoopType.Once)
 	}
 

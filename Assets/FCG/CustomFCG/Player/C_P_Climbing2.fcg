@@ -19,16 +19,19 @@ static graph C_P_Climbing2 {
 	a int = 0
 	bIsClimb bool = false
 	player entity<Player> = nil
-	Speed_muti int = 0
+	Speed_muti int = 10
 	bIsFall bool = false
 	Player_fall entity<Player> = nil
 	IngameUI entity<CustomUI> = nil
 	frame int = 0
 	Curent_height Vector3 = Vector3{0, 0, 0}
 	ishanging bool = false
+	forwardX1 Vector3 = Vector3{1, 0, 0}
+	forwardX2 Vector3 = Vector3{-1, 0, 0}
 
 	event OnAwake() {
-        LogInfo(GetLocalPlayer()<Player>.Position)
+        
+        LogInfo("11111111")
 		frame = 0
 		Curent_height = Vector3{0, 0, 0}
 	}
@@ -42,102 +45,66 @@ static graph C_P_Climbing2 {
 
 	// isclimb(isclimb, ishanging, player)：设置状态并首次设置本地玩家位置 X=30.32625
 	// 使用 Curent_height 缓存避免访问实体触发 PropID:-97000(CustomGravity) 的复制报错
-	func isclimb(isclimbParam bool, ishangingParam bool, playerParam entity<Player>) {
-      
-		bIsClimb = isclimbParam
-		ishanging = ishangingParam
-		player = playerParam
-        LogInfo(GetLocalPlayer()<Player>.Position.Y)
-        LogInfo(GetLocalPlayer()<Player>.Position.Z)
-		Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-        LogInfo(Curent_height)
-        LogInfo(player)
-		SetLocalPlayerPosition(Curent_height) 
-        //set local player position
-	}
-
-	// isfall(isfall, ishanging, player)：设置状态并给本地玩家位置加 (1.5, 0, 0)
-	// 使用 Curent_height 缓存避免访问实体触发 PropID:-97000(CustomGravity) 的复制报错
-	func isfall(isfallParam bool, ishangingParam bool, playerParam entity<Player>) {
-		bIsFall = isfallParam
-		ishanging = ishangingParam
-		Player_fall = playerParam
-		player = playerParam
-		var pos = Curent_height
-		Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X + 1.5, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-		SetLocalPlayerPosition(Curent_height) 
-	}
+	
 
     
 	event OnFixedUpdate() {
 		frame = frame + 1
-        
-       
-		
-		if bIsClimb == true {
+        if bIsClimb == true {
+			LogInfo("攀爬中")
+			SetLocalPlayerForward(forwardX2)
+
 			
             
 			// 攀爬中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
-			var pos = Curent_height
-			pos = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y , GetLocalPlayer()<Player>.Position.Z}
-			Curent_height = pos
 			
-			//setforward(-1, 0, 0)
-			player<Transform>.Forward = Vector3{-1, 0, 0}
-			// 计算指数公式：expPart = frame / 30.0 - (GetLocalPlayer()<Player>.Position.Y - 20.0) / 10.0
-			var frameFloat = convert.IntToFloat(frame)
-			var expPart = frameFloat / 30.0 - (GetLocalPlayer()<Player>.Position.Y - 20.0) / 10.0
+			//攀爬速度公式
+            var formulaY =Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
 			
-			// exponent = expPart * Speed_muti / 30.0
-			var speedMutiFloat = convert.IntToFloat(Speed_muti)
-			var exponent = expPart * speedMutiFloat / 30.0
+            
 			
-			// formulaY = 0.1^exponent
-			var formulaY = math.Exponentiation(0.1, exponent)
+			//改变向量Y的值
+			SetLocalPlayerPosition(	Vector3{Curent_height.X, Curent_height.Y+formulaY, Curent_height.Z,})
+			Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			
-			// 设置Curent_height = (0, formulaY, 0)
-			Curent_height = Vector3{0, formulaY, 0}
-			SetLocalPlayerPosition(Curent_height) 
-			
-			// 如果IngameUI != nil，设置Text:HudLabelWidget = ToString(Curent_height.Y)
-			if IngameUI != nil {
-				var labelEntity = GetWidgetByPath(player, IngameUI, "/Panel (1)")
-				if labelEntity != nil {
-					// ECA: Set Text:HudLabelWidget = ToString(Curent_height.Y)；若引擎提供 SetWidgetText 等 API 可在此设置
-				}
-			}
-			
-			// 如果 frame % 6 == 0 且 player != nil 且 globalEntity != nil，发送signal_44946959
-			if frame % 6 == 0 && player != nil && globalEntity != nil {
-				var heightVal = Curent_height.Y / 5.0 * 294.0
+			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
+
+		
+			if frame % 6 == 0  {
+				var heightVal = Curent_height.Y *5.0 -294.0
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
 			}
 			
 			// 设置玩家旋转为 (0, 0, 0) - 对应 SetLocalPlayerForward(1, 0, 0)
-			player<Transform>.Forward = Vector3{0, 0, 0}
+		
 			
 			// 如果 Curent_height.Y < 1
 			if Curent_height.Y < 1 {
-				if Player_fall != nil {
-					var fallPos = Curent_height
+				SetLocalPlayerForward(forwardX1)
+				
+					
 					Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
-				}
-				player<Transform>.Forward = Vector3{0, 0, 0}
+				
+				
 				bIsFall = false
-				if player != nil && globalEntity != nil {
-					DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height})
-				}
+				
+				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height})
+				
 			}
-		} else if bIsFall == true {
-			if player == nil {
-				return
-			}
+			LogInfo("bIsFall")
+			if bIsFall == true {
+				LogInfo("下坠中")
+
+			SetLocalPlayerForward(forwardX1)
+			
 			
 			// 下落中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
-			var pos = Curent_height
-			pos = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y - 1, GetLocalPlayer()<Player>.Position.Z}
-			Curent_height = pos
-			SetLocalPlayerPosition(Curent_height) 
+			
+			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y - 1, GetLocalPlayer()<Player>.Position.Z}
+			SetLocalPlayerPosition(	Curent_height)
+			DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{player})
+			 
+		
 			
 			// 如果IngameUI != nil，设置Text:HudLabelWidget = ToString(Curent_height.Y)
 			if IngameUI != nil {
@@ -148,24 +115,19 @@ static graph C_P_Climbing2 {
 			}
 			
 			// 如果 frame % 6 == 0 且 player != nil 且 globalEntity != nil，发送signal_44946959
-			if frame % 6 == 0 && player != nil && globalEntity != nil {
-				var heightVal = Curent_height.Y / 5.0 * 294.0
-				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
+			
+			if ishanging == true {
+				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y , GetLocalPlayer()<Player>.Position.Z}
+				DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
+
+				
 			}
 			
 			// 如果 Curent_height.Y < 1
-			if Curent_height.Y < 1 {
-				if Player_fall != nil {
-					var fallPos = Curent_height
-					Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
-				}
-				player<Transform>.Forward = Vector3{0, 0, 0}
-				bIsFall = false
-				if player != nil && globalEntity != nil {
-					DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height})
-				}
-			}
+			
+			
 		}
 	}
+}
 }
 

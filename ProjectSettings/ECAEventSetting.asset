@@ -21,23 +21,6 @@
       "version": 45,
       "key": "signal_31353734"
     },
-    "signal_22370959": {
-      "name": "Custom event_Pressclimbing_button",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100000,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        }
-      ],
-      "propCount": 2,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_22370959"
-    },
     "signal_35303240": {
       "name": "Custom event_releaseclimbing_button",
       "eventType": 0,
@@ -128,23 +111,6 @@
       "version": 45,
       "key": "signal_44946959"
     },
-    "signal_11991453": {
-      "name": "Custom event_Jumping_button",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100001,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        }
-      ],
-      "propCount": 1,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_11991453"
-    },
     "signal_30320840": {
       "name": "onGround",
       "eventType": 0,
@@ -177,19 +143,53 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_62874285"
+    },
+    "signal_22370959": {
+      "name": "Custom event_Pressclimbing_button",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100000,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_22370959"
+    },
+    "signal_11991453": {
+      "name": "Custom event_Jumping_button",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100001,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_11991453"
     }
   },
   "customName": {
     "Custom event_CreateIngameUI": "signal_31353734",
-    "Custom event_Pressclimbing_button": "signal_22370959",
     "Custom event_releaseclimbing_button": "signal_35303240",
     "Custom event_entertrigger": "signal_36346128",
     "Custom event_entertriggeragain": "signal_36606368",
     "Custom event_leavetrigger": "signal_87440986",
     "Custom event_ClimbUI": "signal_44946959",
-    "Custom event_Jumping_button": "signal_11991453",
     "onGround": "signal_30320840",
-    "Custom event_onground": "signal_62874285"
+    "Custom event_onground": "signal_62874285",
+    "Custom event_Pressclimbing_button": "signal_22370959",
+    "Custom event_Jumping_button": "signal_11991453"
   },
   "children": []
 }
