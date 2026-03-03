@@ -4,23 +4,6 @@
   },
   "_entityId": "YNTKwtqc",
   "customEventDefines": {
-    "signal_31353734": {
-      "name": "Custom event_CreateIngameUI",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100002,
-      "props": [
-        {
-          "name": "IngameUI",
-          "value": "Map",
-          "key": 1
-        }
-      ],
-      "propCount": 1,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_31353734"
-    },
     "signal_35303240": {
       "name": "Custom event_releaseclimbing_button",
       "eventType": 0,
@@ -37,23 +20,6 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_35303240"
-    },
-    "signal_36346128": {
-      "name": "Custom event_entertrigger",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100005,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 2
-        }
-      ],
-      "propCount": 2,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_36346128"
     },
     "signal_36606368": {
       "name": "Custom event_entertriggeragain",
@@ -199,12 +165,100 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_80671207"
+    },
+    "signal_36346128": {
+      "name": "Custom event_entertrigger",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100005,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_36346128"
+    },
+    "signal_76130450": {
+      "name": "Custom event_WingshopEnter",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100011,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_76130450"
+    },
+    "signal_94002303": {
+      "name": "Custom event_WingshopLeave",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100012,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_94002303"
+    },
+    "signal_34895939": {
+      "name": "Custom event_ClimbLeavetrigger",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100013,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "targetPos",
+          "value": "Vector3",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_34895939"
+    },
+    "signal_31353734": {
+      "name": "Custom event_CreateIngameUI",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100002,
+      "props": [
+        {
+          "name": "IngameUI",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_31353734"
     }
   },
   "customName": {
-    "Custom event_CreateIngameUI": "signal_31353734",
     "Custom event_releaseclimbing_button": "signal_35303240",
-    "Custom event_entertrigger": "signal_36346128",
     "Custom event_entertriggeragain": "signal_36606368",
     "Custom event_leavetrigger": "signal_87440986",
     "Custom event_ClimbUI": "signal_44946959",
@@ -212,7 +266,12 @@
     "Custom event_onground": "signal_62874285",
     "Custom event_Jumping_button": "signal_11991453",
     "Custom event_Pressclimbing_button": "signal_22370959",
-    "Custom event _ReportHeight": "signal_80671207"
+    "Custom event _ReportHeight": "signal_80671207",
+    "Custom event_entertrigger": "signal_36346128",
+    "Custom event_WingshopEnter": "signal_76130450",
+    "Custom event_WingshopLeave": "signal_94002303",
+    "Custom event_ClimbLeavetrigger": "signal_34895939",
+    "Custom event_CreateIngameUI": "signal_31353734"
   },
   "children": []
 }

@@ -1,0 +1,29 @@
+// 参照 C_Climbing_starttrigger 写法
+// 挂载在 Climb_leavetrigger 上，当玩家进入 trigger 时通知 G_Climbing 将玩家传送到子节点 TeleportSpot 所在的位置
+
+import "StdLibrary.fcc" as std
+import "LevelObject.fcc" as levelobject
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_Climbleavetrigger {
+	teleportSpot entity = nil
+	teleportSpot1 entity= thisEntity
+
+	event OnAwake() {
+		
+	}
+
+	event OnPlayerEnter(player entity<Player>) {
+		// 获取子节点 TeleportSpot 的位置
+	
+		LogInfo(GetChildByName(teleportSpot1, "TeleportSpot") as entity<Entity>)
+		
+		LogInfo(teleportSpot)
+		if teleportSpot != nil {
+			LogInfo(teleportSpot<Transform>.Position)
+			var targetPos = teleportSpot<Transform>.Position
+			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player, targetPos})
+		}
+	}
+}

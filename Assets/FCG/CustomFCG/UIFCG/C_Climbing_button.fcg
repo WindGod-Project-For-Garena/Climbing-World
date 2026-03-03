@@ -37,7 +37,7 @@ graph C_Climbing_button {
 		triggerPlayer<C_P_Climbing2>.bIsClimb= false
 		triggerPlayer<C_P_Climbing2>.ishanging = false
 		triggerPlayer<C_P_Climbing2>.bIsFall = true
-		LogInfo(C_P_Climbing2.bIsFall)
+		
 		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
 		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 		triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, -GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
@@ -55,10 +55,8 @@ graph C_Climbing_button {
 		triggerPlayer<C_P_Climbing2>.player = triggerPlayer
 		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 		triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
-		LogInfo(C_P_Climbing2.bIsClimb)
-		LogInfo("bbb")
-		LogInfo(triggerPlayer<Player>.Position)
-		LogInfo(triggerPlayer)
+		LogInfo(C_P_Climbing2.Speed_muti)
+		
 		
 		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
 		//C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)

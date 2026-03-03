@@ -58,7 +58,7 @@ static graph C_P_Climbing2 {
 			//攀爬速度公式
 			var formulaY = Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
 			//改变向量Y的值
-			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+formulaY, Curent_height.Z})
+			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+10, Curent_height.Z})
 			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, Curent_height.Y})

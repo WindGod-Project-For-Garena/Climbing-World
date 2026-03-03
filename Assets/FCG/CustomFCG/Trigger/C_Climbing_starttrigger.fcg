@@ -19,7 +19,7 @@ graph C_Climbing_starttrigger {
 	}
 
 	event OnPlayerEnter(player entity<Player>) {
-		LogInfo("进入了")
+	
 		DispatchEventToEntity(__Custom6event_entertrigger__, globalEntity, PlatformType.Server, List<object>{player})
 	}
 

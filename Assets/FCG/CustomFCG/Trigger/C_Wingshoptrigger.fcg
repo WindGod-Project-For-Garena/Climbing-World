@@ -1,0 +1,20 @@
+// 参照 C_Climbing_starttrigger 写法
+// 玩家进入 trigger 时通知 G_UIcontrollor 创建 WingshopUI
+// 离开时将 Wingshop 下 Panel 的可视性设为隐藏
+
+import "StdLibrary.fcc" as std
+import "LevelObject.fcc" as levelobject
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_Wingshoptrigger {
+
+	event OnPlayerEnter(player entity<Player>) {
+		
+		DispatchEventToEntity(__Custom6event_WingshopEnter__, globalEntity, PlatformType.Server, List<object>{player})
+	}
+
+	event OnPlayerLeave(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_WingshopLeave__, globalEntity, PlatformType.Server, List<object>{player})
+	}
+}

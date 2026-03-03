@@ -54,6 +54,18 @@
           },
           "scriptName": "P_IngameHud",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "9enl5mn0or-mmaagpho-fjbq6yw8yys",
+            "filePath": "Assets\\UI\\Wingshop.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Wingshop",
+          "children": []
         }
       ]
     },

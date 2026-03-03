@@ -22,12 +22,14 @@ graph G_UIcontrollor {
 	Climbing_UI Map<object, object> = nil
 	P_IngameHud_ByPlayer Map<object, object> = nil
 	Realtime_Height Map<object, object> = nil
+	Wingshop Map<object, object> = nil
 
 	event OnAwake() {
 		Climbing_button = map.New()
 		Climbing_UI = map.New()
 		P_IngameHud_ByPlayer = map.New()
 		Realtime_Height = map.New()
+		Wingshop = map.New()
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
@@ -61,6 +63,30 @@ graph G_UIcontrollor {
 	event __Custom6event_leavetrigger__(player entity<Player>) {
 		var hudEntity = Climbing_button[player] as entity
 		hudEntity<CustomUI>.IsVisible = false
+	}
+
+	event __Custom6event_WingshopEnter__(player entity<Player>) {
+		if ContainKey(Wingshop, player) {
+			var wingshopEntity = Wingshop[player] as entity
+			wingshopEntity<CustomUI>.IsVisible = true
+			var panelWidget = GetWidgetByPath(player, wingshopEntity as entity<CustomUI>, "/Panel")
+			if panelWidget != nil {
+				panelWidget<UIWidget>.IsVisible = true
+			}
+		} else {
+			CreateCustomUI(out var createdEntity, player, EResUI.Wingshop)
+			Wingshop[player] = createdEntity
+		}
+	}
+
+	event __Custom6event_WingshopLeave__(player entity<Player>) {
+		if ContainKey(Wingshop, player) {
+			var wingshopEntity = Wingshop[player] as entity
+			var panelWidget = GetWidgetByPath(player, wingshopEntity as entity<CustomUI>, "/Panel")
+			if panelWidget != nil {
+				panelWidget<UIWidget>.IsVisible = false
+			}
+		}
 	}
 
 	event __Custom6event_ClimbUI__(player entity<Player>, height float) {
