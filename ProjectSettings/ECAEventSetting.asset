@@ -144,23 +144,6 @@
       "version": 45,
       "key": "signal_62874285"
     },
-    "signal_22370959": {
-      "name": "Custom event_Pressclimbing_button",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100000,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        }
-      ],
-      "propCount": 1,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_22370959"
-    },
     "signal_11991453": {
       "name": "Custom event_Jumping_button",
       "eventType": 0,
@@ -173,10 +156,49 @@
           "key": 1
         }
       ],
-      "propCount": 1,
+      "propCount": 2,
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_11991453"
+    },
+    "signal_22370959": {
+      "name": "Custom event_Pressclimbing_button",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100000,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 3,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_22370959"
+    },
+    "signal_80671207": {
+      "name": "Custom event _ReportHeight",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100010,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "height",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_80671207"
     }
   },
   "customName": {
@@ -188,8 +210,9 @@
     "Custom event_ClimbUI": "signal_44946959",
     "onGround": "signal_30320840",
     "Custom event_onground": "signal_62874285",
+    "Custom event_Jumping_button": "signal_11991453",
     "Custom event_Pressclimbing_button": "signal_22370959",
-    "Custom event_Jumping_button": "signal_11991453"
+    "Custom event _ReportHeight": "signal_80671207"
   },
   "children": []
 }

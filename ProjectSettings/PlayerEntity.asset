@@ -74,7 +74,14 @@
       },
       "fileType": "ugcscript"
     },
-    null
+    {
+      "fileId": "w4ugb10999i-mm947juo-n0wpjffvm5",
+      "filePath": "Assets\\FCG\\CustomFCG\\UI\\C_HeightReporter.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    }
   ],
   "avatarInfo": null,
   "sceneData": {

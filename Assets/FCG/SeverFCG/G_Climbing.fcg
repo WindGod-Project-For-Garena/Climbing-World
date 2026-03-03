@@ -76,7 +76,7 @@ graph G_Climbing {
 		PlayAnimation(player, "Climbing", 0, LoopType.Loop)
 	}
 	event __Custom6event_Pressclimbing_button__(player entity<Player>) {
-		LogInfo("喵喵喵")
+		
 		
 		Climbing(player)
 	}

@@ -1,0 +1,13 @@
+
+import "StdLibrary.fcc" as std
+import "Animation.fcc" as anim
+import "Math.fcc" as math
+import "Convert.fcc" as convert
+import "Time.fcc" as time
+import "Player.fcc" as playerlib
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+static graph C_HeightReporter {
+}

@@ -55,7 +55,7 @@
                 "V": {
                   "shadow": {
                     "type": "tys",
-                    "id": "~t2M]Z73p?*ctp~)1xn@",
+                    "id": "35i=RHN{EfSk2y,|@,S9",
                     "extraState": "Bool"
                   },
                   "block": {
@@ -80,7 +80,7 @@
                     "V": {
                       "shadow": {
                         "type": "tys",
-                        "id": "v|*J9On/Mna.R5(6Q4l+",
+                        "id": "Sic/f3!^n8nbmB-{7P3#",
                         "extraState": "Bool"
                       },
                       "block": {
@@ -105,7 +105,7 @@
                         "V": {
                           "shadow": {
                             "type": "tys",
-                            "id": "wd3!(KW9e.ql]dHInDTd",
+                            "id": "T}%cRg1;7Lb:V.;1Rv;v",
                             "extraState": "Player"
                           },
                           "block": {
@@ -330,7 +330,7 @@
               "V": {
                 "shadow": {
                   "type": "tys",
-                  "id": ".5YvG6:ev_3+Hgb4iG:I",
+                  "id": "8,+6Duu6GQr}`up`+?eM",
                   "extraState": "Int"
                 },
                 "block": {
@@ -370,7 +370,7 @@
                         "V1": {
                           "shadow": {
                             "type": "tys",
-                            "id": "n(b.j;.kK_rX*P}YVrW9",
+                            "id": "n]9V~.%5zVE4H#1HQzl1",
                             "extraState": "any"
                           },
                           "block": {
@@ -384,7 +384,7 @@
                         "V2": {
                           "shadow": {
                             "type": "tys",
-                            "id": "OMEr*@-^qO-zhI(Aj?(|",
+                            "id": ",+_hQ[WA!)SQagS:N-Mq",
                             "extraState": "any"
                           },
                           "block": {
@@ -791,7 +791,7 @@
                                 "V": {
                                   "shadow": {
                                     "type": "tys",
-                                    "id": "YJpZX5)I]EIx)j(cIL8x",
+                                    "id": "7J8_SnMh}1y~T8bhxAsW",
                                     "extraState": "Vector3"
                                   },
                                   "block": {
@@ -845,7 +845,7 @@
                         "V1": {
                           "shadow": {
                             "type": "tys",
-                            "id": "[woGaA][2X1qjKCe_I63",
+                            "id": "$1Q@%!8YA;VA{]SyqyHL",
                             "extraState": "any"
                           },
                           "block": {
@@ -859,7 +859,7 @@
                         "V2": {
                           "shadow": {
                             "type": "tys",
-                            "id": ":W%9@F)]4rquvfb[Fr]p",
+                            "id": "N0=CaMZQ,6_Gt!NcbN^s",
                             "extraState": "any"
                           },
                           "block": {
@@ -977,7 +977,7 @@
                             "V": {
                               "shadow": {
                                 "type": "tyd",
-                                "id": "AqtXq!@upyE!zh)`%dl[",
+                                "id": "Ezx;~ed6`hEQ;b{7={;M",
                                 "extraState": "Vector3"
                               },
                               "block": {
@@ -1087,7 +1087,7 @@
                                 "V": {
                                   "shadow": {
                                     "type": "tys",
-                                    "id": "1c^/w5b]+ZR7*M)Q[}=f",
+                                    "id": "UbiIFY[B75KSxm9^W$HU",
                                     "extraState": "String"
                                   },
                                   "block": {
@@ -1191,7 +1191,7 @@
                                           "V1": {
                                             "shadow": {
                                               "type": "tys",
-                                              "id": "_qI{X!yv]?Ka)6nvMRkO",
+                                              "id": "U;KLF_.mz]i!zk$NsHSU",
                                               "extraState": "any"
                                             },
                                             "block": {
@@ -1235,7 +1235,7 @@
                                           "V2": {
                                             "shadow": {
                                               "type": "tys",
-                                              "id": "^*]_LI4#?4kUR,V,Q=ha",
+                                              "id": "Zf+87WT)j[OIl3t,uhUE",
                                               "extraState": "any"
                                             },
                                             "block": {
@@ -1494,7 +1494,7 @@
                                                   "V1": {
                                                     "shadow": {
                                                       "type": "tys",
-                                                      "id": "OkIt]+Ry,d_CRqbg~kiy",
+                                                      "id": "y8g|?3CQVFT1Ul($zZo5",
                                                       "extraState": "number"
                                                     },
                                                     "block": {
@@ -1567,7 +1567,7 @@
                                                   "V2": {
                                                     "shadow": {
                                                       "type": "tys",
-                                                      "id": "SZ66#RMt9:bD;j1JcoX/",
+                                                      "id": "3b_:Bln=8(8Am)rq`);P",
                                                       "extraState": "number"
                                                     },
                                                     "block": {
@@ -1593,7 +1593,7 @@
                                                   "V": {
                                                     "shadow": {
                                                       "type": "tys",
-                                                      "id": "$)F)GKQXrW9|HPRZC=VT",
+                                                      "id": "JtV{kq7=@xL@Y*ziMdU{",
                                                       "extraState": "Vector3"
                                                     },
                                                     "block": {
@@ -1786,7 +1786,7 @@
                                                           "V": {
                                                             "shadow": {
                                                               "type": "tys",
-                                                              "id": "6~T/gi{.O;BS|%~eGw}%",
+                                                              "id": "|TBwZ#PN^kDiwT(wWdO.",
                                                               "extraState": "Bool"
                                                             },
                                                             "block": {
@@ -2098,7 +2098,7 @@
                         "V1": {
                           "shadow": {
                             "type": "tys",
-                            "id": "a;pyrQ{oE1b~=y,j-b_:",
+                            "id": "C@s-z~-s=_0+)9+mIX9z",
                             "extraState": "any"
                           },
                           "block": {
@@ -2112,7 +2112,7 @@
                         "V2": {
                           "shadow": {
                             "type": "tys",
-                            "id": ";+q=}3Az%U=Xm]enL]jI",
+                            "id": "IlgJC[9`EL6@2hui-Z*1",
                             "extraState": "any"
                           },
                           "block": {
@@ -2222,7 +2222,7 @@
                 "V": {
                   "shadow": {
                     "type": "tys",
-                    "id": "WKSbJXOQC_~giJ9.f~{v",
+                    "id": "Q.:5H*12MN`zzzine7`!",
                     "extraState": "Bool"
                   },
                   "block": {
@@ -2246,7 +2246,7 @@
                     "V": {
                       "shadow": {
                         "type": "tys",
-                        "id": "3es_6T|6XLZ9]?JbVv8|",
+                        "id": ".E9ubIVKcA*wbBhOz4K(",
                         "extraState": "Bool"
                       },
                       "block": {
@@ -2271,7 +2271,7 @@
                         "V": {
                           "shadow": {
                             "type": "tys",
-                            "id": "y;Pb%e-6=pW*bvm99a@q",
+                            "id": "HR`(HLW%v`![37%(r9o7",
                             "extraState": "Player"
                           },
                           "block": {
@@ -2417,7 +2417,7 @@
               "V": {
                 "shadow": {
                   "type": "tys",
-                  "id": "/4zRs)hR-[GL$g1`*h7(",
+                  "id": ":x@cZqclkF/#T5XKt!`e",
                   "extraState": "Int"
                 },
                 "block": {
@@ -2475,7 +2475,7 @@
                       "V": {
                         "shadow": {
                           "type": "tys",
-                          "id": "Fp~{x)6W!_cZ`lo=UFwW",
+                          "id": "je$`e]vpNe)p}ktZdp/5",
                           "extraState": "CustomHud"
                         },
                         "block": {
@@ -2519,7 +2519,7 @@
               "V": {
                 "shadow": {
                   "type": "tys",
-                  "id": "Te*RiNS|,}^rBzMyp6bM",
+                  "id": ";PYHw84zrD]0e$~Pzb#(",
                   "extraState": "Int"
                 },
                 "block": {
@@ -2543,7 +2543,7 @@
                   "V": {
                     "shadow": {
                       "type": "tys",
-                      "id": "a7;L8NZqSbXuz^eO%yBE",
+                      "id": "(5=IAFyY.oR4R-4~6rU8",
                       "extraState": "Vector3"
                     },
                     "block": {
@@ -2598,6 +2598,35 @@
                 }
               }
             }
+          }
+        }
+      },
+      {
+        "type": "slr",
+        "id": "^G,#fI|iu+,_N1#~h~f3",
+        "x": -69,
+        "y": 666,
+        "extraState": {
+          "X": 0,
+          "L": [
+            1,
+            2
+          ],
+          "O": [
+            "",
+            ""
+          ],
+          "T": "signal_80671207",
+          "OT": "Component"
+        },
+        "fields": {
+          "P1": {
+            "name": "player",
+            "type": "Player"
+          },
+          "P2": {
+            "name": "height",
+            "type": "Float"
           }
         }
       }

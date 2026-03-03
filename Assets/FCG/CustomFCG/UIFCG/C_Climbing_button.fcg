@@ -94,7 +94,7 @@ graph C_Climbing_button {
 			triggerPlayer<C_P_Climbing2>.ishanging = true*/
 			triggerPlayer<C_P_Climbing2>.bIsClimb = false
 			triggerPlayer<C_P_Climbing2>.ishanging = true
-			LogInfo("悬挂前")
+		
 			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
 			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			// anim.PlayAnimation(triggerPlayer, "vEAke9DY", 0, AnimationOverrideLoopType.DontChange)

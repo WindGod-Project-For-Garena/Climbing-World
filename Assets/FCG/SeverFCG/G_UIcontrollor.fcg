@@ -11,6 +11,7 @@ import "Map.fcc" as map
 import "Player.fcc" as player
 import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
+import "Convert.fcc" as convert
 
 [platform_server]
 graph G_UIcontrollor {
@@ -18,10 +19,14 @@ graph G_UIcontrollor {
 	VisibleUI entity = nil
 	InvisibleUI entity = nil
 	Climbing_UI Map<object, object> = nil
+	P_IngameHud_ByPlayer Map<object, object> = nil
+	Realtime_Height Map<object, object> = nil
 
-	event OnAwake() {       
+	event OnAwake() {
 		Climbing_button = map.New()
 		Climbing_UI = map.New()
+		P_IngameHud_ByPlayer = map.New()
+		Realtime_Height = map.New()
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
@@ -29,10 +34,16 @@ graph G_UIcontrollor {
 		CreateCustomUI(out var Avatar, player, EResUI.Avatar)
 		CreateCustomUI(out var P_IngameHudEntity, player, EResUI.P_IngameHud)
 		Climbing_UI[player] = Avatar
+		P_IngameHud_ByPlayer[player] = P_IngameHudEntity
+		var labelWidget = GetWidgetByPath(player, P_IngameHudEntity as entity<CustomUI>, "/Realtime_Height")
+		if labelWidget != nil {
+			Realtime_Height[player] = labelWidget
+		}
 		var ingameUIMap = map.New()
 		ingameUIMap["P_IngameHud"] = P_IngameHudEntity
 		DispatchEventToEntity(__Custom6event_CreateIngameUI__, player, PlatformType.Client, List<object>{ingameUIMap})
 		LogInfo(Climbing_UI)
+		
 	}
 
 	event __Custom6event_entertrigger__(player entity<Player>) {
@@ -55,5 +66,23 @@ graph G_UIcontrollor {
 		var customHud = Climbing_UI[player]
 		var AvetarPanleEntity = GetWidgetByPath(player, customHud as entity<CustomUI>, "/Panel (1)")
 		AvetarPanleEntity<UIWidget>.AnchorPosition = Vector3{-331, height, 0}
+	
+		if ContainKey(Realtime_Height, player) {
+			var labelWidget = Realtime_Height[player] as entity
+			if labelWidget != nil {
+				labelWidget<HudLabelWidget>.Text = convert.NumToString(height, 0)
+	
+	
+	
+			}
+		}
+	}
+	event __Custom6event6_ReportHeight__( player entity<Player>,  height float) {
+		if ContainKey(Realtime_Height, player) {
+			var labelWidget = Realtime_Height[player] as entity
+			if labelWidget != nil {
+				labelWidget<HudLabelWidget>.Text = convert.NumToString(height, 0)
+			}
+		}
 	}
 }
