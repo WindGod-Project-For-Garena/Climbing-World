@@ -26,8 +26,9 @@ static graph C_P_Climbing2 {
 	frame int = 0
 	Curent_height Vector3 = Vector3{0, 0, 0}
 	ishanging bool = false
-	forwardX1 Vector3 = Vector3{1, 0, 0}
-	forwardX2 Vector3 = Vector3{-1, 0, 0}
+	
+	
+	Curent_Forward Vector3 = Vector3{0, 0, 0}
 
 	event OnAwake() {
         
@@ -43,7 +44,7 @@ static graph C_P_Climbing2 {
 		// IngameUI = createdUI
 	}
 
-	// isclimb(isclimb, ishanging, player)：设置状态并首次设置本地玩家位置 X=30.32625
+	// isclimb(isclimb, ishanging, player)：设置状态并首次设置本地玩家位置 X=GetLocalPlayer()<Player>.Position.X
 	// 使用 Curent_height 缓存避免访问实体触发 PropID:-97000(CustomGravity) 的复制报错
 	
 
@@ -52,13 +53,13 @@ static graph C_P_Climbing2 {
 		frame = frame + 1
 		if bIsClimb == true {
 			
-			SetLocalPlayerForward(forwardX2)
+			SetLocalPlayerForward(Curent_Forward)
 			// 攀爬中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
 			//攀爬速度公式
 			var formulaY = Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
 			//改变向量Y的值
 			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+formulaY, Curent_height.Z})
-			Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, Curent_height.Y})
 			if frame % 6 == 0 {
@@ -70,7 +71,7 @@ static graph C_P_Climbing2 {
 			
 		} else if bIsFall == true {
 			
-			SetLocalPlayerForward(forwardX1)
+			SetLocalPlayerForward(Curent_Forward)
 			// 下落中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
 			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y - 1, GetLocalPlayer()<Player>.Position.Z}
 			SetLocalPlayerPosition(Curent_height)
@@ -81,7 +82,7 @@ static graph C_P_Climbing2 {
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
 			}
 			if Curent_height.Y < 1 {
-				SetLocalPlayerForward(forwardX1)
+				SetLocalPlayerForward(Curent_Forward)
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
 				bIsFall = false
 				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height})

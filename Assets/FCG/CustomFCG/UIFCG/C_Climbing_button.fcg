@@ -39,7 +39,8 @@ graph C_Climbing_button {
 		triggerPlayer<C_P_Climbing2>.bIsFall = true
 		LogInfo(C_P_Climbing2.bIsFall)
 		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+		triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, -GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
 		// ECA: StopAnimationByController(player,vEAke9DY); PlayAnimationByController(player,d4MFw2ge,1,Loop)
 		// 需从项目动画控制器绑定状态 ID 后取消注释：
 		// anim.StopAnimation(triggerPlayer, "vEAke9DY")
@@ -52,8 +53,8 @@ graph C_Climbing_button {
 		triggerPlayer<C_P_Climbing2>.bIsClimb= true
 		triggerPlayer<C_P_Climbing2>.ishanging = false
 		triggerPlayer<C_P_Climbing2>.player = triggerPlayer
-		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-	
+		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+		triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
 		LogInfo(C_P_Climbing2.bIsClimb)
 		LogInfo("bbb")
 		LogInfo(triggerPlayer<Player>.Position)
@@ -71,7 +72,7 @@ graph C_Climbing_button {
 		triggerPlayer<C_P_Climbing2>.bIsClimb= false
 		triggerPlayer<C_P_Climbing2>.ishanging = true
 		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 	
 		DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
@@ -84,8 +85,9 @@ graph C_Climbing_button {
 			triggerPlayer<C_P_Climbing2>.bIsClimb= true
 			triggerPlayer<C_P_Climbing2>.ishanging =false
 			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-	
+			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+			triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
+
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 		} else {
 			isclimb = false
@@ -96,7 +98,7 @@ graph C_Climbing_button {
 			triggerPlayer<C_P_Climbing2>.ishanging = true
 		
 			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
+			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			// anim.PlayAnimation(triggerPlayer, "vEAke9DY", 0, AnimationOverrideLoopType.DontChange)
 			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})  // 添加此行
 		}

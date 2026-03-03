@@ -63,7 +63,7 @@ graph G_Climbing {
 
 	func Onground(player entity<Player>, vec Vector3) {
 		// ECA: TeleportPlayerPositionAndForward(player, vec, (1,0,0)); PlayAnimation(Dance, 1, Once)
-		Teleport(player, vec, forward1)
+		//Teleport(player, vec, forward1)
 		Switch2 = 0
 		PlayAnimation(player, "Dance", 1, LoopType.Once)
 	}
