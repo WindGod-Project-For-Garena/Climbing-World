@@ -8,6 +8,7 @@
 
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
+import "List.fcc" as list
 import "Player.fcc" as player
 import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
@@ -31,7 +32,7 @@ graph G_UIcontrollor {
 
 	event OnPlayerJoin(player entity<Player>) {
 		CreateCustomUI(out var G_IngamHud, player, EResUI.G_IngamHud)
-		CreateCustomUI(out var Avatar, player, EResUI.Avatar)
+		CreateCustomUI(out var Avatar, nil, EResUI.Avatar)
 		CreateCustomUI(out var P_IngameHudEntity, player, EResUI.P_IngameHud)
 		Climbing_UI[player] = Avatar
 		P_IngameHud_ByPlayer[player] = P_IngameHudEntity

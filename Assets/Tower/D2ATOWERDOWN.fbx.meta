@@ -1,0 +1,62 @@
+{
+  "fileId": "c6d98bdgu4h-mma3968g-2vk9pmwv8wq",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "2014-eiffel-tower-miniworld3d.~@FFFUB",
+        "MeshName": "2014-eiffel-tower-miniworld3d",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "D2ATOWERDOWN",
+      "ImportSucceeded": true,
+      "MaterialCount": 1,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": ""
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "2014-eiffel-tower-miniworld3d",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              -90,
+              0,
+              0
+            ],
+            "Scale": [
+              100,
+              100,
+              100
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "c6d98bdgu4h-mma3968g-2vk9pmwv8wq-2014-eiffel-tower-miniworld3d.~@FFFUB": 0
+  }
+}
