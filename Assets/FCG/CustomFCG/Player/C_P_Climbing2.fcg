@@ -32,7 +32,7 @@ static graph C_P_Climbing2 {
 
 	event OnAwake() {
         
-        LogInfo("11111111")
+       
 		
 		frame = 0
 		Curent_height = Vector3{0, 0, 0}

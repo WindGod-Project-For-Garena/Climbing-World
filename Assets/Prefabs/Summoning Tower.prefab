@@ -114,7 +114,16 @@
             "FreezePosZ": false,
             "FreezeRotZ": false
           },
-          "ecaScripts": [],
+          "ecaScripts": [
+            {
+              "fileId": "tjcwinawc3-mmbsri84-rum56s7zdcr",
+              "filePath": "Assets\\FCG\\CustomFCG\\Trigger\\C_Towertrigger.fcg",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "ugcscript"
+            }
+          ],
           "ecaProps": {
             "CustomLevelObject": {},
             "LevelObject": {},
@@ -176,7 +185,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 203,
+      "tempIndex": 218,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [

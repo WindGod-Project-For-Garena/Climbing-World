@@ -9,29 +9,37 @@ import "EditorGenLib.fcc" as gen
 graph G_Tower {
 	spawnPositions Map<int, Vector3> = nil
 	spawnForwards Map<int, Vector3> = nil
+	spawnedTowers Map<int, bool> = nil
 
 	event OnAwake() {
 		spawnPositions = map.New()
 		spawnForwards = map.New()
+		spawnedTowers = map.New()
 		spawnPositions[1] = Vector3{-33.02439, 43.01403, 0}
-		spawnForwards[1] = Vector3{1, 0, 0}
+		spawnForwards[1] = Vector3{0, 0, 1}
 		spawnPositions[2] = Vector3{33.02439, 43.01403, 0}
-		spawnForwards[2] = Vector3{-1, 0, 0}
+		spawnForwards[2] = Vector3{0, 0, -1}
 		spawnPositions[3] = Vector3{0, 43.01403, 33.02439}
-		spawnForwards[3] = Vector3{0, 0, -1}
+		spawnForwards[3] = Vector3{1, 0, 0}
 		spawnPositions[4] = Vector3{0, 43.01403, -33.02439}
-		spawnForwards[4] = Vector3{0, 0, 1}
+		spawnForwards[4] = Vector3{-1, 0, 0}
 	}
 
 	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int) {
+        
 		if !ContainKey(spawnPositions, towerIndex) || !ContainKey(spawnForwards, towerIndex) {
 			LogWarning("G_Tower: 未找到 towerIndex " + towerIndex + " 的配置")
 			return
 		}
+		if ContainKey(spawnedTowers, towerIndex) && (spawnedTowers[towerIndex] as bool) {
+			return
+		}
+        LogInfo(towerIndex)
 		var pos = spawnPositions[towerIndex] as Vector3
 		var forward = spawnForwards[towerIndex] as Vector3
 		CreateFromPrefab(out var tower, EResPrefab.ATower)
 		tower<Transform>.Position = pos
 		tower<Transform>.Forward = forward
+		spawnedTowers[towerIndex] = true
 	}
 }

@@ -239,28 +239,6 @@
       "version": 45,
       "key": "signal_31353734"
     },
-    "signal_12345678": {
-      "name": "Custom event_TowerTrigger",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100014,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        },
-        {
-          "name": "towerIndex",
-          "value": "Int",
-          "key": 2
-        }
-      ],
-      "propCount": 2,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_12345678"
-    },
     "signal_22370959": {
       "name": "Custom event_Pressclimbing_button",
       "eventType": 0,
@@ -282,6 +260,28 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_22370959"
+    },
+    "signal_24987626": {
+      "name": "Custom event_TowerTrigger",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100014,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "towerIndex",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_24987626"
     }
   },
   "customName": {
@@ -299,7 +299,7 @@
     "Custom event_ClimbLeavetrigger": "signal_34895939",
     "Custom event_CreateIngameUI": "signal_31353734",
     "Custom event_Pressclimbing_button": "signal_22370959",
-    "Custom event_TowerTrigger": "signal_12345678"
+    "Custom event_TowerTrigger": "signal_24987626"
   },
   "children": []
 }

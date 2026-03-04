@@ -12,17 +12,13 @@ graph C_Climbleavetrigger {
 
 	event OnAwake() {
 		
-		LogInfo(thisEntity)
-		LogInfo(GetChildByName(thisEntity, "Teleportpoint") )
-		LogInfo(GetChildByIndex(thisEntity, 0))
-		LogInfo("TeleportPoint1111111")
 		
 	}
 	
 	event OnPlayerEnter(player entity<Player>) {
 		// 获取子节点 TeleportSpot 的位置
 		teleportSpot = GetChildByIndex(thisEntity, 0)
-		
+		LogInfo("进入离开区域")
 		LogInfo(teleportSpot)
 		if teleportSpot != nil {
 			LogInfo(teleportSpot<Transform>.Position)
