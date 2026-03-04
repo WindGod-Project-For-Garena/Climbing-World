@@ -69,6 +69,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "jpd1m3narz-mmbsri9r-dlw6bpbti89",
+      "filePath": "Assets\\FCG\\SeverFCG\\G_Tower.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

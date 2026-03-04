@@ -62,7 +62,7 @@ graph C_Climbing_button {
 		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
 		//C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
 	
-		DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
 	}
 
 	func releaseclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
@@ -86,7 +86,7 @@ graph C_Climbing_button {
 			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
 			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{30.32625, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 	
-			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
 		} else {
 			isclimb = false
 			Hanging = true

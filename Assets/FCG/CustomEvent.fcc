@@ -4,4 +4,4 @@ event OnJumpingBtnClicked( player entity<Player>)
 
 [platform_client]
 [platform_server]
-event __Custom6event_ReportHeight__(player entity<Player>, height float)
+event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int)

@@ -3,6 +3,24 @@
     "type": "EntityTagSetting"
   },
   "_entityId": "dPk3ERev",
-  "TagSetting": []
+  "TagSetting": [
+    {
+      "id": "entityTag22802862",
+      "label": "Tower_1"
+    },
+    {
+      "id": "entityTag84277110",
+      "label": "Tower_2"
+    },
+    {
+      "id": "entityTag29484470",
+      "label": "Tower_3"
+    },
+    {
+      "id": "entityTag76000170",
+      "label": "Tower_4"
+    }
+  ],
+  "children": []
 }
-//"{FE:{"v":"0.1.2974255","c":{"FF":4404},"s":100}
+//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}

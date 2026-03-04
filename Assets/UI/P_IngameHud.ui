@@ -40,7 +40,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": -4,
+            "x": -206,
             "y": 301
           },
           "sizeDelta": {
@@ -97,7 +97,7 @@
       "editorVisibleValue": true
     },
     {
-      "_entityName": "Text (1)",
+      "_entityName": "Height",
       "_tag": {
         "type": "UITextEntity",
         "resourceId": ""
@@ -130,7 +130,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": -201,
+            "x": -421,
             "y": 302
           },
           "sizeDelta": {
@@ -142,6 +142,186 @@
         "priority": 0,
         "text": {
           "value": "Height:",
+          "key": "",
+          "font": "Default",
+          "fontSize": 99,
+          "fontStyle": {
+            "bold": false,
+            "italic": false,
+            "underline": false
+          },
+          "color": "#ffffff",
+          "alignment": {
+            "h": "center",
+            "v": "middle"
+          },
+          "lineSpacing": 0,
+          "background": false,
+          "backgroundColor": "#e7b200",
+          "overflow": 0,
+          "backgroundRGBA": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "shadow": false,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "x": 1,
+            "y": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudLabelWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true
+    },
+    {
+      "_entityName": "Economy",
+      "_tag": {
+        "type": "UITextEntity",
+        "resourceId": ""
+      },
+      "_entityId": "qyiGBZ8A",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 76,
+            "y": 302
+          },
+          "sizeDelta": {
+            "x": 210,
+            "y": 62
+          }
+        },
+        "alpha": 100,
+        "priority": 0,
+        "text": {
+          "value": "Economy：",
+          "key": "",
+          "font": "Default",
+          "fontSize": 99,
+          "fontStyle": {
+            "bold": false,
+            "italic": false,
+            "underline": false
+          },
+          "color": "#ffffff",
+          "alignment": {
+            "h": "center",
+            "v": "middle"
+          },
+          "lineSpacing": 0,
+          "background": false,
+          "backgroundColor": "#e7b200",
+          "overflow": 0,
+          "backgroundRGBA": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "shadow": false,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "x": 1,
+            "y": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudLabelWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true
+    },
+    {
+      "_entityName": "GoldCoin",
+      "_tag": {
+        "type": "UITextEntity",
+        "resourceId": ""
+      },
+      "_entityId": "hTPXQGhx",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 302,
+            "y": 297
+          },
+          "sizeDelta": {
+            "x": 178,
+            "y": 68
+          }
+        },
+        "alpha": 100,
+        "priority": 0,
+        "text": {
+          "value": "New Text",
           "key": "",
           "font": "Default",
           "fontSize": 99,

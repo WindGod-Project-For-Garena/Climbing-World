@@ -1,0 +1,22 @@
+// 经济系统：玩家为键，金币数为值
+// 玩家初次进入游戏时写入字典，经济初始为 0
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Player.fcc" as player
+
+[platform_server]
+graph G_economy {
+
+	// 字典：玩家 -> 金币数
+	PlayerGold Map<entity<Player>, int> = nil
+
+	event OnAwake() {
+		PlayerGold = map.New()
+	}
+
+	event OnPlayerJoin(player entity<Player>) {
+		// 玩家初次进入游戏，写入字典，经济为 0
+		PlayerGold[player] = 999999999
+	}
+}

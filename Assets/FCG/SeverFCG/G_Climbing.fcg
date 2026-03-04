@@ -20,25 +20,49 @@ graph G_Climbing {
 	forward1 Vector3 = Vector3{1, 0, 0}
 	Switch int = 0
 	Switch2 int = 0
+	Switch3 int = 0  // Climbing_Stop 守卫，避免 ishanging 每帧派发导致的重复播放挤占
+	// 动画速度节流：避免每帧 PlayAnimation 引发错误，仅在变化显著时更新
+	lastClimbAnimSpeed Map<entity<Player>, float> = nil
+	climbSpeedUpdateCounter Map<entity<Player>, int> = nil
 	event OnAwake() {       
 		playerCustomGravity = map.New()
 		PlayerCurentHeight = map.New()
-		
+		lastClimbAnimSpeed = map.New()
+		climbSpeedUpdateCounter = map.New()
 	}
 
-	func Climbing(player entity<Player>) {
+	func Climbing(player entity<Player>, AnimationSpeed float) {
 		// ECA: if CustomGravity!=0 then Set 0; StopAnimation(Falling); StopAnimation(Dance); PlayAnimation(Climbing,1,Loop)
-		// 攀爬中每帧都会派发 Pressclimbing_button，此处加守卫：已在攀爬状态（Gravity==0）则跳过，确保逻辑只执行一次
-		
-		if Switch == 1 {
-			return
+		if Switch == 0 {
+			// 首次进入攀爬：完整初始化
+			Switch = 1
+			Switch3 = 0
+			player<Player>.Gravity = 0
+			StopAnimation(player, "Falling")
+			StopAnimation(player, "Dance")
+			PlayAnimation(player, "Climbing", AnimationSpeed, LoopType.Loop)
+			lastClimbAnimSpeed[player] = AnimationSpeed
+			climbSpeedUpdateCounter[player] = 0
+		} else {
+			// 已在攀爬：节流更新动画速度，避免每帧 PlayAnimation 引发动画错误
+			// 仅在速度变化显著（>5%）且每 10 次调用至少间隔一次时更新
+			var counter = 0
+			if ContainKey(climbSpeedUpdateCounter, player) {
+				counter = climbSpeedUpdateCounter[player] as int
+			}
+			counter = counter + 1
+			climbSpeedUpdateCounter[player] = counter
+			var lastSpeed = 0.0
+			if ContainKey(lastClimbAnimSpeed, player) {
+				lastSpeed = lastClimbAnimSpeed[player] as float
+			}
+			var speedDelta = math.Abs(AnimationSpeed - lastSpeed)
+			var speedThreshold = 0.5
+			if (counter % 30 == 1 || speedDelta > speedThreshold) && speedDelta > 0.1 {
+				PlayAnimation(player, "Climbing", AnimationSpeed, LoopType.Loop)
+				lastClimbAnimSpeed[player] = AnimationSpeed
+			}
 		}
-		Switch = 1
-		player<Player>.Gravity = 0
-		StopAnimation(player, "Falling")
-		StopAnimation(player, "Dance")
-		PlayAnimation(player, "Climbing", 1, LoopType.Loop)
-		//设置玩家位置，用teleport,查一下gen库
 	}
 
 	func Jumping(player entity<Player>) {
@@ -46,6 +70,7 @@ graph G_Climbing {
 			return
 		}
 		Switch2 = 1
+		Switch3 = 0
 		
 		
 		// ECA: if CustomGravity==0 then Stop(Climbing); Play(Falling,1,Loop); if DirectPositionVec3.Y<1 then Stop(Falling) else Set CustomGravity=-9.8
@@ -65,20 +90,27 @@ graph G_Climbing {
 		// ECA: TeleportPlayerPositionAndForward(player, vec, (1,0,0)); PlayAnimation(Dance, 1, Once)
 		//Teleport(player, vec, forward1)
 		Switch2 = 0
+		Switch3 = 0
+		map.Remove(lastClimbAnimSpeed, player)
+		map.Remove(climbSpeedUpdateCounter, player)
 		PlayAnimation(player, "Dance", 1, LoopType.Once)
 	}
 
 	func Climbing_Stop(player entity<Player>) {
+		if Switch3 == 1 {
+			return
+		}
+		Switch3 = 1
 		Switch = 0
 		player<Player>.Gravity = 0
+		map.Remove(lastClimbAnimSpeed, player)
+		map.Remove(climbSpeedUpdateCounter, player)
 		// ECA: StopAnimation(Climbing); PlayAnimation(Climbing, 0, Loop)
 		StopAnimation(player, "Climbing")
-		PlayAnimation(player, "Climbing", 0, LoopType.Loop)
+		PlayAnimation(player, "Climbing", 0, LoopType.Once)
 	}
-	event __Custom6event_Pressclimbing_button__(player entity<Player>) {
-		
-		
-		Climbing(player)
+	event __Custom6event_Pressclimbing_button__(player entity<Player>, AnimationSpeed float) {
+		Climbing(player, AnimationSpeed)
 	}
 
 	event __Custom6event_Jumping_button__(player entity<Player>) {
@@ -96,9 +128,13 @@ graph G_Climbing {
 
 	event __Custom6event_ClimbLeavetrigger__(player entity<Player>, position Vector3) {
 		var defaultRot = Vector3{1, 0, 0}
+		LogInfo(position)
 		Teleport(player, position, defaultRot)
 		Switch = 0
 		Switch2 = 0
+		Switch3 = 0
+		map.Remove(lastClimbAnimSpeed, player)
+		map.Remove(climbSpeedUpdateCounter, player)
 		player<Player>.Gravity = -9.8
 		StopAnimation(player, "Climbing")
 		PlayAnimation(player, "Dance", 1, LoopType.Once)

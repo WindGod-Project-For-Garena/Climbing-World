@@ -33,6 +33,7 @@ static graph C_P_Climbing2 {
 	event OnAwake() {
         
         LogInfo("11111111")
+		
 		frame = 0
 		Curent_height = Vector3{0, 0, 0}
 	}
@@ -57,10 +58,10 @@ static graph C_P_Climbing2 {
 			// 攀爬中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
 			//攀爬速度公式
 			var formulaY = Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
-			//改变向量Y的值
-			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+10, Curent_height.Z})
+			var AnimationSpeed = formulaY*3
+			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+formulaY, Curent_height.Z})
 			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
+			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player, AnimationSpeed})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, Curent_height.Y})
 			if frame % 6 == 0 {
 				var heightVal = Curent_height.Y *5.0 -294.0
@@ -73,7 +74,7 @@ static graph C_P_Climbing2 {
 			
 			SetLocalPlayerForward(Curent_Forward)
 			// 下落中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
-			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y - 1, GetLocalPlayer()<Player>.Position.Z}
+			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y - 2, GetLocalPlayer()<Player>.Position.Z}
 			SetLocalPlayerPosition(Curent_height)
 			DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{player})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, Curent_height.Y})
@@ -82,8 +83,9 @@ static graph C_P_Climbing2 {
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
 			}
 			if Curent_height.Y < 1 {
-				SetLocalPlayerForward(Curent_Forward)
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
+				SetLocalPlayerForward(Curent_Forward)
+			
 				bIsFall = false
 				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height})
 				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player,0})
@@ -95,10 +97,11 @@ static graph C_P_Climbing2 {
 					// ECA: Set Text:HudLabelWidget = ToString(Curent_height.Y)；若引擎提供 SetWidgetText 等 API 可在此设置
 				}
 			}
-			if ishanging == true {
-				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y , GetLocalPlayer()<Player>.Position.Z}
-				DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
-			}
+			
+		}
+		if ishanging == true {
+			SetLocalPlayerPosition(Curent_height)				
+			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
 		}
 	}
 }

@@ -25,7 +25,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 1.5127333402633667,
             "y": -0.39772889018058777,
@@ -158,7 +161,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": 1.4776220321655273,
             "y": -1.4337682723999023,
@@ -292,11 +298,14 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 0.06577534973621368,
+            "x": 0.06599999964237213,
             "y": 2.006999969482422,
             "z": 0
           },
@@ -465,7 +474,7 @@
               "entityTagData": {
                 "tagPointers": []
               },
-              "tempIndex": 67,
+              "tempIndex": 72,
               "itemID": 223,
               "seParent": null,
               "ecaScripts": [
@@ -765,7 +774,7 @@
           "_entityId": "XPPt4OlP",
           "children": [
             {
-              "_entityName": "TeleportSport",
+              "_entityName": "TeleportPoint",
               "_tag": {
                 "type": "UGCSceneEntity",
                 "resourceId": ""
@@ -777,18 +786,21 @@
                 "selfValue": true,
                 "valueTag": "activeValue"
               },
-              "unlockedValue": null,
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "position": {
-                "x": -1.3196754455566406,
-                "y": -0.24019241333007812,
+                "x": -1.3200008869171143,
+                "y": -0.23999977111816406,
                 "z": 0.2199999988079071
               },
               "scale": {
-                "x": 1.000000238418579,
-                "y": 0.20000004768371582,
-                "z": 1.000000238418579
+                "x": 0.9999999403953552,
+                "y": 0.20000001788139343,
+                "z": 0.9999999403953552
               },
               "rotation": {
                 "x": 0,
@@ -873,7 +885,8 @@
                 "Entity": {},
                 "Visibility": {},
                 "ColliderShape": {},
-                "Collider": {}
+                "Collider": {},
+                "MeshRender": {}
               },
               "propsData": {},
               "entityVersion": 3
@@ -884,7 +897,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
@@ -974,7 +990,7 @@
           },
           "ecaScripts": [
             {
-              "fileId": "8yt7kbc1hhu-mmafxm96-rm0jyy8gqg",
+              "fileId": "climbleavetrigger-mm3bjkhi-ocg3nu9kbz",
               "filePath": "Assets\\FCG\\CustomFCG\\Trigger\\C_Climbleavetrigger.fcg",
               "_tag": {
                 "type": "GFileRefer"
@@ -989,7 +1005,8 @@
             "Entity": {},
             "Visibility": {},
             "ColliderShape": {},
-            "Collider": {}
+            "Collider": {},
+            "MeshRender": {}
           },
           "propsData": {},
           "entityVersion": 3
@@ -999,16 +1016,19 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "position": {
-        "x": 0,
-        "y": 0,
-        "z": 0
+        "x": -0.0019378662109375,
+        "y": 0.000030517578125,
+        "z": 0.00007998943328857422
       },
       "scale": {
-        "x": 9,
-        "y": 30,
-        "z": 9
+        "x": 9.005985260009766,
+        "y": 29.999921798706055,
+        "z": 9.005985260009766
       },
       "rotation": {
         "x": 0,
@@ -1119,7 +1139,10 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": null,
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,

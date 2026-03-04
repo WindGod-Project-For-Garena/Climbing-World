@@ -8,16 +8,20 @@ import "EditorGenLib.fcc" as gen
 [platform_client]
 graph C_Climbleavetrigger {
 	teleportSpot entity = nil
-	teleportSpot1 entity= thisEntity
+	
 
 	event OnAwake() {
 		
+		LogInfo(thisEntity)
+		LogInfo(GetChildByName(thisEntity, "Teleportpoint") )
+		LogInfo(GetChildByIndex(thisEntity, 0))
+		LogInfo("TeleportPoint1111111")
+		
 	}
-
+	
 	event OnPlayerEnter(player entity<Player>) {
 		// 获取子节点 TeleportSpot 的位置
-	
-		LogInfo(GetChildByName(teleportSpot1, "TeleportSpot") as entity<Entity>)
+		teleportSpot = GetChildByIndex(thisEntity, 0)
 		
 		LogInfo(teleportSpot)
 		if teleportSpot != nil {

@@ -1,0 +1,37 @@
+// 根据 towerIndex（1～4）查找位置和朝向，生成 ATower.prefab
+// 需确保 ATower.prefab 已注册，EResPrefab.ATower 可用
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "EditorGenLib.fcc" as gen
+
+[platform_server]
+graph G_Tower {
+	spawnPositions Map<int, Vector3> = nil
+	spawnForwards Map<int, Vector3> = nil
+
+	event OnAwake() {
+		spawnPositions = map.New()
+		spawnForwards = map.New()
+		spawnPositions[1] = Vector3{-33.02439, 43.01403, 0}
+		spawnForwards[1] = Vector3{1, 0, 0}
+		spawnPositions[2] = Vector3{33.02439, 43.01403, 0}
+		spawnForwards[2] = Vector3{-1, 0, 0}
+		spawnPositions[3] = Vector3{0, 43.01403, 33.02439}
+		spawnForwards[3] = Vector3{0, 0, -1}
+		spawnPositions[4] = Vector3{0, 43.01403, -33.02439}
+		spawnForwards[4] = Vector3{0, 0, 1}
+	}
+
+	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int) {
+		if !ContainKey(spawnPositions, towerIndex) || !ContainKey(spawnForwards, towerIndex) {
+			LogWarning("G_Tower: 未找到 towerIndex " + towerIndex + " 的配置")
+			return
+		}
+		var pos = spawnPositions[towerIndex] as Vector3
+		var forward = spawnForwards[towerIndex] as Vector3
+		CreateFromPrefab(out var tower, EResPrefab.ATower)
+		tower<Transform>.Position = pos
+		tower<Transform>.Forward = forward
+	}
+}

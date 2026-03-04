@@ -75,7 +75,20 @@
     },
     "prefab": {
       "id": "prefab",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "zhy9xlxc4v-mma8suzt-w635gblcf0m",
+            "filePath": "Assets\\Prefabs\\ATower.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "ATower",
+          "children": []
+        }
+      ]
     },
     "ugcscript": {
       "id": "ugcscript",
