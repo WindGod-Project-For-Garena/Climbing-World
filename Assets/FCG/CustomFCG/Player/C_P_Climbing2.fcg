@@ -106,7 +106,8 @@ static graph C_P_Climbing2 {
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 			
 				bIsFall = false
-				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height})
+				var landPos = GetLocalPlayer()<Player>.Position
+				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, landPos})
 				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player,0})
 			}
 			// 如果IngameUI != nil，设置Text:HudLabelWidget = ToString(Curent_height.Y)

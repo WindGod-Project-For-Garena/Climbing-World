@@ -86,7 +86,7 @@ graph G_Climbing {
 		
 	}
 
-	func Onground(player entity<Player>, vec Vector3) {
+	func Onground(player entity<Player>, vec Vector3, effectPos Vector3) {
 		// ECA: TeleportPlayerPositionAndForward(player, vec, (1,0,0)); PlayAnimation(Dance, 1, Once)
 		//Teleport(player, vec, forward1)
 		Switch2 = 0
@@ -94,6 +94,15 @@ graph G_Climbing {
 		map.Remove(lastClimbAnimSpeed, player)
 		map.Remove(climbSpeedUpdateCounter, player)
 		PlayAnimation(player, "Dance", 1, LoopType.Once)
+		// 在指定地点（玩家当前位置）播放 Landingeffects 特效，2 秒后移除
+		CreateFromPrefab(out var effectEntity, EResPrefab.Landingeffects)
+		effectEntity<Transform>.Position = effectPos
+		start DestroyEffectAfterDelay(effectEntity, 2.0)
+	}
+
+	async func DestroyEffectAfterDelay(e entity, delaySec float) {
+		WaitForMillisecond(10000 )
+		Destroy(e)
 	}
 
 	func Climbing_Stop(player entity<Player>) {
@@ -122,8 +131,8 @@ graph G_Climbing {
 		Climbing_Stop(player)
 	}
 
-	event __Custom6event_onground__(player entity<Player>, Vector Vector3) {
-		Onground(player, Vector)
+	event __Custom6event_onground__(player entity<Player>, Vector Vector3, effectPos Vector3) {
+		Onground(player, Vector, effectPos)
 	}
 
 	// 由 C_P_Climbing2 在 Y>100 时通知调用；仅停止攀爬动画，传送在客户端执行

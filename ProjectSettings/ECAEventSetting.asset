@@ -88,28 +88,6 @@
       "version": 45,
       "key": "signal_30320840"
     },
-    "signal_62874285": {
-      "name": "Custom event_onground",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100003,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        },
-        {
-          "name": "Vector",
-          "value": "Vector3",
-          "key": 2
-        }
-      ],
-      "propCount": 2,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_62874285"
-    },
     "signal_11991453": {
       "name": "Custom event_Jumping_button",
       "eventType": 0,
@@ -277,6 +255,33 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_34895939"
+    },
+    "signal_62874285": {
+      "name": "Custom event_onground",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100003,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "Vector",
+          "value": "Vector3",
+          "key": 2
+        },
+        {
+          "name": "effectPos",
+          "value": "Vector3",
+          "key": 3
+        }
+      ],
+      "propCount": 3,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_62874285"
     }
   },
   "customName": {
@@ -285,7 +290,6 @@
     "Custom event_leavetrigger": "signal_87440986",
     "Custom event_ClimbUI": "signal_44946959",
     "onGround": "signal_30320840",
-    "Custom event_onground": "signal_62874285",
     "Custom event_Jumping_button": "signal_11991453",
     "Custom event _ReportHeight": "signal_80671207",
     "Custom event_entertrigger": "signal_36346128",
@@ -294,7 +298,8 @@
     "Custom event_CreateIngameUI": "signal_31353734",
     "Custom event_Pressclimbing_button": "signal_22370959",
     "Custom event_TowerTrigger": "signal_24987626",
-    "Custom event_ClimbLeavetrigger": "signal_34895939"
+    "Custom event_ClimbLeavetrigger": "signal_34895939",
+    "Custom event_onground": "signal_62874285"
   },
   "children": []
 }

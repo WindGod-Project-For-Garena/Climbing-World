@@ -87,6 +87,18 @@
           },
           "scriptName": "ATower",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "exo4w37kl0u-mmddcb1m-igfu153iifp",
+            "filePath": "Assets\\Prefabs\\Effects\\Landing effects.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Landingeffects",
+          "children": []
         }
       ]
     },
