@@ -8,18 +8,42 @@
 import "StdLibrary.fcc" as std
 import "LevelObject.fcc" as levelobject
 import "EditorGenLib.fcc" as gen
+import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
 
 [platform_client]
 graph C_Climbing_starttrigger {
 	entercount int = 0
 	Climbing_UI entity = nil
+	Current_forward Vector3 = Vector3{0, 0, 0}
 
 	event OnAwake() {
 		entercount = 1
+		
 	}
 
 	event OnPlayerEnter(player entity<Player>) {
-	
+		// 获取 Custom trigger（该实体）下的子节点 TeleportPoint 的位置坐标
+		var teleportPoint = GetChildByName(thisEntity, "TeleportPoint")
+		if teleportPoint != nil {
+			player<C_P_Climbing2>.HighClimbTeleportPos = teleportPoint<Transform>.Position
+		}
+		if HasTag(thisEntity, "Tower_1") {
+			LogInfo("Tower_1")
+			Current_forward = Vector3{-1, 0, 0}
+		} else if HasTag(thisEntity, "Tower_2") {
+			LogInfo("Tower_2")
+			Current_forward = Vector3{1, 0, 0}
+		} else if HasTag(thisEntity, "Tower_3") {
+			LogInfo("Tower_3")
+			Current_forward = Vector3{0, 0, 1}
+		} else if HasTag(thisEntity, "Tower_4") {
+			LogInfo("Tower_4")
+			Current_forward = Vector3{0, 0, -1}
+		}
+		
+		LogInfo(Current_forward)
+		player<C_P_Climbing2>.Curent_Forward = Current_forward
+		
 		DispatchEventToEntity(__Custom6event_entertrigger__, globalEntity, PlatformType.Server, List<object>{player})
 	}
 

@@ -4,6 +4,7 @@
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
 import "EditorGenLib.fcc" as gen
+import "LevelObject.fcc" as levelobject
 
 [platform_server]
 graph G_Tower {
@@ -40,6 +41,23 @@ graph G_Tower {
 		CreateFromPrefab(out var tower, EResPrefab.ATower)
 		tower<Transform>.Position = pos
 		tower<Transform>.Forward = forward
+		AddTag(tower, "Tower_" + towerIndex)
+		
+	
+			var climbingStart = GetChildByName(tower, "Custom trigger")
+			if climbingStart != nil {
+				AddTag(climbingStart, "Tower_" + towerIndex)
+				if HasTag(climbingStart, "Tower_1") {
+				LogInfo("Climbing_start_" + towerIndex)
+				} else if HasTag(climbingStart, "Tower_2") {
+					LogInfo("Climbing_start_" + towerIndex)
+				} else if HasTag(climbingStart, "Tower_3") {
+					LogInfo("Climbing_start_" + towerIndex)
+				} else if HasTag(climbingStart, "Tower_4") {
+					LogInfo("Climbing_start_" + towerIndex)
+				}
+			}
+		
 		spawnedTowers[towerIndex] = true
 	}
 }

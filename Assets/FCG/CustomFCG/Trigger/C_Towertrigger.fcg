@@ -12,16 +12,16 @@ graph C_Towertrigger {
        
 		var towerIndex = 0
 		if HasTag(thisEntity, "Tower_1") {
-            LogInfo("11111111")
+       
 			towerIndex = 1
 		} else if HasTag(thisEntity, "Tower_2") {
-            LogInfo("22222222")
+          
 			towerIndex = 2
 		} else if HasTag(thisEntity, "Tower_3") {   
-            LogInfo("33333333")
+           
 			towerIndex = 3
 		} else if HasTag(thisEntity, "Tower_4") {
-            LogInfo("44444444")
+         
 			towerIndex = 4
 		}
 		if towerIndex > 0 {

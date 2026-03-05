@@ -30,17 +30,14 @@ graph C_Climbing_button {
 	}
 
 	func Jumping_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		isfall = true
-		isclimb = false
-		Hanging = false
-		
+	
 		triggerPlayer<C_P_Climbing2>.bIsClimb= false
 		triggerPlayer<C_P_Climbing2>.ishanging = false
 		triggerPlayer<C_P_Climbing2>.bIsFall = true
 		
 		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
 		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-		triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, -GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
+	
 		// ECA: StopAnimationByController(player,vEAke9DY); PlayAnimationByController(player,d4MFw2ge,1,Loop)
 		// 需从项目动画控制器绑定状态 ID 后取消注释：
 		// anim.StopAnimation(triggerPlayer, "vEAke9DY")
@@ -54,19 +51,13 @@ graph C_Climbing_button {
 		triggerPlayer<C_P_Climbing2>.ishanging = false
 		triggerPlayer<C_P_Climbing2>.player = triggerPlayer
 		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-		triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
-		LogInfo(C_P_Climbing2.Speed_muti)
-		
-		
+	
 		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
 		//C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
-	
 		DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
 	}
 
 	func releaseclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		isclimb = false
-		Hanging = true
 		triggerPlayer<C_P_Climbing2>.bIsClimb= false
 		triggerPlayer<C_P_Climbing2>.ishanging = true
 		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
@@ -78,17 +69,14 @@ graph C_Climbing_button {
 	func AutoClimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		Taptime = 1
 		if isclimb == false {
-			isclimb = true
-			Hanging = false
+			
 			triggerPlayer<C_P_Climbing2>.bIsClimb= true
 			triggerPlayer<C_P_Climbing2>.ishanging =false
 			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
 			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-			triggerPlayer<C_P_Climbing2>.Curent_Forward = Vector3{GetLocalPlayer()<Player>.Forward.X, GetLocalPlayer()<Player>.Forward.Y, GetLocalPlayer()<Player>.Forward.Z}
-
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
 		} else {
-			isclimb = false
+			
 			Hanging = true
 			/*triggerPlayer<C_P_Climbing2>.bIsClimb= false
 			triggerPlayer<C_P_Climbing2>.ishanging = true*/

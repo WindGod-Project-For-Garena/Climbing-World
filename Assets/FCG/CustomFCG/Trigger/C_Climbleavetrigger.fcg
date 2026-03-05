@@ -1,5 +1,5 @@
-// 参照 C_Climbing_starttrigger 写法
-// 挂载在 Climb_leavetrigger 上，当玩家进入 trigger 时通知 G_Climbing 将玩家传送到子节点 TeleportSpot 所在的位置
+// 【已弃用】传送与通知逻辑已移至 C_P_Climbing2：在 OnFixedUpdate 中当玩家 Y>100 时
+// 传送到 ATower 的 TeleportPoint 并通知 G_Climbing 停止动画。本脚本保留为空壳，请勿再挂载或依赖。
 
 import "StdLibrary.fcc" as std
 import "LevelObject.fcc" as levelobject
@@ -7,23 +7,10 @@ import "EditorGenLib.fcc" as gen
 
 [platform_client]
 graph C_Climbleavetrigger {
-	teleportSpot entity = nil
-	
-
 	event OnAwake() {
-		
-		
 	}
-	
+
 	event OnPlayerEnter(player entity<Player>) {
-		// 获取子节点 TeleportSpot 的位置
-		teleportSpot = GetChildByIndex(thisEntity, 0)
-		LogInfo("进入离开区域")
-		LogInfo(teleportSpot)
-		if teleportSpot != nil {
-			LogInfo(teleportSpot<Transform>.Position)
-			var targetPos = teleportSpot<Transform>.Position
-			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player, targetPos})
-		}
+		// 已弃用：无逻辑
 	}
 }

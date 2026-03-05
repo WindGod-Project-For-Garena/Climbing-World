@@ -200,28 +200,6 @@
       "version": 45,
       "key": "signal_94002303"
     },
-    "signal_34895939": {
-      "name": "Custom event_ClimbLeavetrigger",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100013,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        },
-        {
-          "name": "targetPos",
-          "value": "Vector3",
-          "key": 2
-        }
-      ],
-      "propCount": 2,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_34895939"
-    },
     "signal_31353734": {
       "name": "Custom event_CreateIngameUI",
       "eventType": 0,
@@ -282,6 +260,23 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_24987626"
+    },
+    "signal_34895939": {
+      "name": "Custom event_ClimbLeavetrigger",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100013,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_34895939"
     }
   },
   "customName": {
@@ -296,10 +291,10 @@
     "Custom event_entertrigger": "signal_36346128",
     "Custom event_WingshopEnter": "signal_76130450",
     "Custom event_WingshopLeave": "signal_94002303",
-    "Custom event_ClimbLeavetrigger": "signal_34895939",
     "Custom event_CreateIngameUI": "signal_31353734",
     "Custom event_Pressclimbing_button": "signal_22370959",
-    "Custom event_TowerTrigger": "signal_24987626"
+    "Custom event_TowerTrigger": "signal_24987626",
+    "Custom event_ClimbLeavetrigger": "signal_34895939"
   },
   "children": []
 }
