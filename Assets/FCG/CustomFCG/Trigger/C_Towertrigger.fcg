@@ -25,7 +25,12 @@ graph C_Towertrigger {
 			towerIndex = 4
 		}
 		if towerIndex > 0 {
-			DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, towerIndex})
+			var triggerTag = "Tower_" + towerIndex
+			if HasTag(player, triggerTag) {
+				DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, towerIndex})
+			} else {
+				LogInfo("这个塔不属于你！！！")
+			}
 		}
 	}
 }

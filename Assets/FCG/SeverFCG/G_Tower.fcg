@@ -5,17 +5,20 @@ import "StdLibrary.fcc" as std
 import "Map.fcc" as map
 import "EditorGenLib.fcc" as gen
 import "LevelObject.fcc" as levelobject
+import "Player.fcc" as player
 
 [platform_server]
 graph G_Tower {
 	spawnPositions Map<int, Vector3> = nil
 	spawnForwards Map<int, Vector3> = nil
 	spawnedTowers Map<int, bool> = nil
+	towerSlotToPlayer Map<int, entity<Player>> = nil
 
 	event OnAwake() {
 		spawnPositions = map.New()
 		spawnForwards = map.New()
 		spawnedTowers = map.New()
+		towerSlotToPlayer = map.New()
 		spawnPositions[1] = Vector3{-33.02439, 43.01403, 0}
 		spawnForwards[1] = Vector3{0, 0, 1}
 		spawnPositions[2] = Vector3{33.02439, 43.01403, 0}
@@ -24,6 +27,30 @@ graph G_Tower {
 		spawnForwards[3] = Vector3{1, 0, 0}
 		spawnPositions[4] = Vector3{0, 43.01403, -33.02439}
 		spawnForwards[4] = Vector3{-1, 0, 0}
+	}
+
+	event OnPlayerJoin(joinedPlayer entity<Player>) {
+		var slot = 0
+		for i = 1, 5, 1 {
+			if !ContainKey(towerSlotToPlayer, i) {
+				slot = i
+				break
+			}
+		}
+		if slot > 0 {
+			towerSlotToPlayer[slot] = joinedPlayer
+			AddTag(joinedPlayer, "Tower_" + slot)
+		}
+	}
+
+	event OnPlayerLeave(player entity<Player>) {
+		for i = 1, 5, 1 {
+			if ContainKey(towerSlotToPlayer, i) && (towerSlotToPlayer[i] as entity) == player {
+				RemoveTag(player, "Tower_" + i)
+				map.Remove(towerSlotToPlayer, i)
+				break
+			}
+		}
 	}
 
 	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int) {

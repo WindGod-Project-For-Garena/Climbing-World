@@ -25,6 +25,7 @@ static graph C_P_Climbing2 {
 	IngameUI entity<CustomUI> = nil
 	frame int = 0
 	Curent_height Vector3 = Vector3{0, 0, 0}
+	Tower_Height Vector3 = Vector3{0, 0, 0}
 	ishanging bool = false
 	
 	
@@ -56,9 +57,10 @@ static graph C_P_Climbing2 {
 	event OnFixedUpdate() {
 		frame = frame + 1
 		// 玩家 Y 轴高度大于 100 时：传送到 ATower 的 TeleportPoint，并通知 G_Climbing 停止攀爬动画（已弃用 C_Climbleavetrigger）
-		if bIsClimb == true && GetLocalPlayer()<Player>.Position.Y > 100 {
+		if (bIsClimb == true || ishanging == true) && GetLocalPlayer()<Player>.Position.Y > 100 {
 			LogInfo("传送")
 			LogInfo(HighClimbTeleportPos)
+			Tower_Height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			SetLocalPlayerPosition(HighClimbTeleportPos)
 			SetLocalPlayerForward(defaultForward)
 			bIsClimb = false
@@ -66,6 +68,13 @@ static graph C_P_Climbing2 {
 			ishanging = false
 			Curent_height = Vector3{HighClimbTeleportPos.X, HighClimbTeleportPos.Y, HighClimbTeleportPos.Z}
 			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
+			
+		}
+		// 当玩家当前 Y 与 Tower_Height 的差值（下坠距离）大于 20 时，设为下落状态并将 Tower_Height 归零
+		var currentY = GetLocalPlayer()<Player>.Position.Y
+		if Tower_Height.Y > 0 && (Tower_Height.Y - currentY) > 20 {
+			bIsFall = true
+			Tower_Height = Vector3{0, 0, 0}
 		}
 		if bIsClimb == true {
 	
