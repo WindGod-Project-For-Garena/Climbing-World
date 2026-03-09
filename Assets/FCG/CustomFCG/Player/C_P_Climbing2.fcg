@@ -102,7 +102,7 @@ static graph C_P_Climbing2 {
 			
 			SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 			// 下落中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
-			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y - 1.5, GetLocalPlayer()<Player>.Position.Z}
+			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y - 1, GetLocalPlayer()<Player>.Position.Z}
 			SetLocalPlayerPosition(Curent_height)
 			DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{player})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, Curent_height.Y})
@@ -110,7 +110,7 @@ static graph C_P_Climbing2 {
 				var heightVal = Curent_height.Y *5.0 -294.0
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
 			}
-			if Curent_height.Y < 1 {
+			if Curent_height.Y < 2 {
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 			

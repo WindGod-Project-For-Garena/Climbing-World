@@ -1,0 +1,10 @@
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "List.fcc" as list
+import "Player.fcc" as player
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+import "Convert.fcc" as convert
+graph C_PlayerHint {
+	
+}

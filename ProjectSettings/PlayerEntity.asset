@@ -81,6 +81,30 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "u2zxdotvvcl-mmingw8d-qx0vwjtbfem",
+      "filePath": "Assets\\FCG\\CustomFCG\\UIFCG\\C_PlayerHint.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "mr75ls0q0js-mmingw9l-pexbi72y57e",
+      "filePath": "Assets\\FCG\\SeverFCG\\G_DefaultUI.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "lyyi2nfcrpn-mmingwaj-sf4lpmvhzcr",
+      "filePath": "Assets\\FCG\\SeverFCG\\G_TowerLocation.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "avatarInfo": null,
@@ -322,4 +346,4 @@
     "fileType": "ac"
   }
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}

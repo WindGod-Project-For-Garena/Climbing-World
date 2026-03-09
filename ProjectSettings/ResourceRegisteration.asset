@@ -66,6 +66,18 @@
           },
           "scriptName": "Wingshop",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "rk9r49t9bq-mmilljvb-3njm5d8r1ls",
+            "filePath": "Assets\\UI\\C_HintDirection.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "C_HintDirection",
+          "children": []
         }
       ]
     },
@@ -118,7 +130,32 @@
     },
     "texture": {
       "id": "texture",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "sp7wem505kf-mk3wnxyp-c4pipcn4ueb",
+            "filePath": "Assets\\Texture2D\\Guide\\GuideCircle.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "GuideCircle",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "14bscyvmvgv-mk3wnxof-qiddz6e0zf9",
+            "filePath": "Assets\\Texture2D\\Guide\\GuideArrow1.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "HintDirection",
+          "children": []
+        }
+      ]
     },
     "effecttype": {
       "id": "effecttype",
@@ -162,7 +199,32 @@
     },
     "textureResource": {
       "id": "textureResource",
-      "children": []
+      "children": [
+        {
+          "refer": {
+            "fileId": "14bscyvmvgv-mk3wnxof-qiddz6e0zf9",
+            "filePath": "Assets\\Texture2D\\Guide\\GuideArrow1.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "HintDirection",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "sp7wem505kf-mk3wnxyp-c4pipcn4ueb",
+            "filePath": "Assets\\Texture2D\\Guide\\GuideCircle.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "GuideCircle",
+          "children": []
+        }
+      ]
     },
     "mesh": {
       "id": "mesh",
@@ -199,4 +261,4 @@
   },
   "children": []
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}

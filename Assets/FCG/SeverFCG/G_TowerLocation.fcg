@@ -1,0 +1,63 @@
+// 玩家进入游戏时，引导玩家前往自己的塔位置
+
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "List.fcc" as List
+import "Player.fcc" as Player
+import "Math.fcc" as math
+
+import "./G_Tower.fcg" as G_Tower
+import "./G_DefaultUI.fcg" as DefaultUI
+import "../CustomEvent.fcc" as Events
+
+[platform_server]
+graph TowerLocationGuide {
+    tutorialRadius float = 3.0
+    tutorialPosition Vector3
+
+    isActive bool = false
+    hasReachedLocation bool = false
+
+    event OnPlayerJoin(player entity<Player>) {
+        if player != thisEntity {
+            return
+        }
+        WaitForMillisecond(3000)
+        tutorialPosition = globalEntity<G_Tower>.GetPlayerTowerTriggerPosition(thisEntity as entity<Player>)
+        if tutorialPosition.X == 0 && tutorialPosition.Y == 0 && tutorialPosition.Z == 0 {
+            return
+        }
+        StartTowerGuide()
+    }
+
+    func StartTowerGuide() {
+        if isActive {
+            return
+        }
+        isActive = true
+        hasReachedLocation = false
+
+        DispatchEventToEntity(Events.__Custom6event_OnShowHint__, thisEntity, PlatformType.Client, List<object>{tutorialPosition})
+        thisEntity<DefaultUI>.CreateTweenTipUI(LocString{"TUTORIAL_GO_TO_TOWER", {}})
+        start CheckPlayerLocation()
+    }
+
+    async func CheckPlayerLocation() {
+        while isActive && !hasReachedLocation {
+            WaitForMillisecond(500)
+            var playerPos = thisEntity<Player>.Position
+            var distance = math.Distance(playerPos, tutorialPosition)
+            if distance <= tutorialRadius {
+                OnReachedTower()
+            }
+        }
+    }
+
+    func OnReachedTower() {
+        hasReachedLocation = true
+        isActive = false
+
+        DispatchEventToEntity(Events.__Custom6event_OnHideHint__, thisEntity, PlatformType.Client, nil)
+        thisEntity<DefaultUI>.CreateTweenTipUI(LocString{"TUTORIAL_TOWER_REACHED", {}})
+    }
+}

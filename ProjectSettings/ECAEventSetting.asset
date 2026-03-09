@@ -282,6 +282,34 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_62874285"
+    },
+    "signal_89581892": {
+      "name": "OnShowHint",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100015,
+      "props": [
+        {
+          "name": "destination",
+          "value": "Vector3",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_89581892"
+    },
+    "signal_87134090": {
+      "name": "OnHideHint",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100016,
+      "props": [],
+      "propCount": 0,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_87134090"
     }
   },
   "customName": {
@@ -299,7 +327,9 @@
     "Custom event_Pressclimbing_button": "signal_22370959",
     "Custom event_TowerTrigger": "signal_24987626",
     "Custom event_ClimbLeavetrigger": "signal_34895939",
-    "Custom event_onground": "signal_62874285"
+    "Custom event_onground": "signal_62874285",
+    "OnShowHint": "signal_89581892",
+    "OnHideHint": "signal_87134090"
   },
   "children": []
 }

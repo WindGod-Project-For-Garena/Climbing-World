@@ -12,13 +12,17 @@ graph G_Tower {
 	spawnPositions Map<int, Vector3> = nil
 	spawnForwards Map<int, Vector3> = nil
 	spawnedTowers Map<int, bool> = nil
+	towerTriggerPositions Map<int, Vector3> = nil
 	towerSlotToPlayer Map<int, entity<Player>> = nil
+	playerToTowerSlot Map<entity<Player>, int> = nil
 
 	event OnAwake() {
 		spawnPositions = map.New()
 		spawnForwards = map.New()
 		spawnedTowers = map.New()
+		towerTriggerPositions = map.New()
 		towerSlotToPlayer = map.New()
+		playerToTowerSlot = map.New()
 		spawnPositions[1] = Vector3{-33.02439, 43.01403, 0}
 		spawnForwards[1] = Vector3{0, 0, 1}
 		spawnPositions[2] = Vector3{33.02439, 43.01403, 0}
@@ -27,6 +31,10 @@ graph G_Tower {
 		spawnForwards[3] = Vector3{1, 0, 0}
 		spawnPositions[4] = Vector3{0, 43.01403, -33.02439}
 		spawnForwards[4] = Vector3{-1, 0, 0}
+		towerTriggerPositions[1] = Vector3{-16.05324, -0.07207984, -9.852015}
+		towerTriggerPositions[2] = Vector3{16.009, 0.001194954, 9.852015}
+		towerTriggerPositions[3] = Vector3{-11.73129, 0, 17.811}
+		towerTriggerPositions[4] = Vector3{11.73129, 0, -17.811}
 	}
 
 	event OnPlayerJoin(joinedPlayer entity<Player>) {
@@ -39,6 +47,7 @@ graph G_Tower {
 		}
 		if slot > 0 {
 			towerSlotToPlayer[slot] = joinedPlayer
+			playerToTowerSlot[joinedPlayer] = slot
 			AddTag(joinedPlayer, "Tower_" + slot)
 		}
 	}
@@ -48,6 +57,7 @@ graph G_Tower {
 			if ContainKey(towerSlotToPlayer, i) && (towerSlotToPlayer[i] as entity) == player {
 				RemoveTag(player, "Tower_" + i)
 				map.Remove(towerSlotToPlayer, i)
+				map.Remove(playerToTowerSlot, player)
 				break
 			}
 		}
@@ -86,5 +96,28 @@ graph G_Tower {
 			}
 		
 		spawnedTowers[towerIndex] = true
+	}
+
+	func GetPlayerTowerPosition(p entity<Player>) Vector3 {
+		if !ContainKey(playerToTowerSlot, p) {
+			return Vector3{0, 0, 0}
+		}
+		var slot = playerToTowerSlot[p] as int
+		if !ContainKey(spawnPositions, slot) {
+			return Vector3{0, 0, 0}
+		}
+		var pos = spawnPositions[slot] as Vector3
+		return pos + Vector3{0, 2, 0}
+	}
+
+	func GetPlayerTowerTriggerPosition(p entity<Player>) Vector3 {
+		if !ContainKey(playerToTowerSlot, p) {
+			return Vector3{0, 0, 0}
+		}
+		var slot = playerToTowerSlot[p] as int
+		if !ContainKey(towerTriggerPositions, slot) {
+			return Vector3{0, 0, 0}
+		}
+		return towerTriggerPositions[slot] as Vector3
 	}
 }

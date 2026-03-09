@@ -1764,9 +1764,9 @@
             "valueTag": "unlockedValue"
           },
           "position": {
-            "x": 0.21700000762939453,
+            "x": 0.21700099110603333,
             "y": 1.1859999895095825,
-            "z": 0.03499794006347656
+            "z": 0.03499981760978699
           },
           "scale": {
             "x": 1,
@@ -1886,9 +1886,9 @@
         "valueTag": "unlockedValue"
       },
       "position": {
-        "x": -11.731289863586426,
+        "x": 11.731289863586426,
         "y": 0,
-        "z": -17.811
+        "z": -17.81100082397461
       },
       "scale": {
         "x": 1,
@@ -2142,7 +2142,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
@@ -2181,7 +2184,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 9,
+      "tempIndex": 8,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [

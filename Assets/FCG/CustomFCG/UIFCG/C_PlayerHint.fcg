@@ -1,0 +1,73 @@
+import "Hud.fcc" as Hud
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "List.fcc" as List
+import "Player.fcc" as Player
+import "LevelObject.fcc" as LevelObject
+import "Math.fcc" as math
+import Res from "EditorGenLib.fcc"
+import "../../CustomEvent.fcc" as Events
+
+[platform_client]
+graph PlayerHint {
+    _DestPosition Vector3
+    _HintDirectionHUD entity<CustomUI>
+
+    event OnUpdate() {
+        if _HintDirectionHUD != nil && _HintDirectionHUD<CustomUI>.IsVisible{
+            var playerPosition Vector3 = thisEntity<Player>.Position
+            var distanceX float = _DestPosition.X - playerPosition.X
+            var distanceZ float = _DestPosition.Z - playerPosition.Z
+            var zAngle float = ATan2(distanceZ, distanceX)
+            var distance float = Vector2Magnitude(Vector2 {distanceX, distanceZ})
+
+            _HintDirectionHUD<CustomUI>.WorldPosition = playerPosition + Vector3 {0, 0.1, 0}
+            _HintDirectionHUD<CustomUI>.Rotation = Vector3 {90, -90, zAngle}
+            _HintDirectionHUD<CustomUI>.Scale = Vector3 {4.25, 4.25, 4.25}
+
+            var hintArrow = GetChildByIndex(_HintDirectionHUD, 0)
+            if hintArrow != nil {
+                hintArrow<UIWidget>.Width = math.Round(distance * 75)
+            }
+        }
+    }
+
+    event __Custom6event_OnShowHint__(destination Vector3) {
+        ShowHint(destination)
+    }
+
+    event __Custom6event_OnHideHint__() {
+        HideHint()
+    }
+
+    func InitHintDirection() {
+        if _HintDirectionHUD != nil || thisEntity<Player> != GetLocalPlayer() {
+            return
+        }
+
+        CreateCustomUIClient(out var hintDirectionHud, EResUI.C_HintDirection)
+        if hintDirectionHud == nil {
+            return
+        }
+        _HintDirectionHUD = hintDirectionHud
+        _HintDirectionHUD<CustomUI>.InScene = true
+
+    }
+
+    func ShowHint(target Vector3) {
+        InitHintDirection()
+        if _HintDirectionHUD == nil {
+            return
+        }
+        _DestPosition = target
+        _HintDirectionHUD<CustomUI>.IsVisible = true
+    }
+
+    func HideHint() {
+        if _HintDirectionHUD == nil {
+            return
+        }
+        _HintDirectionHUD<CustomUI>.IsVisible = false
+    }
+    
+}

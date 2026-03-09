@@ -5,3 +5,11 @@ event OnJumpingBtnClicked( player entity<Player>)
 [platform_client]
 [platform_server]
 event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int)
+
+[platform_client]
+[platform_server]
+event __Custom6event_OnShowHint__(destination Vector3)
+
+[platform_client]
+[platform_server]
+event __Custom6event_OnHideHint__()
