@@ -77,17 +77,7 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
-    },
-    {
-      "fileId": "r68bfcah3i-mmingwbe-1wqlhdk1iwu",
-      "filePath": "Assets\\FCG\\SeverFCG\\G_TutorialManager.fcg",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "ugcscript"
-    },
-    null,
-    null
+    }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",
   "ReduceLogicFrame": false,

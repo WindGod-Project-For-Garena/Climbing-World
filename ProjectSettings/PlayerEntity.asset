@@ -91,16 +91,24 @@
       "fileType": "ugcscript"
     },
     {
-      "fileId": "mr75ls0q0js-mmingw9l-pexbi72y57e",
-      "filePath": "Assets\\FCG\\SeverFCG\\G_DefaultUI.fcg",
+      "fileId": "5ggjs93kdxx-mmiwyt4c-7197xyqt597",
+      "filePath": "Assets\\FCG\\SeverFCG\\C_S_TutorialManager.fcg",
       "_tag": {
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
     },
     {
-      "fileId": "lyyi2nfcrpn-mmingwaj-sf4lpmvhzcr",
-      "filePath": "Assets\\FCG\\SeverFCG\\G_TowerLocation.fcg",
+      "fileId": "vqoshklb51c-mmiwyt3h-u61506ela1h",
+      "filePath": "Assets\\FCG\\SeverFCG\\C_S_TowerLocation.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "f75789gghnc-mmix8hhf-kzvg52gexm",
+      "filePath": "Assets\\FCG\\SeverFCG\\C_S_DefaultUI.fcg",
       "_tag": {
         "type": "GFileRefer"
       },

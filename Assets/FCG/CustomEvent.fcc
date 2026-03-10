@@ -13,3 +13,7 @@ event __Custom6event_OnShowHint__(destination Vector3)
 [platform_client]
 [platform_server]
 event __Custom6event_OnHideHint__()
+
+[platform_client]
+[platform_server]
+event __Custom6event_ClimbStateChanged__(player entity<Player>, bIsClimb bool, bIsFall bool, ishanging bool)

@@ -5,6 +5,7 @@
 // signal_44946959 -> __Custom6event_ClimbUI__(player, height), signal_62874285 -> __Custom6event_onground__(player, Vector)
 
 import "StdLibrary.fcc" as std
+
 import "Animation.fcc" as anim
 import "Math.fcc" as math
 import "Convert.fcc" as convert
@@ -67,6 +68,7 @@ static graph C_P_Climbing2 {
 			bIsFall = false
 			ishanging = false
 			Curent_height = Vector3{HighClimbTeleportPos.X, HighClimbTeleportPos.Y, HighClimbTeleportPos.Z}
+			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
 			
 		}
@@ -78,7 +80,7 @@ static graph C_P_Climbing2 {
 		}
 		if bIsClimb == true {
 	
-			LogInfo(Curent_Forward)
+	
 
 			
 			SetLocalPlayerForward(Curent_Forward)
@@ -93,6 +95,8 @@ static graph C_P_Climbing2 {
 			if frame % 6 == 0 {
 				var heightVal = Curent_height.Y *5.0 -294.0
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
+				LogInfo("333")
+				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			}
 			// 如果 Curent_height.Y < 1
 
@@ -109,12 +113,14 @@ static graph C_P_Climbing2 {
 			if frame % 6 == 0 {
 				var heightVal = Curent_height.Y *5.0 -294.0
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
+				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			}
 			if Curent_height.Y < 2 {
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 			
 				bIsFall = false
+				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 				var landPos = GetLocalPlayer()<Player>.Position
 				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, landPos})
 				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player,0})
@@ -129,7 +135,10 @@ static graph C_P_Climbing2 {
 			
 		}
 		if ishanging == true {
-			SetLocalPlayerPosition(Curent_height)				
+			SetLocalPlayerPosition(Curent_height)
+			if frame % 6 == 0 {
+				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
+			}
 			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
 		}
 	}

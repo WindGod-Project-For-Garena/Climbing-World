@@ -310,6 +310,38 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_87134090"
+    },
+    "signal_57018550": {
+      "name": "Custom event_ClimbStateChanged",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100017,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 3
+        },
+        {
+          "name": "bIsClimb",
+          "value": "Bool",
+          "key": 1
+        },
+        {
+          "name": "bIsFall",
+          "value": "Bool",
+          "key": 2
+        },
+        {
+          "name": "ishanging",
+          "value": "Bool",
+          "key": 4
+        }
+      ],
+      "propCount": 4,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_57018550"
     }
   },
   "customName": {
@@ -329,8 +361,9 @@
     "Custom event_ClimbLeavetrigger": "signal_34895939",
     "Custom event_onground": "signal_62874285",
     "OnShowHint": "signal_89581892",
-    "OnHideHint": "signal_87134090"
+    "OnHideHint": "signal_87134090",
+    "Custom event_ClimbStateChanged": "signal_57018550"
   },
   "children": []
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}

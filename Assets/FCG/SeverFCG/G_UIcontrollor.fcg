@@ -54,9 +54,32 @@ graph G_UIcontrollor {
 		if ContainKey(Climbing_button, player) {
 			var hudEntity = Climbing_button[player] as entity
 			hudEntity<CustomUI>.IsVisible = true
+			var jumpBtn = GetWidgetByPath(player, hudEntity as entity<CustomUI>, "/Jumping_button")
+			if jumpBtn != nil {
+				jumpBtn<UIWidget>.IsVisible = false
+			}
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.ClimbingUI)
 			Climbing_button[player] = createdEntity
+			var jumpBtn = GetWidgetByPath(player, createdEntity as entity<CustomUI>, "/Jumping_button")
+			if jumpBtn != nil {
+				jumpBtn<UIWidget>.IsVisible = false
+			}
+		}
+	}
+
+	event __Custom6event_ClimbStateChanged__(player entity<Player>, bIsClimb bool, bIsFall bool, ishanging bool) {
+		
+		if !ContainKey(Climbing_button, player) {
+			return
+		}
+		
+		var climbingUI = Climbing_button[player] as entity
+		var jumpBtn = GetWidgetByPath(player, climbingUI as entity<CustomUI>, "/Jumping_button")
+		if jumpBtn != nil {
+			// bIsClimb 或 ishanging 为 true 时可见，bIsFall 为 true 时不可见
+			jumpBtn<UIWidget>.IsVisible = (bIsClimb || ishanging) && !bIsFall
+			
 		}
 	}
 
