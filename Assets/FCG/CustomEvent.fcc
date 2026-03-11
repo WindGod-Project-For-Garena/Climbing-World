@@ -17,3 +17,7 @@ event __Custom6event_OnHideHint__()
 [platform_client]
 [platform_server]
 event __Custom6event_ClimbStateChanged__(player entity<Player>, bIsClimb bool, bIsFall bool, ishanging bool)
+
+[platform_client]
+[platform_server]
+event __Custom6event_SetCurrentSpeed__(player entity<Player>, Nominal_Speed float)

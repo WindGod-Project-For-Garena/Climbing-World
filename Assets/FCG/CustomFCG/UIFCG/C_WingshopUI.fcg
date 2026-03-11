@@ -4,6 +4,8 @@
 import "StdLibrary.fcc" as std
 import "Hud.fcc" as hud
 import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+import "EditorGenLib.fcc" as gen
+
 
 [platform_client]
 graph C_WingshopUI {
@@ -11,9 +13,34 @@ graph C_WingshopUI {
 	event OnAwake() {
 	}
 
-	// 点击 Speed_muti*10 按钮时，将攀爬速度变为原来的十倍
-	func SpeedBoost_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		C_P_Climbing2.Speed_muti = C_P_Climbing2.Speed_muti * 10
-		LogInfo("Speed_muti: " + C_P_Climbing2.Speed_muti)
+	// 点击 Close_button 时关闭 Wingshop UI（通知服务端隐藏 Panel）
+	func Close_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_WingshopLeave__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	// 点击 Speed_muti*10 按钮时，将攀爬速度变为原来的十倍，并更新 P_IngameHud 的 Current_Speed
+	// 需修改 triggerPlayer 实体上的 C_P_Climbing2 组件的 WingSpeed，而非静态变量
+	func Wing1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		var Nominal_Speed float = 58
+		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
+	}
+
+	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		var Nominal_Speed float = 116
+		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
+	}
+
+	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		var Nominal_Speed float = 232
+		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
+	}
+
+	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		var Nominal_Speed float = 464
+		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
 	}
 }

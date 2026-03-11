@@ -18,25 +18,36 @@ graph G_Climbing {
 	playerCustomGravity Map<entity<Player>, float> = nil
 	PlayerCurentHeight Map<entity<Player>, float> = nil
 	forward1 Vector3 = Vector3{1, 0, 0}
-	Switch int = 0
-	Switch2 int = 0
-	Switch3 int = 0  // Climbing_Stop 守卫，避免 ishanging 每帧派发导致的重复播放挤占
+	// 按玩家存储状态，支持多玩家同时攀爬/下落
+	playerIsClimbing Map<entity<Player>, bool> = nil
+	playerIsJumping Map<entity<Player>, bool> = nil
+	playerClimbingStopGuard Map<entity<Player>, bool> = nil
 	// 动画速度节流：避免每帧 PlayAnimation 引发错误，仅在变化显著时更新
 	lastClimbAnimSpeed Map<entity<Player>, float> = nil
 	climbSpeedUpdateCounter Map<entity<Player>, int> = nil
 	event OnAwake() {       
 		playerCustomGravity = map.New()
 		PlayerCurentHeight = map.New()
+		playerIsClimbing = map.New()
+		playerIsJumping = map.New()
+		playerClimbingStopGuard = map.New()
 		lastClimbAnimSpeed = map.New()
 		climbSpeedUpdateCounter = map.New()
+	}
+	event OnPlayerJoin(player entity<Player>) {
+		// 玩家进入游戏时关闭坠落伤害：heightSegments 为高度分段边界，damageSegments 为对应伤害值（全 0 即无坠落伤害）
+		var heightSegments = List<float>{0, 10, 20, 50, 100, 200, 500, 1000}
+		var damageSegments = List<int>{0, 0, 0, 0, 0, 0, 0, 0}
+		playerlib.SetFallingDamage(player, heightSegments, damageSegments)
 	}
 
 	func Climbing(player entity<Player>, AnimationSpeed float) {
 		// ECA: if CustomGravity!=0 then Set 0; StopAnimation(Falling); StopAnimation(Dance); PlayAnimation(Climbing,1,Loop)
-		if Switch == 0 {
+		var isFirstClimb = !ContainKey(playerIsClimbing, player) || !(playerIsClimbing[player] as bool)
+		if isFirstClimb {
 			// 首次进入攀爬：完整初始化
-			Switch = 1
-			Switch3 = 0
+			playerIsClimbing[player] = true
+			map.Remove(playerClimbingStopGuard, player)
 			player<Player>.Gravity = 0
 			StopAnimation(player, "Falling")
 			StopAnimation(player, "Dance")
@@ -66,11 +77,11 @@ graph G_Climbing {
 	}
 
 	func Jumping(player entity<Player>) {
-		if Switch2 == 1 {
+		if ContainKey(playerIsJumping, player) && (playerIsJumping[player] as bool) {
 			return
 		}
-		Switch2 = 1
-		Switch3 = 0
+		playerIsJumping[player] = true
+		map.Remove(playerClimbingStopGuard, player)
 		
 		
 		// ECA: if CustomGravity==0 then Stop(Climbing); Play(Falling,1,Loop); if DirectPositionVec3.Y<1 then Stop(Falling) else Set CustomGravity=-9.8
@@ -89,8 +100,9 @@ graph G_Climbing {
 	func Onground(player entity<Player>, vec Vector3, effectPos Vector3) {
 		// ECA: TeleportPlayerPositionAndForward(player, vec, (1,0,0)); PlayAnimation(Dance, 1, Once)
 		//Teleport(player, vec, forward1)
-		Switch2 = 0
-		Switch3 = 0
+		map.Remove(playerIsJumping, player)
+		map.Remove(playerIsClimbing, player)
+		map.Remove(playerClimbingStopGuard, player)
 		map.Remove(lastClimbAnimSpeed, player)
 		map.Remove(climbSpeedUpdateCounter, player)
 		PlayAnimation(player, "Dance", 1, LoopType.Once)
@@ -106,11 +118,11 @@ graph G_Climbing {
 	}
 
 	func Climbing_Stop(player entity<Player>) {
-		if Switch3 == 1 {
+		if ContainKey(playerClimbingStopGuard, player) && (playerClimbingStopGuard[player] as bool) {
 			return
 		}
-		Switch3 = 1
-		Switch = 0
+		playerClimbingStopGuard[player] = true
+		map.Remove(playerIsClimbing, player)
 		player<Player>.Gravity = 0
 		map.Remove(lastClimbAnimSpeed, player)
 		map.Remove(climbSpeedUpdateCounter, player)
@@ -137,9 +149,9 @@ graph G_Climbing {
 
 	// 由 C_P_Climbing2 在 Y>100 时通知调用；仅停止攀爬动画，传送在客户端执行
 	event __Custom6event_ClimbLeavetrigger__(player entity<Player>) {
-		Switch = 0
-		Switch2 = 0
-		Switch3 = 0
+		map.Remove(playerIsClimbing, player)
+		map.Remove(playerIsJumping, player)
+		map.Remove(playerClimbingStopGuard, player)
 		map.Remove(lastClimbAnimSpeed, player)
 		map.Remove(climbSpeedUpdateCounter, player)
 		player<Player>.Gravity = -9.8

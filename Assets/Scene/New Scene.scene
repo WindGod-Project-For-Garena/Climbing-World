@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 10,
+      "tempIndex": 1,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -344,7 +344,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 11,
+      "tempIndex": 2,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -387,12 +387,12 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 1.062333345413208,
-            "y": -0.6960000395774841,
-            "z": 1.7669997215270996
+            "x": 1.062000036239624,
+            "y": -0.7013220191001892,
+            "z": 1.7670001983642578
           },
           "scale": {
-            "x": 0.3333333432674408,
+            "x": 0.3330000042915344,
             "y": 1,
             "z": 1
           },
@@ -422,7 +422,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 12,
+          "tempIndex": 3,
           "itemID": 167,
           "seParent": null,
           "ecaScripts": [
@@ -929,7 +929,7 @@
           "entityTag22802862"
         ]
       },
-      "tempIndex": 13,
+      "tempIndex": 4,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1135,7 +1135,7 @@
           "entityTag84277110"
         ]
       },
-      "tempIndex": 14,
+      "tempIndex": 5,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1529,7 +1529,7 @@
           "entityTag29484470"
         ]
       },
-      "tempIndex": 15,
+      "tempIndex": 6,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1923,7 +1923,7 @@
           "entityTag76000170"
         ]
       },
-      "tempIndex": 16,
+      "tempIndex": 7,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -2149,13 +2149,13 @@
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
-        "x": -11.679390907287598,
-        "y": 0.0011959075927734375,
-        "z": -11.269929885864258
+        "x": -0.5538830161094666,
+        "y": 2.314218044281006,
+        "z": 5.552178382873535
       },
       "scale": {
-        "x": 1,
-        "y": 1,
+        "x": 5,
+        "y": 5,
         "z": 1
       },
       "rotation": {
@@ -2184,7 +2184,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 17,
+      "tempIndex": 8,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -2198,7 +2198,7 @@
         "Visibility": {}
       },
       "propsData": {
-        "TextKey": "Text",
+        "TextKey": "Wings Shop",
         "fontColor": {
           "r": 255,
           "g": 255,
@@ -2221,7 +2221,7 @@
         "fontType": "UIFONT_LATIN",
         "fontStyle": 0,
         "_levelObjectID": 1,
-        "TextDisplay": "",
+        "TextDisplay": "Wings Shop",
         "fontTypeRef": "UIFONT_LATIN"
       }
     }

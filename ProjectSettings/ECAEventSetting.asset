@@ -300,17 +300,6 @@
       "version": 45,
       "key": "signal_89581892"
     },
-    "signal_87134090": {
-      "name": "OnHideHint",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100016,
-      "props": [],
-      "propCount": 0,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_87134090"
-    },
     "signal_57018550": {
       "name": "Custom event_ClimbStateChanged",
       "eventType": 0,
@@ -342,6 +331,39 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_57018550"
+    },
+    "signal_87134090": {
+      "name": "OnHideHint",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100016,
+      "props": [],
+      "propCount": 0,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_87134090"
+    },
+    "signal_99148723": {
+      "name": "Custom event_SetCurrentSpeed",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100018,
+      "props": [
+        {
+          "name": "Player",
+          "value": "Player",
+          "key": 2
+        },
+        {
+          "name": "Nominal_Speed",
+          "value": "Float",
+          "key": 1
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_99148723"
     }
   },
   "customName": {
@@ -361,8 +383,9 @@
     "Custom event_ClimbLeavetrigger": "signal_34895939",
     "Custom event_onground": "signal_62874285",
     "OnShowHint": "signal_89581892",
+    "Custom event_ClimbStateChanged": "signal_57018550",
     "OnHideHint": "signal_87134090",
-    "Custom event_ClimbStateChanged": "signal_57018550"
+    "Custom event_SetCurrentSpeed": "signal_99148723"
   },
   "children": []
 }

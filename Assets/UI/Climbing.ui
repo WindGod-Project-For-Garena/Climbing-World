@@ -682,7 +682,7 @@
   "ecaScripts": [
     {
       "fileId": "2cbpz26xswv-mm3bn2ek-3bsyiq2oyjd",
-      "filePath": "Assets\\FCG\\C_Climbing_button.fcg",
+      "filePath": "Assets\\FCG\\CustomFCG\\UIFCG\\C_Climbing_button.fcg",
       "_tag": {
         "type": "GFileRefer"
       },
@@ -701,4 +701,4 @@
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}

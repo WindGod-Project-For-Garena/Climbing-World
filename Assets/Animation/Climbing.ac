@@ -87,6 +87,30 @@
             "type": "ACLayerEntity"
           },
           "_entityId": "SbUpmVtP",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "isLoop": false,
+          "isBaseLayer": true,
+          "mute": false,
+          "bodypartId": null,
+          "DisableChanged": false
+        },
+        {
+          "_entityName": "Hand",
+          "_tag": {
+            "type": "ACLayerEntity"
+          },
+          "_entityId": "Wna5OwiR",
           "children": [
             {
               "_entityName": "Climbing_Remove2.anim",
@@ -120,25 +144,37 @@
               },
               "wrapMode": 0,
               "postExtrapolate": 0,
-              "startTime": 0,
-              "endTime": 2
+              "startTime": 0.033,
+              "endTime": 2.033
             }
           ],
           "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": {
-            "selfValue": true,
-            "valueTag": "unlockedValue"
-          },
+          "activeValue": null,
+          "unlockedValue": null,
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
-          "isBaseLayer": true,
+          "isBaseLayer": false,
           "mute": false,
-          "bodypartId": null,
+          "bodypartId": "bpc_86660804",
+          "DisableChanged": false
+        },
+        {
+          "_entityName": "Bodypart2",
+          "_tag": {
+            "type": "ACLayerEntity"
+          },
+          "_entityId": "D1E4OGHp",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": null,
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "isLoop": false,
+          "isBaseLayer": false,
+          "mute": false,
+          "bodypartId": "bpc_43235624",
           "DisableChanged": false
         }
       ],
@@ -161,7 +197,28 @@
           "type": "ACEventFrameGroup"
         },
         "_entityId": "C3hbh0N6",
-        "children": [],
+        "children": [
+          {
+            "_entityName": "",
+            "_tag": {
+              "type": "EventFrameEntity"
+            },
+            "_entityId": "pUgMONUF",
+            "children": [],
+            "prefabVariant": null,
+            "activeValue": null,
+            "unlockedValue": null,
+            "editorLockValue": false,
+            "editorVisibleValue": true,
+            "from": "ACState",
+            "FrameIndex": 54,
+            "EventFrameName": "Event Frame 1",
+            "startTime": 1.8,
+            "EventList": [],
+            "dsada": "Sphere",
+            "enable": false
+          }
+        ],
         "prefabVariant": null,
         "activeValue": {
           "selfValue": true,
@@ -306,8 +363,14 @@
               "_entityId": "KK9yHcmf",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -329,8 +392,14 @@
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -345,7 +414,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
@@ -358,8 +430,14 @@
         "_entityId": "pCHu9TKG",
         "children": [],
         "prefabVariant": null,
-        "activeValue": null,
-        "unlockedValue": null,
+        "activeValue": {
+          "selfValue": true,
+          "valueTag": "activeValue"
+        },
+        "unlockedValue": {
+          "selfValue": true,
+          "valueTag": "unlockedValue"
+        },
         "editorLockValue": false,
         "editorVisibleValue": true,
         "DisableChanged": false
@@ -389,6 +467,13 @@
     },
     "fileType": "uma"
   },
-  "bpcFile": null
+  "bpcFile": {
+    "fileId": "j7ohmnfzl5-mlexg16m-onhjq2x227s",
+    "filePath": "Assets\\New Bodypart.bpc",
+    "_tag": {
+      "type": "GFileRefer"
+    },
+    "fileType": "bpc"
+  }
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}

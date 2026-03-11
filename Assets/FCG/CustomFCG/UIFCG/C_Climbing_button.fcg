@@ -14,6 +14,7 @@ import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
 import "Math.fcc" as Math
 import "Player.fcc" as playerlib
 
+
 [platform_client]
 graph C_Climbing_button {
 	isclimb bool = false
@@ -64,8 +65,8 @@ graph C_Climbing_button {
 	}
 
 	func AutoClimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		Taptime = 1
-		if isclimb == false {
+	
+		if triggerPlayer<C_P_Climbing2>.bIsClimb == false {
 			
 			triggerPlayer<C_P_Climbing2>.bIsClimb= true
 			triggerPlayer<C_P_Climbing2>.ishanging =false
@@ -73,7 +74,7 @@ graph C_Climbing_button {
 			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
 		} else {
-			LogInfo("444")
+			
 			
 			/*triggerPlayer<C_P_Climbing2>.bIsClimb= false
 			triggerPlayer<C_P_Climbing2>.ishanging = true*/
@@ -86,4 +87,7 @@ graph C_Climbing_button {
 			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})  // 添加此行
 		}
 	}
+
+	// Nominal_Speed = 58，点击时设置 WingSpeed 并更新 P_IngameHud 的 Current_Speed
+
 }

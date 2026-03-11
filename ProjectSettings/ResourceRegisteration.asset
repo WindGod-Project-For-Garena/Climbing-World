@@ -90,8 +90,8 @@
       "children": [
         {
           "refer": {
-            "fileId": "zhy9xlxc4v-mma8suzt-w635gblcf0m",
-            "filePath": "Assets\\Prefabs\\ATower.prefab",
+            "fileId": "hh4n4eh7irw-mmka94l0-9f55bqqgux4",
+            "filePath": "Assets\\Prefabs\\Tower\\ATower (1).prefab",
             "_tag": {
               "type": "GFileRefer"
             },

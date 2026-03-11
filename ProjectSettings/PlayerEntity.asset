@@ -177,7 +177,7 @@
     "race_MinNumOfMatchStart": 2,
     "fullcustom_multirounds_enabled": true,
     "fullcustom_round_num": 3,
-    "fullcustom_revive_enabled": false,
+    "fullcustom_revive_enabled": true,
     "fullcustom_revive_rule": 0,
     "fullcustom_revive_time": 100,
     "fullcustom_round_preparing_time": 5,

@@ -40,7 +40,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": -206,
+            "x": -350,
             "y": 301
           },
           "sizeDelta": {
@@ -51,7 +51,7 @@
         "alpha": 100,
         "priority": 0,
         "text": {
-          "value": "New Text",
+          "value": "0",
           "key": "",
           "font": "Default",
           "fontSize": 99,
@@ -130,7 +130,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": -421,
+            "x": -550,
             "y": 302
           },
           "sizeDelta": {
@@ -220,7 +220,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 76,
+            "x": -110,
             "y": 302
           },
           "sizeDelta": {
@@ -310,7 +310,7 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 302,
+            "x": 100,
             "y": 297
           },
           "sizeDelta": {
@@ -321,7 +321,187 @@
         "alpha": 100,
         "priority": 0,
         "text": {
-          "value": "New Text",
+          "value": "0",
+          "key": "",
+          "font": "Default",
+          "fontSize": 99,
+          "fontStyle": {
+            "bold": false,
+            "italic": false,
+            "underline": false
+          },
+          "color": "#ffffff",
+          "alignment": {
+            "h": "center",
+            "v": "middle"
+          },
+          "lineSpacing": 0,
+          "background": false,
+          "backgroundColor": "#e7b200",
+          "overflow": 0,
+          "backgroundRGBA": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "shadow": false,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "x": 1,
+            "y": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudLabelWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true
+    },
+    {
+      "_entityName": "Speed",
+      "_tag": {
+        "type": "UITextEntity",
+        "resourceId": ""
+      },
+      "_entityId": "FBqP7YMl",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 300,
+            "y": 302
+          },
+          "sizeDelta": {
+            "x": 210,
+            "y": 62
+          }
+        },
+        "alpha": 100,
+        "priority": 0,
+        "text": {
+          "value": "Speed：",
+          "key": "",
+          "font": "Default",
+          "fontSize": 99,
+          "fontStyle": {
+            "bold": false,
+            "italic": false,
+            "underline": false
+          },
+          "color": "#ffffff",
+          "alignment": {
+            "h": "center",
+            "v": "middle"
+          },
+          "lineSpacing": 0,
+          "background": false,
+          "backgroundColor": "#e7b200",
+          "overflow": 0,
+          "backgroundRGBA": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "shadow": false,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "x": 1,
+            "y": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudLabelWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true
+    },
+    {
+      "_entityName": "Current_Speed",
+      "_tag": {
+        "type": "UITextEntity",
+        "resourceId": ""
+      },
+      "_entityId": "RylR3cJi",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 500,
+            "y": 297
+          },
+          "sizeDelta": {
+            "x": 178,
+            "y": 68
+          }
+        },
+        "alpha": 100,
+        "priority": 0,
+        "text": {
+          "value": "29",
           "key": "",
           "font": "Default",
           "fontSize": 99,
@@ -406,16 +586,7 @@
     "alpha": 100,
     "priority": 0
   },
-  "ecaScripts": [
-    {
-      "fileId": "nhctoo1xuj-mm0g9b9q-psicu5ylwp",
-      "filePath": "Assets\\FCG\\ClimbingAvatarDisplay.fcg",
-      "_tag": {
-        "type": "GFileRefer"
-      },
-      "fileType": "ugcscript"
-    }
-  ],
+  "ecaScripts": [],
   "ecaProps": {
     "CustomHud": {},
     "Entity": {}
@@ -428,4 +599,4 @@
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
