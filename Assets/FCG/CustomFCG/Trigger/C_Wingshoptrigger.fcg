@@ -10,7 +10,7 @@ import "EditorGenLib.fcc" as gen
 graph C_Wingshoptrigger {
 
 	event OnPlayerEnter(player entity<Player>) {
-		LogInfo(GetChildByName(thisEntity, "Target") as entity<Entity>)
+
 		
 		DispatchEventToEntity(__Custom6event_WingshopEnter__, globalEntity, PlatformType.Server, List<object>{player})
 	}

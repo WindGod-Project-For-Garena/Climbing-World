@@ -77,6 +77,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "lsyp59l1t9-mmn6cbua-uxuyev6rgq",
+      "filePath": "Assets\\FCG\\SeverFCG\\S_WingShopUI.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

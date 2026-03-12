@@ -78,6 +78,18 @@
           },
           "scriptName": "C_HintDirection",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "99v7mpbyb56-mmmxnxvs-3t04khkh8u7",
+            "filePath": "Assets\\UI\\WingsShop2.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Wingshop2",
+          "children": []
         }
       ]
     },

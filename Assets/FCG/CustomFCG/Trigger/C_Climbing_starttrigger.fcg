@@ -26,6 +26,7 @@ graph C_Climbing_starttrigger {
 		var teleportPoint = GetChildByName(thisEntity, "TeleportPoint")
 		if teleportPoint != nil {
 			player<C_P_Climbing2>.HighClimbTeleportPos = teleportPoint<Transform>.Position
+			LogInfo("传送")
 		}
 		if HasTag(thisEntity, "Tower_1") {
 			LogInfo("Tower_1")

@@ -364,6 +364,28 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_99148723"
+    },
+    "signal_55474527": {
+      "name": "Custom event_ShowWingSelect",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100019,
+      "props": [
+        {
+          "name": "triggerPlayer",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "wingIndex",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_55474527"
     }
   },
   "customName": {
@@ -385,7 +407,8 @@
     "OnShowHint": "signal_89581892",
     "Custom event_ClimbStateChanged": "signal_57018550",
     "OnHideHint": "signal_87134090",
-    "Custom event_SetCurrentSpeed": "signal_99148723"
+    "Custom event_SetCurrentSpeed": "signal_99148723",
+    "Custom event_ShowWingSelect": "signal_55474527"
   },
   "children": []
 }

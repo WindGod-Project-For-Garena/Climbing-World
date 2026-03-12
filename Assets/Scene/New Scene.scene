@@ -2130,7 +2130,7 @@
       "editorVisibleValue": true
     },
     {
-      "_entityName": "Text object",
+      "_entityName": "Wings_Shop",
       "_tag": {
         "type": "SceneEditEntity",
         "resourceId": "Primitive/Empty"
