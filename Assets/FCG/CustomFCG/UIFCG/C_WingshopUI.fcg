@@ -50,18 +50,18 @@ graph C_WingshopUI {
 	}
 
 	func BUY1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 	}
 
 	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 	}
 
 	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
 	}
 
 	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
 	}
 }
