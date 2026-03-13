@@ -396,6 +396,23 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_55474527"
+    },
+    "signal_38069002": {
+      "name": "Custom event___WingBuyUnlock",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100020,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_38069002"
     }
   },
   "customName": {
@@ -418,7 +435,8 @@
     "Custom event_ClimbStateChanged": "signal_57018550",
     "OnHideHint": "signal_87134090",
     "Custom event_SetCurrentSpeed": "signal_99148723",
-    "Custom event_ShowWingSelect": "signal_55474527"
+    "Custom event_ShowWingSelect": "signal_55474527",
+    "Custom event___WingBuyUnlock": "signal_38069002"
   },
   "children": []
 }

@@ -147,6 +147,30 @@
           },
           "scriptName": "Wings4",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "8sh9eeninwg-mmooa8mb-48e2ld8lwl2",
+            "filePath": "Assets\\Prefabs\\wings\\Wings2.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings2",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "5m876l2q2nt-mmoo02br-0f2k277j1da9",
+            "filePath": "Assets\\Prefabs\\wings\\Wings3.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings3",
+          "children": []
         }
       ]
     },

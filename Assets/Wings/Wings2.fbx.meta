@@ -1,0 +1,62 @@
+{
+  "fileId": "it7muniu6a-mmoo5ss9-we1ny9aw77",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "geometry_0.~@FFFUB",
+        "MeshName": "geometry_0",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "reduced_mesh-1243_exported",
+      "ImportSucceeded": true,
+      "MaterialCount": 1,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": ""
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "geometry_0",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "it7muniu6a-mmoo5ss9-we1ny9aw77-geometry_0.~@FFFUB": 0
+  }
+}

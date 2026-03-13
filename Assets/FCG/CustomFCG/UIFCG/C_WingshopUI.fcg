@@ -22,31 +22,46 @@ graph C_WingshopUI {
 	// 点击 Speed_muti*10 按钮时，将攀爬速度变为原来的十倍，并更新 P_IngameHud 的 Current_Speed
 	// 需修改 triggerPlayer 实体上的 C_P_Climbing2 组件的 WingSpeed，而非静态变量
 	func Wing1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1, nil, 0})
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1 , nil, 0 })
 		var Nominal_Speed float = 58
 		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
 	}
 
 	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2, nil, 0})
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2 , nil, 0 })
 		var Nominal_Speed float = 116
 		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
 	}
 
 	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3, nil, 0})
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3 , nil, 0 })
 		var Nominal_Speed float = 232
 		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
 	}
 
 	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		var boneName = "bone_Left_Spine_Backpack"
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4, boneName, 0})
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4 , nil, 0 })
 		var Nominal_Speed float = 464
 		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed})
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+	}
+
+	func BUY1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 }

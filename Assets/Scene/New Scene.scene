@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 1,
+      "tempIndex": 49,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -344,7 +344,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 2,
+      "tempIndex": 50,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -422,7 +422,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 3,
+          "tempIndex": 51,
           "itemID": 167,
           "seParent": null,
           "ecaScripts": [
@@ -929,7 +929,7 @@
           "entityTag22802862"
         ]
       },
-      "tempIndex": 4,
+      "tempIndex": 52,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1135,7 +1135,7 @@
           "entityTag84277110"
         ]
       },
-      "tempIndex": 5,
+      "tempIndex": 53,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1529,7 +1529,7 @@
           "entityTag29484470"
         ]
       },
-      "tempIndex": 6,
+      "tempIndex": 54,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1923,7 +1923,7 @@
           "entityTag76000170"
         ]
       },
-      "tempIndex": 7,
+      "tempIndex": 55,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -2184,7 +2184,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 8,
+      "tempIndex": 56,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -2251,9 +2251,9 @@
             },
             "unlockedValue": null,
             "scale": {
-              "x": 100,
-              "y": 100,
-              "z": 100
+              "x": 500,
+              "y": 500,
+              "z": 500
             },
             "BTPath": [
               null
@@ -2267,7 +2267,7 @@
               4
             ],
             "isTrigger": false,
-            "collidable": true,
+            "collidable": false,
             "physicalLayer": 0,
             "physicalMaterial": null,
             "aoiSetting": 0,
@@ -2283,35 +2283,7 @@
             "materials": [
               null
             ],
-            "colliders": [
-              {
-                "enable": true,
-                "colliderType": "MeshCollider",
-                "meshUUID": {
-                  "fileId": "tiyko0pfa7-mmnen1go-5y4xzi6sh88-geometry_0.~@FFFUB",
-                  "filePath": "fab://Assets\\Wings\\天白1.fbx\\geometry_0.mesh",
-                  "fileType": "mesh"
-                },
-                "position": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "size": {
-                  "x": 1,
-                  "y": 1,
-                  "z": 1
-                },
-                "rotation": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "radius": 0.5,
-                "height": 1,
-                "isConvexIfMesh": false
-              }
-            ],
+            "colliders": [],
             "IsNPC": false,
             "isCreateAsEmpty": false,
             "Rigidbody": {
@@ -2368,9 +2340,9 @@
         "z": 18.08474349975586
       },
       "scale": {
-        "x": 100,
-        "y": 100,
-        "z": 100
+        "x": 500,
+        "y": 500,
+        "z": 500
       },
       "rotation": {
         "x": 0,
@@ -2389,7 +2361,7 @@
         4
       ],
       "isTrigger": false,
-      "collidable": true,
+      "collidable": false,
       "physicalLayer": 0,
       "physicalMaterial": null,
       "aoiSetting": 0,
@@ -2405,38 +2377,7 @@
       "materials": [
         null
       ],
-      "colliders": [
-        {
-          "enable": true,
-          "colliderType": "MeshCollider",
-          "meshUUID": {
-            "fileId": "tiyko0pfa7-mmnen1go-5y4xzi6sh88-geometry_0.~@FFFUB",
-            "filePath": "fab://Assets\\Wings\\天白1.fbx\\geometry_0.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "size": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "radius": 0.5,
-          "height": 1,
-          "isConvexIfMesh": false
-        }
-      ],
+      "colliders": [],
       "IsNPC": false,
       "isCreateAsEmpty": false,
       "Rigidbody": {
@@ -2505,9 +2446,9 @@
             },
             "unlockedValue": null,
             "scale": {
-              "x": 1000,
-              "y": 1000,
-              "z": 1000
+              "x": 500,
+              "y": 500,
+              "z": 500
             },
             "BTPath": [
               null
@@ -2521,7 +2462,7 @@
               4
             ],
             "isTrigger": false,
-            "collidable": true,
+            "collidable": false,
             "physicalLayer": 0,
             "physicalMaterial": null,
             "aoiSetting": 0,
@@ -2541,35 +2482,7 @@
                 "fileType": "material"
               }
             ],
-            "colliders": [
-              {
-                "enable": true,
-                "colliderType": "MeshCollider",
-                "meshUUID": {
-                  "fileId": "ka4o89ofh6p-mmoamfqp-3gqi4o71pot-geometry_0.~@FFFUB",
-                  "filePath": "fab://Assets\\Wings\\reduced_mesh-1241_exported.fbx\\geometry_0.mesh",
-                  "fileType": "mesh"
-                },
-                "position": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "size": {
-                  "x": 1,
-                  "y": 1,
-                  "z": 1
-                },
-                "rotation": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 0
-                },
-                "radius": 0.5,
-                "height": 1,
-                "isConvexIfMesh": false
-              }
-            ],
+            "colliders": [],
             "IsNPC": false,
             "isCreateAsEmpty": false,
             "Rigidbody": {
@@ -2626,9 +2539,9 @@
         "z": 17.003507614135742
       },
       "scale": {
-        "x": 1000,
-        "y": 1000,
-        "z": 1000
+        "x": 500,
+        "y": 500,
+        "z": 500
       },
       "rotation": {
         "x": 0,
@@ -2647,7 +2560,7 @@
         4
       ],
       "isTrigger": false,
-      "collidable": true,
+      "collidable": false,
       "physicalLayer": 0,
       "physicalMaterial": null,
       "aoiSetting": 0,
@@ -2670,38 +2583,7 @@
           "fileType": "material"
         }
       ],
-      "colliders": [
-        {
-          "enable": true,
-          "colliderType": "MeshCollider",
-          "meshUUID": {
-            "fileId": "ka4o89ofh6p-mmoamfqp-3gqi4o71pot-geometry_0.~@FFFUB",
-            "filePath": "fab://Assets\\Wings\\reduced_mesh-1241_exported.fbx\\geometry_0.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "size": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "radius": 0.5,
-          "height": 1,
-          "isConvexIfMesh": false
-        }
-      ],
+      "colliders": [],
       "IsNPC": false,
       "isCreateAsEmpty": false,
       "Rigidbody": {

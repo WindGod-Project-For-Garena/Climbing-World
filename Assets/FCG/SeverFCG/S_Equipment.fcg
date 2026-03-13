@@ -19,11 +19,15 @@ graph S_Equipment {
 		PlayerWings = map.New()
 	}
 
-	// 监听翅膀选择事件：索引 1->Wings1，索引 4->Wings4，其他->移除翅膀；bonePart 非空时 SetParent 挂载到骨骼
+	// 监听翅膀选择事件：索引 1->Wings1，2->Wings2，3->Wings3，4->Wings4，其他->移除翅膀；bonePart 非空时 SetParent 挂载到骨骼
 	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndeax int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN, boneIndex int) {
 		LogInfo(bonePart)
         if wingIndeax == 1 {
 			EquipWings1(player, bonePart)
+		} else if wingIndeax == 2 {
+			EquipWings2(player, bonePart)
+		} else if wingIndeax == 3 {
+			EquipWings3(player, bonePart)
 		} else if wingIndeax == 4 {
 			EquipWings4(player, bonePart)
 		} else {
@@ -34,6 +38,16 @@ graph S_Equipment {
 	// 为玩家装备 Wings1 预制体
 	func EquipWings1(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
 		EquipWingsPrefab(targetPlayer, EResPrefab.Wings1, 1, bonePart)
+	}
+
+	// 为玩家装备 Wings2 预制体
+	func EquipWings2(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings2, 2, bonePart)
+	}
+
+	// 为玩家装备 Wings3 预制体
+	func EquipWings3(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings3, 3, bonePart)
 	}
 
 	// 为玩家装备 Wings4 预制体
