@@ -1,0 +1,104 @@
+// 翅膀数据：玩家 + 翅膀名 -> 翅膀信息（名称、售价、名义速度、是否已购买）
+// 通过 PlayerWingData[player][wingName] 获取 Map{"Name", "Price", "NominalSpeed", "IsPurchased"}
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Player.fcc" as player
+
+[platform_server]
+graph S_WingsData {
+
+	// 翅膀静态配置：翅膀名 -> {Name, Price, NominalSpeed}（所有玩家共用）
+	WingConfig Map<object, object> = nil
+
+	// 玩家翅膀数据：玩家 -> 翅膀名 -> {Name, Price, NominalSpeed, IsPurchased}
+	PlayerWingData Map<entity<Player>, Map<object, object>> = nil
+
+	event OnAwake() {
+		WingConfig = map.New()
+		PlayerWingData = map.New()
+
+		// 初始化翅膀静态配置（与 C_WingshopUI 的 Wing1~4 对应）
+		var w1 = map.New()
+		w1["Name"] = "初级翅膀"
+		w1["Price"] = 1
+		w1["NominalSpeed"] = 58
+		WingConfig["Wing1"] = w1
+
+		var w2 = map.New()
+		w2["Name"] = "中级翅膀"
+		w2["Price"] = 500
+		w2["NominalSpeed"] = 116
+		WingConfig["Wing2"] = w2
+
+		var w3 = map.New()
+		w3["Name"] = "高级翅膀"
+		w3["Price"] = 2000
+		w3["NominalSpeed"] = 232
+		WingConfig["Wing3"] = w3
+
+		var w4 = map.New()
+		w4["Name"] = "顶级翅膀"
+		w4["Price"] = 8000
+		w4["NominalSpeed"] = 464
+		WingConfig["Wing4"] = w4
+	}
+
+	event OnPlayerJoin(player entity<Player>) {
+		// 为新玩家初始化翅膀数据，Wing1 默认已拥有
+		var playerWings = map.New()
+		var w1 = map.New()
+		w1["Name"] = "初级翅膀"
+		w1["Price"] = 0
+		w1["NominalSpeed"] = 58
+		w1["IsPurchased"] = true
+		playerWings["Wing1"] = w1
+
+		var w2 = map.New()
+		w2["Name"] = "中级翅膀"
+		w2["Price"] = 500
+		w2["NominalSpeed"] = 116
+		w2["IsPurchased"] = false
+		playerWings["Wing2"] = w2
+
+		var w3 = map.New()
+		w3["Name"] = "高级翅膀"
+		w3["Price"] = 2000
+		w3["NominalSpeed"] = 232
+		w3["IsPurchased"] = false
+		playerWings["Wing3"] = w3
+
+		var w4 = map.New()
+		w4["Name"] = "顶级翅膀"
+		w4["Price"] = 8000
+		w4["NominalSpeed"] = 464
+		w4["IsPurchased"] = false
+		playerWings["Wing4"] = w4
+
+		PlayerWingData[player] = playerWings
+	}
+
+	// 获取玩家某翅膀的完整信息，不存在则返回 nil
+	func GetWingInfo(player entity<Player>, wingName string) Map<object, object> {
+		if !ContainKey(PlayerWingData, player) {
+			return nil
+		}
+		var playerWings = PlayerWingData[player] as Map<object, object>
+		if !ContainKey(playerWings, wingName) {
+			return nil
+		}
+		return playerWings[wingName] as Map<object, object>
+	}
+
+	// 设置玩家某翅膀的购买状态
+	func SetWingPurchased(player entity<Player>, wingName string, isPurchased bool) {
+		if !ContainKey(PlayerWingData, player) {
+			return
+		}
+		var playerWings = PlayerWingData[player] as Map<object, object>
+		if ContainKey(playerWings, wingName) {
+			var wingInfo = playerWings[wingName] as Map<object, object>
+			wingInfo["IsPurchased"] = isPurchased
+		}
+	}
+}

@@ -1,0 +1,129 @@
+{
+  "_entityName": "Wings4",
+  "_tag": {
+    "type": "Prefab"
+  },
+  "_entityId": "BdLRNYzl",
+  "children": [
+    {
+      "_entityName": "geometry_0 (1)",
+      "_tag": {
+        "type": "UGCSceneEntity",
+        "resourceId": ""
+      },
+      "_entityId": "EHckB5lU",
+      "children": [],
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": null,
+      "position": {
+        "x": 0,
+        "y": 1.8,
+        "z": 0
+      },
+      "scale": {
+        "x": 500,
+        "y": 500,
+        "z": 500
+      },
+      "rotation": {
+        "x": 270,
+        "y": 0,
+        "z": 0
+      },
+      "BTPath": [
+        null
+      ],
+      "visible": true,
+      "VisibilityLayer": 0,
+      "modelOptimization": 0,
+      "streamingLayer": "",
+      "attributes": [
+        2,
+        4
+      ],
+      "isTrigger": false,
+      "collidable": false,
+      "physicalLayer": 0,
+      "physicalMaterial": null,
+      "aoiSetting": 0,
+      "initialTypes": {},
+      "componentList": [
+        "MeshRender",
+        "ColliderShape",
+        "Collider"
+      ],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "materials": [
+        {
+          "fileId": "0kluu1idev2l-mmoan1ut-uy909usbang",
+          "filePath": "Assets\\Wings\\Wings4.mat",
+          "_tag": {
+            "type": "GFileRefer"
+          },
+          "fileType": "material"
+        }
+      ],
+      "colliders": [],
+      "IsNPC": false,
+      "isCreateAsEmpty": false,
+      "Rigidbody": {
+        "Type": 1,
+        "Mass": 1,
+        "CenterOfMass": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "UseGravity": true,
+        "Drag": 0.05,
+        "AngularDrag": 0.05,
+        "FreezePosX": false,
+        "FreezeRotX": false,
+        "FreezePosY": false,
+        "FreezeRotY": false,
+        "FreezePosZ": false,
+        "FreezeRotZ": false
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "CustomLevelObject": {},
+        "LevelObject": {},
+        "Transform": {},
+        "Entity": {},
+        "Visibility": {},
+        "MeshRender": {},
+        "ColliderShape": {},
+        "Collider": {}
+      },
+      "propsData": {},
+      "entityVersion": 3,
+      "mesh": {
+        "fileId": "ka4o89ofh6p-mmoamfqp-3gqi4o71pot-geometry_0.~@FFFUB",
+        "filePath": "fab://Assets\\Wings\\reduced_mesh-1241_exported.fbx\\geometry_0.mesh",
+        "_tag": {
+          "type": "GFileRefer"
+        },
+        "fileType": "mesh"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "prefabVariant": null
+    }
+  ],
+  "prefabVariant": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": null,
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "HintCraftlandCombineMesh": false,
+  "discriminator": "ISceneLike"
+}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}

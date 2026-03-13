@@ -123,6 +123,30 @@
           },
           "scriptName": "Landingeffects",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "3g6c24m4vj4-mmnexdbn-h2fgxm9mhqt",
+            "filePath": "Assets\\Prefabs\\wings\\Wings1.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings1",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "xtoqya1p0l-mmoarmbq-f2fbzapa5fn",
+            "filePath": "Assets\\Prefabs\\wings\\Wings4.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings4",
+          "children": []
         }
       ]
     },
@@ -179,7 +203,12 @@
     },
     "fitem": {
       "id": "fitem",
-      "children": []
+      "children": [
+        {
+          "scriptName": "Key",
+          "children": []
+        }
+      ]
     },
     "fScenePrefab": {
       "id": "fScenePrefab",

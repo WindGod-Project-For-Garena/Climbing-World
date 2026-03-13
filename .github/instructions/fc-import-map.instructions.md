@@ -450,9 +450,13 @@ OnFires()                   → import "Items.fcc"
 OnThrowableExplode()        → import "Items.fcc"
 ```
 
-### 关卡物件事件（LevelObject.fcc）
+### 关卡物件（LevelObject.fcc）
 ```fc
 import "LevelObject.fcc" as levelobject
+
+// 实体跟随
+CreateFollow()       → levelobject.CreateFollow(target, followTarget, offset, coordinateSystem, out createdEntity, autoPlay)
+// target: 被跟随的实体(翅膀), followTarget: 跟随目标(玩家), offset: 偏移, coordinateSystem: CoordinateSystemType.Local/World, autoPlay: 是否自动播放
 
 // 玩家进入/离开事件
 OnPlayerEnter()             → import "LevelObject.fcc"

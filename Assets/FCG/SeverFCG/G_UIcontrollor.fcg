@@ -98,10 +98,35 @@ graph G_UIcontrollor {
 			autoClimbingBtn<UIWidget>.IsVisible = !bIsFall
 		}
 	}
-
+	event __Custom6event_SetCurrentSpeed__(player entity<Player>, Nominal_Speed float) {
+	
+		if ContainKey(Current_Speed, player) {
+			var speedWidget = Current_Speed[player] as entity
+			if speedWidget != nil {
+				speedWidget<HudLabelWidget>.Text = convert.NumToString(Nominal_Speed, 0)
+			}
+		}
+	}
 	event __Custom6event_leavetrigger__(player entity<Player>) {
 		var hudEntity = Climbing_button[player] as entity
 		hudEntity<CustomUI>.IsVisible = false
+	}
+
+	event __Custom6event_ClimbUI__(player entity<Player>, height float) {
+		var customHud = Climbing_UI[player]
+		var AvetarPanleEntity = GetWidgetByPath(player, customHud as entity<CustomUI>, "/Panel (1)")
+		AvetarPanleEntity<UIWidget>.AnchorPosition = Vector3{-331, height, 0}
+	
+		
+	}
+	event __Custom6event6_ReportHeight__( player entity<Player>,  height float) {
+		if ContainKey(Realtime_Height, player) {
+			var labelWidget = Realtime_Height[player] as entity
+			if labelWidget != nil {
+				var displayHeight int= math.Round(height)
+				labelWidget<HudLabelWidget>.Text = convert.NumToString(displayHeight, 0)
+			}
+		}
 	}
 
 

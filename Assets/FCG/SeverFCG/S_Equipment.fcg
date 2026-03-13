@@ -1,0 +1,89 @@
+// 装备逻辑：当玩家点击 C_WingshopUI 的 Wings1 按钮时，会发送信号（玩家、索引）给本脚本，为指定玩家在背部装备 Wings1 预制体
+// 使用 CreateLookAt 使翅膀朝向玩家，SetParent 将翅膀设为玩家子对象
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Player.fcc" as player
+import "Time.fcc" as time
+import "EditorGenLib.fcc" as gen
+import "Playable.fcc" as playable
+
+[platform_server]
+graph S_Equipment {
+	// 玩家 -> 当前装备的翅膀实体
+	PlayerWings Map<entity<Player>, entity> = nil
+	// 背部相对玩家的偏移：Y 轴约 1.2 米（肩背高度），Z 轴 -0.2 米（背部，局部空间）
+	BackOffset Vector3 = Vector3{0, 1.4, -0.2}
+
+	event OnAwake() {
+		PlayerWings = map.New()
+	}
+
+	// 监听翅膀选择事件：索引 1->Wings1，索引 4->Wings4，其他->移除翅膀；bonePart 非空时 SetParent 挂载到骨骼
+	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndeax int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN, boneIndex int) {
+		LogInfo(bonePart)
+        if wingIndeax == 1 {
+			EquipWings1(player, bonePart)
+		} else if wingIndeax == 4 {
+			EquipWings4(player, bonePart)
+		} else {
+			RemoveWings(player)
+		}
+	}
+
+	// 为玩家装备 Wings1 预制体
+	func EquipWings1(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings1, 1, bonePart)
+	}
+
+	// 为玩家装备 Wings4 预制体
+	func EquipWings4(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings4, 4, bonePart)
+	}
+
+	// 通用装备逻辑：bonePart 非空时 SetParent 挂载到骨骼，否则挂载到玩家
+	func EquipWingsPrefab(targetPlayer entity<Player>, prefabID PrefabID, wingIndex int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
+		RemoveWings(targetPlayer)
+		CreateFromPrefab(out var wingsEntity, prefabID)
+		if wingsEntity == nil {
+			LogWarning("S_Equipment: 无法创建翅膀预制体")
+			return
+		}
+		PlayerWings[targetPlayer] = wingsEntity
+		var offset Vector3
+		if wingIndex == 1 {
+			offset = Vector3{0, 2, -0.2}
+		} else if wingIndex == 4 {
+			offset = Vector3{0, 1.4, -0.2}
+		} else {
+			offset = BackOffset
+		}
+		var parentEntity entity<Transform>
+		if bonePart != nil {
+			parentEntity = bonePart as entity<Transform>
+		} else {
+			parentEntity = targetPlayer as entity<Transform>
+		}
+		SetParent(parentEntity, wingsEntity as entity<Transform>, false)
+		wingsEntity<Transform>.LocalPosition = offset
+		if bonePart == nil {
+			var coordType = 1 as CoordinateSystemType
+			var lookAtOffset Vector3 = Vector3{0, 10, 0}
+			playable.CreateFollow(wingsEntity, targetPlayer, offset, coordType, out var followEntity, true)
+			playable.CreateLookAt(wingsEntity, targetPlayer, lookAtOffset, coordType, out var lookAtEntity, true)
+		}
+	}
+
+	// 移除玩家装备的翅膀
+	func RemoveWings(targetPlayer entity<Player>) {
+		if ContainKey(PlayerWings, targetPlayer) {
+			var wingsEntity = PlayerWings[targetPlayer] as entity
+			Destroy(wingsEntity)
+			map.Remove(PlayerWings, targetPlayer)
+		}
+	}
+
+	event OnPlayerQuit(leftPlayer entity<Player>) {
+		RemoveWings(leftPlayer)
+	}
+}

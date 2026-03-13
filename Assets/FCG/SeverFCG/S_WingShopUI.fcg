@@ -1,4 +1,5 @@
-// Wingshop UI 服务端逻辑：玩家进入/离开 Wingshop 区域时创建/显示/隐藏 UI，以及 Select/Trick 显隐
+// Wingshop UI 服务端逻辑：玩家进入/离开 Wingshop 区域时创建/显示/隐藏 UI，以及 Select/Trick/Equipped 显隐
+// 退出 trigger 或关闭界面时保持当前 Select/Equipped 状态，再次进入时恢复
 
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
@@ -11,9 +12,12 @@ import "Math.fcc" as Math
 [platform_server]
 graph S_WingShopUI {
 	Wingshop Map<object, object> = nil
+	// 玩家 -> 上次选中的翅膀索引（0=无，1-4=Wing1~4），用于退出 trigger 或关闭界面后再次进入时恢复显隐状态
+	WingSelectState Map<entity<Player>, int> = nil
 
 	event OnAwake() {
 		Wingshop = map.New()
+		WingSelectState = map.New()
 	}
 
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
@@ -24,11 +28,17 @@ graph S_WingShopUI {
 			if panelWidget != nil {
 				panelWidget<UIWidget>.IsVisible = true
 			}
-			HideAllWingSelect(player, wingshopEntity as entity<CustomUI>)
+			// 恢复上次退出 trigger 或关闭界面时的 Select/Equipped 显隐状态
+			var savedIndex = 0
+			if ContainKey(WingSelectState, player) {
+				savedIndex = WingSelectState[player]
+			}
+			ApplyWingSelectState(player, wingshopEntity as entity<CustomUI>, savedIndex)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.Wingshop2)
 			Wingshop[player] = createdEntity
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
+			WingSelectState[player] = 0
 		}
 	}
 
@@ -42,27 +52,28 @@ graph S_WingShopUI {
 		}
 	}
 
-	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int) {
+	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN, boneIndex int) {
 		if !ContainKey(Wingshop, player) {
 			return
 		}
-		var wingshopUI = Wingshop[player] as entity<CustomUI>
+		WingSelectState[player] = wingIndex
+		ApplyWingSelectState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
+	}
+
+	// 应用指定翅膀的 Select/Equipped 显隐状态，wingIndex 为 0 时全部隐藏
+	func ApplyWingSelectState(player entity<Player>, wingshopUI entity<CustomUI>, wingIndex int) {
+		if wingIndex == 0 {
+			HideAllWingSelect(player, wingshopUI)
+			return
+		}
 		var s1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Select")
 		var s2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Select")
 		var s3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Select")
 		var s4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Select")
-		LogInfo(s1)
-		LogInfo(s2)
-		LogInfo(s3)
-		LogInfo(s4)
 		if s1 != nil { s1<UIWidget>.IsVisible = false }
-		
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
-		
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
-		
 		if s4 != nil { s4<UIWidget>.IsVisible = false }
-		
 		var t1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Trick")
 		var t2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Trick ")
 		var t3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Trick ")
@@ -71,22 +82,25 @@ graph S_WingShopUI {
 		if t2 != nil { t2<UIWidget>.IsVisible = false }
 		if t3 != nil { t3<UIWidget>.IsVisible = false }
 		if t4 != nil { t4<UIWidget>.IsVisible = false }
-		if wingIndex == 1 && s1 != nil { s1<UIWidget>.IsVisible = true }
-		if wingIndex == 2 && s2 != nil { s2<UIWidget>.IsVisible = true }
-		if wingIndex == 3 && s3 != nil { s3<UIWidget>.IsVisible = true }
-		if wingIndex == 4 && s4 != nil { s4<UIWidget>.IsVisible = true }
+		var e1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Equipped")
+		var e2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Equipped")
+		var e3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Equipped")
+		var e4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Equipped")
+		if e1 != nil { e1<UIWidget>.IsVisible = false }
+		if e2 != nil { e2<UIWidget>.IsVisible = false }
+		if e3 != nil { e3<UIWidget>.IsVisible = false }
+		if e4 != nil { e4<UIWidget>.IsVisible = false }
+		if wingIndex == 1 && s1 != nil { s1<UIWidget>.IsVisible = true; if e1 != nil { e1<UIWidget>.IsVisible = true } }
+		if wingIndex == 2 && s2 != nil { s2<UIWidget>.IsVisible = true; if e2 != nil { e2<UIWidget>.IsVisible = true } }
+		if wingIndex == 3 && s3 != nil { s3<UIWidget>.IsVisible = true; if e3 != nil { e3<UIWidget>.IsVisible = true } }
+		if wingIndex == 4 && s4 != nil { s4<UIWidget>.IsVisible = true; if e4 != nil { e4<UIWidget>.IsVisible = true } }
 	}
 
 	func HideAllWingSelect(player entity<Player>, wingshopUI entity<CustomUI>) {
-		
 		var s1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Select")
-		
 		var s2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Select")
-	
 		var s3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Select")
-	
 		var s4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Select")
-		
 		if s1 != nil { s1<UIWidget>.IsVisible = false }
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
@@ -99,5 +113,13 @@ graph S_WingShopUI {
 		if t2 != nil { t2<UIWidget>.IsVisible = false }
 		if t3 != nil { t3<UIWidget>.IsVisible = false }
 		if t4 != nil { t4<UIWidget>.IsVisible = false }
+		var e1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Equipped")
+		var e2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Equipped")
+		var e3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Equipped")
+		var e4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Equipped")
+		if e1 != nil { e1<UIWidget>.IsVisible = false }
+		if e2 != nil { e2<UIWidget>.IsVisible = false }
+		if e3 != nil { e3<UIWidget>.IsVisible = false }
+		if e4 != nil { e4<UIWidget>.IsVisible = false }
 	}
 }

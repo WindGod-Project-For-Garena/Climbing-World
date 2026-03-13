@@ -380,9 +380,19 @@
           "name": "wingIndex",
           "value": "Int",
           "key": 2
+        },
+        {
+          "name": "bonePart",
+          "value": "Entity&(Player|Transform|SkeletonPart)",
+          "key": 3
+        },
+        {
+          "name": "boneIndex",
+          "value": "Int",
+          "key": 4
         }
       ],
-      "propCount": 2,
+      "propCount": 4,
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_55474527"

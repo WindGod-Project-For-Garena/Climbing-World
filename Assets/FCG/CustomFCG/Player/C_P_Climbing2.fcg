@@ -90,7 +90,7 @@ static graph C_P_Climbing2 {
 			Tower_Height =0
 		}
 		if bIsClimb == true {
-			LogInfo("攀爬中")
+		
 			// 记录攀爬开始帧
 			if climbingStartFrame == 0 {
 				climbingStartFrame = frame
@@ -125,7 +125,7 @@ static graph C_P_Climbing2 {
 
 			
 		} else if bIsFall == true {
-			LogInfo("下落")
+			
 			
 			
 			SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})

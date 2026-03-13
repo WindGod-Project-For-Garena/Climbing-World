@@ -85,7 +85,16 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
-    }
+    },
+    {
+      "fileId": "jy7b5seyfdg-mmneqkrk-j0fj6o0jnls",
+      "filePath": "Assets\\FCG\\SeverFCG\\S_Equipment.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    null
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",
   "ReduceLogicFrame": false,

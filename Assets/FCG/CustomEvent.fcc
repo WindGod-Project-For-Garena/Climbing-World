@@ -24,4 +24,4 @@ event __Custom6event_SetCurrentSpeed__(player entity<Player>, Nominal_Speed floa
 
 [platform_client]
 [platform_server]
-event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int)
+event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN, boneIndex int)
