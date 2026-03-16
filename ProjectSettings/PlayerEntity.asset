@@ -113,6 +113,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "wzrk8ftts0c-mmsv2uuy-z2kz1qaa2fj",
+      "filePath": "Assets\\FCG\\CustomFCG\\Player\\C_PlayerWingsData.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "avatarInfo": null,

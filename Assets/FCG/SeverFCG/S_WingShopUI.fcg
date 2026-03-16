@@ -14,10 +14,13 @@ graph S_WingShopUI {
 	Wingshop Map<object, object> = nil
 	// 玩家 -> 上次选中的翅膀索引（0=无，1-4=Wing1~4），用于退出 trigger 或关闭界面后再次进入时恢复显隐状态
 	WingSelectState Map<entity<Player>, int> = nil
+	// 玩家 -> 已解锁的翅膀数量（0-4），用于 BUY/Trick/Locked 显隐
+	WingUnlockState Map<entity<Player>, int> = nil
 
 	event OnAwake() {
 		Wingshop = map.New()
 		WingSelectState = map.New()
+		WingUnlockState = map.New()
 	}
 
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
@@ -34,11 +37,19 @@ graph S_WingShopUI {
 				savedIndex = WingSelectState[player]
 			}
 			ApplyWingSelectState(player, wingshopEntity as entity<CustomUI>, savedIndex)
+			var savedUnlock = 0
+			if ContainKey(WingUnlockState, player) {
+				savedUnlock = WingUnlockState[player]
+			}
+			ApplyWingBuyState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.Wingshop2)
 			Wingshop[player] = createdEntity
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			WingSelectState[player] = 0
+			WingUnlockState[player] = 0
+			HideAllBUY(player, createdEntity as entity<CustomUI>)
+			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, 0)
 		}
 	}
 
@@ -58,6 +69,22 @@ graph S_WingShopUI {
 		}
 		WingSelectState[player] = wingIndex
 		ApplyWingSelectState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
+	}
+
+	// 玩家点击 BUY：当前 BUY 不可视，下一格 BUY 可视，对应 Trick 可视，对应 Locked 不可视
+	event __Custom6event___WingBuyUnlock__(player entity<Player>, wingIndex int) {
+		if !ContainKey(Wingshop, player) {
+			return
+		}
+		var currentUnlock = 0
+		if ContainKey(WingUnlockState, player) {
+			currentUnlock = WingUnlockState[player]
+		}
+		if wingIndex != currentUnlock + 1 {
+			return
+		}
+		WingUnlockState[player] = wingIndex
+		ApplyWingBuyState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
 	}
 
 	// 应用指定翅膀的 Select/Equipped 显隐状态，wingIndex 为 0 时全部隐藏
@@ -107,5 +134,48 @@ graph S_WingShopUI {
 		if e2 != nil { e2<UIWidget>.IsVisible = false }
 		if e3 != nil { e3<UIWidget>.IsVisible = false }
 		if e4 != nil { e4<UIWidget>.IsVisible = false }
+	}
+
+	// 隐藏所有 BUY 按钮
+	func HideAllBUY(player entity<Player>, wingshopUI entity<CustomUI>) {
+		var b1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/BUY")
+		var b2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/BUY")
+		var b3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/BUY")
+		var b4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/BUY")
+		if b1 != nil { b1<UIWidget>.IsVisible = false }
+		if b2 != nil { b2<UIWidget>.IsVisible = false }
+		if b3 != nil { b3<UIWidget>.IsVisible = false }
+		if b4 != nil { b4<UIWidget>.IsVisible = false }
+	}
+
+	// 按解锁数量应用 BUY/Trick/Locked 显隐：unlockCount 0=仅 Wing1/BUY 可见；≥1 时 Wing1/Trick 可见、Wing1/Locked 不可视，依次类推
+	func ApplyWingBuyState(player entity<Player>, wingshopUI entity<CustomUI>, unlockCount int) {
+		var b1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/BUY")
+		var b2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/BUY")
+		var b3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/BUY")
+		var b4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/BUY")
+		var t1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Trick")
+		var t2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Trick")
+		var t3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Trick")
+		var t4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Trick")
+		var l1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Locked")
+		var l2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Locked")
+		var l3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Locked")
+		var l4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Locked")
+		// BUY：仅下一个待解锁的显示
+		if b1 != nil { b1<UIWidget>.IsVisible = (unlockCount == 0) }
+		if b2 != nil { b2<UIWidget>.IsVisible = (unlockCount == 1) }
+		if b3 != nil { b3<UIWidget>.IsVisible = (unlockCount == 2) }
+		if b4 != nil { b4<UIWidget>.IsVisible = (unlockCount == 3) }
+		// Trick：已解锁的显示
+		if t1 != nil { t1<UIWidget>.IsVisible = (unlockCount >= 1) }
+		if t2 != nil { t2<UIWidget>.IsVisible = (unlockCount >= 2) }
+		if t3 != nil { t3<UIWidget>.IsVisible = (unlockCount >= 3) }
+		if t4 != nil { t4<UIWidget>.IsVisible = (unlockCount >= 4) }
+		// Locked：未解锁的显示，已解锁的不可视
+		if l1 != nil { l1<UIWidget>.IsVisible = (unlockCount < 1) }
+		if l2 != nil { l2<UIWidget>.IsVisible = (unlockCount < 2) }
+		if l3 != nil { l3<UIWidget>.IsVisible = (unlockCount < 3) }
+		if l4 != nil { l4<UIWidget>.IsVisible = (unlockCount < 4) }
 	}
 }

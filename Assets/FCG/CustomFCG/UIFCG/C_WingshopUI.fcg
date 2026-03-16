@@ -2,8 +2,10 @@
 // 点击 Button 时将 C_P_Climbing2 的 Speed_muti 变为原来的十倍
 
 import "StdLibrary.fcc" as std
+import "Map.fcc" as map
 import "Hud.fcc" as hud
 import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+import "../Player/C_PlayerWingsData.fcg" as C_PlayerWingsData
 import "EditorGenLib.fcc" as gen
 import "Avatar.fcc" as avatar
 
@@ -19,49 +21,76 @@ graph C_WingshopUI {
 		DispatchEventToEntity(__Custom6event_WingshopLeave__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
-	// 点击 Speed_muti*10 按钮时，将攀爬速度变为原来的十倍，并更新 P_IngameHud 的 Current_Speed
-	// 需修改 triggerPlayer 实体上的 C_P_Climbing2 组件的 WingSpeed，而非静态变量
+	// 点击 Wing 时：仅当按钮 Wingindex <= 该玩家已解锁最高翅膀索引时才执行选翼与速度逻辑
 	func Wing1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1 , nil, 0 })
-		var Nominal_Speed float = 58
-		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+		
+		if 1 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1 , nil, 0 })
+			var Nominal_Speed float = 58
+			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+		}
 	}
 
 	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2 , nil, 0 })
-		var Nominal_Speed float = 116
-		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+		
+		if 2 <=triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2 , nil, 0 })
+			var Nominal_Speed float = 116
+			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+		}
 	}
 
 	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3 , nil, 0 })
-		var Nominal_Speed float = 232
-		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+	
+		if 3 <=triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3 , nil, 0 })
+			var Nominal_Speed float = 232
+			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+		}
 	}
 
 	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4 , nil, 0 })
-		var Nominal_Speed float = 464
-		triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+	
+		if 4 <=triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4 , nil, 0 })
+			var Nominal_Speed float = 464
+			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
+			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+		}
 	}
 
 	func BUY1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 1
+	
+			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 1
+		
 	}
 
 	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
+		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 2
+		
+			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 2
+		
 	}
 
 	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
+		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 3
+		
+			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 3
+		
 	}
 
 	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
+		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 4
+		
+			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 4
+		
 	}
 }
