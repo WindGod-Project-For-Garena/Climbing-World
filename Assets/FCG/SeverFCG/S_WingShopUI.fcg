@@ -74,14 +74,7 @@ graph S_WingShopUI {
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
 		if s4 != nil { s4<UIWidget>.IsVisible = false }
-		var t1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Trick")
-		var t2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Trick ")
-		var t3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Trick ")
-		var t4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Trick ")
-		if t1 != nil { t1<UIWidget>.IsVisible = false }
-		if t2 != nil { t2<UIWidget>.IsVisible = false }
-		if t3 != nil { t3<UIWidget>.IsVisible = false }
-		if t4 != nil { t4<UIWidget>.IsVisible = false }
+		// 不修改 Trick 显隐，由 ApplyWingBuyState 按解锁状态单独控制
 		var e1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Equipped")
 		var e2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Equipped")
 		var e3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Equipped")
@@ -105,14 +98,7 @@ graph S_WingShopUI {
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
 		if s4 != nil { s4<UIWidget>.IsVisible = false }
-		var t1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Trick")
-		var t2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Trick")
-		var t3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Trick")
-		var t4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Trick")
-		if t1 != nil { t1<UIWidget>.IsVisible = false }
-		if t2 != nil { t2<UIWidget>.IsVisible = false }
-		if t3 != nil { t3<UIWidget>.IsVisible = false }
-		if t4 != nil { t4<UIWidget>.IsVisible = false }
+		// 不修改 Trick 显隐，由 ApplyWingBuyState 按解锁状态单独控制
 		var e1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Equipped")
 		var e2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Equipped")
 		var e3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Equipped")
