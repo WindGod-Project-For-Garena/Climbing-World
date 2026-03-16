@@ -72,7 +72,7 @@ graph G_Tower {
 		if ContainKey(spawnedTowers, towerIndex) && (spawnedTowers[towerIndex] as bool) {
 			return
 		}
-       
+        LogInfo(towerIndex)
 		var pos = spawnPositions[towerIndex] as Vector3
 		var forward = spawnForwards[towerIndex] as Vector3
 		CreateFromPrefab(out var tower, EResPrefab.ATower)

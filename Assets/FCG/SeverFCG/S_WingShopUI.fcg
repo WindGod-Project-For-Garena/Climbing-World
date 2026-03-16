@@ -14,13 +14,10 @@ graph S_WingShopUI {
 	Wingshop Map<object, object> = nil
 	// 玩家 -> 上次选中的翅膀索引（0=无，1-4=Wing1~4），用于退出 trigger 或关闭界面后再次进入时恢复显隐状态
 	WingSelectState Map<entity<Player>, int> = nil
-	// 玩家 -> 已解锁的翅膀数量（0-4），用于 BUY/Locked/Trick 显隐：仅显示当前可点的 BUY，已解锁的显示 Trick、隐藏 Locked
-	WingUnlockState Map<entity<Player>, int> = nil
 
 	event OnAwake() {
 		Wingshop = map.New()
 		WingSelectState = map.New()
-		WingUnlockState = map.New()
 	}
 
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
@@ -37,18 +34,11 @@ graph S_WingShopUI {
 				savedIndex = WingSelectState[player]
 			}
 			ApplyWingSelectState(player, wingshopEntity as entity<CustomUI>, savedIndex)
-			var unlockCount = 0
-			if ContainKey(WingUnlockState, player) {
-				unlockCount = WingUnlockState[player]
-			}
-			ApplyWingBuyState(player, wingshopEntity as entity<CustomUI>, unlockCount)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.Wingshop2)
 			Wingshop[player] = createdEntity
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			WingSelectState[player] = 0
-			WingUnlockState[player] = 0
-			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, 0)
 		}
 	}
 
@@ -60,22 +50,6 @@ graph S_WingShopUI {
 				panelWidget<UIWidget>.IsVisible = false
 			}
 		}
-	}
-
-	// 点击第 wingIndex 个 BUY 按钮后：隐藏该 Locked 与 BUY，显示 Trick，并显示下一个 BUY
-	event __Custom6event___WingBuyUnlock__(player entity<Player>, wingIndex int) {
-		if !ContainKey(Wingshop, player) {
-			return
-		}
-		var nextExpected = 0
-		if ContainKey(WingUnlockState, player) {
-			nextExpected = WingUnlockState[player]
-		}
-		if wingIndex != nextExpected + 1 {
-			return
-		}
-		WingUnlockState[player] = wingIndex
-		ApplyWingBuyState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
 	}
 
 	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN, boneIndex int) {
@@ -133,33 +107,5 @@ graph S_WingShopUI {
 		if e2 != nil { e2<UIWidget>.IsVisible = false }
 		if e3 != nil { e3<UIWidget>.IsVisible = false }
 		if e4 != nil { e4<UIWidget>.IsVisible = false }
-	}
-
-	// 根据已解锁数量设置 BUY/Locked/Trick 显隐：只显示当前可点的那个 BUY，已解锁的显示 Trick 并隐藏 Locked
-	func ApplyWingBuyState(player entity<Player>, wingshopUI entity<CustomUI>, unlockedCount int) {
-		var b1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/BUY")
-		var b2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/BUY")
-		var b3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/BUY")
-		var b4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/BUY")
-		if b1 != nil { b1<UIWidget>.IsVisible = (unlockedCount == 0) }
-		if b2 != nil { b2<UIWidget>.IsVisible = (unlockedCount == 1) }
-		if b3 != nil { b3<UIWidget>.IsVisible = (unlockedCount == 2) }
-		if b4 != nil { b4<UIWidget>.IsVisible = (unlockedCount == 3) }
-		var l1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Locked")
-		var l2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Locked")
-		var l3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Locked")
-		var l4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Locked")
-		if l1 != nil { l1<UIWidget>.IsVisible = (unlockedCount < 1) }
-		if l2 != nil { l2<UIWidget>.IsVisible = (unlockedCount < 2) }
-		if l3 != nil { l3<UIWidget>.IsVisible = (unlockedCount < 3) }
-		if l4 != nil { l4<UIWidget>.IsVisible = (unlockedCount < 4) }
-		var t1 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing1/Trick")
-		var t2 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing2/Trick")
-		var t3 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing3/Trick")
-		var t4 = GetWidgetByPath(player, wingshopUI, "/Panel/Wing4/Trick")
-		if t1 != nil { t1<UIWidget>.IsVisible = (unlockedCount >= 1) }
-		if t2 != nil { t2<UIWidget>.IsVisible = (unlockedCount >= 2) }
-		if t3 != nil { t3<UIWidget>.IsVisible = (unlockedCount >= 3) }
-		if t4 != nil { t4<UIWidget>.IsVisible = (unlockedCount >= 4) }
 	}
 }
