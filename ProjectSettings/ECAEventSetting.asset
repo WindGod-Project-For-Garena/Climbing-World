@@ -407,9 +407,14 @@
           "name": "player",
           "value": "Player",
           "key": 1
+        },
+        {
+          "name": "wingIndex",
+          "value": "Int",
+          "key": 2
         }
       ],
-      "propCount": 1,
+      "propCount": 2,
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_38069002"
