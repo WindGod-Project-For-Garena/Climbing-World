@@ -6,130 +6,30 @@
   "_entityId": "wxWCs1m7",
   "children": [
     {
-      "_entityName": "Empty",
+      "_entityName": "geometry_0",
       "_tag": {
         "type": "UGCSceneEntity",
-        "resourceId": "Primitive/Empty"
+        "resourceId": ""
       },
-      "_entityId": "eSUygFtI",
-      "children": [
-        {
-          "_entityName": "geometry_0",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "chUjbg8Q",
-          "children": [],
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": -0.5
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": false,
-          "physicalLayer": 0,
-          "physicalMaterial": null,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3,
-          "mesh": {
-            "fileId": "tiyko0pfa7-mmnen1go-5y4xzi6sh88-geometry_0.~@FFFUB",
-            "filePath": "fab://Assets\\Wings\\天白1.fbx\\geometry_0.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "prefabVariant": null
-        }
-      ],
+      "_entityId": "chUjbg8Q",
+      "children": [],
       "activeValue": {
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "position": {
         "x": 0,
         "y": 0,
-        "z": 0
+        "z": -0.6000000238418579
       },
       "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
+        "x": 100,
+        "y": 100,
+        "z": 100
       },
       "rotation": {
         "x": 0,
@@ -148,19 +48,25 @@
         4
       ],
       "isTrigger": false,
-      "collidable": true,
+      "collidable": false,
       "physicalLayer": 0,
       "physicalMaterial": null,
       "aoiSetting": 0,
       "initialTypes": {},
-      "componentList": [],
+      "componentList": [
+        "MeshRender",
+        "ColliderShape",
+        "Collider"
+      ],
       "entityTagData": {
         "tagPointers": []
       },
-      "materials": [],
+      "materials": [
+        null
+      ],
       "colliders": [],
       "IsNPC": false,
-      "isCreateAsEmpty": true,
+      "isCreateAsEmpty": false,
       "Rigidbody": {
         "Type": 1,
         "Mass": 1,
@@ -185,10 +91,21 @@
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
-        "Visibility": {}
+        "Visibility": {},
+        "MeshRender": {},
+        "ColliderShape": {},
+        "Collider": {}
       },
       "propsData": {},
       "entityVersion": 3,
+      "mesh": {
+        "fileId": "tiyko0pfa7-mmnen1go-5y4xzi6sh88-geometry_0.~@FFFUB",
+        "filePath": "fab://Assets\\Wings\\天白1.fbx\\geometry_0.mesh",
+        "_tag": {
+          "type": "GFileRefer"
+        },
+        "fileType": "mesh"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "prefabVariant": null
@@ -199,7 +116,10 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": null,
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,

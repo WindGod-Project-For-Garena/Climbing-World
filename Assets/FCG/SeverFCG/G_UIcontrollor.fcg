@@ -14,6 +14,7 @@ import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 import "Convert.fcc" as convert
 import "Math.fcc" as math
+import "./G_economy.fcg" as G_economy
 
 [platform_server]
 graph G_UIcontrollor {
@@ -24,6 +25,7 @@ graph G_UIcontrollor {
 	P_IngameHud_ByPlayer Map<object, object> = nil
 	Realtime_Height Map<object, object> = nil
 	Current_Speed Map<object, object> = nil
+	GoldCoin_Widget Map<object, object> = nil
 
 
 	event OnAwake() {
@@ -32,7 +34,7 @@ graph G_UIcontrollor {
 		P_IngameHud_ByPlayer = map.New()
 		Realtime_Height = map.New()
 		Current_Speed = map.New()
-		
+		GoldCoin_Widget = map.New()
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
@@ -48,6 +50,15 @@ graph G_UIcontrollor {
 		var currentSpeedWidget = GetWidgetByPath(player, P_IngameHudEntity as entity<CustomUI>, "/Current_Speed")
 		if currentSpeedWidget != nil {
 			Current_Speed[player] = currentSpeedWidget
+		}
+		var goldCoinWidget = GetWidgetByPath(player, P_IngameHudEntity as entity<CustomUI>, "/GoldCoin")
+		if goldCoinWidget != nil {
+			GoldCoin_Widget[player] = goldCoinWidget
+			var gold int = 100
+			if ContainKey(globalEntity<G_economy>.PlayerGold, player) {
+				gold = globalEntity<G_economy>.PlayerGold[player]
+			}
+			goldCoinWidget<HudLabelWidget>.Text = convert.NumToString(gold, 0)
 		}
 		var ingameUIMap = map.New()
 		ingameUIMap["P_IngameHud"] = P_IngameHudEntity

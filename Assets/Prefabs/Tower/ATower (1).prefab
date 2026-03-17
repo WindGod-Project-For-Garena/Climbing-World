@@ -70,7 +70,14 @@
             "tagPointers": []
           },
           "materials": [
-            null
+            {
+              "fileId": "6xrl8n9kqg5-mmu17kte-r8pi6j67rg",
+              "filePath": "Assets\\Tower\\Tower.mat",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "material"
+            }
           ],
           "colliders": [
             {
@@ -199,7 +206,14 @@
             "tagPointers": []
           },
           "materials": [
-            null
+            {
+              "fileId": "yxmsoq7fkfr-mmu1fw94-bm31ajmumiq",
+              "filePath": "Assets\\Tower\\Climbing ladder.mat",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "material"
+            }
           ],
           "colliders": [
             {
@@ -703,7 +717,14 @@
             "tagPointers": []
           },
           "materials": [
-            null
+            {
+              "fileId": "6xrl8n9kqg5-mmu17kte-r8pi6j67rg",
+              "filePath": "Assets\\Tower\\Tower.mat",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "material"
+            }
           ],
           "colliders": [
             {
@@ -839,7 +860,14 @@
             "tagPointers": []
           },
           "materials": [
-            null
+            {
+              "fileId": "6xrl8n9kqg5-mmu17kte-r8pi6j67rg",
+              "filePath": "Assets\\Tower\\Tower.mat",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "material"
+            }
           ],
           "colliders": [
             {
@@ -994,7 +1022,8 @@
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
-        "Visibility": {}
+        "Visibility": {},
+        "MeshRender": {}
       },
       "propsData": {},
       "entityVersion": 3

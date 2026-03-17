@@ -93,6 +93,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "e7n8tk920bn-mmboq68m-gocpulxqb7",
+      "filePath": "Assets\\FCG\\SeverFCG\\G_economy.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",
