@@ -76,7 +76,7 @@ graph S_Equipment {
 		if wingIndex == 1 {
 			offset = Vector3{0, 2, -0.2}
 		} else if wingIndex == 4 {
-			offset = Vector3{0, 1.4, -0.1}
+			offset = Vector3{0, 1.2, -0.1}
 		} else {
 			offset = BackOffset
 		}
@@ -91,7 +91,7 @@ graph S_Equipment {
 		if bone == nil {
 			var coordType = 1 as CoordinateSystemType
 			// 默认落地态；下坠时由 ClimbStateChanged 事件改为 Vector3{10000, 0, 0}
-			var lookAtOffset Vector3 = Vector3{0, 1.4, -0.1}
+			var lookAtOffset Vector3 = Vector3{0, 10, 0}
 			playable.CreateFollow(wingsEntity, targetPlayer, offset, coordType, out var followEntity, true)
 			playable.CreateLookAt(wingsEntity, targetPlayer, lookAtOffset, coordType, out var lookAtEntity, true)
 			PlayerWingsFollow[targetPlayer] = followEntity
@@ -112,7 +112,7 @@ graph S_Equipment {
 		if bIsFall {
 			lookAtOffset = Vector3{0, 0, 10000}
 		} else {
-			lookAtOffset = Vector3{0, 10000, 0}
+			lookAtOffset = Vector3{0, 10, 0}
 		}
 		var coordType = 1 as CoordinateSystemType
 		playable.CreateLookAt(wingsEntity, player, lookAtOffset, coordType, out var newLookAtEntity, true)

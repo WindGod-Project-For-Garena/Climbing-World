@@ -13,6 +13,7 @@ import "Avatar.fcc" as avatar
 [platform_client]
 graph C_WingshopUI {
 	bone entity<SkeletonPart> = nil
+	price float = 10.0
 
 	event OnAwake() {
 	}
@@ -32,6 +33,9 @@ graph C_WingshopUI {
 			var Nominal_Speed float = 58
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
 			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+			
+		
+		
 		}
 	}
 
@@ -42,6 +46,7 @@ graph C_WingshopUI {
 			var Nominal_Speed float = 116
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
 			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+			
 		}
 	}
 
@@ -62,6 +67,7 @@ graph C_WingshopUI {
 			var Nominal_Speed float = 464
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
 			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
+		
 		}
 	}
 
@@ -69,7 +75,7 @@ graph C_WingshopUI {
 		LogInfo("BUY1_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 1
-	
+		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
 			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 1
 		
 	}
@@ -78,7 +84,7 @@ graph C_WingshopUI {
 		LogInfo("BUY2_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 2
-		
+		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
 			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 2
 		
 	}
@@ -87,7 +93,7 @@ graph C_WingshopUI {
 		LogInfo("BUY3_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 3
-		
+		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
 			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 3
 		
 	}
@@ -96,7 +102,7 @@ graph C_WingshopUI {
 		LogInfo("BUY4_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 4
-		
+		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
 			triggerPlayer<C_PlayerWingsData>.HighestWingIndex = 4
 		
 	}

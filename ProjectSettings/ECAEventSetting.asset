@@ -413,6 +413,50 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_55474527"
+    },
+    "signal_79394157": {
+      "name": "Custom event_BUYWings",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100021,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "price",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_79394157"
+    },
+    "signal_46304288": {
+      "name": "Custom_eventGoldChanged",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100022,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "gold",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_46304288"
     }
   },
   "customName": {
@@ -436,7 +480,9 @@
     "OnHideHint": "signal_87134090",
     "Custom event_SetCurrentSpeed": "signal_99148723",
     "Custom event___WingBuyUnlock": "signal_38069002",
-    "Custom event_ShowWingSelect": "signal_55474527"
+    "Custom event_ShowWingSelect": "signal_55474527",
+    "Custom event_BUYWings": "signal_79394157",
+    "Custom_eventGoldChanged": "signal_46304288"
   },
   "children": []
 }

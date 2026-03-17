@@ -4,12 +4,15 @@
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
 import "Player.fcc" as player
+import "List.fcc" as list
+import "EditorGenLib.fcc" as gen
+
 
 [platform_server]
 graph G_economy {
 
 	// 字典：玩家 -> 金币数
-	PlayerGold Map<entity<Player>, int> = nil
+	PlayerGold Map<entity<Player>, float> = nil
 
 	event OnAwake() {
 		PlayerGold = map.New()
@@ -18,5 +21,19 @@ graph G_economy {
 	event OnPlayerJoin(player entity<Player>) {
 		// 玩家初次进入游戏，写入字典，经济初始为 100
 		PlayerGold[player] = 100
+		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, 100.0})
+	}
+
+	event __Custom6event_BUYWings__(player entity<Player>, price float) {
+		if ContainKey(PlayerGold, player) {
+			var gold float = PlayerGold[player]
+			gold = gold - price
+			if gold < 0 {
+				return
+			}
+			PlayerGold[player] = gold
+			// 经济值变更后通知 UI 控制器更新 P_IngameHud/GoldCoin 显示
+			DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
+		}
 	}
 }

@@ -6,7 +6,7 @@ import "Player.fcc" as Player
 import "LevelObject.fcc" as LevelObject
 import "Math.fcc" as math
 import Res from "EditorGenLib.fcc"
-import "../../CustomEvent.fcc" as Events
+
 
 [platform_client]
 graph PlayerHint {
@@ -32,11 +32,11 @@ graph PlayerHint {
         }
     }
 
-    event __Custom6event_OnShowHint__(destination Vector3) {
+    event OnShowHint(destination Vector3) {
         ShowHint(destination)
     }
 
-    event __Custom6event_OnHideHint__() {
+    event OnHideHint() {
         HideHint()
     }
 

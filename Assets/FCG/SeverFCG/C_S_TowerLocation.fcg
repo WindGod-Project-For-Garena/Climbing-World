@@ -8,7 +8,7 @@ import "Math.fcc" as math
 
 import "./G_Tower.fcg" as G_Tower
 import "./C_S_DefaultUI.fcg" as DefaultUI
-import "../CustomEvent.fcc" as Events
+
 
 [platform_server]
 graph TowerLocationGuide {
@@ -37,7 +37,7 @@ graph TowerLocationGuide {
         isActive = true
         hasReachedLocation = false
 
-        DispatchEventToEntity(Events.__Custom6event_OnShowHint__, thisEntity, PlatformType.Client, List<object>{tutorialPosition})
+        DispatchEventToEntity(OnShowHint, thisEntity, PlatformType.Client, List<object>{tutorialPosition})
         thisEntity<DefaultUI>.CreateTweenTipUI(LocString{"TUTORIAL_GO_TO_TOWER", {}})
         start CheckPlayerLocation()
     }
@@ -57,7 +57,7 @@ graph TowerLocationGuide {
         hasReachedLocation = true
         isActive = false
 
-        DispatchEventToEntity(Events.__Custom6event_OnHideHint__, thisEntity, PlatformType.Client, nil)
+        DispatchEventToEntity(OnHideHint, thisEntity, PlatformType.Client, nil)
         thisEntity<DefaultUI>.CreateTweenTipUI(LocString{"TUTORIAL_TOWER_REACHED", {}})
     }
 }
