@@ -12,6 +12,7 @@ import "Avatar.fcc" as avatar
 
 [platform_client]
 graph C_WingshopUI {
+	bone entity<SkeletonPart> = nil
 
 	event OnAwake() {
 	}
@@ -25,7 +26,9 @@ graph C_WingshopUI {
 	func Wing1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		
 		if 1 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1 , nil, 0 })
+			bone=GetSkeletonPartByName(triggerPlayer, "bone_Left_Spine_Backpack")
+			LogInfo(bone)
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1 , bone})
 			var Nominal_Speed float = 58
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
 			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
@@ -35,7 +38,7 @@ graph C_WingshopUI {
 	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		
 		if 2 <=triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2 , nil, 0 })
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2 , bone })
 			var Nominal_Speed float = 116
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
 			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
@@ -45,7 +48,7 @@ graph C_WingshopUI {
 	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 	
 		if 3 <=triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3 , nil, 0 })
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3 , bone })
 			var Nominal_Speed float = 232
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
 			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
@@ -55,7 +58,7 @@ graph C_WingshopUI {
 	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 	
 		if 4 <=triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4 , nil, 0 })
+			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4 , bone})
 			var Nominal_Speed float = 464
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
 			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, Nominal_Speed })
@@ -63,6 +66,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		LogInfo("BUY1_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 1
 	
@@ -71,6 +75,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		LogInfo("BUY2_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 2
 		
@@ -79,6 +84,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		LogInfo("BUY3_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 3
 		
@@ -87,6 +93,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		LogInfo("BUY4_button")
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 4
 		

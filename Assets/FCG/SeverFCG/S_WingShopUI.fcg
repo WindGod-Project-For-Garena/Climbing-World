@@ -63,7 +63,7 @@ graph S_WingShopUI {
 		}
 	}
 
-	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN, boneIndex int) {
+	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int, bone entity<Skeleton>) {
 		if !ContainKey(Wingshop, player) {
 			return
 		}
@@ -76,6 +76,7 @@ graph S_WingShopUI {
 		if !ContainKey(Wingshop, player) {
 			return
 		}
+		LogInfo(wingIndex)
 		var currentUnlock = 0
 		if ContainKey(WingUnlockState, player) {
 			currentUnlock = WingUnlockState[player]

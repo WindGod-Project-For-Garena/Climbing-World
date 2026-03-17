@@ -12,51 +12,59 @@ import "Playable.fcc" as playable
 graph S_Equipment {
 	// 玩家 -> 当前装备的翅膀实体
 	PlayerWings Map<entity<Player>, entity> = nil
+	// 玩家 -> 翅膀的 Follow 实体（CreateFollow 创建），移除翅膀时需一并销毁
+	PlayerWingsFollow Map<entity<Player>, entity> = nil
+	// 玩家 -> 翅膀的 LookAt 实体（CreateLookAt 创建），移除翅膀时需一并销毁
+	PlayerWingsLookAt Map<entity<Player>, entity> = nil
 	// 背部相对玩家的偏移：Y 轴约 1.2 米（肩背高度），Z 轴 -0.2 米（背部，局部空间）
 	BackOffset Vector3 = Vector3{0, 1.4, -0.2}
 
 	event OnAwake() {
 		PlayerWings = map.New()
+		PlayerWingsFollow = map.New()
+		PlayerWingsLookAt = map.New()
 	}
 
 	// 监听翅膀选择事件：索引 1->Wings1，2->Wings2，3->Wings3，4->Wings4，其他->移除翅膀；bonePart 非空时 SetParent 挂载到骨骼
-	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndeax int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN, boneIndex int) {
-		LogInfo(bonePart)
+	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndeax int, bone entity<Skeleton>) {
+	LogInfo(wingIndeax)
+	LogInfo(bone)
         if wingIndeax == 1 {
-			EquipWings1(player, bonePart)
+			EquipWings1(player, bone)
 		} else if wingIndeax == 2 {
-			EquipWings2(player, bonePart)
+			EquipWings2(player, bone)
 		} else if wingIndeax == 3 {
-			EquipWings3(player, bonePart)
+			EquipWings3(player, bone)
 		} else if wingIndeax == 4 {
-			EquipWings4(player, bonePart)
+			EquipWings4(player, bone)
 		} else {
 			RemoveWings(player)
 		}
 	}
 
 	// 为玩家装备 Wings1 预制体
-	func EquipWings1(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
-		EquipWingsPrefab(targetPlayer, EResPrefab.Wings1, 1, bonePart)
+	func EquipWings1(targetPlayer entity<Player>, bone entity<Skeleton>) {
+		LogInfo("装备翅膀1")
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings1, bone,1)
 	}
 
 	// 为玩家装备 Wings2 预制体
-	func EquipWings2(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
-		EquipWingsPrefab(targetPlayer, EResPrefab.Wings2, 2, bonePart)
+	func EquipWings2(targetPlayer entity<Player>, bone entity<Skeleton>) {
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings2, bone,2)
 	}
 
 	// 为玩家装备 Wings3 预制体
-	func EquipWings3(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
-		EquipWingsPrefab(targetPlayer, EResPrefab.Wings3, 3, bonePart)
+	func EquipWings3(targetPlayer entity<Player>, bone entity<Skeleton>) {
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings3, bone,3)
 	}
 
 	// 为玩家装备 Wings4 预制体
-	func EquipWings4(targetPlayer entity<Player>, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
-		EquipWingsPrefab(targetPlayer, EResPrefab.Wings4, 4, bonePart)
+	func EquipWings4(targetPlayer entity<Player>, bone entity<Skeleton>) {
+		EquipWingsPrefab(targetPlayer, EResPrefab.Wings4,bone,4)
 	}
 
 	// 通用装备逻辑：bonePart 非空时 SetParent 挂载到骨骼，否则挂载到玩家
-	func EquipWingsPrefab(targetPlayer entity<Player>, prefabID PrefabID, wingIndex int, bonePart EDITOR_GEN_EntityANDL_PARENPlayerORTransformORSkeletonPartR_PAREN) {
+	func EquipWingsPrefab(targetPlayer entity<Player>, prefabID PrefabID,  bone entity<Skeleton>, wingIndex int) {
 		RemoveWings(targetPlayer)
 		CreateFromPrefab(out var wingsEntity, prefabID)
 		if wingsEntity == nil {
@@ -73,23 +81,56 @@ graph S_Equipment {
 			offset = BackOffset
 		}
 		var parentEntity entity<Transform>
-		if bonePart != nil {
-			parentEntity = bonePart as entity<Transform>
+		if bone != nil {
+			parentEntity = bone as entity<Transform>
 		} else {
 			parentEntity = targetPlayer as entity<Transform>
 		}
 		SetParent(parentEntity, wingsEntity as entity<Transform>, false)
 		wingsEntity<Transform>.LocalPosition = offset
-		if bonePart == nil {
+		if bone == nil {
 			var coordType = 1 as CoordinateSystemType
-			var lookAtOffset Vector3 = Vector3{0, 10, 0}
+			// 默认落地态；下坠时由 ClimbStateChanged 事件改为 Vector3{10000, 0, 0}
+			var lookAtOffset Vector3 = Vector3{0, 10000, 0}
 			playable.CreateFollow(wingsEntity, targetPlayer, offset, coordType, out var followEntity, true)
 			playable.CreateLookAt(wingsEntity, targetPlayer, lookAtOffset, coordType, out var lookAtEntity, true)
+			PlayerWingsFollow[targetPlayer] = followEntity
+			PlayerWingsLookAt[targetPlayer] = lookAtEntity
 		}
 	}
 
-	// 移除玩家装备的翅膀
+	// 攀爬/下坠/落地状态变化时更新翅膀 LookAt 的 offset：下坠用 (10000,0,0)，落地用 (0,10000,0)
+	event __Custom6event_ClimbStateChanged__(player entity<Player>, bIsClimb bool, bIsFall bool, ishanging bool) {
+		if !ContainKey(PlayerWingsLookAt, player) {
+			return
+		}
+		var lookAtEntity = PlayerWingsLookAt[player] as entity
+		Destroy(lookAtEntity)
+		map.Remove(PlayerWingsLookAt, player)
+		var wingsEntity = PlayerWings[player] as entity
+		var lookAtOffset Vector3
+		if bIsFall {
+			lookAtOffset = Vector3{0, 0, 10000}
+		} else {
+			lookAtOffset = Vector3{0, 10000, 0}
+		}
+		var coordType = 1 as CoordinateSystemType
+		playable.CreateLookAt(wingsEntity, player, lookAtOffset, coordType, out var newLookAtEntity, true)
+		PlayerWingsLookAt[player] = newLookAtEntity
+	}
+
+	// 移除玩家装备的翅膀（同时销毁 followEntity 与 lookAtEntity）
 	func RemoveWings(targetPlayer entity<Player>) {
+		if ContainKey(PlayerWingsFollow, targetPlayer) {
+			var followEntity = PlayerWingsFollow[targetPlayer] as entity
+			Destroy(followEntity)
+			map.Remove(PlayerWingsFollow, targetPlayer)
+		}
+		if ContainKey(PlayerWingsLookAt, targetPlayer) {
+			var lookAtEntity = PlayerWingsLookAt[targetPlayer] as entity
+			Destroy(lookAtEntity)
+			map.Remove(PlayerWingsLookAt, targetPlayer)
+		}
 		if ContainKey(PlayerWings, targetPlayer) {
 			var wingsEntity = PlayerWings[targetPlayer] as entity
 			Destroy(wingsEntity)

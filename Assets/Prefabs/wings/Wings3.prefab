@@ -1,5 +1,5 @@
 {
-  "_entityName": "geometry_0 (2)",
+  "_entityName": "Wings3",
   "_tag": {
     "type": "Prefab"
   },
@@ -17,16 +17,19 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "position": {
         "x": 0,
         "y": 0,
-        "z": 0
+        "z": -1
       },
       "scale": {
-        "x": 500,
-        "y": 500,
-        "z": 500
+        "x": 100,
+        "y": 100,
+        "z": 100
       },
       "rotation": {
         "x": 0,
@@ -45,7 +48,7 @@
         4
       ],
       "isTrigger": false,
-      "collidable": true,
+      "collidable": false,
       "physicalLayer": 0,
       "physicalMaterial": null,
       "aoiSetting": 0,
@@ -68,38 +71,7 @@
           "fileType": "material"
         }
       ],
-      "colliders": [
-        {
-          "enable": true,
-          "colliderType": "MeshCollider",
-          "meshUUID": {
-            "fileId": "vliimqyfxh-mmonvgrd-ndu63j6q28-geometry_0.~@FFFUB",
-            "filePath": "fab://Assets\\Wings\\reduced_mesh-1242_exported.fbx\\geometry_0.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "size": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "radius": 0.5,
-          "height": 1,
-          "isConvexIfMesh": false
-        }
-      ],
+      "colliders": [],
       "IsNPC": false,
       "isCreateAsEmpty": false,
       "Rigidbody": {
@@ -147,8 +119,14 @@
     }
   ],
   "prefabVariant": null,
-  "activeValue": null,
-  "unlockedValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,

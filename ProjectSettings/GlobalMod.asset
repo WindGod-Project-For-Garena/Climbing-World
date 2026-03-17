@@ -93,8 +93,7 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
-    },
-    null
+    }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",
   "ReduceLogicFrame": false,
