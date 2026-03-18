@@ -32,7 +32,7 @@ static graph C_P_Climbing2 {
 	SwitchFall bool = true
 	WingSpeed float = 29
 	// 攀爬开始时的 frame，用于计算攀爬时长；WingSpeed<464 且攀爬≥20s 后速度每秒降 5%
-	WingSpeedDecay float = 0
+	WingSpeedDecay float = 29
 	climbingStartFrame int = 0
 	
 	
@@ -96,7 +96,7 @@ static graph C_P_Climbing2 {
 			Tower_Height =0
 		}
 		if bIsClimb == true {
-			WingSpeedDecay=WingSpeed
+			
 		
 			// 记录攀爬开始帧
 			if climbingStartFrame == 0 {
@@ -105,7 +105,8 @@ static graph C_P_Climbing2 {
 			// WingSpeed<464 且攀爬时间≥20s 后，速度每秒下降 5%（FixedUpdate 约 30 次/秒）
 			var climbingFrames = frame - climbingStartFrame
 			if WingSpeed < 464 && climbingFrames >= 600 {
-				WingSpeedDecay = WingSpeed * (1.0 - 0.05/30.0)
+				LogInfo("WingSpeedDecay: " + WingSpeedDecay)
+				WingSpeedDecay = WingSpeedDecay * (1.0 - 0.05/30.0)
 				if WingSpeedDecay < 1.0 {
 					WingSpeedDecay = 1.0
 				}
