@@ -112,4 +112,16 @@ graph G_Tower {
 		}
 		return towerTriggerPositions[slot] as Vector3
 	}
+
+	// 该玩家对应槽位上的塔是否已生成（用于引导 UI：塔出现后收起前往召唤点的引导）
+	func HasPlayerTowerSpawned(p entity<Player>) bool {
+		if !ContainKey(playerToTowerSlot, p) {
+			return false
+		}
+		var slot = playerToTowerSlot[p] as int
+		if !ContainKey(spawnedTowers, slot) {
+			return false
+		}
+		return (spawnedTowers[slot] as bool)
+	}
 }

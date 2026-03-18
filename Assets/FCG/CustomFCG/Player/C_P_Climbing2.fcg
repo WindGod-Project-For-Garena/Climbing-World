@@ -123,7 +123,7 @@ static graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player, AnimationSpeed})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, GetLocalPlayer()<Player>.Position.Y})
 			if frame % 6 == 0 {
-				var heightVal = Curent_height.Y * 500.0 / 9280.0 - 294.0
+				var heightVal = Curent_height.Y * 535.0 / 9280.0 -342.0
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
 				
 				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
@@ -152,7 +152,7 @@ static graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{player})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, GetLocalPlayer()<Player>.Position.Y})
 			if frame % 6 == 0 {
-				var heightVal = Curent_height.Y * 500.0 / 9280.0 - 294.0
+				var heightVal = Curent_height.Y * 535.0 / 9280.0 - 341.0
 				DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
 				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			}

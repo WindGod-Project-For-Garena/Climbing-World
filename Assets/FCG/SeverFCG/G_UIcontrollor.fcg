@@ -44,7 +44,7 @@ graph G_UIcontrollor {
 		CreateCustomUI(out var P_IngameHudEntity, player, EResUI.P_IngameHud)
 		Climbing_UI[player] = Avatar
 		P_IngameHud_ByPlayer[player] = P_IngameHudEntity
-		var labelWidget = GetWidgetByPath(player, P_IngameHudEntity as entity<CustomUI>, "/Realtime_Height")
+		var labelWidget = GetWidgetByPath(player, Avatar as entity<CustomUI>, "/Panel (1)/Realtime_Height")
 		if labelWidget != nil {
 			Realtime_Height[player] = labelWidget
 		}

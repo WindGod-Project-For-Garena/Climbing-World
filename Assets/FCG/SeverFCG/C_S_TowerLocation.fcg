@@ -45,6 +45,11 @@ graph TowerLocationGuide {
     async func CheckPlayerLocation() {
         while isActive && !hasReachedLocation {
             WaitForMillisecond(500)
+            // 塔已在 G_Tower 中生成时收起引导（与走到召唤点效果一致，不改动 OnPlayerJoin / StartTowerGuide）
+            if globalEntity<G_Tower>.HasPlayerTowerSpawned(thisEntity as entity<Player>) {
+                OnReachedTower()
+                break
+            }
             var playerPos = thisEntity<Player>.Position
             var distance = math.Distance(playerPos, tutorialPosition)
             if distance <= tutorialRadius {
