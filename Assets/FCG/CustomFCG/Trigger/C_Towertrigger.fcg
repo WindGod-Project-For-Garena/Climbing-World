@@ -29,7 +29,7 @@ graph C_Towertrigger {
 			if HasTag(player, triggerTag) {
 				DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, towerIndex})
 			} else {
-				LogInfo("这个塔不属于你！！！")
+				
 			}
 		}
 	}

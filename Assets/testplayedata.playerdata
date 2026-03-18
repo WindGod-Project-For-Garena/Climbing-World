@@ -1,0 +1,30 @@
+{
+  "_entityName": "",
+  "_tag": {
+    "type": "UGCPlayerEntity"
+  },
+  "_entityId": "E35HM9pT",
+  "children": [],
+  "prefabVariant": null,
+  "activeValue": null,
+  "unlockedValue": null,
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "gender": 0,
+  "avatarRef": {
+    "fileId": "NnIxhh2E://24hq0yca12q-mgyz3xcb-0fu2jlw69zj",
+    "filePath": "NnIxhh2E://Kelly/Female_UGCCos_Kelly.FBX",
+    "_tag": {
+      "type": "GFileRefer"
+    },
+    "fileType": "fbx"
+  },
+  "disableOtherAnimation": false,
+  "scale": 1.5,
+  "useCustomHitbox": false,
+  "firstUseCustomHitbox": false,
+  "_preAnimClip": null,
+  "playerActionMap": {},
+  "hixboxMap": {}
+}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}

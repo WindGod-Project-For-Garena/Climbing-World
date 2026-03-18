@@ -19,12 +19,19 @@
     "fileType": "shader"
   },
   "paramValue": {
-    "BlendMode": "Cutoff",
+    "BlendMode": "Opaque",
     "_MainTex": {
-      "Texture": null,
+      "Texture": {
+        "fileId": "d1dd7ce0d51780846795c1e56406ea66",
+        "filePath": "lib://fftextures/WorkshopItemTexture/SCENEEDIT_CUBE_TEXTURE_COLORFULCUBE001_D.png",
+        "_tag": {
+          "type": "GFileRefer"
+        },
+        "fileType": "texture"
+      },
       "Tiling": {
-        "x": 1,
-        "y": 1
+        "x": 2,
+        "y": 2000
       },
       "Offset": {
         "x": 0,

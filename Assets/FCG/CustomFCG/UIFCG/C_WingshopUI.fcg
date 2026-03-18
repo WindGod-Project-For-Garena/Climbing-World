@@ -28,7 +28,7 @@ graph C_WingshopUI {
 		
 		if 1 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
 			bone=GetSkeletonPartByName(triggerPlayer, "bone_Left_Spine_Backpack")
-			LogInfo(bone)
+		
 			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1 , bone})
 			var Nominal_Speed float = 58
 			triggerPlayer<C_P_Climbing2>.WingSpeed = Nominal_Speed
@@ -72,7 +72,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		LogInfo("BUY1_button")
+
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 1
 		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
@@ -81,7 +81,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		LogInfo("BUY2_button")
+
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 2
 		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
@@ -90,7 +90,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		LogInfo("BUY3_button")
+	
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 3
 		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
@@ -99,7 +99,7 @@ graph C_WingshopUI {
 	}
 
 	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		LogInfo("BUY4_button")
+	
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
 		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = 4
 		DispatchEventToEntity(__Custom6event_BUYWings__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})

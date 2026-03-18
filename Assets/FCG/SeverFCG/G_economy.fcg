@@ -36,4 +36,17 @@ graph G_economy {
 			DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
 		}
 	}
+
+	// 玩家点击跳跃或从塔顶坠落到地面时，将下落起始 Y 转为金币累加并通知 UI 更新 GoldCoin
+	event __Custom6event_AddFallReward____(player entity<Player>, fallY float) {
+		if fallY <= 0 {
+			return
+		}
+		if ContainKey(PlayerGold, player) {
+			var gold float = PlayerGold[player]
+			gold = gold + fallY
+			PlayerGold[player] = gold
+			DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
+		}
+	}
 }

@@ -12,7 +12,7 @@ import "./C_S_DefaultUI.fcg" as DefaultUI
 
 [platform_server]
 graph TowerLocationGuide {
-    tutorialRadius float = 3.0
+    tutorialRadius float = 0.5
     tutorialPosition Vector3
 
     isActive bool = false

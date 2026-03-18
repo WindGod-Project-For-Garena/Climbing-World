@@ -17,7 +17,7 @@ graph S_Equipment {
 	// 玩家 -> 翅膀的 LookAt 实体（CreateLookAt 创建），移除翅膀时需一并销毁
 	PlayerWingsLookAt Map<entity<Player>, entity> = nil
 	// 背部相对玩家的偏移：Y 轴约 1.2 米（肩背高度），Z 轴 -0.2 米（背部，局部空间）
-	BackOffset Vector3 = Vector3{0, 1.4, -0.2}
+	BackOffset Vector3 = Vector3{0, 1.2, -0.2}
 
 	event OnAwake() {
 		PlayerWings = map.New()
@@ -73,13 +73,9 @@ graph S_Equipment {
 		}
 		PlayerWings[targetPlayer] = wingsEntity
 		var offset Vector3
-		if wingIndex == 1 {
-			offset = Vector3{0, 2, -0.2}
-		} else if wingIndex == 4 {
-			offset = Vector3{0, 1.2, -0.1}
-		} else {
+		
 			offset = BackOffset
-		}
+		
 		var parentEntity entity<Transform>
 		if bone != nil {
 			parentEntity = bone as entity<Transform>
@@ -99,7 +95,7 @@ graph S_Equipment {
 		}
 	}
 
-	// 攀爬/下坠/落地状态变化时更新翅膀 LookAt 的 offset：下坠用 (10000,0,0)，落地用 (0,10000,0)
+	// 攀爬/下坠/落地状态变化时更新翅膀 Follow/LookAt 的 offset：下坠用 (0,0.2,-1.2)+(0,0,10000)，落地用 (0,1.2,-0.2)+(0,10,0)。只重建 Follow/LookAt，不销毁翅膀本体。
 	event __Custom6event_ClimbStateChanged__(player entity<Player>, bIsClimb bool, bIsFall bool, ishanging bool) {
 		if !ContainKey(PlayerWingsLookAt, player) {
 			return
@@ -107,15 +103,25 @@ graph S_Equipment {
 		var lookAtEntity = PlayerWingsLookAt[player] as entity
 		Destroy(lookAtEntity)
 		map.Remove(PlayerWingsLookAt, player)
+		if ContainKey(PlayerWingsFollow, player) {
+			var followEntity = PlayerWingsFollow[player] as entity
+			Destroy(followEntity)
+			map.Remove(PlayerWingsFollow, player)
+		}
 		var wingsEntity = PlayerWings[player] as entity
 		var lookAtOffset Vector3
+		var followOffset Vector3
 		if bIsFall {
+			followOffset = Vector3{0, 0.5, 1}
 			lookAtOffset = Vector3{0, 0, 10000}
 		} else {
+			followOffset = Vector3{0, 1.2, -0.2}
 			lookAtOffset = Vector3{0, 10, 0}
 		}
-		var coordType = 1 as CoordinateSystemType
-		playable.CreateLookAt(wingsEntity, player, lookAtOffset, coordType, out var newLookAtEntity, true)
+
+		playable.CreateFollow(wingsEntity, player, followOffset, CoordinateSystemType.LocalPosition, out var followEntity, true)
+		playable.CreateLookAt(wingsEntity, player, lookAtOffset, CoordinateSystemType.LocalPosition, out var newLookAtEntity, true)
+		PlayerWingsFollow[player] = followEntity
 		PlayerWingsLookAt[player] = newLookAtEntity
 	}
 

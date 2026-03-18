@@ -76,7 +76,7 @@ graph S_WingShopUI {
 		if !ContainKey(Wingshop, player) {
 			return
 		}
-		LogInfo(wingIndex)
+	
 		var currentUnlock = 0
 		if ContainKey(WingUnlockState, player) {
 			currentUnlock = WingUnlockState[player]

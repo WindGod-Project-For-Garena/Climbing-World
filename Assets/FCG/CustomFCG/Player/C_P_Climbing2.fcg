@@ -29,8 +29,10 @@ static graph C_P_Climbing2 {
 	Tower_Height float=0
 
 	ishanging bool = false
+	SwitchFall bool = true
 	WingSpeed float = 29
 	// 攀爬开始时的 frame，用于计算攀爬时长；WingSpeed<464 且攀爬≥20s 后速度每秒降 5%
+	WingSpeedDecay float = 0
 	climbingStartFrame int = 0
 	
 	
@@ -40,6 +42,9 @@ static graph C_P_Climbing2 {
 	defaultForward Vector3 = Vector3{1, 0, 0}
 	// 自由落体：当前下落速度（每帧累加重力）
 	fallVelocity float = 0
+	// 下落开始时记录的 Y 轴高度，用于落地时结算金币奖励
+	FallStartY float = 0
+
 
 	event OnAwake() {
     
@@ -68,7 +73,7 @@ static graph C_P_Climbing2 {
 		}
 		// 玩家 Y 轴高度大于 100 时：传送到 ATower 的 TeleportPoint，并通知 G_Climbing 停止攀爬动画（已弃用 C_Climbleavetrigger）
 		if (bIsClimb == true || ishanging == true) && GetLocalPlayer()<Player>.Position.Y > 9275 {
-			LogInfo("传送")
+		
 			SetLocalPlayerPosition(HighClimbTeleportPos)
 			
 			SetLocalPlayerForward(defaultForward)
@@ -82,14 +87,16 @@ static graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
 			
 		}
-		// 当玩家当前 Y 与 Tower_Height 的差值（下坠距离）大于 20 时，设为下落状态并将 Tower_Height 归零
+		// 当玩家当前 Y 与 Tower_Height 的差值（下坠距离）大于 20 时，设为下落状态并记录下落起始 Y，用于落地奖励
 		var currentY = GetLocalPlayer()<Player>.Position.Y
 		if (Tower_Height - currentY) > 10{
-			LogInfo("set  bIsFall true")
+		
+			FallStartY = Tower_Height
 			bIsFall = true
 			Tower_Height =0
 		}
 		if bIsClimb == true {
+			WingSpeedDecay=WingSpeed
 		
 			// 记录攀爬开始帧
 			if climbingStartFrame == 0 {
@@ -98,9 +105,9 @@ static graph C_P_Climbing2 {
 			// WingSpeed<464 且攀爬时间≥20s 后，速度每秒下降 5%（FixedUpdate 约 30 次/秒）
 			var climbingFrames = frame - climbingStartFrame
 			if WingSpeed < 464 && climbingFrames >= 600 {
-				WingSpeed = WingSpeed * (1.0 - 0.05/30.0)
-				if WingSpeed < 1.0 {
-					WingSpeed = 1.0
+				WingSpeedDecay = WingSpeed * (1.0 - 0.05/30.0)
+				if WingSpeedDecay < 1.0 {
+					WingSpeedDecay = 1.0
 				}
 			}
 
@@ -109,7 +116,7 @@ static graph C_P_Climbing2 {
 			// 攀爬中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
 			//攀爬速度公式
 			
-			var formulaY =WingSpeed/30 //Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
+			var formulaY =WingSpeedDecay/30 //Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
 			var AnimationSpeed = formulaY*3
 			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+formulaY, Curent_height.Z})
 			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
@@ -124,9 +131,12 @@ static graph C_P_Climbing2 {
 			// 如果 Curent_height.Y < 1
 
 			
-		} else if bIsFall == true {
+		} else if bIsFall == true{
+			if FallStartY != 9280 && SwitchFall == true{
+				FallStartY=Round(GetLocalPlayer()<Player>.Position.Y)
 			
-			
+				SwitchFall = false
+			}
 			
 			SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 			// 下落中：自由落体，速度随下坠累积（v += g，每帧重力约 15）
@@ -152,10 +162,16 @@ static graph C_P_Climbing2 {
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 				fallVelocity = 0
 				bIsFall = false
+				SwitchFall = true
 				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 				var landPos = GetLocalPlayer()<Player>.Position
 				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, landPos})
 				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player,0})
+				// 将下落起始 Y 发给经济系统，用于增加金币并刷新 P_IngameHud/GoldCoin
+				DispatchEventToEntity(__Custom6event_AddFallReward____, globalEntity, PlatformType.Server, List<object>{player, FallStartY})
+				FallStartY = 0
+				frame = 0
+				WingSpeedDecay=WingSpeed
 			}
 			// 如果IngameUI != nil，设置Text:HudLabelWidget = ToString(Curent_height.Y)
 			if IngameUI != nil {
@@ -167,7 +183,7 @@ static graph C_P_Climbing2 {
 			
 		}
 		if ishanging == true {
-			LogInfo("挂起")
+		
 			SetLocalPlayerPosition(Curent_height)
 			if frame % 6 == 0 {
 				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
