@@ -7,22 +7,19 @@
   "_entityId": "M5XipVc7",
   "children": [
     {
-      "_entityName": "Image",
+      "_entityName": "Image (1)",
       "_tag": {
         "type": "UIImageEntity",
         "resourceId": ""
       },
-      "_entityId": "aIhwG8dL",
+      "_entityId": "VMrCUVNZ",
       "children": [],
       "prefabVariant": null,
       "activeValue": {
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
+      "unlockedValue": null,
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -54,8 +51,8 @@
         "priority": 0,
         "image": {
           "source": {
-            "fileId": "glbjc0cpqse-mmvi7xbt-d3r6unlcb7m",
-            "filePath": "Assets\\UI\\material\\ATower_RedKM.png",
+            "fileId": "79zi9vy0w1u-mmvs4qc6-naz5mea9kc",
+            "filePath": "Assets\\UI\\material\\ATower_adjust.png",
             "_tag": {
               "type": "GFileRefer"
             },
