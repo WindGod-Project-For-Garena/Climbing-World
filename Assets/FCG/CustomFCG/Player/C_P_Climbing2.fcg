@@ -192,5 +192,6 @@ static graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
 		}
 	}
+	
 }
 
