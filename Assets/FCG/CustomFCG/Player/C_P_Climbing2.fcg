@@ -105,7 +105,7 @@ static graph C_P_Climbing2 {
 			// WingSpeed<464 且攀爬时间≥20s 后，速度每秒下降 5%（FixedUpdate 约 30 次/秒）
 			var climbingFrames = frame - climbingStartFrame
 			if WingSpeed < 464 && climbingFrames >= 600 {
-				LogInfo("WingSpeedDecay: " + WingSpeedDecay)
+			
 				WingSpeedDecay = WingSpeedDecay * (1.0 - 0.05/30.0)
 				if WingSpeedDecay < 1.0 {
 					WingSpeedDecay = 1.0
