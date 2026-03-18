@@ -66,13 +66,13 @@ graph G_Tower {
 	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int) {
         
 		if !ContainKey(spawnPositions, towerIndex) || !ContainKey(spawnForwards, towerIndex) {
-			LogWarning("G_Tower: 未找到 towerIndex " + towerIndex + " 的配置")
+		
 			return
 		}
 		if ContainKey(spawnedTowers, towerIndex) && (spawnedTowers[towerIndex] as bool) {
 			return
 		}
-        LogInfo(towerIndex)
+     
 		var pos = spawnPositions[towerIndex] as Vector3
 		var forward = spawnForwards[towerIndex] as Vector3
 		CreateFromPrefab(out var tower, EResPrefab.ATower)
@@ -84,15 +84,7 @@ graph G_Tower {
 			var climbingStart = GetChildByName(tower, "Custom trigger")
 			if climbingStart != nil {
 				AddTag(climbingStart, "Tower_" + towerIndex)
-				if HasTag(climbingStart, "Tower_1") {
-				LogInfo("Climbing_start_" + towerIndex)
-				} else if HasTag(climbingStart, "Tower_2") {
-					LogInfo("Climbing_start_" + towerIndex)
-				} else if HasTag(climbingStart, "Tower_3") {
-					LogInfo("Climbing_start_" + towerIndex)
-				} else if HasTag(climbingStart, "Tower_4") {
-					LogInfo("Climbing_start_" + towerIndex)
-				}
+			
 			}
 		
 		spawnedTowers[towerIndex] = true

@@ -27,8 +27,7 @@ graph S_Equipment {
 
 	// 监听翅膀选择事件：索引 1->Wings1，2->Wings2，3->Wings3，4->Wings4，其他->移除翅膀；bonePart 非空时 SetParent 挂载到骨骼
 	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndeax int, bone entity<Skeleton>) {
-	LogInfo(wingIndeax)
-	LogInfo(bone)
+
         if wingIndeax == 1 {
 			EquipWings1(player, bone)
 		} else if wingIndeax == 2 {
@@ -44,7 +43,7 @@ graph S_Equipment {
 
 	// 为玩家装备 Wings1 预制体
 	func EquipWings1(targetPlayer entity<Player>, bone entity<Skeleton>) {
-		LogInfo("装备翅膀1")
+	
 		EquipWingsPrefab(targetPlayer, EResPrefab.Wings1, bone,1)
 	}
 
@@ -68,7 +67,7 @@ graph S_Equipment {
 		RemoveWings(targetPlayer)
 		CreateFromPrefab(out var wingsEntity, prefabID)
 		if wingsEntity == nil {
-			LogWarning("S_Equipment: 无法创建翅膀预制体")
+		
 			return
 		}
 		PlayerWings[targetPlayer] = wingsEntity

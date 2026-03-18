@@ -12,7 +12,7 @@
         "type": "UIImageEntity",
         "resourceId": ""
       },
-      "_entityId": "x8jLbwRe",
+      "_entityId": "aIhwG8dL",
       "children": [],
       "prefabVariant": null,
       "activeValue": {
@@ -39,20 +39,20 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": -410,
-            "y": -111
+            "x": -538,
+            "y": -78
           },
           "sizeDelta": {
-            "x": 666,
-            "y": 473
+            "x": 410,
+            "y": 542
           }
         },
         "alpha": 100,
         "priority": 0,
         "image": {
           "source": {
-            "fileId": "e696lrpxcu-mmu2z9i5-x72rmvzn8xq",
-            "filePath": "Assets\\UI\\material\\刻度条.png",
+            "fileId": "glbjc0cpqse-mmvi7xbt-d3r6unlcb7m",
+            "filePath": "Assets\\UI\\material\\ATower_RedKM.png",
             "_tag": {
               "type": "GFileRefer"
             },
@@ -106,110 +106,6 @@
       "entityTagData": {
         "tagPointers": []
       }
-    },
-    {
-      "_entityName": "Image (1)",
-      "_tag": {
-        "type": "UIImageEntity",
-        "resourceId": ""
-      },
-      "_entityId": "mw2abyie",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "propsData": {
-        "activeSelf": true,
-        "transform": {
-          "rotate": 0,
-          "anchorMin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchorMax": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "pivot": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchoredPosition": {
-            "x": -538,
-            "y": -78
-          },
-          "sizeDelta": {
-            "x": 400,
-            "y": 500
-          }
-        },
-        "alpha": 100,
-        "priority": 0,
-        "image": {
-          "source": {
-            "fileId": "gck6g5204hk-mmahnl6h-tyzquvvjjsk",
-            "filePath": "Assets\\UI\\material\\ATower_Long.png",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "texture"
-          },
-          "color": "#ffffff",
-          "reverse": {
-            "x": false,
-            "y": false
-          },
-          "fillType": 1,
-          "slicedBorder": {
-            "left": 0,
-            "right": 0,
-            "top": 0,
-            "bottom": 0
-          },
-          "tiledBorder": {
-            "left": 0,
-            "right": 0,
-            "top": 0,
-            "bottom": 0
-          },
-          "centerInvisible": false,
-          "fillDir": 0,
-          "fillAmount": 0,
-          "invertFill": false,
-          "flip": 0,
-          "gradient": 1,
-          "gradientTop": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "gradientBottom": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          }
-        }
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "HudImageWidget": {},
-        "HudWidget": {},
-        "Entity": {}
-      },
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true
     }
   ],
   "prefabVariant": null,

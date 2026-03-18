@@ -66,12 +66,11 @@ graph G_UIcontrollor {
 		var ingameUIMap = map.New()
 		ingameUIMap["P_IngameHud"] = P_IngameHudEntity
 		DispatchEventToEntity(__Custom6event_CreateIngameUI__, player, PlatformType.Client, List<object>{ingameUIMap})
-		LogInfo(Climbing_UI)
+		
 		
 	}
 
 	event __Custom6event_entertrigger__(player entity<Player>) {
-		LogInfo("1")
 		if ContainKey(Climbing_button, player) {
 			var hudEntity = Climbing_button[player] as entity
 			hudEntity<CustomUI>.IsVisible = true
