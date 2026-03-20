@@ -15,7 +15,7 @@ import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 
 [platform_client]
-static graph C_P_Climbing2 {
+graph C_P_Climbing2 {
 	receivecount int = 0
 	a int = 0
 	bIsClimb bool = false
