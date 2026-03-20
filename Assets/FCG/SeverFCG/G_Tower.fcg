@@ -12,6 +12,7 @@ graph G_Tower {
 	spawnPositions Map<int, Vector3> = nil
 	spawnForwards Map<int, Vector3> = nil
 	spawnedTowers Map<int, bool> = nil
+	spawnedTowerRoot Map<int, entity> = nil
 	towerTriggerPositions Map<int, Vector3> = nil
 	towerSlotToPlayer Map<int, entity<Player>> = nil
 	playerToTowerSlot Map<entity<Player>, int> = nil
@@ -20,6 +21,7 @@ graph G_Tower {
 		spawnPositions = map.New()
 		spawnForwards = map.New()
 		spawnedTowers = map.New()
+		spawnedTowerRoot = map.New()
 		towerTriggerPositions = map.New()
 		towerSlotToPlayer = map.New()
 		playerToTowerSlot = map.New()
@@ -85,6 +87,7 @@ graph G_Tower {
 		tower<Transform>.Position = pos
 		tower<Transform>.Forward = forward
 		AddTag(tower, "Tower_" + towerIndex)
+		spawnedTowerRoot[towerIndex] = tower
 		
 	
 			var climbingStart = GetChildByName(tower, "Custom trigger")
@@ -119,7 +122,34 @@ graph G_Tower {
 		return towerTriggerPositions[slot] as Vector3
 	}
 
-	// 该玩家对应槽位上的塔是否已生成（用于引导 UI：塔出现后收起前往召唤点的引导）
+	// 已生成塔上 Empty/Custom trigger 的世界坐标（召唤完成后引导终点）
+	func GetPlayerTowerEmptyCustomTriggerWorldPosition(p entity<Player>) Vector3 {
+		if !ContainKey(playerToTowerSlot, p) {
+			return Vector3{0, 0, 0}
+		}
+		var slot = playerToTowerSlot[p] as int
+		if !ContainKey(spawnedTowerRoot, slot) {
+			return Vector3{0, 0, 0}
+		}
+		var tower = spawnedTowerRoot[slot] as entity
+		if tower == nil {
+			return Vector3{0, 0, 0}
+		}
+		var emptyNode = GetChildByName(tower, "Empty")
+		var customTrig entity = nil
+		if emptyNode != nil {
+			customTrig = GetChildByName(emptyNode, "Custom trigger")
+		}
+		if customTrig == nil {
+			customTrig = GetChildByName(tower, "Custom trigger")
+		}
+		if customTrig == nil {
+			return Vector3{0, 0, 0}
+		}
+		return customTrig<Transform>.Position
+	}
+
+	// 该玩家对应槽位上的塔是否已生成（用于引导切换阶段）
 	func HasPlayerTowerSpawned(p entity<Player>) bool {
 		if !ContainKey(playerToTowerSlot, p) {
 			return false

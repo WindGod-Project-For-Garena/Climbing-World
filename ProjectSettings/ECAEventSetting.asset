@@ -501,6 +501,17 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_24987626"
+    },
+    "signal_55980719": {
+      "name": "Custom event_TowerGuide_EndOnAutoClimb__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100027,
+      "props": [],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_55980719"
     }
   },
   "customName": {
@@ -528,7 +539,8 @@
     "Custom event_AddFallReward__": "signal_31316633",
     "OnHideHint": "signal_87134090",
     "Custom event_freeze_rescue____": "signal_13886183",
-    "Custom event_TowerTrigger": "signal_24987626"
+    "Custom event_TowerTrigger": "signal_24987626",
+    "Custom event_TowerGuide_EndOnAutoClimb__": "signal_55980719"
   },
   "children": []
 }
