@@ -9,6 +9,7 @@ import "StdLibrary.fcc" as std
 import "LevelObject.fcc" as levelobject
 import "EditorGenLib.fcc" as gen
 import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+import "../UIFCG/C_Climbing_button.fcg" as C_Climbing_button
 
 [platform_client]
 graph C_Climbing_starttrigger {
@@ -22,6 +23,8 @@ graph C_Climbing_starttrigger {
 	}
 
 	event OnPlayerEnter(player entity<Player>) {
+		LogInfo("进入攀爬起点")
+	
 		// 获取 Custom trigger（该实体）下的子节点 TeleportPoint 的位置坐标
 		var teleportPoint = GetChildByName(thisEntity, "TeleportPoint")
 		if teleportPoint != nil {
@@ -40,12 +43,16 @@ graph C_Climbing_starttrigger {
 		} else if HasTag(thisEntity, "Tower_4") {
 		
 			Current_forward = Vector3{0, 0, -1}
+			
 		}
 		
 		
 		player<C_P_Climbing2>.Curent_Forward = Current_forward
 		
 		DispatchEventToEntity(__Custom6event_entertrigger__, globalEntity, PlatformType.Server, List<object>{player})
+	
+		//C_Climbing_button.Pressclimbing_button(nil, player)
+		
 	}
 
 	event OnPlayerLeave(player entity<Player>) {

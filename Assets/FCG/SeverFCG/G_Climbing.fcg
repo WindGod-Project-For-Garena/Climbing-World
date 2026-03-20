@@ -147,6 +147,24 @@ graph G_Climbing {
 		Onground(player, Vector, effectPos)
 	}
 
+	// 卡死救援：将指定玩家传送到 (0,0,0)，终止攀爬/坠落/舞蹈等动画（由 P_IngameHud /Button/Button 客户端触发）
+	func FreezeRescue(player entity<Player>) {
+		map.Remove(playerIsJumping, player)
+		map.Remove(playerIsClimbing, player)
+		map.Remove(playerClimbingStopGuard, player)
+		map.Remove(lastClimbAnimSpeed, player)
+		map.Remove(climbSpeedUpdateCounter, player)
+		player<Player>.Gravity = -9.8
+		StopAnimation(player, "Climbing")
+		StopAnimation(player, "Falling")
+		StopAnimation(player, "Dance")
+		Teleport(player, Vector3{0, 0, 0}, forward1)
+	}
+
+	event __Custom6event_freeze_rescue______(player entity<Player>) {
+		FreezeRescue(player)
+	}
+
 	// 由 C_P_Climbing2 在 Y>100 时通知调用；仅停止攀爬动画，传送在客户端执行
 	event __Custom6event_ClimbLeavetrigger__(player entity<Player>) {
 		map.Remove(playerIsClimbing, player)

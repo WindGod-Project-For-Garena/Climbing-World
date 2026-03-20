@@ -1,0 +1,33 @@
+// 挂载于 P_IngameHud 根节点；路径 /Button/Button 的 OnClick -> Button_button
+// 将本地玩家传送到 (0,0,0)，重置 C_P_Climbing2 攀爬/跳跃/悬挂逻辑，并通知服务端停止 Climbing、Falling、Dance 动画
+
+import "StdLibrary.fcc" as std
+import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+import "EditorGenLib.fcc" as gen
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
+
+[platform_client]
+graph C_freezebutton {
+	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		var origin = Vector3{0, 0, 0}
+		SetLocalPlayerPosition(origin)
+		SetLocalPlayerForward(Vector3{1, 0, 0})
+
+		triggerPlayer<C_P_Climbing2>.bIsClimb = false
+		triggerPlayer<C_P_Climbing2>.ishanging = false
+		triggerPlayer<C_P_Climbing2>.bIsFall = false
+		triggerPlayer<C_P_Climbing2>.fallVelocity = 0
+		triggerPlayer<C_P_Climbing2>.SwitchFall = true
+		triggerPlayer<C_P_Climbing2>.climbingStartFrame = 0
+		triggerPlayer<C_P_Climbing2>.Tower_Height = 0
+		triggerPlayer<C_P_Climbing2>.WingSpeedDecay = triggerPlayer<C_P_Climbing2>.WingSpeed
+		triggerPlayer<C_P_Climbing2>.Curent_height = origin
+		triggerPlayer<C_P_Climbing2>.player = triggerPlayer
+		triggerPlayer<C_P_Climbing2>.FallStartY = 0
+
+		DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, false, false, false})
+		DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 0})
+		DispatchEventToEntity(__Custom6event_freeze_rescue______, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+}

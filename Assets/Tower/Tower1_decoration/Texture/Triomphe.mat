@@ -1,0 +1,108 @@
+{
+  "_entityName": "",
+  "_tag": {
+    "type": "Material"
+  },
+  "_entityId": "jceZtQmb",
+  "children": [],
+  "prefabVariant": null,
+  "activeValue": null,
+  "unlockedValue": null,
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "shader": {
+    "fileId": "s-64c4f071-1e93-4613-a3da-bef38339a2ec",
+    "filePath": "lib://ffshaders/BRMobile/UGC/DiffuseColor",
+    "_tag": {
+      "type": "GFileRefer"
+    },
+    "fileType": "shader"
+  },
+  "paramValue": {
+    "_MainTex": {
+      "Texture": {
+        "fileId": "vmm03hxzdsm-mmycslvv-c3vthlf0e9e",
+        "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\Triomphe.jpg",
+        "_tag": {
+          "type": "GFileRefer"
+        },
+        "fileType": "texture"
+      },
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_Mask": {
+      "Texture": {
+        "fileId": "vmm03hxzdsm-mmycslvv-c3vthlf0e9e",
+        "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\Triomphe.jpg",
+        "_tag": {
+          "type": "GFileRefer"
+        },
+        "fileType": "texture"
+      },
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_MaskColor": {
+      "r": 64,
+      "g": 115,
+      "b": 235,
+      "a": 1
+    },
+    "_LIGHTING_ON_LOW": true,
+    "_CullMode": 2,
+    "BlendMode": "Cutoff",
+    "_Color": {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 1
+    },
+    "_Cutoff": 0.5,
+    "_DiffuseIntensity": 1,
+    "_BumpMap": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_Shininess": 0.078125,
+    "_SpecularColor": {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 1
+    },
+    "_SpecularMask": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_SpecularIntensity": 1,
+    "_Brightness": 1
+  }
+}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
