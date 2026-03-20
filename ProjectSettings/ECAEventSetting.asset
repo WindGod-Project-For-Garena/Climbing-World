@@ -512,6 +512,23 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_55980719"
+    },
+    "signal_77936109": {
+      "name": "Custom event_RegisterWingshopHintPosition__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100028,
+      "props": [
+        {
+          "name": "worldPos",
+          "value": "Vector3",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_77936109"
     }
   },
   "customName": {
@@ -540,7 +557,8 @@
     "OnHideHint": "signal_87134090",
     "Custom event_freeze_rescue____": "signal_13886183",
     "Custom event_TowerTrigger": "signal_24987626",
-    "Custom event_TowerGuide_EndOnAutoClimb__": "signal_55980719"
+    "Custom event_TowerGuide_EndOnAutoClimb__": "signal_55980719",
+    "Custom event_RegisterWingshopHintPosition__": "signal_77936109"
   },
   "children": []
 }

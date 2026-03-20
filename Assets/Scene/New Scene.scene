@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 57,
+      "tempIndex": 109,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -344,7 +344,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 58,
+      "tempIndex": 110,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -422,7 +422,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 59,
+          "tempIndex": 111,
           "itemID": 167,
           "seParent": null,
           "ecaScripts": [
@@ -585,13 +585,13 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 0.21653175354003906,
-            "y": 1.1859296560287476,
-            "z": 0.03469085693359375
+            "x": 0.21699999272823334,
+            "y": 1.1859999895095825,
+            "z": 0.03500000014901161
           },
           "scale": {
             "x": 1,
-            "y": 1.714255928993225,
+            "y": 1.7139999866485596,
             "z": 1
           },
           "rotation": {
@@ -697,7 +697,7 @@
         {
           "_entityId": "UALvlgM4",
           "children": [],
-          "_entityName": "Text object",
+          "_entityName": "nickname",
           "_tag": {
             "type": "SceneEditEntity",
             "resourceId": "Primitive/Empty"
@@ -711,13 +711,13 @@
           "editorVisibleValue": true,
           "position": {
             "x": 0,
-            "y": 2.351749897003174,
+            "y": 3.5427498817443848,
             "z": 0
           },
           "scale": {
-            "x": 100,
-            "y": 0.000009999999747378752,
-            "z": 100
+            "x": 9.999480247497559,
+            "y": 0,
+            "z": 10
           },
           "rotation": {
             "x": 0,
@@ -745,7 +745,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 60,
+          "tempIndex": 112,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -784,7 +784,8 @@
             "_levelObjectID": 1,
             "TextDisplay": "Come summon your tower",
             "fontTypeRef": "UIFONT_LATIN"
-          }
+          },
+          "prefabVariant": null
         }
       ],
       "prefabVariant": {
@@ -865,13 +866,13 @@
               "valueTag": "unlockedValue"
             },
             "position": {
-              "x": 0.21653175354003906,
-              "y": 1.1859296560287476,
-              "z": 0.03469085693359375
+              "x": 0.21699999272823334,
+              "y": 1.1859999895095825,
+              "z": 0.03500000014901161
             },
             "scale": {
               "x": 1,
-              "y": 1.714255928993225,
+              "y": 1.7139999866485596,
               "z": 1
             },
             "rotation": {
@@ -973,7 +974,7 @@
           },
           "UALvlgM4": {
             "_entityId": "GQoFsJPg",
-            "_entityName": "Text object",
+            "_entityName": "nickname",
             "activeValue": {
               "selfValue": true,
               "valueTag": "activeValue"
@@ -983,13 +984,13 @@
             "editorVisibleValue": true,
             "position": {
               "x": 0,
-              "y": 2.351749897003174,
+              "y": 3.5427498817443848,
               "z": 0
             },
             "scale": {
-              "x": 100,
-              "y": 0.000009999999747378752,
-              "z": 100
+              "x": 9.999480247497559,
+              "y": 0,
+              "z": 10
             },
             "rotation": {
               "x": 0,
@@ -1107,7 +1108,7 @@
           "entityTag22802862"
         ]
       },
-      "tempIndex": 61,
+      "tempIndex": 113,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1269,7 +1270,7 @@
         {
           "_entityId": "xROltD6r",
           "children": [],
-          "_entityName": "Text object",
+          "_entityName": "nickname",
           "_tag": {
             "type": "SceneEditEntity",
             "resourceId": "Primitive/Empty"
@@ -1283,13 +1284,13 @@
           "editorVisibleValue": true,
           "position": {
             "x": 0,
-            "y": 2.351749897003174,
+            "y": 3.5427498817443848,
             "z": 0
           },
           "scale": {
-            "x": 100,
-            "y": 0.000009999999747378752,
-            "z": 100
+            "x": 9.999480247497559,
+            "y": 0,
+            "z": 10
           },
           "rotation": {
             "x": 0,
@@ -1317,7 +1318,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 62,
+          "tempIndex": 114,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1356,7 +1357,8 @@
             "_levelObjectID": 2,
             "TextDisplay": "Come summon your tower",
             "fontTypeRef": "UIFONT_LATIN"
-          }
+          },
+          "prefabVariant": null
         }
       ],
       "activeValue": {
@@ -1405,7 +1407,7 @@
           "entityTag84277110"
         ]
       },
-      "tempIndex": 63,
+      "tempIndex": 115,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1614,7 +1616,7 @@
           },
           "xROltD6r": {
             "_entityId": "GQoFsJPg",
-            "_entityName": "Text object",
+            "_entityName": "nickname",
             "activeValue": {
               "selfValue": true,
               "valueTag": "activeValue"
@@ -1624,13 +1626,13 @@
             "editorVisibleValue": true,
             "position": {
               "x": 0,
-              "y": 2.351749897003174,
+              "y": 3.5427498817443848,
               "z": 0
             },
             "scale": {
-              "x": 100,
-              "y": 0.000009999999747378752,
-              "z": 100
+              "x": 9.999480247497559,
+              "y": 0,
+              "z": 10
             },
             "rotation": {
               "x": 0,
@@ -1841,7 +1843,7 @@
         {
           "_entityId": "flnW35zK",
           "children": [],
-          "_entityName": "Text object",
+          "_entityName": "nickname",
           "_tag": {
             "type": "SceneEditEntity",
             "resourceId": "Primitive/Empty"
@@ -1855,13 +1857,13 @@
           "editorVisibleValue": true,
           "position": {
             "x": 0,
-            "y": 2.351749897003174,
+            "y": 3.5427498817443848,
             "z": 0
           },
           "scale": {
-            "x": 100,
-            "y": 0.000009999999747378752,
-            "z": 100
+            "x": 9.999480247497559,
+            "y": 0,
+            "z": 10
           },
           "rotation": {
             "x": 0,
@@ -1889,7 +1891,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 64,
+          "tempIndex": 116,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1928,7 +1930,8 @@
             "_levelObjectID": 3,
             "TextDisplay": "Come summon your tower",
             "fontTypeRef": "UIFONT_LATIN"
-          }
+          },
+          "prefabVariant": null
         }
       ],
       "activeValue": {
@@ -1977,7 +1980,7 @@
           "entityTag29484470"
         ]
       },
-      "tempIndex": 65,
+      "tempIndex": 117,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -2186,7 +2189,7 @@
           },
           "flnW35zK": {
             "_entityId": "GQoFsJPg",
-            "_entityName": "Text object",
+            "_entityName": "nickname",
             "activeValue": {
               "selfValue": true,
               "valueTag": "activeValue"
@@ -2196,13 +2199,13 @@
             "editorVisibleValue": true,
             "position": {
               "x": 0,
-              "y": 2.351749897003174,
+              "y": 3.5427498817443848,
               "z": 0
             },
             "scale": {
-              "x": 100,
-              "y": 0.000009999999747378752,
-              "z": 100
+              "x": 9.999480247497559,
+              "y": 0,
+              "z": 10
             },
             "rotation": {
               "x": 0,
@@ -2413,7 +2416,7 @@
         {
           "_entityId": "M4OB7BFM",
           "children": [],
-          "_entityName": "Text object",
+          "_entityName": "nickname",
           "_tag": {
             "type": "SceneEditEntity",
             "resourceId": "Primitive/Empty"
@@ -2427,13 +2430,13 @@
           "editorVisibleValue": true,
           "position": {
             "x": 0,
-            "y": 2.351749897003174,
+            "y": 3.5427498817443848,
             "z": 0
           },
           "scale": {
-            "x": 100,
-            "y": 0.000009999999747378752,
-            "z": 100
+            "x": 9.999480247497559,
+            "y": 0,
+            "z": 10
           },
           "rotation": {
             "x": 0,
@@ -2461,7 +2464,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 66,
+          "tempIndex": 118,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -2500,7 +2503,8 @@
             "_levelObjectID": 4,
             "TextDisplay": "Come summon your tower",
             "fontTypeRef": "UIFONT_LATIN"
-          }
+          },
+          "prefabVariant": null
         }
       ],
       "activeValue": {
@@ -2549,7 +2553,7 @@
           "entityTag76000170"
         ]
       },
-      "tempIndex": 67,
+      "tempIndex": 119,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -2752,7 +2756,7 @@
           },
           "M4OB7BFM": {
             "_entityId": "GQoFsJPg",
-            "_entityName": "Text object",
+            "_entityName": "nickname",
             "activeValue": {
               "selfValue": true,
               "valueTag": "activeValue"
@@ -2762,13 +2766,13 @@
             "editorVisibleValue": true,
             "position": {
               "x": 0,
-              "y": 2.351749897003174,
+              "y": 3.5427498817443848,
               "z": 0
             },
             "scale": {
-              "x": 100,
-              "y": 0.000009999999747378752,
-              "z": 100
+              "x": 9.999480247497559,
+              "y": 0,
+              "z": 10
             },
             "rotation": {
               "x": 0,
@@ -2896,7 +2900,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 68,
+      "tempIndex": 120,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [

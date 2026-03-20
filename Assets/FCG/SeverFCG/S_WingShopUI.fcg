@@ -16,6 +16,9 @@ graph S_WingShopUI {
 	WingSelectState Map<entity<Player>, int> = nil
 	// 玩家 -> 已解锁的翅膀数量（0-4），用于 BUY/Trick/Locked 显隐
 	WingUnlockState Map<entity<Player>, int> = nil
+	// 由场景实体 Wingshoptrigger 客户端 OnAwake 上报，用于攀爬落地后 OnShowHint
+	worldPos Vector3=Vector3{-1.048412,0.001,5.96745}
+	hasWingshopHintPos bool = true
 
 	event OnAwake() {
 		Wingshop = map.New()
@@ -23,7 +26,21 @@ graph S_WingShopUI {
 		WingUnlockState = map.New()
 	}
 
+
+		 
+		
+	
+
+	
+		 
+	
+
+	func GetWingshopHintPosition() Vector3 {
+		return worldPos
+	}
+
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
+		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, nil)
 		if ContainKey(Wingshop, player) {
 			var wingshopEntity = Wingshop[player] as entity
 			wingshopEntity<CustomUI>.IsVisible = true

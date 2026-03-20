@@ -9,6 +9,7 @@ import "EditorGenLib.fcc" as gen
 [platform_client]
 graph C_Wingshoptrigger {
 
+
 	event OnPlayerEnter(player entity<Player>) {
 
 		
