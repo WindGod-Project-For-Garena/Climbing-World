@@ -12,7 +12,10 @@ import Res from "EditorGenLib.fcc"
 graph PlayerHint {
     _DestPosition Vector3
     _HintDirectionHUD entity<CustomUI>
-
+    guideIndex int = 0
+    event OnAwake() {
+        guideIndex = 0
+    }
     event OnUpdate() {
         if _HintDirectionHUD != nil && _HintDirectionHUD<CustomUI>.IsVisible{
             var playerPosition Vector3 = thisEntity<Player>.Position
@@ -36,8 +39,13 @@ graph PlayerHint {
         ShowHint(destination)
     }
 
-    event OnHideHint() {
+    event OnHideHint(index int) {
+        guideIndex +=1
+        if guideIndex == index {
+          
+      
         HideHint()
+    }
     }
 
     func InitHintDirection() {

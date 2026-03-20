@@ -447,17 +447,6 @@
       "version": 45,
       "key": "signal_31316633"
     },
-    "signal_87134090": {
-      "name": "OnHideHint",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100016,
-      "props": [],
-      "propCount": 1,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_87134090"
-    },
     "signal_13886183": {
       "name": "Custom event_freeze_rescue____",
       "eventType": 0,
@@ -474,33 +463,6 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_13886183"
-    },
-    "signal_24987626": {
-      "name": "Custom event_TowerTrigger",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100014,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        },
-        {
-          "name": "towerIndex",
-          "value": "Int",
-          "key": 2
-        },
-        {
-          "name": "trigger",
-          "value": "Entity",
-          "key": 3
-        }
-      ],
-      "propCount": 3,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_24987626"
     },
     "signal_55980719": {
       "name": "Custom event_TowerGuide_EndOnAutoClimb__",
@@ -529,6 +491,50 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_77936109"
+    },
+    "signal_24987626": {
+      "name": "Custom event_TowerTrigger",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100014,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "towerIndex",
+          "value": "Int",
+          "key": 2
+        },
+        {
+          "name": "trigger",
+          "value": "Entity",
+          "key": 3
+        }
+      ],
+      "propCount": 3,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_24987626"
+    },
+    "signal_87134090": {
+      "name": "OnHideHint",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100016,
+      "props": [
+        {
+          "name": "index",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_87134090"
     }
   },
   "customName": {
@@ -554,11 +560,11 @@
     "Custom_eventGoldChanged": "signal_46304288",
     "Custom event_releaseclimbing_button": "signal_35303240",
     "Custom event_AddFallReward__": "signal_31316633",
-    "OnHideHint": "signal_87134090",
     "Custom event_freeze_rescue____": "signal_13886183",
-    "Custom event_TowerTrigger": "signal_24987626",
     "Custom event_TowerGuide_EndOnAutoClimb__": "signal_55980719",
-    "Custom event_RegisterWingshopHintPosition__": "signal_77936109"
+    "Custom event_RegisterWingshopHintPosition__": "signal_77936109",
+    "Custom event_TowerTrigger": "signal_24987626",
+    "OnHideHint": "signal_87134090"
   },
   "children": []
 }

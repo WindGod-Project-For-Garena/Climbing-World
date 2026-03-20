@@ -40,7 +40,7 @@ graph S_WingShopUI {
 	}
 
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
-		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, nil)
+		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
 		if ContainKey(Wingshop, player) {
 			var wingshopEntity = Wingshop[player] as entity
 			wingshopEntity<CustomUI>.IsVisible = true
