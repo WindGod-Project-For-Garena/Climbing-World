@@ -27,7 +27,7 @@ graph C_Towertrigger {
 		if towerIndex > 0 {
 			var triggerTag = "Tower_" + towerIndex
 			if HasTag(player, triggerTag) {
-				DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, towerIndex})
+				DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, towerIndex,thisEntity})
 			} else {
 				
 			}

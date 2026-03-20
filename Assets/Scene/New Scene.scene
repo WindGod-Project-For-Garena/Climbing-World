@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 1,
+      "tempIndex": 57,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -344,7 +344,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 2,
+      "tempIndex": 58,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -422,7 +422,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 3,
+          "tempIndex": 59,
           "itemID": 167,
           "seParent": null,
           "ecaScripts": [
@@ -693,6 +693,98 @@
           },
           "propsData": {},
           "entityVersion": 3
+        },
+        {
+          "_entityId": "UALvlgM4",
+          "children": [],
+          "_entityName": "Text object",
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 0,
+            "y": 2.351749897003174,
+            "z": 0
+          },
+          "scale": {
+            "x": 100,
+            "y": 0.000009999999747378752,
+            "z": 100
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 90
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 60,
+          "itemID": 222,
+          "seParent": null,
+          "ecaScripts": [
+            null
+          ],
+          "ecaProps": {
+            "TextEntity": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "propsData": {
+            "TextKey": "Come summon your tower",
+            "fontColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            },
+            "IsBillboard": true,
+            "fontStyleRef": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "FontSize": 48,
+            "IgnoreDepth": false,
+            "AlwaysInScreen": false,
+            "Depth": 0,
+            "Width": 100,
+            "Height": 100,
+            "FondOverFlowMod": 2,
+            "fontType": "UIFONT_LATIN",
+            "fontStyle": 0,
+            "_levelObjectID": 1,
+            "TextDisplay": "Come summon your tower",
+            "fontTypeRef": "UIFONT_LATIN"
+          }
         }
       ],
       "prefabVariant": {
@@ -878,6 +970,92 @@
             "entityVersion": 3,
             "editorLockValue": false,
             "editorVisibleValue": true
+          },
+          "UALvlgM4": {
+            "_entityId": "GQoFsJPg",
+            "_entityName": "Text object",
+            "activeValue": {
+              "selfValue": true,
+              "valueTag": "activeValue"
+            },
+            "unlockedValue": null,
+            "editorLockValue": false,
+            "editorVisibleValue": true,
+            "position": {
+              "x": 0,
+              "y": 2.351749897003174,
+              "z": 0
+            },
+            "scale": {
+              "x": 100,
+              "y": 0.000009999999747378752,
+              "z": 100
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            },
+            "BTPath": [
+              null
+            ],
+            "visible": true,
+            "VisibilityLayer": 0,
+            "modelOptimization": 0,
+            "streamingLayer": "",
+            "attributes": [
+              2,
+              4
+            ],
+            "isTrigger": false,
+            "collidable": true,
+            "physicalLayer": 0,
+            "physicalMaterial": null,
+            "aoiSetting": 0,
+            "initialTypes": {},
+            "componentList": [],
+            "entityTagData": {
+              "tagPointers": []
+            },
+            "itemID": 222,
+            "seParent": null,
+            "ecaScripts": [
+              null
+            ],
+            "ecaProps": {
+              "TextEntity": {},
+              "LevelObject": {},
+              "Transform": {},
+              "Entity": {},
+              "Visibility": {}
+            },
+            "propsData": {
+              "TextKey": "Come summon your tower",
+              "fontColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+              },
+              "IsBillboard": true,
+              "fontStyleRef": {
+                "bold": false,
+                "italic": false,
+                "underline": false
+              },
+              "FontSize": 48,
+              "IgnoreDepth": false,
+              "AlwaysInScreen": false,
+              "Depth": 0,
+              "Width": 100,
+              "Height": 100,
+              "FondOverFlowMod": 2,
+              "fontType": "UIFONT_LATIN",
+              "fontStyle": 0,
+              "_levelObjectID": 1,
+              "TextDisplay": "Come summon your tower",
+              "fontTypeRef": "UIFONT_LATIN"
+            }
           }
         }
       },
@@ -929,7 +1107,7 @@
           "entityTag22802862"
         ]
       },
-      "tempIndex": 4,
+      "tempIndex": 61,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1087,6 +1265,98 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "prefabVariant": null
+        },
+        {
+          "_entityId": "xROltD6r",
+          "children": [],
+          "_entityName": "Text object",
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 0,
+            "y": 2.351749897003174,
+            "z": 0
+          },
+          "scale": {
+            "x": 100,
+            "y": 0.000009999999747378752,
+            "z": 100
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 90
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 62,
+          "itemID": 222,
+          "seParent": null,
+          "ecaScripts": [
+            null
+          ],
+          "ecaProps": {
+            "TextEntity": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "propsData": {
+            "TextKey": "Come summon your tower",
+            "fontColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            },
+            "IsBillboard": true,
+            "fontStyleRef": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "FontSize": 48,
+            "IgnoreDepth": false,
+            "AlwaysInScreen": false,
+            "Depth": 0,
+            "Width": 100,
+            "Height": 100,
+            "FondOverFlowMod": 2,
+            "fontType": "UIFONT_LATIN",
+            "fontStyle": 0,
+            "_levelObjectID": 2,
+            "TextDisplay": "Come summon your tower",
+            "fontTypeRef": "UIFONT_LATIN"
+          }
         }
       ],
       "activeValue": {
@@ -1135,7 +1405,7 @@
           "entityTag84277110"
         ]
       },
-      "tempIndex": 5,
+      "tempIndex": 63,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1341,6 +1611,92 @@
             "entityVersion": 3,
             "editorLockValue": false,
             "editorVisibleValue": true
+          },
+          "xROltD6r": {
+            "_entityId": "GQoFsJPg",
+            "_entityName": "Text object",
+            "activeValue": {
+              "selfValue": true,
+              "valueTag": "activeValue"
+            },
+            "unlockedValue": null,
+            "editorLockValue": false,
+            "editorVisibleValue": true,
+            "position": {
+              "x": 0,
+              "y": 2.351749897003174,
+              "z": 0
+            },
+            "scale": {
+              "x": 100,
+              "y": 0.000009999999747378752,
+              "z": 100
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            },
+            "BTPath": [
+              null
+            ],
+            "visible": true,
+            "VisibilityLayer": 0,
+            "modelOptimization": 0,
+            "streamingLayer": "",
+            "attributes": [
+              2,
+              4
+            ],
+            "isTrigger": false,
+            "collidable": true,
+            "physicalLayer": 0,
+            "physicalMaterial": null,
+            "aoiSetting": 0,
+            "initialTypes": {},
+            "componentList": [],
+            "entityTagData": {
+              "tagPointers": []
+            },
+            "itemID": 222,
+            "seParent": null,
+            "ecaScripts": [
+              null
+            ],
+            "ecaProps": {
+              "TextEntity": {},
+              "LevelObject": {},
+              "Transform": {},
+              "Entity": {},
+              "Visibility": {}
+            },
+            "propsData": {
+              "TextKey": "Come summon your tower",
+              "fontColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+              },
+              "IsBillboard": true,
+              "fontStyleRef": {
+                "bold": false,
+                "italic": false,
+                "underline": false
+              },
+              "FontSize": 48,
+              "IgnoreDepth": false,
+              "AlwaysInScreen": false,
+              "Depth": 0,
+              "Width": 100,
+              "Height": 100,
+              "FondOverFlowMod": 2,
+              "fontType": "UIFONT_LATIN",
+              "fontStyle": 0,
+              "_levelObjectID": 1,
+              "TextDisplay": "Come summon your tower",
+              "fontTypeRef": "UIFONT_LATIN"
+            }
           }
         }
       }
@@ -1481,6 +1837,98 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "prefabVariant": null
+        },
+        {
+          "_entityId": "flnW35zK",
+          "children": [],
+          "_entityName": "Text object",
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 0,
+            "y": 2.351749897003174,
+            "z": 0
+          },
+          "scale": {
+            "x": 100,
+            "y": 0.000009999999747378752,
+            "z": 100
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 90
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 64,
+          "itemID": 222,
+          "seParent": null,
+          "ecaScripts": [
+            null
+          ],
+          "ecaProps": {
+            "TextEntity": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "propsData": {
+            "TextKey": "Come summon your tower",
+            "fontColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            },
+            "IsBillboard": true,
+            "fontStyleRef": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "FontSize": 48,
+            "IgnoreDepth": false,
+            "AlwaysInScreen": false,
+            "Depth": 0,
+            "Width": 100,
+            "Height": 100,
+            "FondOverFlowMod": 2,
+            "fontType": "UIFONT_LATIN",
+            "fontStyle": 0,
+            "_levelObjectID": 3,
+            "TextDisplay": "Come summon your tower",
+            "fontTypeRef": "UIFONT_LATIN"
+          }
         }
       ],
       "activeValue": {
@@ -1529,7 +1977,7 @@
           "entityTag29484470"
         ]
       },
-      "tempIndex": 6,
+      "tempIndex": 65,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1735,6 +2183,92 @@
             "entityVersion": 3,
             "editorLockValue": false,
             "editorVisibleValue": true
+          },
+          "flnW35zK": {
+            "_entityId": "GQoFsJPg",
+            "_entityName": "Text object",
+            "activeValue": {
+              "selfValue": true,
+              "valueTag": "activeValue"
+            },
+            "unlockedValue": null,
+            "editorLockValue": false,
+            "editorVisibleValue": true,
+            "position": {
+              "x": 0,
+              "y": 2.351749897003174,
+              "z": 0
+            },
+            "scale": {
+              "x": 100,
+              "y": 0.000009999999747378752,
+              "z": 100
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            },
+            "BTPath": [
+              null
+            ],
+            "visible": true,
+            "VisibilityLayer": 0,
+            "modelOptimization": 0,
+            "streamingLayer": "",
+            "attributes": [
+              2,
+              4
+            ],
+            "isTrigger": false,
+            "collidable": true,
+            "physicalLayer": 0,
+            "physicalMaterial": null,
+            "aoiSetting": 0,
+            "initialTypes": {},
+            "componentList": [],
+            "entityTagData": {
+              "tagPointers": []
+            },
+            "itemID": 222,
+            "seParent": null,
+            "ecaScripts": [
+              null
+            ],
+            "ecaProps": {
+              "TextEntity": {},
+              "LevelObject": {},
+              "Transform": {},
+              "Entity": {},
+              "Visibility": {}
+            },
+            "propsData": {
+              "TextKey": "Come summon your tower",
+              "fontColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+              },
+              "IsBillboard": true,
+              "fontStyleRef": {
+                "bold": false,
+                "italic": false,
+                "underline": false
+              },
+              "FontSize": 48,
+              "IgnoreDepth": false,
+              "AlwaysInScreen": false,
+              "Depth": 0,
+              "Width": 100,
+              "Height": 100,
+              "FondOverFlowMod": 2,
+              "fontType": "UIFONT_LATIN",
+              "fontStyle": 0,
+              "_levelObjectID": 1,
+              "TextDisplay": "Come summon your tower",
+              "fontTypeRef": "UIFONT_LATIN"
+            }
           }
         }
       }
@@ -1875,6 +2409,98 @@
           "prefabVariant": null,
           "editorLockValue": false,
           "editorVisibleValue": true
+        },
+        {
+          "_entityId": "M4OB7BFM",
+          "children": [],
+          "_entityName": "Text object",
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 0,
+            "y": 2.351749897003174,
+            "z": 0
+          },
+          "scale": {
+            "x": 100,
+            "y": 0.000009999999747378752,
+            "z": 100
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 90
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 66,
+          "itemID": 222,
+          "seParent": null,
+          "ecaScripts": [
+            null
+          ],
+          "ecaProps": {
+            "TextEntity": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "propsData": {
+            "TextKey": "Come summon your tower",
+            "fontColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            },
+            "IsBillboard": true,
+            "fontStyleRef": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "FontSize": 48,
+            "IgnoreDepth": false,
+            "AlwaysInScreen": false,
+            "Depth": 0,
+            "Width": 100,
+            "Height": 100,
+            "FondOverFlowMod": 2,
+            "fontType": "UIFONT_LATIN",
+            "fontStyle": 0,
+            "_levelObjectID": 4,
+            "TextDisplay": "Come summon your tower",
+            "fontTypeRef": "UIFONT_LATIN"
+          }
         }
       ],
       "activeValue": {
@@ -1923,7 +2549,7 @@
           "entityTag76000170"
         ]
       },
-      "tempIndex": 7,
+      "tempIndex": 67,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -2123,6 +2749,92 @@
             },
             "propsData": {},
             "entityVersion": 3
+          },
+          "M4OB7BFM": {
+            "_entityId": "GQoFsJPg",
+            "_entityName": "Text object",
+            "activeValue": {
+              "selfValue": true,
+              "valueTag": "activeValue"
+            },
+            "unlockedValue": null,
+            "editorLockValue": false,
+            "editorVisibleValue": true,
+            "position": {
+              "x": 0,
+              "y": 2.351749897003174,
+              "z": 0
+            },
+            "scale": {
+              "x": 100,
+              "y": 0.000009999999747378752,
+              "z": 100
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 90
+            },
+            "BTPath": [
+              null
+            ],
+            "visible": true,
+            "VisibilityLayer": 0,
+            "modelOptimization": 0,
+            "streamingLayer": "",
+            "attributes": [
+              2,
+              4
+            ],
+            "isTrigger": false,
+            "collidable": true,
+            "physicalLayer": 0,
+            "physicalMaterial": null,
+            "aoiSetting": 0,
+            "initialTypes": {},
+            "componentList": [],
+            "entityTagData": {
+              "tagPointers": []
+            },
+            "itemID": 222,
+            "seParent": null,
+            "ecaScripts": [
+              null
+            ],
+            "ecaProps": {
+              "TextEntity": {},
+              "LevelObject": {},
+              "Transform": {},
+              "Entity": {},
+              "Visibility": {}
+            },
+            "propsData": {
+              "TextKey": "Come summon your tower",
+              "fontColor": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+              },
+              "IsBillboard": true,
+              "fontStyleRef": {
+                "bold": false,
+                "italic": false,
+                "underline": false
+              },
+              "FontSize": 48,
+              "IgnoreDepth": false,
+              "AlwaysInScreen": false,
+              "Depth": 0,
+              "Width": 100,
+              "Height": 100,
+              "FondOverFlowMod": 2,
+              "fontType": "UIFONT_LATIN",
+              "fontStyle": 0,
+              "_levelObjectID": 1,
+              "TextDisplay": "Come summon your tower",
+              "fontTypeRef": "UIFONT_LATIN"
+            }
           }
         }
       },
@@ -2184,7 +2896,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 8,
+      "tempIndex": 68,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -2220,7 +2932,7 @@
         "FondOverFlowMod": 2,
         "fontType": "UIFONT_LATIN",
         "fontStyle": 0,
-        "_levelObjectID": 1,
+        "_levelObjectID": 5,
         "TextDisplay": "Wings Shop",
         "fontTypeRef": "UIFONT_LATIN"
       }

@@ -35,6 +35,7 @@ graph G_Tower {
 		towerTriggerPositions[2] = Vector3{16.009, 0.001194954, 9.852015}
 		towerTriggerPositions[3] = Vector3{-11.73129, 0, 17.811}
 		towerTriggerPositions[4] = Vector3{11.73129, 0, -17.811}
+		
 	}
 
 	event OnPlayerJoin(joinedPlayer entity<Player>) {
@@ -63,7 +64,7 @@ graph G_Tower {
 		}
 	}
 
-	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int) {
+	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int, trigger entity<Entity>) {
         
 		if !ContainKey(spawnPositions, towerIndex) || !ContainKey(spawnForwards, towerIndex) {
 		
@@ -76,6 +77,11 @@ graph G_Tower {
 		var pos = spawnPositions[towerIndex] as Vector3
 		var forward = spawnForwards[towerIndex] as Vector3
 		CreateFromPrefab(out var tower, EResPrefab.ATower)
+	    LogInfo(player<Player>.NickName)
+		var root = GetParent(trigger)
+	
+		
+		GetChildByName(root, "nickname")<Text>.Content = player<Player>.NickName
 		tower<Transform>.Position = pos
 		tower<Transform>.Forward = forward
 		AddTag(tower, "Tower_" + towerIndex)

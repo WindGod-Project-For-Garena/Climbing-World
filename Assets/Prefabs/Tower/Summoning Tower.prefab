@@ -30,13 +30,13 @@
             "valueTag": "unlockedValue"
           },
           "position": {
-            "x": 0.21653175354003906,
-            "y": 1.1859296560287476,
-            "z": 0.03469085693359375
+            "x": 0.21699999272823334,
+            "y": 1.1859999895095825,
+            "z": 0.03500000014901161
           },
           "scale": {
             "x": 1,
-            "y": 1.714255928993225,
+            "y": 1.7139999866485596,
             "z": 1
           },
           "rotation": {
@@ -139,6 +139,99 @@
           "editorLockValue": false,
           "editorVisibleValue": true,
           "prefabVariant": null
+        },
+        {
+          "_entityName": "nickname",
+          "_tag": {
+            "type": "SceneEditEntity",
+            "resourceId": "Primitive/Empty"
+          },
+          "_entityId": "GQoFsJPg",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": null,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "position": {
+            "x": 0,
+            "y": 3.5427498817443848,
+            "z": 0
+          },
+          "scale": {
+            "x": 9.999480247497559,
+            "y": 0,
+            "z": 10
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 90
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "physicalMaterial": null,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "tempIndex": 91,
+          "itemID": 222,
+          "seParent": null,
+          "ecaScripts": [
+            null
+          ],
+          "ecaProps": {
+            "TextEntity": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {}
+          },
+          "propsData": {
+            "TextKey": "Come summon your tower",
+            "fontColor": {
+              "r": 255,
+              "g": 255,
+              "b": 255,
+              "a": 1
+            },
+            "IsBillboard": true,
+            "fontStyleRef": {
+              "bold": false,
+              "italic": false,
+              "underline": false
+            },
+            "FontSize": 48,
+            "IgnoreDepth": false,
+            "AlwaysInScreen": false,
+            "Depth": 0,
+            "Width": 100,
+            "Height": 100,
+            "FondOverFlowMod": 2,
+            "fontType": "UIFONT_LATIN",
+            "fontStyle": 0,
+            "_levelObjectID": 1,
+            "TextDisplay": "Come summon your tower",
+            "fontTypeRef": "UIFONT_LATIN"
+          }
         }
       ],
       "activeValue": {
@@ -185,7 +278,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 218,
+      "tempIndex": 92,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -225,4 +318,4 @@
   "HintCraftlandCombineMesh": false,
   "discriminator": "ISceneLike"
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
