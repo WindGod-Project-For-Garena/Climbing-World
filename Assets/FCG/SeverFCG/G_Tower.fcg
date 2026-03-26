@@ -79,7 +79,7 @@ graph G_Tower {
 		var pos = spawnPositions[towerIndex] as Vector3
 		var forward = spawnForwards[towerIndex] as Vector3
 		CreateFromPrefab(out var tower, EResPrefab.ATower)
-	    LogInfo(player<Player>.NickName)
+	  
 		var root = GetParent(trigger)
 	
 		

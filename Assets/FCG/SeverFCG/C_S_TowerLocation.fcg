@@ -1,5 +1,7 @@
-// 先引导至召唤点；塔生成后引导终点改为该塔 Empty/Custom trigger。
-// 进入触发器自动攀爬或点击 AutoClimbing 开始时结束引导（客户端派发 __Custom6event_TowerGuide_EndOnAutoClimb__）。
+// 新手引导顺序：① 指向本塔召唤点 → ② 到达且塔生成后关指引再指向塔上自动攀爬 Custom trigger
+// → ③ 进入 trigger 开始自动攀爬时关指引 → ④ 跳跃落地后由 G_Climbing 显示 Wingshop 指引
+// → ⑤ 进入 Wingshop trigger 时关指引（S_WingShopUI）。
+// ③ 由客户端派发 __Custom6event_TowerGuide_EndOnAutoClimb__（C_Climbing_starttrigger）。
 
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
@@ -8,16 +10,16 @@ import "Player.fcc" as Player
 import "Math.fcc" as math
 
 import "./G_Tower.fcg" as G_Tower
+import "./G_Climbing.fcg" as G_Climbing
 import "./C_S_DefaultUI.fcg" as DefaultUI
 
 
 [platform_server]
 graph TowerLocationGuide {
-    tutorialRadius float = 0.5
-    tutorialPosition Vector3
+    tutorialRadius float = 2.0
+    summonPosition Vector3
 
     isActive bool = false
-    hasReachedLocation bool = false
     guidePointsAtClimbingTrigger bool = false
 
     event OnPlayerJoin(player entity<Player>) {
@@ -25,8 +27,8 @@ graph TowerLocationGuide {
             return
         }
         WaitForMillisecond(3000)
-        tutorialPosition = globalEntity<G_Tower>.GetPlayerTowerTriggerPosition(thisEntity as entity<Player>)
-        if tutorialPosition.X == 0 && tutorialPosition.Y == 0 && tutorialPosition.Z == 0 {
+        summonPosition = globalEntity<G_Tower>.GetPlayerTowerTriggerPosition(thisEntity as entity<Player>)
+        if summonPosition.X == 0 && summonPosition.Y == 0 && summonPosition.Z == 0 {
             return
         }
         StartTowerGuide()
@@ -37,15 +39,13 @@ graph TowerLocationGuide {
             return
         }
         isActive = true
-        hasReachedLocation = false
         guidePointsAtClimbingTrigger = false
 
-        DispatchEventToEntity(OnShowHint, thisEntity, PlatformType.Client, List<object>{tutorialPosition})
+        DispatchEventToEntity(OnShowHint, thisEntity, PlatformType.Client, List<object>{summonPosition})
         thisEntity<DefaultUI>.CreateTweenTipUI(LocString{"TUTORIAL_GO_TO_TOWER", {}})
         start CheckPlayerLocation()
     }
 
-    // 由客户端：触发器内自动攀爬开始、或 AutoClimbing 按钮开启时派发
     event __Custom6event_TowerGuide_EndOnAutoClimb____() {
         if !isActive {
             return
@@ -57,41 +57,33 @@ graph TowerLocationGuide {
     }
 
     func EndTowerGuideSilent() {
-        hasReachedLocation = true
+        LogInfo("EndTowerGuideSilent")
         isActive = false
+        globalEntity<G_Climbing>.SetAwaitingTutorialWingshopHintAfterLand(thisEntity as entity<Player>, true)
         DispatchEventToEntity(OnHideHint, thisEntity, PlatformType.Client, List<int>{2})
     }
 
     async func CheckPlayerLocation() {
-        while isActive && !hasReachedLocation {
+        while isActive && !guidePointsAtClimbingTrigger {
             WaitForMillisecond(500)
-            if !guidePointsAtClimbingTrigger {
-                if !globalEntity<G_Tower>.HasPlayerTowerSpawned(thisEntity as entity<Player>) {
-                    continue
-                }
-                var climbPos = globalEntity<G_Tower>.GetPlayerTowerEmptyCustomTriggerWorldPosition(thisEntity as entity<Player>)
-                if climbPos.X == 0 && climbPos.Y == 0 && climbPos.Z == 0 {
-                    OnReachedTower()
-                    break
-                }
-                guidePointsAtClimbingTrigger = true
-                tutorialPosition = climbPos
-                DispatchEventToEntity(OnShowHint, thisEntity, PlatformType.Client, List<object>{tutorialPosition})
+            if !isActive {
+                return
             }
             var playerPos = thisEntity<Player>.Position
-            var distance = math.Distance(playerPos, tutorialPosition)
-            if distance <= tutorialRadius {
-                OnReachedTower()
-                break
+            if math.Distance(playerPos, summonPosition) > tutorialRadius {
+                continue
             }
+            if !globalEntity<G_Tower>.HasPlayerTowerSpawned(thisEntity as entity<Player>) {
+                continue
+            }
+            var climbPos = globalEntity<G_Tower>.GetPlayerTowerEmptyCustomTriggerWorldPosition(thisEntity as entity<Player>)
+            if climbPos.X == 0 && climbPos.Y == 0 && climbPos.Z == 0 {
+                continue
+            }
+            DispatchEventToEntity(OnHideHint, thisEntity, PlatformType.Client, List<int>{1})
+            guidePointsAtClimbingTrigger = true
+            DispatchEventToEntity(OnShowHint, thisEntity, PlatformType.Client, List<object>{climbPos})
+            thisEntity<DefaultUI>.CreateTweenTipUI(LocString{"TUTORIAL_TOWER_REACHED", {}})
         }
-    }
-
-    func OnReachedTower() {
-        hasReachedLocation = true
-        isActive = false
-
-        DispatchEventToEntity(OnHideHint, thisEntity, PlatformType.Client, List<int>{1})
-        thisEntity<DefaultUI>.CreateTweenTipUI(LocString{"TUTORIAL_TOWER_REACHED", {}})
     }
 }

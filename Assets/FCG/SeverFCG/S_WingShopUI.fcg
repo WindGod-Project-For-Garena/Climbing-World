@@ -39,7 +39,13 @@ graph S_WingShopUI {
 		return worldPos
 	}
 
+	event __Custom6event_RegisterWingshopHintPosition____(pos Vector3) {
+		worldPos = pos
+		hasWingshopHintPos = true
+	}
+
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
+		LogInfo("WingshopEnter")
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
 		if ContainKey(Wingshop, player) {
 			var wingshopEntity = Wingshop[player] as entity

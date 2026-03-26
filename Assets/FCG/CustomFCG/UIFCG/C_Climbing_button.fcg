@@ -73,7 +73,7 @@ graph C_Climbing_button {
 			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
 			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
 			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
-			DispatchEventToEntity(__Custom6event_TowerGuide_EndOnAutoClimb____, triggerPlayer, PlatformType.Server, nil)
+			
 		} else {
 			
 			

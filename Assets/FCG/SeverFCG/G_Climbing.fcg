@@ -27,6 +27,7 @@ graph G_Climbing {
 	// 动画速度节流：避免每帧 PlayAnimation 引发错误，仅在变化显著时更新
 	lastClimbAnimSpeed Map<entity<Player>, float> = nil
 	climbSpeedUpdateCounter Map<entity<Player>, int> = nil
+	awaitingTutorialWingshopHintAfterLand Map<entity<Player>, bool> = nil
 	event OnAwake() {       
 		playerCustomGravity = map.New()
 		PlayerCurentHeight = map.New()
@@ -35,6 +36,15 @@ graph G_Climbing {
 		playerClimbingStopGuard = map.New()
 		lastClimbAnimSpeed = map.New()
 		climbSpeedUpdateCounter = map.New()
+		awaitingTutorialWingshopHintAfterLand = map.New()
+	}
+
+	func SetAwaitingTutorialWingshopHintAfterLand(p entity<Player>, v bool) {
+		if v {
+			awaitingTutorialWingshopHintAfterLand[p] = true
+		} else {
+			map.Remove(awaitingTutorialWingshopHintAfterLand, p)
+		}
 	}
 	event OnPlayerJoin(player entity<Player>) {
 		// 玩家进入游戏时关闭坠落伤害：heightSegments 为高度分段边界，damageSegments 为对应伤害值（全 0 即无坠落伤害）
@@ -147,12 +157,11 @@ graph G_Climbing {
 
 	event __Custom6event_onground__(player entity<Player>, Vector Vector3, effectPos Vector3) {
 		Onground(player, Vector, effectPos)
-		// 攀爬跳跃落地（C_P_Climbing2 下落分支）：指引 Wingshoptrigger 世界位置
-		
+		if ContainKey(awaitingTutorialWingshopHintAfterLand, player) && (awaitingTutorialWingshopHintAfterLand[player] as bool) {
 			var hintDest = globalEntity<S_WingShopUI>.GetWingshopHintPosition()
-			LogInfo(hintDest)
+			map.Remove(awaitingTutorialWingshopHintAfterLand, player)
 			DispatchEventToEntity(OnShowHint, player, PlatformType.Client, List<object>{hintDest})
-		
+		}
 	}
 
 	// 卡死救援：将指定玩家传送到 (0,0,0)，终止攀爬/坠落/舞蹈等动画（由 P_IngameHud /Button/Button 客户端触发）
@@ -170,11 +179,13 @@ graph G_Climbing {
 	}
 
 	event __Custom6event_freeze_rescue______(player entity<Player>) {
+		map.Remove(awaitingTutorialWingshopHintAfterLand, player)
 		FreezeRescue(player)
 	}
 
 	// 由 C_P_Climbing2 在 Y>100 时通知调用；仅停止攀爬动画，传送在客户端执行
 	event __Custom6event_ClimbLeavetrigger__(player entity<Player>) {
+		//map.Remove(awaitingTutorialWingshopHintAfterLand, player)
 		map.Remove(playerIsClimbing, player)
 		map.Remove(playerIsJumping, player)
 		map.Remove(playerClimbingStopGuard, player)
