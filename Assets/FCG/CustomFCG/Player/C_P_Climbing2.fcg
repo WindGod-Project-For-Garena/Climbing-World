@@ -34,8 +34,9 @@ graph C_P_Climbing2 {
 	// 攀爬开始时的 frame，用于计算攀爬时长；WingSpeed<464 且攀爬≥20s 后速度每秒降 5%
 	WingSpeedDecay float = 29
 	climbingStartFrame int = 0
-	
-	
+	// 本轮上塔会话：落地 OngroundReportor（下落时 climbingStartFrame 会清零，故单独记时/最大高度）
+	climbSessionStartFrame int = 0
+	maxSessionHeightY float = 0
 	Curent_Forward Vector3 = Vector3{0, 0, 0}
 	// 当前塔的 TeleportPoint 世界坐标（由 C_Climbing_starttrigger 进入时设置），Y>100 时传送到此处
 	HighClimbTeleportPos Vector3 = Vector3{0, 0, 0}
@@ -68,6 +69,16 @@ graph C_P_Climbing2 {
     
 	event OnFixedUpdate() {
 		frame = frame + 1
+		if (bIsClimb || ishanging) && climbSessionStartFrame == 0 {
+			climbSessionStartFrame = frame
+			maxSessionHeightY = GetLocalPlayer()<Player>.Position.Y
+		}
+		if bIsClimb || bIsFall || ishanging {
+			var pySession = GetLocalPlayer()<Player>.Position.Y
+			if pySession > maxSessionHeightY {
+				maxSessionHeightY = pySession
+			}
+		}
 		if bIsClimb == false && ishanging == false {
 			climbingStartFrame = 0
 		}
@@ -83,6 +94,8 @@ graph C_P_Climbing2 {
 			fallVelocity = 0
 			Tower_Height =9280
 			Curent_height = Vector3{HighClimbTeleportPos.X, HighClimbTeleportPos.Y, HighClimbTeleportPos.Z}
+			climbSessionStartFrame = 0
+			maxSessionHeightY = 0
 			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
 			
@@ -166,6 +179,15 @@ graph C_P_Climbing2 {
 				SwitchFall = true
 				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 				var landPos = GetLocalPlayer()<Player>.Position
+				var rewardGold float = FallStartY
+				var sessionTimeSec float = 0
+				if climbSessionStartFrame > 0 {
+					sessionTimeSec = (frame - climbSessionStartFrame) as float / 30.0
+				}
+				var peakH = maxSessionHeightY
+				ShowOngroundReportorAt(landPos, rewardGold, sessionTimeSec, peakH)
+				climbSessionStartFrame = 0
+				maxSessionHeightY = 0
 				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, landPos})
 				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player,0})
 				// 将下落起始 Y 发给经济系统，用于增加金币并刷新 P_IngameHud/GoldCoin
@@ -190,6 +212,45 @@ graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			
 			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
+		}
+	}
+
+	func ShowOngroundReportorAt(landPos Vector3, rewardGold float, sessionTimeSec float, peakHeightY float) {
+		if thisEntity<Player> != GetLocalPlayer() {
+			return
+		}
+		CreateCustomUIClient(out var reportor, EResUI.OngroundReportor)
+		if reportor == nil {
+			return
+		}
+		reportor<CustomUI>.InScene = true
+		reportor<CustomUI>.WorldPosition = Vector3{landPos.X, landPos.Y + 1.5, landPos.Z}
+		reportor<CustomUI>.Scale = Vector3{2.5, 2.5, 2.5}
+		// 与落地 SetLocalPlayerForward(-Curent_Forward) 一致，水平面 Y 轴偏航（符号按引擎 UI 正面轴微调）
+		var face = Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z}
+		var yawDeg float = ATan2(face.X, face.Z)
+		reportor<CustomUI>.Rotation = Vector3{0, -yawDeg, 0}
+		var lp = GetLocalPlayer()
+		var w1 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (1)")
+		var w4 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (4)")
+		var w5 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (5)")
+		if w1 != nil {
+			w1<HudLabelWidget>.Text = convert.NumToString(math.Round(rewardGold), 0)
+		}
+		if w4 != nil {
+			w4<HudLabelWidget>.Text = convert.NumToString(sessionTimeSec, 1)
+		}
+		if w5 != nil {
+			w5<HudLabelWidget>.Text = convert.NumToString(math.Round(peakHeightY), 0)
+		}
+		reportor<CustomUI>.IsVisible = true
+		start DestroyOngroundReportorAfterDelay(reportor as entity<CustomUI>, 3000)
+	}
+
+	async func DestroyOngroundReportorAfterDelay(uiEntity entity<CustomUI>, delayMs int) {
+		WaitForMillisecond(delayMs)
+		if uiEntity != nil {
+			Destroy(uiEntity as entity)
 		}
 	}
 	
