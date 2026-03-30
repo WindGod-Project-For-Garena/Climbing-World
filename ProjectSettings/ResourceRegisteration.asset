@@ -102,6 +102,18 @@
           },
           "scriptName": "OngroundReportor",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "96nd3x8a309-mncvxl7q-pjyi229if5",
+            "filePath": "Assets\\UI\\Goldcoin.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Goldcoin",
+          "children": []
         }
       ]
     },

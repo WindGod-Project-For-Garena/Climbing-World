@@ -7,7 +7,7 @@
   "_entityId": "RTyhUVRx",
   "children": [
     {
-      "_entityName": "Image",
+      "_entityName": "Coin",
       "_tag": {
         "type": "UIImageEntity",
         "resourceId": ""
