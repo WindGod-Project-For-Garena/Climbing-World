@@ -1,0 +1,62 @@
+{
+  "fileId": "2f067u62q2g-mncmt5b9-gyfgmvug1ti",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "geometry_0.004.~@FFFUB",
+        "MeshName": "geometry_0.004",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "3000钢铁翅膀4",
+      "ImportSucceeded": true,
+      "MaterialCount": 1,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": "Material.001"
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "geometry_0.004",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              0.00015291,
+              0.0309521,
+              1.11558
+            ],
+            "Rotation": [
+              -90,
+              0,
+              0
+            ],
+            "Scale": [
+              100,
+              100,
+              100
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "2f067u62q2g-mncmt5b9-gyfgmvug1ti-geometry_0.004.~@FFFUB": 0
+  }
+}

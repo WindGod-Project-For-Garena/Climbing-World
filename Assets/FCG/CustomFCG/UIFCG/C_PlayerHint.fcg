@@ -40,20 +40,20 @@ graph PlayerHint {
     }
 
     event OnHideHint(index int) {
-        LogInfo("index: " + index)
+   
         if index == 1 && guideIndex == 1 {
             guideIndex = 2
-            LogInfo("guideIndex: " + guideIndex)
+          
             HideHint()
         }
         if index == 2 && guideIndex == 2 {
             guideIndex = 3
-            LogInfo("guideIndex: " + guideIndex)
+      
             HideHint()
         }
         if index == 3 && guideIndex == 3 {
             guideIndex = 0
-            LogInfo("guideIndex: " + guideIndex)
+     
             HideHint()
         }
     }

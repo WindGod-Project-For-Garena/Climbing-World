@@ -20,6 +20,8 @@ graph C_freezebutton {
 		triggerPlayer<C_P_Climbing2>.fallVelocity = 0
 		triggerPlayer<C_P_Climbing2>.SwitchFall = true
 		triggerPlayer<C_P_Climbing2>.climbingStartFrame = 0
+		triggerPlayer<C_P_Climbing2>.climbSessionStartFrame = 0
+		triggerPlayer<C_P_Climbing2>.maxSessionHeightY = 0
 		triggerPlayer<C_P_Climbing2>.Tower_Height = 0
 		triggerPlayer<C_P_Climbing2>.WingSpeedDecay = triggerPlayer<C_P_Climbing2>.WingSpeed
 		triggerPlayer<C_P_Climbing2>.Curent_height = origin

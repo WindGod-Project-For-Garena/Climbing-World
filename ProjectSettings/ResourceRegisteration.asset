@@ -90,6 +90,18 @@
           },
           "scriptName": "Wingshop2",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "q1btnb23ki-mn8ch36x-qvaivsqet9h",
+            "filePath": "Assets\\UI\\OngroundReportor.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "OngroundReportor",
+          "children": []
         }
       ]
     },
@@ -126,19 +138,19 @@
         },
         {
           "refer": {
-            "fileId": "xtoqya1p0l-mmoarmbq-f2fbzapa5fn",
-            "filePath": "Assets\\Prefabs\\wings\\Wings4.prefab",
+            "fileId": "l0wtreh22g-mncn58af-0jb8ksht72ab",
+            "filePath": "Assets\\Prefabs\\wings\\Wings1.prefab",
             "_tag": {
               "type": "GFileRefer"
             },
             "fileType": "prefab"
           },
-          "scriptName": "Wings4",
+          "scriptName": "Wings1",
           "children": []
         },
         {
           "refer": {
-            "fileId": "8sh9eeninwg-mmooa8mb-48e2ld8lwl2",
+            "fileId": "iuv9wdtjrhh-mncn5rpu-d3l33oa5p29",
             "filePath": "Assets\\Prefabs\\wings\\Wings2.prefab",
             "_tag": {
               "type": "GFileRefer"
@@ -150,7 +162,7 @@
         },
         {
           "refer": {
-            "fileId": "5m876l2q2nt-mmoo02br-0f2k277j1da9",
+            "fileId": "3lawbm92zro-mncn6aob-if0i5ht4eno",
             "filePath": "Assets\\Prefabs\\wings\\Wings3.prefab",
             "_tag": {
               "type": "GFileRefer"
@@ -162,14 +174,14 @@
         },
         {
           "refer": {
-            "fileId": "7lz3i0bu07g-mmt0nkpd-kz4du4zjsx",
-            "filePath": "Assets\\Prefabs\\wings\\Wings1.prefab",
+            "fileId": "nndukcjzg0e-mncn6t5b-wusa5stu2cq",
+            "filePath": "Assets\\Prefabs\\wings\\Wings4.prefab",
             "_tag": {
               "type": "GFileRefer"
             },
             "fileType": "prefab"
           },
-          "scriptName": "Wings1",
+          "scriptName": "Wings4",
           "children": []
         }
       ]

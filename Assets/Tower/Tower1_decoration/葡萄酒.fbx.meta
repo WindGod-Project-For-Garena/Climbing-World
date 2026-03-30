@@ -1,0 +1,62 @@
+{
+  "fileId": "gz9cvudc48-mn8o2j00-f9q8jswxere",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "geometry_0.006.~@FFFUB",
+        "MeshName": "geometry_0.006",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "葡萄酒",
+      "ImportSucceeded": true,
+      "MaterialCount": 1,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": "Material.001"
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "geometry_0.006",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              -0.0000332701,
+              0.030845,
+              6.54232
+            ],
+            "Rotation": [
+              -90,
+              0,
+              0
+            ],
+            "Scale": [
+              100,
+              100,
+              100
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "gz9cvudc48-mn8o2j00-f9q8jswxere-geometry_0.006.~@FFFUB": 0
+  }
+}

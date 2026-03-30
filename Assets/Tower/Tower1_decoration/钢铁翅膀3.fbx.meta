@@ -1,5 +1,5 @@
 {
-  "fileId": "auaijahr9d8-mmybtlyf-24fb8c00cgk",
+  "fileId": "zhg2sybk0bf-mn8o2i93-em1b3vrgj5m",
   "globalscale": 1,
   "enabletangent": false,
   "properties": {
@@ -10,8 +10,8 @@
   "manifest": {
     "Meshes": [
       {
-        "Name": "geometry_0.~@FFFUB",
-        "MeshName": "geometry_0",
+        "Name": "geometry_0.010.~@FFFUB",
+        "MeshName": "geometry_0.010",
         "Type": "common",
         "OrgExtName": ".~@FFFUB"
       }
@@ -19,37 +19,37 @@
     "BoneInfos": [],
     "Anims": [],
     "ManifestJSON": {
-      "FBXName": "reduced_mesh-1270_exported",
+      "FBXName": "钢铁翅膀4",
       "ImportSucceeded": true,
       "MaterialCount": 1,
       "MaterialDetail": [
         {
           "Index": 0,
-          "MaterialName": ""
+          "MaterialName": "Material.001"
         }
       ],
       "MeshCount": 1,
       "MeshDetail": [
         {
-          "MeshName": "geometry_0",
+          "MeshName": "geometry_0.010",
           "MaterialIndex": [
             0
           ],
           "Transform": {
             "Position": [
-              0,
-              0,
-              0
+              0.00159471,
+              0.022202,
+              10.2979
             ],
             "Rotation": [
-              0,
+              -90,
               0,
               0
             ],
             "Scale": [
-              1,
-              1,
-              1
+              100,
+              100,
+              100
             ]
           }
         }
@@ -57,6 +57,6 @@
     }
   },
   "subColliderLOD": {
-    "auaijahr9d8-mmybtlyf-24fb8c00cgk-geometry_0.~@FFFUB": 0
+    "zhg2sybk0bf-mn8o2i93-em1b3vrgj5m-geometry_0.010.~@FFFUB": 0
   }
 }

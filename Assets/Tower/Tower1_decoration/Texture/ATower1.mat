@@ -3,7 +3,7 @@
   "_tag": {
     "type": "Material"
   },
-  "_entityId": "dhIASNq9",
+  "_entityId": "ZpDXSHU6",
   "children": [],
   "prefabVariant": null,
   "activeValue": null,
@@ -11,8 +11,8 @@
   "editorLockValue": false,
   "editorVisibleValue": true,
   "shader": {
-    "fileId": "s-64c4f071-1e93-4613-a3da-bef38339a2ec",
-    "filePath": "lib://ffshaders/BRMobile/UGC/DiffuseColor",
+    "fileId": "s-6edb6c49-d4ff-4bee-9b2d-57072c754d2b",
+    "filePath": "lib://ffshaders/BRMobile/UGC/Bumped Specular",
     "_tag": {
       "type": "GFileRefer"
     },
@@ -21,8 +21,8 @@
   "paramValue": {
     "_MainTex": {
       "Texture": {
-        "fileId": "2qzhvmfhkxp-mmybvhhb-hnjlcu2fd1g",
-        "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\pyramid.jpg",
+        "fileId": "kn7rzjudege-mn8ieri4-5sd9rj6ff45",
+        "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\AT1.png",
         "_tag": {
           "type": "GFileRefer"
         },
@@ -38,14 +38,7 @@
       }
     },
     "_Mask": {
-      "Texture": {
-        "fileId": "2qzhvmfhkxp-mmybvhhb-hnjlcu2fd1g",
-        "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\pyramid.jpg",
-        "_tag": {
-          "type": "GFileRefer"
-        },
-        "fileType": "texture"
-      },
+      "Texture": null,
       "Tiling": {
         "x": 1,
         "y": 1
@@ -61,17 +54,71 @@
       "b": 235,
       "a": 1
     },
-    "_LIGHTING_ON_LOW": true,
-    "_CullMode": 0,
-    "BlendMode": "Opaque",
+    "_CullMode": 2,
+    "_BumpMap": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
     "_Color": {
-      "r": 135,
-      "g": 206,
+      "r": 255,
+      "g": 255,
       "b": 255,
       "a": 1
     },
-    "_Cutoff": 0.5,
-    "_Brightness": 0.63,
+    "_Brightness": 1.18,
+    "_DiffuseIntensity": 1,
+    "_Shininess": 0.078125,
+    "_SpecularColor": {
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 1
+    },
+    "_SpecularMask": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_SpecularIntensity": 0.2,
+    "BlendMode": "Cutoff",
+    "_TintColor": {
+      "r": 64,
+      "g": 115,
+      "b": 235,
+      "a": 1
+    },
+    "_NormalGlossMap": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_FresnelPow": 1,
+    "_FresnelColor": {
+      "r": 183,
+      "g": 223,
+      "b": 238,
+      "a": 1
+    },
+    "_Cutoff": 0,
     "_Ramp": {
       "Texture": null,
       "Tiling": {

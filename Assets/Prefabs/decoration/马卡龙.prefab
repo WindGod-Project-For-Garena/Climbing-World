@@ -1,17 +1,17 @@
 {
-  "_entityName": "Wings2",
+  "_entityName": "马卡龙",
   "_tag": {
     "type": "Prefab"
   },
-  "_entityId": "jUZpDbn9",
+  "_entityId": "MOlRLq0r",
   "children": [
     {
-      "_entityName": "geometry_0.005",
+      "_entityName": "马卡龙",
       "_tag": {
         "type": "UGCSceneEntity",
         "resourceId": ""
       },
-      "_entityId": "tYSZIvTF",
+      "_entityId": "fMF4ZBJp",
       "children": [],
       "activeValue": {
         "selfValue": true,
@@ -24,9 +24,9 @@
         "z": 0
       },
       "scale": {
-        "x": 500,
-        "y": 500,
-        "z": 500
+        "x": 5000,
+        "y": 5000,
+        "z": 5000
       },
       "rotation": {
         "x": 0,
@@ -103,8 +103,8 @@
       "propsData": {},
       "entityVersion": 3,
       "mesh": {
-        "fileId": "cgmfejnkdnh-mncmn5he-x1nq8u4nc5-geometry_0.005.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower1_decoration\\2000钢铁翅膀2.fbx\\geometry_0.005.mesh",
+        "fileId": "wgdri14z7g-mn8o2imt-6n1a5gpn4me-geometry_0.002.~@FFFUB",
+        "filePath": "fab://Assets\\Tower\\Tower1_decoration\\马卡龙.fbx\\geometry_0.002.mesh",
         "_tag": {
           "type": "GFileRefer"
         },
@@ -116,10 +116,7 @@
     }
   ],
   "prefabVariant": null,
-  "activeValue": {
-    "selfValue": true,
-    "valueTag": "activeValue"
-  },
+  "activeValue": null,
   "unlockedValue": null,
   "editorLockValue": false,
   "editorVisibleValue": true,

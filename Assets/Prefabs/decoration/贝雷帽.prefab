@@ -1,17 +1,17 @@
 {
-  "_entityName": "Wings2",
+  "_entityName": "贝雷帽",
   "_tag": {
     "type": "Prefab"
   },
-  "_entityId": "jUZpDbn9",
+  "_entityId": "yXWD4NBZ",
   "children": [
     {
-      "_entityName": "geometry_0.005",
+      "_entityName": "贝雷帽",
       "_tag": {
         "type": "UGCSceneEntity",
         "resourceId": ""
       },
-      "_entityId": "tYSZIvTF",
+      "_entityId": "m5Kk7izd",
       "children": [],
       "activeValue": {
         "selfValue": true,
@@ -24,9 +24,9 @@
         "z": 0
       },
       "scale": {
-        "x": 500,
-        "y": 500,
-        "z": 500
+        "x": 5000,
+        "y": 5000,
+        "z": 5000
       },
       "rotation": {
         "x": 0,
@@ -103,8 +103,8 @@
       "propsData": {},
       "entityVersion": 3,
       "mesh": {
-        "fileId": "cgmfejnkdnh-mncmn5he-x1nq8u4nc5-geometry_0.005.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower1_decoration\\2000钢铁翅膀2.fbx\\geometry_0.005.mesh",
+        "fileId": "h1m9wbeiuyr-mn8o2g3e-0ys9acqvgtc-geometry_0.003.~@FFFUB",
+        "filePath": "fab://Assets\\Tower\\Tower1_decoration\\贝雷帽.fbx\\geometry_0.003.mesh",
         "_tag": {
           "type": "GFileRefer"
         },
@@ -116,10 +116,7 @@
     }
   ],
   "prefabVariant": null,
-  "activeValue": {
-    "selfValue": true,
-    "valueTag": "activeValue"
-  },
+  "activeValue": null,
   "unlockedValue": null,
   "editorLockValue": false,
   "editorVisibleValue": true,

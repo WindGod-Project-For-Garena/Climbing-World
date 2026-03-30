@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 109,
+      "tempIndex": 139,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -344,7 +344,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 110,
+      "tempIndex": 140,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -422,7 +422,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 111,
+          "tempIndex": 141,
           "itemID": 167,
           "seParent": null,
           "ecaScripts": [
@@ -706,7 +706,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
@@ -745,7 +748,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 112,
+          "tempIndex": 142,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1108,7 +1111,7 @@
           "entityTag22802862"
         ]
       },
-      "tempIndex": 113,
+      "tempIndex": 143,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1279,7 +1282,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
@@ -1318,7 +1324,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 114,
+          "tempIndex": 144,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1407,7 +1413,7 @@
           "entityTag84277110"
         ]
       },
-      "tempIndex": 115,
+      "tempIndex": 145,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -1852,7 +1858,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
@@ -1891,7 +1900,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 116,
+          "tempIndex": 146,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1980,7 +1989,7 @@
           "entityTag29484470"
         ]
       },
-      "tempIndex": 117,
+      "tempIndex": 147,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -2425,7 +2434,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
@@ -2464,7 +2476,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 118,
+          "tempIndex": 148,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -2553,7 +2565,7 @@
           "entityTag76000170"
         ]
       },
-      "tempIndex": 119,
+      "tempIndex": 149,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [
@@ -2900,7 +2912,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 120,
+      "tempIndex": 150,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -3135,289 +3147,6 @@
       },
       "propsData": {},
       "entityVersion": 3
-    },
-    {
-      "_entityName": "geometry_0",
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": ""
-      },
-      "_entityId": "UU8g4Mvx",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": -23.92099952697754,
-        "y": 4.166507244110107,
-        "z": -1.5430002212524414
-      },
-      "scale": {
-        "x": 1000,
-        "y": 1000,
-        "z": 1000
-      },
-      "rotation": {
-        "x": 270,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "physicalMaterial": null,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [
-        "MeshRender",
-        "ColliderShape",
-        "Collider"
-      ],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "materials": [
-        {
-          "fileId": "ukuwl49gtdl-mmybvuxf-am8z0m8m89j",
-          "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\pyramid.mat",
-          "_tag": {
-            "type": "GFileRefer"
-          },
-          "fileType": "material"
-        }
-      ],
-      "colliders": [
-        {
-          "enable": true,
-          "colliderType": "MeshCollider",
-          "meshUUID": {
-            "fileId": "auaijahr9d8-mmybtlyf-24fb8c00cgk-geometry_0.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower1_decoration\\reduced_mesh-1270_exported.fbx\\geometry_0.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "size": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "radius": 0.5,
-          "height": 1,
-          "isConvexIfMesh": false
-        }
-      ],
-      "IsNPC": false,
-      "isCreateAsEmpty": false,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {},
-        "MeshRender": {},
-        "ColliderShape": {},
-        "Collider": {}
-      },
-      "propsData": {},
-      "entityVersion": 3,
-      "mesh": {
-        "fileId": "auaijahr9d8-mmybtlyf-24fb8c00cgk-geometry_0.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower1_decoration\\reduced_mesh-1270_exported.fbx\\geometry_0.mesh",
-        "_tag": {
-          "type": "GFileRefer"
-        },
-        "fileType": "mesh"
-      }
-    },
-    {
-      "_entityName": "geometry_0 (1)",
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": ""
-      },
-      "_entityId": "md9q65t0",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": null,
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": -15.215047836303711,
-        "y": 0.001194000244140625,
-        "z": 11.796317100524902
-      },
-      "scale": {
-        "x": 1000,
-        "y": 1000,
-        "z": 1000
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "physicalMaterial": null,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [
-        "MeshRender",
-        "ColliderShape",
-        "Collider"
-      ],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "materials": [
-        {
-          "fileId": "g2xanphmfzg-mmyct6im-bv40f470hdm",
-          "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\Triomphe.mat",
-          "_tag": {
-            "type": "GFileRefer"
-          },
-          "fileType": "material"
-        }
-      ],
-      "colliders": [
-        {
-          "enable": true,
-          "colliderType": "MeshCollider",
-          "meshUUID": {
-            "fileId": "fs4qpao7y8r-mmycrlvk-r6h6snu82d-geometry_0.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower1_decoration\\reduced_mesh-1271_exported.fbx\\geometry_0.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "size": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "radius": 0.5,
-          "height": 1,
-          "isConvexIfMesh": false
-        }
-      ],
-      "IsNPC": false,
-      "isCreateAsEmpty": false,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {},
-        "MeshRender": {},
-        "ColliderShape": {},
-        "Collider": {}
-      },
-      "propsData": {},
-      "entityVersion": 3,
-      "mesh": {
-        "fileId": "fs4qpao7y8r-mmycrlvk-r6h6snu82d-geometry_0.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower1_decoration\\reduced_mesh-1271_exported.fbx\\geometry_0.mesh",
-        "_tag": {
-          "type": "GFileRefer"
-        },
-        "fileType": "mesh"
-      }
     }
   ],
   "prefabVariant": null,

@@ -3,36 +3,33 @@
   "_tag": {
     "type": "Prefab"
   },
-  "_entityId": "ZQsSOnpP",
+  "_entityId": "N859g9T7",
   "children": [
     {
-      "_entityName": "geometry_0 (2)",
+      "_entityName": "geometry_0.010",
       "_tag": {
         "type": "UGCSceneEntity",
         "resourceId": ""
       },
-      "_entityId": "v0f3n2t9",
+      "_entityId": "lu7oATaM",
       "children": [],
       "activeValue": {
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
+      "unlockedValue": null,
       "position": {
         "x": 0,
         "y": 0,
-        "z": -1.6
+        "z": 0
       },
       "scale": {
-        "x": 100,
-        "y": 100,
-        "z": 100
+        "x": 500,
+        "y": 500,
+        "z": 500
       },
       "rotation": {
-        "x": 270,
+        "x": 0,
         "y": 0,
         "z": 0
       },
@@ -48,7 +45,7 @@
         4
       ],
       "isTrigger": false,
-      "collidable": false,
+      "collidable": true,
       "physicalLayer": 0,
       "physicalMaterial": null,
       "aoiSetting": 0,
@@ -63,8 +60,8 @@
       },
       "materials": [
         {
-          "fileId": "1rwx40xtzmb-mmonvqm2-6gbb7s6fikj",
-          "filePath": "Assets\\Wings\\Wings3.mat",
+          "fileId": "y4odxl4ptl-mn8iec7o-2pklblrwg4k",
+          "filePath": "Assets\\Tower\\Tower1_decoration\\Texture\\ATower1.mat",
           "_tag": {
             "type": "GFileRefer"
           },
@@ -106,8 +103,8 @@
       "propsData": {},
       "entityVersion": 3,
       "mesh": {
-        "fileId": "vliimqyfxh-mmonvgrd-ndu63j6q28-geometry_0.~@FFFUB",
-        "filePath": "fab://Assets\\Wings\\reduced_mesh-1242_exported.fbx\\geometry_0.mesh",
+        "fileId": "fmfo1tm3fff-mncmnb68-296z5axpkul-geometry_0.010.~@FFFUB",
+        "filePath": "fab://Assets\\Tower\\Tower1_decoration\\2000钢铁翅膀3.fbx\\geometry_0.010.mesh",
         "_tag": {
           "type": "GFileRefer"
         },
@@ -123,10 +120,7 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": {
-    "selfValue": true,
-    "valueTag": "unlockedValue"
-  },
+  "unlockedValue": null,
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,
