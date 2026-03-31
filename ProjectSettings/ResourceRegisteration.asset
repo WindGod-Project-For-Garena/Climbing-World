@@ -114,6 +114,18 @@
           },
           "scriptName": "Goldcoin",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "myq31kbyi3j-mne93emx-u2k80ao9ecn",
+            "filePath": "Assets\\UI\\Tower.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Tower",
+          "children": []
         }
       ]
     },

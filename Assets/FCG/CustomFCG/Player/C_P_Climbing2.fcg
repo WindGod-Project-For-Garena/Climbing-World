@@ -94,7 +94,7 @@ graph C_P_Climbing2 {
 			fallVelocity = 0
 			Tower_Height =9280
 			Curent_height = Vector3{HighClimbTeleportPos.X, HighClimbTeleportPos.Y, HighClimbTeleportPos.Z}
-			climbSessionStartFrame = 0
+	
 			maxSessionHeightY = 0
 			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
@@ -181,7 +181,7 @@ graph C_P_Climbing2 {
 				var landPos = GetLocalPlayer()<Player>.Position
 				var rewardGold float = FallStartY
 				var sessionTimeSec float = 0
-				if climbSessionStartFrame > 0 {
+				if climbSessionStartFrame == 0 {
 					sessionTimeSec = (frame - climbSessionStartFrame) as float / 30.0
 				}
 				var peakH = maxSessionHeightY
