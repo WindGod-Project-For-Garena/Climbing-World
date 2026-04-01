@@ -535,6 +535,116 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_31353734"
+    },
+    "signal_23423940": {
+      "name": "Custom event_TowershopLeave__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100026,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_23423940"
+    },
+    "signal_97943564": {
+      "name": "Custom event_TowershopEnter__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100023,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "triggerEntity",
+          "value": "Entity",
+          "key": 2
+        },
+        {
+          "name": "towerIndex",
+          "value": "Int",
+          "key": 3
+        }
+      ],
+      "propCount": 3,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_97943564"
+    },
+    "signal_41172699": {
+      "name": "Custom event___TowerBuyUnlock__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100029,
+      "props": [
+        {
+          "name": "triggerPlayer",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "Towerindex",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_41172699"
+    },
+    "signal_22141477": {
+      "name": "Custom event_ShowTowerSelect__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100030,
+      "props": [
+        {
+          "name": "triggerPlayer",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "wingIndex",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_22141477"
+    },
+    "signal_59472677": {
+      "name": "Custom event_BUYTowers__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100031,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "price",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_59472677"
     }
   },
   "customName": {
@@ -564,7 +674,12 @@
     "Custom event_RegisterWingshopHintPosition__": "signal_77936109",
     "Custom event_TowerTrigger": "signal_24987626",
     "OnHideHint": "signal_87134090",
-    "Custom event_CreateIngameUI": "signal_31353734"
+    "Custom event_CreateIngameUI": "signal_31353734",
+    "Custom event_TowershopLeave__": "signal_23423940",
+    "Custom event_TowershopEnter__": "signal_97943564",
+    "Custom event___TowerBuyUnlock__": "signal_41172699",
+    "Custom event_ShowTowerSelect__": "signal_22141477",
+    "Custom event_BUYTowers__": "signal_59472677"
   },
   "children": []
 }

@@ -1,0 +1,121 @@
+// Wingshop 根节点挂载的客户端脚本
+// 点击 Button 时将 C_P_Climbing2 的 Speed_muti 变为原来的十倍
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Hud.fcc" as hud
+import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+import "../Player/C_PlayerTowerData.fcg" as C_PlayerTowerData
+import "EditorGenLib.fcc" as gen
+import "Avatar.fcc" as avatar
+
+
+[platform_client]
+graph C_TowershopUI {
+	bone entity<SkeletonPart> = nil
+	price float = 10.0
+    triggerEntity entity<Entity> = nil
+    towerSummonIndex int = 0
+
+	event OnAwake() {
+	}
+
+	// 点击 Close_button 时关闭 Wingshop UI（通知服务端隐藏 Panel）
+	func Close_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_TowershopLeave____, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	// 点击 Wing 时：仅当按钮 Wingindex <= 该玩家已解锁最高翅膀索引时才执行选翼与速度逻辑
+	func Tower1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		towerSummonIndex = 1
+		if 1 <= triggerPlayer<C_PlayerTowerData>.HighestTowerIndex {
+            DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, towerSummonIndex , triggerEntity})
+
+		
+			
+		
+
+		
+		
+		}
+	}
+
+	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		
+		if 2 <=triggerPlayer<C_PlayerTowerData>.HighestTowerIndex {
+			DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2 })
+			var Nominal_Speed float = 116
+			
+			
+			
+		}
+	}
+
+	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
+		if 3 <=triggerPlayer<C_PlayerTowerData>.HighestTowerIndex {
+			DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3 })
+			
+			
+			
+		}
+	}
+
+	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
+		if 4 <=triggerPlayer<C_PlayerTowerData>.HighestTowerIndex {
+			DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4 })
+			
+			
+			
+		
+		}
+	}
+
+	func BUY1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+
+		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 1
+		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1 })
+		DispatchEventToEntity(__Custom6event_BUYTowers____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
+		
+		
+		
+			triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 1
+		
+	}
+
+	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+
+		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
+		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 2
+		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2 })
+		DispatchEventToEntity(__Custom6event_BUYTowers____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
+	
+		
+			triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 2
+		
+	}
+
+	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
+		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
+		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 3
+		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3 })
+		DispatchEventToEntity(__Custom6event_BUYTowers____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
+		
+			triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 3
+		
+	}
+
+	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
+		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
+		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 4
+		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4 })
+		DispatchEventToEntity(__Custom6event_BUYTowers____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, price})
+	
+			triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 4
+		
+	}
+}

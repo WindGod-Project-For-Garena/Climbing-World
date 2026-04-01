@@ -1,0 +1,191 @@
+// Towershop UI 服务端逻辑：玩家进入/离开 Towershop 区域时创建/显示/隐藏 UI，以及 Select/Trick/Equipped 显隐
+// 退出 trigger 或关闭界面时保持当前 Select/Equipped 状态，再次进入时恢复
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "List.fcc" as list
+import "Player.fcc" as player
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+import "Math.fcc" as Math
+import "./G_Tower.fcg" as G_Tower
+
+[platform_server]
+graph S_TowershopUI {
+	Towershop Map<object, object> = nil
+	// 玩家 -> 上次选中的翅膀索引（0=无，1-4=Wing1~4），用于退出 trigger 或关闭界面后再次进入时恢复显隐状态
+	TowerSelectState Map<entity<Player>, int> = nil
+	// 玩家 -> 已解锁的翅膀数量（0-4），用于 BUY/Trick/Locked 显隐
+	TowerUnlockState Map<entity<Player>, int> = nil
+	// 由场景实体 Towershoptrigger 客户端 OnAwake 上报，用于攀爬落地后 OnShowHint
+
+	event OnAwake() {
+		Towershop = map.New()
+		TowerSelectState = map.New()
+		TowerUnlockState = map.New()
+	}
+
+
+	event __Custom6event_TowershopEnter____(player entity<Player>, triggerEntity entity<Entity>, towerSummonIndex int) {
+		LogInfo("TowershopEnter")
+      
+	
+		if ContainKey(Towershop, player) {
+			var TowershopEntity = Towershop[player] as entity
+			TowershopEntity<CustomUI>.IsVisible = true
+			var panelWidget = GetWidgetByPath(player, TowershopEntity as entity<CustomUI>, "/Panel")
+			if panelWidget != nil {
+				panelWidget<UIWidget>.IsVisible = true
+			}
+			// 恢复上次退出 trigger 或关闭界面时的 Select/Equipped 显隐状态
+			var savedIndex = 0
+			if ContainKey(TowerSelectState, player) {
+				savedIndex = TowerSelectState[player]
+			}
+			ApplyTowerSelectState(player, TowershopEntity as entity<CustomUI>, savedIndex)
+			var savedUnlock = 0
+			if ContainKey(TowerUnlockState, player) {
+				savedUnlock = TowerUnlockState[player]
+			}
+			ApplyWingBuyState(player, TowershopEntity as entity<CustomUI>, savedUnlock)
+		} else {
+            LogInfo("TowershopEnter2")
+			CreateCustomUI(out var createdEntity, player, EResUI.TowerShop)
+            globalEntity<G_Tower>.triggerEntity = triggerEntity
+            globalEntity<G_Tower>.towerIndex = towerSummonIndex
+			Towershop[player] = createdEntity
+			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
+			TowerSelectState[player] = 0
+			TowerUnlockState[player] = 0
+			HideAllBUY(player, createdEntity as entity<CustomUI>)
+			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, 0)
+		}
+	}
+
+	event __Custom6event_TowershopLeave____(player entity<Player>) {
+		if ContainKey(Towershop, player) {
+			var TowershopEntity = Towershop[player] as entity
+			var panelWidget = GetWidgetByPath(player, TowershopEntity as entity<CustomUI>, "/Panel")
+			if panelWidget != nil {
+				panelWidget<UIWidget>.IsVisible = false
+			}
+		}
+	}
+
+	event __Custom6event_ShowTowerSelect____(player entity<Player>, Towerindex int) {
+		if !ContainKey(Towershop, player) {
+			return
+		}
+		TowerSelectState[player] = Towerindex
+		ApplyTowerSelectState(player, Towershop[player] as entity<CustomUI>, Towerindex)
+	}
+
+	// 玩家点击 BUY：当前 BUY 不可视，下一格 BUY 可视，对应 Trick 可视，对应 Locked 不可视
+	event __Custom6event___TowerBuyUnlock____(player entity<Player>, Towerindex int) {
+		if !ContainKey(Towershop, player) {
+			return
+		}
+	
+		var currentUnlock = 0
+		if ContainKey(TowerUnlockState, player) {
+			currentUnlock = TowerUnlockState[player]
+		}
+		if Towerindex != currentUnlock + 1 {
+			return
+		}
+		TowerUnlockState[player] = Towerindex
+		ApplyWingBuyState(player, Towershop[player] as entity<CustomUI>, Towerindex)
+	}
+
+	// 应用指定翅膀的 Select/Equipped 显隐状态，Towerindex 为 0 时全部隐藏
+	func ApplyTowerSelectState(player entity<Player>, TowershopUI entity<CustomUI>, Towerindex int) {
+		if Towerindex == 0 {
+			HideAllWingSelect(player, TowershopUI)
+			return
+		}
+		var s1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/Select")
+		var s2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/Select")
+		var s3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/Select")
+		var s4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/Select")
+		if s1 != nil { s1<UIWidget>.IsVisible = false }
+		if s2 != nil { s2<UIWidget>.IsVisible = false }
+		if s3 != nil { s3<UIWidget>.IsVisible = false }
+		if s4 != nil { s4<UIWidget>.IsVisible = false }
+		// 不修改 Trick 显隐，由 ApplyWingBuyState 按解锁状态单独控制
+		var e1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/Equipped")
+		var e2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/Equipped")
+		var e3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/Equipped")
+		var e4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/Equipped")
+		if e1 != nil { e1<UIWidget>.IsVisible = false }
+		if e2 != nil { e2<UIWidget>.IsVisible = false }
+		if e3 != nil { e3<UIWidget>.IsVisible = false }
+		if e4 != nil { e4<UIWidget>.IsVisible = false }
+		if Towerindex == 1 && s1 != nil { s1<UIWidget>.IsVisible = true; if e1 != nil { e1<UIWidget>.IsVisible = true } }
+		if Towerindex == 2 && s2 != nil { s2<UIWidget>.IsVisible = true; if e2 != nil { e2<UIWidget>.IsVisible = true } }
+		if Towerindex == 3 && s3 != nil { s3<UIWidget>.IsVisible = true; if e3 != nil { e3<UIWidget>.IsVisible = true } }
+		if Towerindex == 4 && s4 != nil { s4<UIWidget>.IsVisible = true; if e4 != nil { e4<UIWidget>.IsVisible = true } }
+	}
+
+	func HideAllWingSelect(player entity<Player>, TowershopUI entity<CustomUI>) {
+		var s1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/Select")
+		var s2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/Select")
+		var s3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/Select")
+		var s4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/Select")
+		if s1 != nil { s1<UIWidget>.IsVisible = false }
+		if s2 != nil { s2<UIWidget>.IsVisible = false }
+		if s3 != nil { s3<UIWidget>.IsVisible = false }
+		if s4 != nil { s4<UIWidget>.IsVisible = false }
+		// 不修改 Trick 显隐，由 ApplyWingBuyState 按解锁状态单独控制
+		var e1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/Equipped")
+		var e2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/Equipped")
+		var e3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/Equipped")
+		var e4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/Equipped")
+		if e1 != nil { e1<UIWidget>.IsVisible = false }
+		if e2 != nil { e2<UIWidget>.IsVisible = false }
+		if e3 != nil { e3<UIWidget>.IsVisible = false }
+		if e4 != nil { e4<UIWidget>.IsVisible = false }
+	}
+
+	// 隐藏所有 BUY 按钮
+	func HideAllBUY(player entity<Player>, TowershopUI entity<CustomUI>) {
+		var b1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/BUY")
+		var b2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/BUY")
+		var b3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/BUY")
+		var b4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/BUY")
+		if b1 != nil { b1<UIWidget>.IsVisible = false }
+		if b2 != nil { b2<UIWidget>.IsVisible = false }
+		if b3 != nil { b3<UIWidget>.IsVisible = false }
+		if b4 != nil { b4<UIWidget>.IsVisible = false }
+	}
+
+	// 按解锁数量应用 BUY/Trick/Locked 显隐：unlockCount 0=仅 Wing1/BUY 可见；≥1 时 Wing1/Trick 可见、Wing1/Locked 不可视，依次类推
+	func ApplyWingBuyState(player entity<Player>, TowershopUI entity<CustomUI>, unlockCount int) {
+		var b1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/BUY")
+		var b2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/BUY")
+		var b3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/BUY")
+		var b4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/BUY")
+		var t1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/Trick")
+		var t2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/Trick")
+		var t3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/Trick")
+		var t4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/Trick")
+		var l1 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings1/Locked")
+		var l2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings2/Locked")
+		var l3 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings3/Locked")
+		var l4 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Wings4/Locked")
+		// BUY：仅下一个待解锁的显示
+		if b1 != nil { b1<UIWidget>.IsVisible = (unlockCount == 0) }
+		if b2 != nil { b2<UIWidget>.IsVisible = (unlockCount == 1) }
+		if b3 != nil { b3<UIWidget>.IsVisible = (unlockCount == 2) }
+		if b4 != nil { b4<UIWidget>.IsVisible = (unlockCount == 3) }
+		// Trick：已解锁的显示
+		if t1 != nil { t1<UIWidget>.IsVisible = (unlockCount >= 1) }
+		if t2 != nil { t2<UIWidget>.IsVisible = (unlockCount >= 2) }
+		if t3 != nil { t3<UIWidget>.IsVisible = (unlockCount >= 3) }
+		if t4 != nil { t4<UIWidget>.IsVisible = (unlockCount >= 4) }
+		// Locked：未解锁的显示，已解锁的不可视
+		if l1 != nil { l1<UIWidget>.IsVisible = (unlockCount < 1) }
+		if l2 != nil { l2<UIWidget>.IsVisible = (unlockCount < 2) }
+		if l3 != nil { l3<UIWidget>.IsVisible = (unlockCount < 3) }
+		if l4 != nil { l4<UIWidget>.IsVisible = (unlockCount < 4) }
+	}
+}

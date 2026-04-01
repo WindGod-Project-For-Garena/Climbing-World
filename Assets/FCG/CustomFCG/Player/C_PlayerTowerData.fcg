@@ -1,0 +1,23 @@
+// 客户端：按玩家名使用字典存储角色已解锁的最高等级翅膀索引（1-4）
+// 本地玩家用键 "LocalPlayer"；C_WingshopUI 通过 GetLocalPlayer()<C_Player_Wingsdata>.HighestWingIndex 直接读写，无需新事件
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Player.fcc" as player
+
+[platform_client]
+graph C_Player_TowerData {
+	// 玩家名 -> 已解锁的最高翅膀索引（1-4）
+	PlayerNameToHighestTowerIndex Map<entity<Player>, int> = nil
+	// 本地玩家当前最高翅膀索引，供 C_WingshopUI 直接读写
+	HighestTowerIndex int = 1
+    playerName entity<Player> = nil
+
+	event OnAwake() {
+        playerName = GetLocalPlayer()
+		PlayerNameToHighestTowerIndex = map.New()
+		PlayerNameToHighestTowerIndex[playerName] = HighestTowerIndex
+	}
+
+	
+}

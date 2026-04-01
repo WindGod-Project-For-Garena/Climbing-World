@@ -4,33 +4,51 @@
 import "StdLibrary.fcc" as std
 import "LevelObject.fcc" as levelobject
 import "EditorGenLib.fcc" as gen
+import "../UIFCG/C_TowershopUI.fcg" as C_TowershopUI
+
+
 
 [platform_client]
 graph C_Towertrigger {
-
+	triggerEntity entity<Entity> = nil
+	triggerPlayer entity<Player> = nil
 	event OnPlayerEnter(player entity<Player>) {
-       
-		var towerIndex = 0
+		triggerPlayer = player
+		var towerSummonIndex = 0
 		if HasTag(thisEntity, "Tower_1") {
        
-			towerIndex = 1
+			towerSummonIndex = 1
 		} else if HasTag(thisEntity, "Tower_2") {
           
-			towerIndex = 2
+			towerSummonIndex = 2
 		} else if HasTag(thisEntity, "Tower_3") {   
            
-			towerIndex = 3
+			towerSummonIndex = 3
 		} else if HasTag(thisEntity, "Tower_4") {
          
-			towerIndex = 4
+			towerSummonIndex = 4
 		}
-		if towerIndex > 0 {
-			var triggerTag = "Tower_" + towerIndex
+		if towerSummonIndex > 0 {
+			var triggerTag = "Tower_" + towerSummonIndex
 			if HasTag(player, triggerTag) {
-				DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, towerIndex,thisEntity})
+				
+				triggerEntity = thisEntity as entity<Entity>
+		
+				LogInfo("TowershopEnter3")
+				DispatchEventToEntity(__Custom6event_TowershopEnter____, globalEntity, PlatformType.Server, List<object>{player, triggerEntity, towerSummonIndex})
+				
+			
+			
 			} else {
 				
 			}
 		}
 	}
+	event OnPlayerLeave(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_TowershopLeave____, globalEntity, PlatformType.Server, List<object>{player})
+	}
+	
+
+
+
 }

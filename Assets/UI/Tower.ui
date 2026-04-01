@@ -600,7 +600,7 @@
                   "eventName": "OnClick",
                   "funcKey": "Close_button",
                   "type": "ugcscript",
-                  "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
+                  "fileID": "182gwl99swu-mneae4lc-hjhsg7muzzs"
                 }
               ],
               "disableCollider": false,
@@ -740,9 +740,9 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing1_button",
+                              "funcKey": "Tower1_button",
                               "type": "ugcscript",
-                              "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
+                              "fileID": "182gwl99swu-mneae4lc-hjhsg7muzzs"
                             }
                           ],
                           "disableCollider": false,
@@ -12744,8 +12744,8 @@
   },
   "ecaScripts": [
     {
-      "fileId": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p",
-      "filePath": "Assets\\FCG\\CustomFCG\\UIFCG\\C_WingshopUI.fcg",
+      "fileId": "182gwl99swu-mneae4lc-hjhsg7muzzs",
+      "filePath": "Assets\\FCG\\CustomFCG\\UIFCG\\C_TowershopUI.fcg",
       "_tag": {
         "type": "GFileRefer"
       },
