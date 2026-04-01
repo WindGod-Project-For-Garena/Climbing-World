@@ -466,20 +466,20 @@
                 "y": 0.5
               },
               "anchoredPosition": {
-                "x": -351,
-                "y": 300
+                "x": -439,
+                "y": 315
               },
               "sizeDelta": {
                 "x": 681,
-                "y": 367
+                "y": 455
               }
             },
             "alpha": 100,
             "priority": 0,
             "image": {
               "source": {
-                "fileId": "z7366sxebg-mne9dh5r-yaew0e45nlq",
-                "filePath": "Assets\\UI\\material\\Towerfront.png",
+                "fileId": "fsvluc1k3df-mnfthpd5-7mpq8u5dvx2",
+                "filePath": "Assets\\UI\\material\\Halofront.png",
                 "_tag": {
                   "type": "GFileRefer"
                 },

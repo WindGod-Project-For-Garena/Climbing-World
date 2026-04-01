@@ -1,54 +1,53 @@
 // 挂载在 Summoning Tower 的 trigger 上
-// 当玩家进入 trigger 时，根据 trigger 的 Tag（Tower_1～Tower_4）发送对应整数 1～4 给 G_Tower
+// 玩家进入/离开：与 C_Wingshoptrigger 一致，向服务端派发 TowershopEnter / TowershopLeave
+// 仅当玩家 Tag 与 trigger 的 Tower_1～Tower_4 一致时进入（与 G_Tower 分配槽位对应）
 
 import "StdLibrary.fcc" as std
 import "LevelObject.fcc" as levelobject
+import "List.fcc" as List
 import "EditorGenLib.fcc" as gen
-import "../UIFCG/C_TowershopUI.fcg" as C_TowershopUI
-
-
 
 [platform_client]
 graph C_Towertrigger {
 	triggerEntity entity<Entity> = nil
 	triggerPlayer entity<Player> = nil
+	// 同一玩家在一次“进入”周期内可能收到两次 OnPlayerEnter（多 Collider / 角色控制器等），用于去重
+	playerInside bool = false
+	insidePlayer entity<Player> = nil
+
 	event OnPlayerEnter(player entity<Player>) {
+		if playerInside && insidePlayer == player {
+			return
+		}
 		triggerPlayer = player
 		var towerSummonIndex = 0
 		if HasTag(thisEntity, "Tower_1") {
-       
 			towerSummonIndex = 1
 		} else if HasTag(thisEntity, "Tower_2") {
-          
 			towerSummonIndex = 2
 		} else if HasTag(thisEntity, "Tower_3") {   
-           
 			towerSummonIndex = 3
 		} else if HasTag(thisEntity, "Tower_4") {
-         
 			towerSummonIndex = 4
 		}
 		if towerSummonIndex > 0 {
 			var triggerTag = "Tower_" + towerSummonIndex
 			if HasTag(player, triggerTag) {
-				
+				playerInside = true
+				insidePlayer = player
 				triggerEntity = thisEntity as entity<Entity>
 		
 				LogInfo("TowershopEnter3")
 				DispatchEventToEntity(__Custom6event_TowershopEnter____, globalEntity, PlatformType.Server, List<object>{player, triggerEntity, towerSummonIndex})
-				
-			
-			
-			} else {
-				
 			}
 		}
 	}
+
 	event OnPlayerLeave(player entity<Player>) {
-		DispatchEventToEntity(__Custom6event_TowershopLeave____, globalEntity, PlatformType.Server, List<object>{player})
+		if insidePlayer == player {
+			playerInside = false
+			insidePlayer = nil
+			DispatchEventToEntity(__Custom6event_TowershopLeave____, globalEntity, PlatformType.Server, List<object>{player})
+		}
 	}
-	
-
-
-
 }

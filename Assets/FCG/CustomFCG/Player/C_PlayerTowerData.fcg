@@ -1,15 +1,14 @@
-// 客户端：按玩家名使用字典存储角色已解锁的最高等级翅膀索引（1-4）
-// 本地玩家用键 "LocalPlayer"；C_WingshopUI 通过 GetLocalPlayer()<C_Player_Wingsdata>.HighestWingIndex 直接读写，无需新事件
+// 客户端：存储已解锁的最高塔阶（0=未解锁，1～4=BUY 依次解锁），供 C_TowershopUI 判断按钮与召唤
 
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
 import "Player.fcc" as player
 
 [platform_client]
-graph C_Player_TowerData {
-	// 玩家名 -> 已解锁的最高翅膀索引（1-4）
+graph C_PlayerTowerData {
+	// 玩家 -> 已解锁的最高塔阶索引（1-4）
 	PlayerNameToHighestTowerIndex Map<entity<Player>, int> = nil
-	// 本地玩家当前最高翅膀索引，供 C_WingshopUI 直接读写
+	// 本地玩家当前最高解锁阶，与 S_TowerShopUI 的 TowerUnlockState 逻辑一致（默认解锁第1个塔）
 	HighestTowerIndex int = 1
     playerName entity<Player> = nil
 
@@ -18,6 +17,4 @@ graph C_Player_TowerData {
 		PlayerNameToHighestTowerIndex = map.New()
 		PlayerNameToHighestTowerIndex[playerName] = HighestTowerIndex
 	}
-
-	
 }

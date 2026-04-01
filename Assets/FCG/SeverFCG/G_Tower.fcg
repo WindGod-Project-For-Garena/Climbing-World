@@ -19,8 +19,7 @@ graph G_Tower {
 	towerIndex int = 0
 	triggerEntity entity<Entity> = nil
 	Towertrigger Map<int, entity<Entity>> = nil
-
-	
+	a int = 0
 
 	event OnAwake() {
 		spawnPositions = map.New()
@@ -43,7 +42,6 @@ graph G_Tower {
 		towerTriggerPositions[2] = Vector3{16.009, 0.001194954, 9.852015}
 		towerTriggerPositions[3] = Vector3{-11.73129, 0, 17.811}
 		towerTriggerPositions[4] = Vector3{11.73129, 0, -17.811}
-		
 	}
 
 	event OnPlayerJoin(joinedPlayer entity<Player>) {
@@ -71,30 +69,21 @@ graph G_Tower {
 			}
 		}
 	}
-	event __Custom6event_TowershopEnter____(player entity<Player>, triggerEntity entity<Entity>, towerSummonIndex int) {
-		LogInfo(triggerEntity)
-		Towertrigger[towerSummonIndex] = triggerEntity
-		
-	}
 
 	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int, trigger entity<Entity>) {
 		var towerSummonIndex = 0
 
-        if HasTag(player, "Tower_1") {
-       
+		if HasTag(player, "Tower_1") {
 			towerSummonIndex = 1
 		} else if HasTag(player, "Tower_2") {
-          
 			towerSummonIndex = 2
 		} else if HasTag(player, "Tower_3") {   
-           
 			towerSummonIndex = 3
 		} else if HasTag(player, "Tower_4") {
-         
 			towerSummonIndex = 4
 		}
+
 		if !ContainKey(spawnPositions, towerSummonIndex) || !ContainKey(spawnForwards, towerSummonIndex) {
-		
 			return
 		}
 		if ContainKey(spawnedTowers, towerSummonIndex) && (spawnedTowers[towerSummonIndex] as bool) {
@@ -106,23 +95,35 @@ graph G_Tower {
 		var forward = spawnForwards[towerSummonIndex] as Vector3
 		CreateFromPrefab(out var tower, EResPrefab.ATower)
 	  
-		var root = GetParent(Towertrigger[towerSummonIndex])
-	
-		
-		GetChildByName(root, "nickname")<Text>.Content = player<Player>.NickName
+		var trigForSlot = Towertrigger[towerSummonIndex] as entity
+		if trigForSlot != nil {
+			var root = GetParent(trigForSlot)
+			if root != nil {
+				var nickWidget = GetChildByName(root, "nickname")
+				if nickWidget != nil {
+					nickWidget<Text>.Content = player<Player>.NickName
+				}
+			}
+		}
+
 		tower<Transform>.Position = pos
 		tower<Transform>.Forward = forward
-		AddTag(tower, "Tower_" + towerIndex)
-		spawnedTowerRoot[towerIndex] = tower
+		AddTag(tower, "Tower_" + towerSummonIndex)
+		spawnedTowerRoot[towerSummonIndex] = tower
 		
-	
-			var climbingStart = GetChildByName(tower, "Custom trigger")
-			if climbingStart != nil {
-				AddTag(climbingStart, "Tower_" + towerIndex)
-			
-			}
+		var climbingStart = GetChildByName(tower, "Custom trigger")
+		if climbingStart != nil {
+			AddTag(climbingStart, "Tower_" + towerSummonIndex)
+		}
 		
-		spawnedTowers[towerIndex] = true
+		spawnedTowers[towerSummonIndex] = true
+	}
+
+	event __Custom6event_TowershopEnter____(player entity<Player>, triggerEntity entity<Entity>, towerSummonIndex int) {
+		a = a + 1
+		LogInfo(triggerEntity)
+		LogInfo(a)
+		Towertrigger[towerSummonIndex] = triggerEntity
 	}
 
 	func GetPlayerTowerPosition(p entity<Player>) Vector3 {
