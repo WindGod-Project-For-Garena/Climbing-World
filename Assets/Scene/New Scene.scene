@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 105,
+      "tempIndex": 76,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -344,7 +344,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 106,
+      "tempIndex": 77,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -366,78 +366,7 @@
         "resourceId": ""
       },
       "_entityId": "m8Pxjuww",
-      "children": [
-        {
-          "_entityName": "Target",
-          "_tag": {
-            "type": "SceneEditEntity",
-            "resourceId": "Primitive/Empty"
-          },
-          "_entityId": "ePgl8QWx",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": {
-            "selfValue": true,
-            "valueTag": "unlockedValue"
-          },
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 1.062000036239624,
-            "y": -0.7013220191001892,
-            "z": 1.7670001983642578
-          },
-          "scale": {
-            "x": 0.3330000042915344,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "physicalMaterial": null,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "tempIndex": 107,
-          "itemID": 167,
-          "seParent": null,
-          "ecaScripts": [
-            null
-          ],
-          "ecaProps": {
-            "DummyLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "Collider": {}
-          }
-        }
-      ],
+      "children": [],
       "prefabVariant": null,
       "activeValue": {
         "selfValue": true,
@@ -558,6 +487,133 @@
       "entityVersion": 3
     },
     {
+      "_entityName": "treasureshoptrigger",
+      "_tag": {
+        "type": "UGCSceneEntity",
+        "resourceId": ""
+      },
+      "_entityId": "ooN5y8At",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "position": {
+        "x": -1.2406929731369019,
+        "y": 0.6970000267028809,
+        "z": -4.030716419219971
+      },
+      "scale": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "BTPath": [
+        null
+      ],
+      "visible": true,
+      "VisibilityLayer": 0,
+      "modelOptimization": 0,
+      "streamingLayer": "",
+      "attributes": [
+        2,
+        4
+      ],
+      "isTrigger": true,
+      "collidable": true,
+      "physicalLayer": 0,
+      "physicalMaterial": null,
+      "aoiSetting": 0,
+      "initialTypes": {},
+      "componentList": [
+        "ColliderShape",
+        "Collider"
+      ],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "materials": [],
+      "colliders": [
+        {
+          "enable": true,
+          "colliderType": "Box",
+          "meshUUID": null,
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "size": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "radius": 0.5,
+          "height": 1,
+          "isConvexIfMesh": false
+        }
+      ],
+      "IsNPC": false,
+      "isCreateAsEmpty": false,
+      "Rigidbody": {
+        "Type": 1,
+        "Mass": 1,
+        "CenterOfMass": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "UseGravity": true,
+        "Drag": 0.05,
+        "AngularDrag": 0.05,
+        "FreezePosX": false,
+        "FreezeRotX": false,
+        "FreezePosY": false,
+        "FreezeRotY": false,
+        "FreezePosZ": false,
+        "FreezeRotZ": false
+      },
+      "ecaScripts": [
+        {
+          "fileId": "w1m59d3kl98-mnh4dh5c-kugc5oku3t",
+          "filePath": "Assets\\FCG\\CustomFCG\\Player\\C_treasureshoptrigger.fcg",
+          "_tag": {
+            "type": "GFileRefer"
+          },
+          "fileType": "ugcscript"
+        }
+      ],
+      "ecaProps": {
+        "CustomLevelObject": {},
+        "LevelObject": {},
+        "Transform": {},
+        "Entity": {},
+        "Visibility": {},
+        "ColliderShape": {},
+        "Collider": {},
+        "MeshRender": {}
+      },
+      "propsData": {},
+      "entityVersion": 3,
+      "editorLockValue": false,
+      "editorVisibleValue": true
+    },
+    {
       "_entityName": "Wings_Shop",
       "_tag": {
         "type": "SceneEditEntity",
@@ -612,7 +668,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 116,
+      "tempIndex": 79,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -652,6 +708,102 @@
         "TextDisplay": "Wings Shop",
         "fontTypeRef": "UIFONT_LATIN"
       }
+    },
+    {
+      "_entityName": "Treasure_Shop ",
+      "_tag": {
+        "type": "SceneEditEntity",
+        "resourceId": "Primitive/Empty"
+      },
+      "_entityId": "gFEgaKCn",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "position": {
+        "x": -1.1819658279418945,
+        "y": 2.313999891281128,
+        "z": -4.654710292816162
+      },
+      "scale": {
+        "x": 5,
+        "y": 5,
+        "z": 1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "BTPath": [
+        null
+      ],
+      "visible": true,
+      "VisibilityLayer": 0,
+      "modelOptimization": 0,
+      "streamingLayer": "",
+      "attributes": [
+        2,
+        4
+      ],
+      "isTrigger": false,
+      "collidable": true,
+      "physicalLayer": 0,
+      "physicalMaterial": null,
+      "aoiSetting": 0,
+      "initialTypes": {},
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "tempIndex": 80,
+      "itemID": 222,
+      "seParent": null,
+      "ecaScripts": [
+        null
+      ],
+      "ecaProps": {
+        "TextEntity": {},
+        "LevelObject": {},
+        "Transform": {},
+        "Entity": {},
+        "Visibility": {}
+      },
+      "propsData": {
+        "TextKey": "Treasure Shop",
+        "fontColor": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "IsBillboard": true,
+        "fontStyleRef": {
+          "bold": false,
+          "italic": false,
+          "underline": false
+        },
+        "FontSize": 48,
+        "IgnoreDepth": false,
+        "AlwaysInScreen": false,
+        "Depth": 0,
+        "Width": 100,
+        "Height": 100,
+        "FondOverFlowMod": 2,
+        "fontType": "UIFONT_LATIN",
+        "fontStyle": 0,
+        "_levelObjectID": 6,
+        "TextDisplay": "Treasure Shop",
+        "fontTypeRef": "UIFONT_LATIN"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true
     },
     {
       "_entityName": "Empty",
@@ -1037,7 +1189,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 118,
+          "tempIndex": 81,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1126,7 +1278,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 117,
+      "tempIndex": 82,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -1599,7 +1751,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 120,
+          "tempIndex": 83,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1688,7 +1840,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 119,
+      "tempIndex": 84,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -2161,7 +2313,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 122,
+          "tempIndex": 85,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -2250,7 +2402,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 121,
+      "tempIndex": 86,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -2723,7 +2875,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 124,
+          "tempIndex": 87,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -2812,7 +2964,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 123,
+      "tempIndex": 88,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],

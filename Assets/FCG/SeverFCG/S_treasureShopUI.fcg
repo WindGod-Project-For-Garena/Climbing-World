@@ -1,0 +1,187 @@
+// 宝箱商店 UI 服务端：参照 S_WingShopUI 模式
+// 进入区域时创建/显示 UI 并恢复 Select 状态，离开时仅隐藏 Panel（不销毁）
+
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "List.fcc" as list
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+import "Convert.fcc" as convert
+
+[platform_server]
+graph S_treasureShopUI {
+	TreasureShop Map<object, object> = nil
+	TreasureSelectState Map<entity<Player>, int> = nil
+	SlideStep float = 80.0
+	ProbabilityData Map<object, object> = nil
+	PowerGrowthData Map<object, object> = nil
+
+	event OnAwake() {
+		TreasureShop = map.New()
+		TreasureSelectState = map.New()
+
+		ProbabilityData = map.New()
+		PowerGrowthData = map.New()
+
+		ProbabilityData[1] = List<int>{40, 30, 20, 10,5}
+		ProbabilityData[2] = List<int>{35, 30, 25, 10,5}
+		ProbabilityData[3] = List<int>{25, 25, 30, 20,5}
+		ProbabilityData[4] = List<int>{20, 20, 30, 30,5}
+
+		PowerGrowthData[1] = List<int>{5, 10, 15, 20,40}
+		PowerGrowthData[2] = List<int>{10, 20, 30, 40,60}
+		PowerGrowthData[3] = List<int>{15, 30, 45, 60,80}
+		PowerGrowthData[4] = List<int>{20, 40, 60, 80,100}
+	}
+
+	event __Custom6event_TreasureshopEnter____(player entity<Player>) {
+		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
+		if ContainKey(TreasureShop, player) {
+			var treasureEntity = TreasureShop[player] as entity
+			treasureEntity<CustomUI>.IsVisible = true
+			var panelWidget = GetWidgetByPath(player, treasureEntity as entity<CustomUI>, "/Panel")
+			if panelWidget != nil {
+				panelWidget<UIWidget>.IsVisible = true
+			}
+			var savedIndex = 0
+			if ContainKey(TreasureSelectState, player) {
+				savedIndex = TreasureSelectState[player]
+			}
+			ApplyTreasureSelectState(player, treasureEntity as entity<CustomUI>, savedIndex)
+			if savedIndex > 0 {
+				UpdateTreasureDisplay(player, treasureEntity as entity<CustomUI>, savedIndex)
+			}
+		} else {
+			CreateCustomUI(out var createdEntity, player, EResUI.TreasureShop)
+			TreasureShop[player] = createdEntity
+			HideAllTreasureSelect(player, createdEntity as entity<CustomUI>)
+			TreasureSelectState[player] = 0
+		}
+	}
+
+	event __Custom6event_TreasureshopLeave____(player entity<Player>) {
+		if ContainKey(TreasureShop, player) {
+			var treasureEntity = TreasureShop[player] as entity
+			var panelWidget = GetWidgetByPath(player, treasureEntity as entity<CustomUI>, "/Panel")
+			if panelWidget != nil {
+				panelWidget<UIWidget>.IsVisible = false
+			}
+		}
+	}
+
+	event __Custom6event_ShowTreasureSelect______(player entity<Player>, treasureIndex int) {
+		if !ContainKey(TreasureShop, player) {
+			return
+		}
+		TreasureSelectState[player] = treasureIndex
+		ApplyTreasureSelectState(player, TreasureShop[player] as entity<CustomUI>, treasureIndex)
+		UpdateTreasureDisplay(player, TreasureShop[player] as entity<CustomUI>, treasureIndex)
+	}
+
+	func ApplyTreasureSelectState(player entity<Player>, treasureUI entity<CustomUI>, treasureIndex int) {
+		if treasureIndex == 0 {
+			HideAllTreasureSelect(player, treasureUI)
+			return
+		}
+		var s1 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower1/Select")
+		var s2 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower2/Select")
+		var s3 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower3/Select")
+		var s4 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower4/Select")
+		if s1 != nil { s1<UIWidget>.IsVisible = false }
+		if s2 != nil { s2<UIWidget>.IsVisible = false }
+		if s3 != nil { s3<UIWidget>.IsVisible = false }
+		if s4 != nil { s4<UIWidget>.IsVisible = false }
+		if treasureIndex == 1 && s1 != nil { s1<UIWidget>.IsVisible = true }
+		if treasureIndex == 2 && s2 != nil { s2<UIWidget>.IsVisible = true }
+		if treasureIndex == 3 && s3 != nil { s3<UIWidget>.IsVisible = true }
+		if treasureIndex == 4 && s4 != nil { s4<UIWidget>.IsVisible = true }
+	}
+
+	event __Custom6event_TreasurePanelSlide______(triggerPlayer entity<Player>, direction int) {
+		if !ContainKey(TreasureShop, triggerPlayer) {
+			return
+		}
+		var treasureEntity = TreasureShop[triggerPlayer] as entity
+		var treasureUI = treasureEntity as entity<CustomUI>
+		if direction > 0 {
+			var panel = GetWidgetByPath(triggerPlayer, treasureUI, "/Panel")
+			if panel != nil {
+				var ap = panel<UIWidget>.AnchorPosition
+				panel<UIWidget>.AnchorPosition = Vector3{ap.X, ap.Y + SlideStep, ap.Z}
+			}
+		} else {
+			var roll = GetWidgetByPath(triggerPlayer, treasureUI, "/Panel/Roll")
+			if roll != nil {
+				var ap = roll<UIWidget>.AnchorPosition
+				roll<UIWidget>.AnchorPosition = Vector3{ap.X, ap.Y - SlideStep, ap.Z}
+			}
+		}
+	}
+
+	func UpdateTreasureDisplay(player entity<Player>, treasureUI entity<CustomUI>, treasureIndex int) {
+		if !ContainKey(ProbabilityData, treasureIndex) {
+			return
+		}
+		if !ContainKey(PowerGrowthData, treasureIndex) {
+			return
+		}
+		var probArray = ProbabilityData[treasureIndex] as List<int>
+		var powerArray = PowerGrowthData[treasureIndex] as List<int>
+
+		var p1 = GetWidgetByPath(player, treasureUI, "/Panel/display button1/probability1")
+		if p1 != nil {
+			p1<UIWidgetLabel>.Content = convert.ToString(probArray[0])+"%"
+		}
+
+		var bg = GetWidgetByPath(player, treasureUI, "/Panel/display button1/Power1")
+		if bg != nil {
+			bg<UIWidgetLabel>.Content = "+"+convert.ToString(powerArray[0])
+		}
+
+		var p2 = GetWidgetByPath(player, treasureUI, "/Panel/display button2/probability2")
+		if p2 != nil {
+			p2<UIWidgetLabel>.Content = convert.ToString(probArray[1])+"%"
+		}
+		var t2 = GetWidgetByPath(player, treasureUI, "/Panel/display button2/Power2")
+		if t2 != nil {
+			t2<UIWidgetLabel>.Content = "+"+convert.ToString(powerArray[1])
+		}
+
+		var p3 = GetWidgetByPath(player, treasureUI, "/Panel/display button3/probability3")
+		if p3 != nil {
+			p3<UIWidgetLabel>.Content = convert.ToString(probArray[2])+"%"
+		}
+		var t3 = GetWidgetByPath(player, treasureUI, "/Panel/display button3/Power3")
+		if t3 != nil {
+			t3<UIWidgetLabel>.Content = "+"+convert.ToString(powerArray[2])
+		}
+
+		var p4 = GetWidgetByPath(player, treasureUI, "/Panel/display button4/probability4")
+		if p4 != nil {
+			p4<UIWidgetLabel>.Content = convert.ToString(probArray[3])+"%"
+		}
+		var t4 = GetWidgetByPath(player, treasureUI, "/Panel/display button4/Power4")
+		if t4 != nil {
+			t4<UIWidgetLabel>.Content = "+"+convert.ToString(powerArray[3])
+		}
+		var p5 = GetWidgetByPath(player, treasureUI, "/Panel/display button5/probability5")
+		if p5 != nil {
+			p5<UIWidgetLabel>.Content = convert.ToString(probArray[4])+"%"
+		}
+		var t5 = GetWidgetByPath(player, treasureUI, "/Panel/display button5/Power5")
+		if t5 != nil {
+			t5<UIWidgetLabel>.Content = "+"+convert.ToString(powerArray[4])
+		}
+	}
+
+	func HideAllTreasureSelect(player entity<Player>, treasureUI entity<CustomUI>) {
+		var s1 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower1/Select")
+		var s2 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower2/Select")
+		var s3 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower3/Select")
+		var s4 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower4/Select")
+		if s1 != nil { s1<UIWidget>.IsVisible = false }
+		if s2 != nil { s2<UIWidget>.IsVisible = false }
+		if s3 != nil { s3<UIWidget>.IsVisible = false }
+		if s4 != nil { s4<UIWidget>.IsVisible = false }
+	}
+}

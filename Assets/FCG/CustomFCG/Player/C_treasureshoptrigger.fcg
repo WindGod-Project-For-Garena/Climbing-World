@@ -1,0 +1,21 @@
+// 参照 C_Wingshoptrigger：进入时通知服务端为玩家创建宝箱商店 UI，离开时销毁该玩家 UI
+
+import "StdLibrary.fcc" as std
+import "LevelObject.fcc" as levelobject
+import "List.fcc" as List
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_treasureshoptrigger {
+
+	event OnAwake() {
+	}
+
+	event OnPlayerEnter(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_TreasureshopEnter____, globalEntity, PlatformType.Server, List<object>{player})
+	}
+
+	event OnPlayerLeave(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_TreasureshopLeave____, globalEntity, PlatformType.Server, List<object>{player})
+	}
+}

@@ -16,9 +16,10 @@ graph C_Towertrigger {
 	insidePlayer entity<Player> = nil
 
 	event OnPlayerEnter(player entity<Player>) {
-		if playerInside && insidePlayer == player {
+		if player != GetLocalPlayer() {
 			return
 		}
+
 		triggerPlayer = player
 		var towerSummonIndex = 0
 		if HasTag(thisEntity, "Tower_1") {

@@ -13,6 +13,7 @@ import "Time.fcc" as time
 import "Player.fcc" as playerlib
 import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
+import "Camera.fcc" as camerafcc
 
 [platform_client]
 graph C_P_Climbing2 {
@@ -45,6 +46,8 @@ graph C_P_Climbing2 {
 	fallVelocity float = 0
 	// 下落开始时记录的 Y 轴高度，用于落地时结算金币奖励
 	FallStartY float = 0
+	// 落地传送后的本地镜头轻微抖动序号（用于避免重复抖动冲突）
+	landingShakeSeq int = 0
 
 
 	event OnAwake() {
@@ -173,6 +176,7 @@ graph C_P_Climbing2 {
 			if Curent_height.Y < 2 {
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
 				SetLocalPlayerPosition(Curent_height)
+				StartLandingCameraShake(Curent_height)
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 				fallVelocity = 0
 				bIsFall = false
@@ -212,6 +216,31 @@ graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 			
 			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
+		}
+	}
+
+	func StartLandingCameraShake(basePos Vector3) {
+		landingShakeSeq = landingShakeSeq + 1
+		start LandingCameraShakeRoutine(landingShakeSeq)
+	}
+
+	async func LandingCameraShakeRoutine(shakeSeq int) {
+		var mainCam = GetLocalPlayer()<Player>.MainCamera
+		if mainCam == nil {
+			return
+		}
+		var lp = GetLocalPlayer()
+		var offsetY float = 10000
+		for i = 0, 10, 1 {
+			if shakeSeq != landingShakeSeq {
+				return
+			}
+			camerafcc.SetCameraFollow(mainCam as entity<Entity>, lp as entity<Entity>, Vector3{0, offsetY, 0}, CoordinateSystemType.LocalPosition)
+			offsetY = -offsetY
+			WaitForMillisecond(100)
+		}
+		if shakeSeq == landingShakeSeq {
+			camerafcc.SetCameraFollow(mainCam as entity<Entity>, lp as entity<Entity>, Vector3{0, 0, 0}, CoordinateSystemType.LocalPosition)
 		}
 	}
 

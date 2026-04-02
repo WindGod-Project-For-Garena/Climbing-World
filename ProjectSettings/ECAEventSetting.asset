@@ -645,6 +645,84 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_59472677"
+    },
+    "signal_42982528": {
+      "name": "Custom event_TreasureshopEnter__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100032,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_42982528"
+    },
+    "signal_23644066": {
+      "name": "Custom event_TreasureshopLeave__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100033,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_23644066"
+    },
+    "signal_66013608": {
+      "name": "Custom event_ShowTreasureSelect____",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100034,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "treasureIndex",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_66013608"
+    },
+    "signal_78793885": {
+      "name": "Custom event_TreasurePanelSlide____",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100035,
+      "props": [
+        {
+          "name": "triggerPlayer",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "direction",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_78793885"
     }
   },
   "customName": {
@@ -679,7 +757,11 @@
     "Custom event_TowershopEnter__": "signal_97943564",
     "Custom event___TowerBuyUnlock__": "signal_41172699",
     "Custom event_ShowTowerSelect__": "signal_22141477",
-    "Custom event_BUYTowers__": "signal_59472677"
+    "Custom event_BUYTowers__": "signal_59472677",
+    "Custom event_TreasureshopEnter__": "signal_42982528",
+    "Custom event_TreasureshopLeave__": "signal_23644066",
+    "Custom event_ShowTreasureSelect____": "signal_66013608",
+    "Custom event_TreasurePanelSlide____": "signal_78793885"
   },
   "children": []
 }

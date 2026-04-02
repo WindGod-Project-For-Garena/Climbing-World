@@ -1,0 +1,42 @@
+// TreasureShop 根节点挂载的客户端脚本：参照 C_WingshopUI 模式
+// 按钮点击派发事件到服务端，由服务端统一控制 Select 显隐与 Panel 显隐
+
+import "StdLibrary.fcc" as std
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+
+
+[platform_client]
+graph C_treasureUI {
+
+	event OnAwake() {
+	}
+
+	func Close_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_TreasureshopLeave____, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	func Tower1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+	}
+
+	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
+	}
+
+	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
+	}
+
+	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
+	}
+
+	func UP_Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_TreasurePanelSlide______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+	}
+
+	func Down_Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_TreasurePanelSlide______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, -1})
+	}
+}

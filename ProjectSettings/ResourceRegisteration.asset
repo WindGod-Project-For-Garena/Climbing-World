@@ -126,6 +126,18 @@
           },
           "scriptName": "TowerShop",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "zxl8fqx7s3-mnfte2e8-2dd52yzkrvn",
+            "filePath": "Assets\\UI\\Halo.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "TreasureShop",
+          "children": []
         }
       ]
     },
