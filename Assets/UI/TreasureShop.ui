@@ -2965,7 +2965,7 @@
                 "y": 265
               },
               "sizeDelta": {
-                "x": 679,
+                "x": 678,
                 "y": 216
               }
             },
@@ -3187,8 +3187,8 @@
                 "y": -263
               },
               "sizeDelta": {
-                "x": 75,
-                "y": 75
+                "x": 74,
+                "y": 74
               }
             },
             "alpha": 100,
@@ -3402,7 +3402,14 @@
               "disabled": "#494949",
               "onClicks": [],
               "enableBorderImage": true,
-              "clickHandlers": [],
+              "clickHandlers": [
+                {
+                  "eventName": "OnClick",
+                  "funcKey": "Button_button",
+                  "type": "ugcscript",
+                  "fileID": "milde7ck9df-mnh59xet-2imowxyw4ar"
+                }
+              ],
               "disableCollider": false,
               "fillType": 1,
               "slicedBorder": {

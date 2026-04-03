@@ -7,7 +7,7 @@ import "List.fcc" as list
 import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 import "Convert.fcc" as convert
-
+import "Math.fcc" as math
 [platform_server]
 graph S_treasureShopUI {
 	TreasureShop Map<object, object> = nil
@@ -15,6 +15,8 @@ graph S_treasureShopUI {
 	SlideStep float = 80.0
 	ProbabilityData Map<object, object> = nil
 	PowerGrowthData Map<object, object> = nil
+	TreasureEffect Map<object, object> = nil
+    Buying bool =false
 
 	event OnAwake() {
 		TreasureShop = map.New()
@@ -22,6 +24,7 @@ graph S_treasureShopUI {
 
 		ProbabilityData = map.New()
 		PowerGrowthData = map.New()
+		TreasureEffect = map.New()
 
 		ProbabilityData[1] = List<int>{40, 30, 20, 10,5}
 		ProbabilityData[2] = List<int>{35, 30, 25, 10,5}
@@ -183,5 +186,207 @@ graph S_treasureShopUI {
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
 		if s4 != nil { s4<UIWidget>.IsVisible = false }
+	}
+
+	// 混合缓入：easedT = (1-blend)*t + blend*t²
+	// blend=1.0 纯二次（初速=0，越落越快）
+	// blend=0.0 线性（初速最快，匀速）
+	// ↓ 调小 blend 可让下落一开始就更快
+	// fromSize/toSize：下落过程中同步从 fromSize 线性插值到 toSize（宽高一致）
+	async func EaseInCenterY(center entity<UIWidget>, fromY float, toY float, durationMs int, stepCount int, blend float, fromSize float, toSize float) {
+		if center == nil {
+			return
+		}
+		if stepCount < 1 {
+			stepCount = 20
+		}
+		var stepMs = durationMs / stepCount
+		if stepMs < 1 {
+			stepMs = 1
+		}
+		var ap = center<UIWidget>.AnchorPosition
+		center<UIWidget>.AnchorPosition = Vector3{ap.X, fromY, ap.Z}
+		center<UIWidget>.Size = Vector2{fromSize, fromSize}
+		for i = 0, stepCount + 1, 1 {
+			var t = convert.IntToFloat(i) / convert.IntToFloat(stepCount)
+			var easedT = (1.0 - blend) * t + blend * t * t
+			var y = math.Lerp(fromY, toY, easedT)
+			var sz = math.Lerp(fromSize, toSize, t)
+			var curAp = center<UIWidget>.AnchorPosition
+			center<UIWidget>.AnchorPosition = Vector3{curAp.X, y, curAp.Z}
+			center<UIWidget>.Size = Vector2{sz, sz}
+			if i < stepCount {
+				WaitForMillisecond(stepMs)
+			}
+		}
+	}
+
+	// 幂次缓出：easedT = 1-(1-t)^power
+	// power=2 二次（当前基准）
+	// power=3 三次，power=4 四次……
+	// ↑ 调大 power 可让弹起初速更快、停止更平滑
+	async func EaseOutCenterY(center entity<UIWidget>, fromY float, toY float, durationMs int, stepCount int, power float) {
+		if center == nil {
+			return
+		}
+		if stepCount < 1 {
+			stepCount = 12
+		}
+		var stepMs = durationMs / stepCount
+		if stepMs < 1 {
+			stepMs = 1
+		}
+		var ap = center<UIWidget>.AnchorPosition
+		center<UIWidget>.AnchorPosition = Vector3{ap.X, fromY, ap.Z}
+		for i = 0, stepCount + 1, 1 {
+			var t = convert.IntToFloat(i) / convert.IntToFloat(stepCount)
+			var inv = 1.0 - t
+			var easedT = 1.0 - math.Exponentiation(inv, power)
+			var y = math.Lerp(fromY, toY, easedT)
+			var curAp = center<UIWidget>.AnchorPosition
+			center<UIWidget>.AnchorPosition = Vector3{curAp.X, y, curAp.Z}
+			if i < stepCount {
+				WaitForMillisecond(stepMs)
+			}
+		}
+	}
+
+	async func SmoothTreasureCenterSize(center entity<UIWidget>, fromW float, fromH float, toW float, toH float, durationMs int, stepCount int) {
+		if center == nil {
+			return
+		}
+		if stepCount < 1 {
+			stepCount = 12
+		}
+		var stepMs = durationMs / stepCount
+		if stepMs < 1 {
+			stepMs = 1
+		}
+		for i = 0, stepCount + 1, 1 {
+			var t = convert.IntToFloat(i) / convert.IntToFloat(stepCount)
+			var w = math.Lerp(fromW, toW, t)
+			var h = math.Lerp(fromH, toH, t)
+			center<UIWidget>.Size = Vector2{w, h}
+			if i < stepCount {
+				WaitForMillisecond(stepMs)
+			}
+		}
+	}
+
+	event __Custom6event_TreasureOpenBox______(player entity<Player>) {
+        if Buying {
+            return
+        }
+        Buying = true
+		if !ContainKey(TreasureSelectState, player) {
+			return
+		}
+		var treasureIndex = TreasureSelectState[player]
+		if treasureIndex == 0 {
+			return
+		}
+
+		if ContainKey(TreasureShop, player) {
+			var shopEntity = TreasureShop[player] as entity
+			shopEntity<CustomUI>.IsVisible = false
+		}
+
+		var effectEntity entity<CustomUI>
+		if ContainKey(TreasureEffect, player) {
+			effectEntity = TreasureEffect[player] as entity<CustomUI>
+			effectEntity<CustomUI>.IsVisible = true
+		} else {
+			CreateCustomUI(out var createdEffect, player, EResUI.Treasure_effect)
+			effectEntity = createdEffect as entity<CustomUI>
+			TreasureEffect[player] = effectEntity
+		}
+		start PlayTreasureEffect(player, effectEntity, treasureIndex)
+	}
+
+	async func PlayTreasureEffect(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int) {
+		var indexStr = convert.ToString(treasureIndex)
+
+		for i = 1, 10, 1 {
+			var iStr = convert.ToString(i)
+			var container = GetWidgetByPath(player, effectUI, "/Treasure" + iStr + "_empty")
+			if container != nil {
+				container<UIWidget>.IsVisible = false
+			}
+		}
+
+		var emptyPath = "/Treasure" + indexStr + "_empty"
+		var emptyContainer = GetWidgetByPath(player, effectUI, emptyPath)
+		if emptyContainer != nil { emptyContainer<UIWidget>.IsVisible = true }
+
+		var openedPath = emptyPath + "/Treasure" + indexStr + "_opened"
+		var centerPath = emptyPath + "/Treasure" + indexStr
+		var leftPath = emptyPath + "/Treasure" + indexStr + "_left"
+		var rightPath = emptyPath + "/Treasure" + indexStr + "_right"
+
+		var opened = GetWidgetByPath(player, effectUI, openedPath)
+		var center = GetWidgetByPath(player, effectUI, centerPath)
+		var left = GetWidgetByPath(player, effectUI, leftPath)
+		var right = GetWidgetByPath(player, effectUI, rightPath)
+
+		if opened != nil { opened<UIWidget>.IsVisible = false }
+		if center != nil { center<UIWidget>.IsVisible = true }
+		if left != nil { left<UIWidget>.IsVisible = false }
+		if right != nil { right<UIWidget>.IsVisible = false }
+
+		if center != nil {
+			wait EaseInCenterY(center, 550.0, -200.0, 500, 20, 0, 200.0, 500.0)
+		}
+		if center != nil {
+			wait EaseOutCenterY(center, -200.0, 75.0, 300, 12, 6.0)
+		}
+
+		WaitForMillisecond(500)
+		if left != nil { left<UIWidget>.IsVisible = true }
+		if center != nil { center<UIWidget>.IsVisible = false }
+		if right != nil { right<UIWidget>.IsVisible = false }
+		if opened != nil { opened<UIWidget>.IsVisible = false }
+
+		WaitForMillisecond(500)
+		if right != nil { right<UIWidget>.IsVisible = true }
+		if center != nil { center<UIWidget>.IsVisible = false }
+		if left != nil { left<UIWidget>.IsVisible = false }
+		if opened != nil { opened<UIWidget>.IsVisible = false }
+
+		WaitForMillisecond(500)
+		if left != nil { left<UIWidget>.IsVisible = true }
+		if center != nil { center<UIWidget>.IsVisible = false }
+		if right != nil { right<UIWidget>.IsVisible = false }
+		if opened != nil { opened<UIWidget>.IsVisible = false }
+
+		WaitForMillisecond(500)
+		if right != nil { right<UIWidget>.IsVisible = true }
+		if center != nil { center<UIWidget>.IsVisible = false }
+		if left != nil { left<UIWidget>.IsVisible = false }
+		if opened != nil { opened<UIWidget>.IsVisible = false }
+
+		if center != nil { center<UIWidget>.IsVisible = true }
+		if right != nil { right<UIWidget>.IsVisible = false }
+		if left != nil { left<UIWidget>.IsVisible = false }
+		if opened != nil { opened<UIWidget>.IsVisible = false }
+
+		if center != nil {
+			wait SmoothTreasureCenterSize(center, 500.0, 500.0, 250.0, 250.0, 250, 12)
+		}
+
+		if center != nil {
+			wait SmoothTreasureCenterSize(center, 250.0, 250.0, 750.0, 750.0, 250, 12)
+		}
+
+		WaitForMillisecond(500)
+		if center != nil { center<UIWidget>.IsVisible = false }
+		if left != nil { left<UIWidget>.IsVisible = false }
+		if right != nil { right<UIWidget>.IsVisible = false }
+		if opened != nil { opened<UIWidget>.IsVisible = true }
+
+		if center != nil { center<UIWidget>.Size = Vector2{500, 500} }
+
+		WaitForMillisecond(500)
+		effectUI<CustomUI>.IsVisible = false
+		Buying = false
 	}
 }

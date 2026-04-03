@@ -723,6 +723,23 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_78793885"
+    },
+    "signal_18389130": {
+      "name": "Custom event_TreasureOpenBox____",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100036,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_18389130"
     }
   },
   "customName": {
@@ -761,7 +778,8 @@
     "Custom event_TreasureshopEnter__": "signal_42982528",
     "Custom event_TreasureshopLeave__": "signal_23644066",
     "Custom event_ShowTreasureSelect____": "signal_66013608",
-    "Custom event_TreasurePanelSlide____": "signal_78793885"
+    "Custom event_TreasurePanelSlide____": "signal_78793885",
+    "Custom event_TreasureOpenBox____": "signal_18389130"
   },
   "children": []
 }

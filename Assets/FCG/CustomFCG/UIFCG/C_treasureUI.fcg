@@ -39,4 +39,9 @@ graph C_treasureUI {
 	func Down_Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event_TreasurePanelSlide______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, -1})
 	}
+
+	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		
+		DispatchEventToEntity(__Custom6event_TreasureOpenBox______, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
 }

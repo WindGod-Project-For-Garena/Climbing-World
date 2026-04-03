@@ -138,6 +138,18 @@
           },
           "scriptName": "TreasureShop",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "zthymyyobgf-mnhf45bb-on3ms7vur4q",
+            "filePath": "Assets\\UI\\Treasure_effect.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Treasure_effect",
+          "children": []
         }
       ]
     },
