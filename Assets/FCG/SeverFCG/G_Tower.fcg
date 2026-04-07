@@ -1,5 +1,5 @@
-// 根据 towerIndex（1～4）查找位置和朝向，生成 ATower.prefab
-// 需确保 ATower.prefab 已注册，EResPrefab.ATower 可用
+// 根据玩家槽位查找位置和朝向，并按点击索引选择预制体：
+// towerIndex=2 生成 BTower，其余生成 ATower
 
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
@@ -12,6 +12,7 @@ graph G_Tower {
 	spawnPositions Map<int, Vector3> = nil
 	spawnForwards Map<int, Vector3> = nil
 	spawnedTowers Map<int, bool> = nil
+	spawnedTowerType Map<int, int> = nil
 	spawnedTowerRoot Map<int, entity> = nil
 	towerTriggerPositions Map<int, Vector3> = nil
 	towerSlotToPlayer Map<int, entity<Player>> = nil
@@ -25,6 +26,7 @@ graph G_Tower {
 		spawnPositions = map.New()
 		spawnForwards = map.New()
 		spawnedTowers = map.New()
+		spawnedTowerType = map.New()
 		spawnedTowerRoot = map.New()
 		towerTriggerPositions = map.New()
 		towerSlotToPlayer = map.New()
@@ -72,6 +74,8 @@ graph G_Tower {
 
 	event __Custom6event_TowerTrigger__(player entity<Player>, towerIndex int, trigger entity<Entity>) {
 		var towerSummonIndex = 0
+		var wantedTowerType = 1
+		LogInfo("TowerTrigger")
 
 		if HasTag(player, "Tower_1") {
 			towerSummonIndex = 1
@@ -86,14 +90,33 @@ graph G_Tower {
 		if !ContainKey(spawnPositions, towerSummonIndex) || !ContainKey(spawnForwards, towerSummonIndex) {
 			return
 		}
+		LogInfo("towerIndex:" + towerIndex)
+		if towerIndex == 2 {
+			wantedTowerType = 2
+		}
 		if ContainKey(spawnedTowers, towerSummonIndex) && (spawnedTowers[towerSummonIndex] as bool) {
-			return
+			if ContainKey(spawnedTowerType, towerSummonIndex) && (spawnedTowerType[towerSummonIndex] as int) == wantedTowerType {
+				return
+			}
+			if ContainKey(spawnedTowerRoot, towerSummonIndex) {
+				var oldTower = spawnedTowerRoot[towerSummonIndex] as entity
+				if oldTower != nil {
+					Destroy(oldTower)
+				}
+			}
 		}
      
 		LogInfo(towerSummonIndex)
 		var pos = spawnPositions[towerSummonIndex] as Vector3
 		var forward = spawnForwards[towerSummonIndex] as Vector3
-		CreateFromPrefab(out var tower, EResPrefab.ATower)
+		var tower entity = nil
+		if wantedTowerType == 2 {
+			CreateFromPrefab(out var btower, EResPrefab.BTower)
+			tower = btower
+		} else {
+			CreateFromPrefab(out var atower, EResPrefab.ATower)
+			tower = atower
+		}
 	  
 		var trigForSlot = Towertrigger[towerSummonIndex] as entity
 		if trigForSlot != nil {
@@ -110,6 +133,7 @@ graph G_Tower {
 		tower<Transform>.Forward = forward
 		AddTag(tower, "Tower_" + towerSummonIndex)
 		spawnedTowerRoot[towerSummonIndex] = tower
+		spawnedTowerType[towerSummonIndex] = wantedTowerType
 		
 		var climbingStart = GetChildByName(tower, "Custom trigger")
 		if climbingStart != nil {

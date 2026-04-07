@@ -1,0 +1,402 @@
+{
+  "fileId": "ew6b17mqqz-mniokvdk-u9srmhfqnug",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "tripo_part_0.~@FFFUB",
+        "MeshName": "tripo_part_0",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_1.~@FFFUB",
+        "MeshName": "tripo_part_1",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_10.~@FFFUB",
+        "MeshName": "tripo_part_10",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_2.~@FFFUB",
+        "MeshName": "tripo_part_2",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_3.~@FFFUB",
+        "MeshName": "tripo_part_3",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_4.~@FFFUB",
+        "MeshName": "tripo_part_4",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_5.001.~@FFFUB",
+        "MeshName": "tripo_part_5.001",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_6.~@FFFUB",
+        "MeshName": "tripo_part_6",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_7.~@FFFUB",
+        "MeshName": "tripo_part_7",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_8.~@FFFUB",
+        "MeshName": "tripo_part_8",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "tripo_part_9.~@FFFUB",
+        "MeshName": "tripo_part_9",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "BTowerR",
+      "ImportSucceeded": true,
+      "MaterialCount": 11,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": "Material_tripo_part_0"
+        },
+        {
+          "Index": 1,
+          "MaterialName": "Material_tripo_part_1"
+        },
+        {
+          "Index": 2,
+          "MaterialName": "Material_tripo_part_10"
+        },
+        {
+          "Index": 3,
+          "MaterialName": "Material_tripo_part_2"
+        },
+        {
+          "Index": 4,
+          "MaterialName": "Material_tripo_part_3"
+        },
+        {
+          "Index": 5,
+          "MaterialName": "Material_tripo_part_4"
+        },
+        {
+          "Index": 6,
+          "MaterialName": "Material_tripo_part_5"
+        },
+        {
+          "Index": 7,
+          "MaterialName": "Material_tripo_part_6"
+        },
+        {
+          "Index": 8,
+          "MaterialName": "Material_tripo_part_7"
+        },
+        {
+          "Index": 9,
+          "MaterialName": "Material_tripo_part_8"
+        },
+        {
+          "Index": 10,
+          "MaterialName": "Material_tripo_part_9"
+        }
+      ],
+      "MeshCount": 11,
+      "MeshDetail": [
+        {
+          "MeshName": "tripo_part_0",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_1",
+          "MaterialIndex": [
+            1
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_10",
+          "MaterialIndex": [
+            2
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_2",
+          "MaterialIndex": [
+            3
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_3",
+          "MaterialIndex": [
+            4
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0.00280687
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_4",
+          "MaterialIndex": [
+            5
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              -0.000997914
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_5.001",
+          "MaterialIndex": [
+            6
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0.000621283
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_6",
+          "MaterialIndex": [
+            7
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              -0.00276806
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_7",
+          "MaterialIndex": [
+            8
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0.00157122
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_8",
+          "MaterialIndex": [
+            9
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              -0.00471294
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "tripo_part_9",
+          "MaterialIndex": [
+            10
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_0.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_1.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_10.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_2.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_3.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_4.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_5.001.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_6.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_7.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_8.~@FFFUB": 0,
+    "ew6b17mqqz-mniokvdk-u9srmhfqnug-tripo_part_9.~@FFFUB": 0
+  }
+}

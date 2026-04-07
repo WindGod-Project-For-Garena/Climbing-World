@@ -231,6 +231,18 @@
           },
           "scriptName": "Wings4",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "5zz7409g6lt-mniu38en-av6rvgacthm",
+            "filePath": "Assets\\Prefabs\\Tower\\BTower.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "BTower",
+          "children": []
         }
       ]
     },

@@ -19,7 +19,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -44,7 +47,7 @@
           },
           "sizeDelta": {
             "x": 562,
-            "y": 421
+            "y": 420
           }
         },
         "alpha": 100,
@@ -120,7 +123,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -221,7 +227,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "propsData": {
@@ -245,8 +254,8 @@
             "y": 110
           },
           "sizeDelta": {
-            "x": 75,
-            "y": 75
+            "x": 74,
+            "y": 74
           }
         },
         "alpha": 100,

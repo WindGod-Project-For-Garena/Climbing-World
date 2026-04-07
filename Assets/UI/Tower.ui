@@ -1659,7 +1659,7 @@
                   "_entityId": "aHXy0JCP",
                   "children": [
                     {
-                      "_entityName": "Wing2",
+                      "_entityName": "Tower2",
                       "_tag": {
                         "type": "UIButtonEntity",
                         "resourceId": ""
@@ -1722,7 +1722,7 @@
                               "eventName": "OnClick",
                               "funcKey": "Wing2_button",
                               "type": "ugcscript",
-                              "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
+                              "fileID": "182gwl99swu-mneae4lc-hjhsg7muzzs"
                             }
                           ],
                           "disableCollider": false,
