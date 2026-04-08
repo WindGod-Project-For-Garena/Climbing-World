@@ -795,6 +795,110 @@
                       }
                     },
                     {
+                      "_entityName": "background",
+                      "_tag": {
+                        "type": "UIImageEntity",
+                        "resourceId": ""
+                      },
+                      "_entityId": "kDJGgGjI",
+                      "children": [],
+                      "prefabVariant": null,
+                      "activeValue": {
+                        "selfValue": true,
+                        "valueTag": "activeValue"
+                      },
+                      "unlockedValue": {
+                        "selfValue": true,
+                        "valueTag": "unlockedValue"
+                      },
+                      "propsData": {
+                        "activeSelf": true,
+                        "transform": {
+                          "rotate": 0,
+                          "anchorMin": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchorMax": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "pivot": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchoredPosition": {
+                            "x": 6,
+                            "y": 12
+                          },
+                          "sizeDelta": {
+                            "x": 182,
+                            "y": 244
+                          }
+                        },
+                        "alpha": 100,
+                        "priority": 0,
+                        "image": {
+                          "source": {
+                            "fileId": "yan6wezp8s-mnod1wla-ji5dewyk7wq",
+                            "filePath": "Assets\\UI\\material\\france.png",
+                            "_tag": {
+                              "type": "GFileRefer"
+                            },
+                            "fileType": "texture"
+                          },
+                          "color": "#ffffff",
+                          "reverse": {
+                            "x": false,
+                            "y": false
+                          },
+                          "fillType": 1,
+                          "slicedBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "tiledBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "centerInvisible": false,
+                          "fillDir": 0,
+                          "fillAmount": 0,
+                          "invertFill": false,
+                          "flip": 0,
+                          "gradient": 1,
+                          "gradientTop": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          },
+                          "gradientBottom": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          }
+                        }
+                      },
+                      "ecaScripts": [],
+                      "ecaProps": {
+                        "HudImageWidget": {},
+                        "HudWidget": {},
+                        "Entity": {}
+                      },
+                      "componentList": [],
+                      "entityTagData": {
+                        "tagPointers": []
+                      },
+                      "editorLockValue": false,
+                      "editorVisibleValue": true
+                    },
+                    {
                       "_entityName": "Wings",
                       "_tag": {
                         "type": "UIImageEntity",
@@ -842,8 +946,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "idy17cpzk9j-mnfxefiw-fpxox2gudao",
-                            "filePath": "Assets\\UI\\material\\Wings\\Wings1.png",
+                            "fileId": "3mro5x6krnw-mnodn9fo-3hdcfmh7osf",
+                            "filePath": "Assets\\UI\\material\\Wings1.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },
@@ -1766,6 +1870,110 @@
                       "ecaScripts": [],
                       "ecaProps": {
                         "HudButtonWidget": {},
+                        "HudWidget": {},
+                        "Entity": {}
+                      },
+                      "componentList": [],
+                      "entityTagData": {
+                        "tagPointers": []
+                      },
+                      "editorLockValue": false,
+                      "editorVisibleValue": true
+                    },
+                    {
+                      "_entityName": "background (1)",
+                      "_tag": {
+                        "type": "UIImageEntity",
+                        "resourceId": ""
+                      },
+                      "_entityId": "nCtGlb3w",
+                      "children": [],
+                      "prefabVariant": null,
+                      "activeValue": {
+                        "selfValue": true,
+                        "valueTag": "activeValue"
+                      },
+                      "unlockedValue": {
+                        "selfValue": true,
+                        "valueTag": "unlockedValue"
+                      },
+                      "propsData": {
+                        "activeSelf": true,
+                        "transform": {
+                          "rotate": 0,
+                          "anchorMin": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchorMax": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "pivot": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchoredPosition": {
+                            "x": 332,
+                            "y": 0
+                          },
+                          "sizeDelta": {
+                            "x": 182,
+                            "y": 244
+                          }
+                        },
+                        "alpha": 100,
+                        "priority": 0,
+                        "image": {
+                          "source": {
+                            "fileId": "yan6wezp8s-mnod1wla-ji5dewyk7wq",
+                            "filePath": "Assets\\UI\\material\\france.png",
+                            "_tag": {
+                              "type": "GFileRefer"
+                            },
+                            "fileType": "texture"
+                          },
+                          "color": "#ffffff",
+                          "reverse": {
+                            "x": false,
+                            "y": false
+                          },
+                          "fillType": 1,
+                          "slicedBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "tiledBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "centerInvisible": false,
+                          "fillDir": 0,
+                          "fillAmount": 0,
+                          "invertFill": false,
+                          "flip": 0,
+                          "gradient": 1,
+                          "gradientTop": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          },
+                          "gradientBottom": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          }
+                        }
+                      },
+                      "ecaScripts": [],
+                      "ecaProps": {
+                        "HudImageWidget": {},
                         "HudWidget": {},
                         "Entity": {}
                       },
@@ -3774,8 +3982,8 @@
                             "y": 0.5
                           },
                           "anchoredPosition": {
-                            "x": 6,
-                            "y": 39
+                            "x": 7,
+                            "y": 7
                           },
                           "sizeDelta": {
                             "x": 182,
@@ -3786,8 +3994,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "n4w06k842h-mmn4jf05-6difwnvhm1e",
-                            "filePath": "Assets\\UI\\material\\Wings\\恶魔翅膀2.png",
+                            "fileId": "z59qpwkfb2g-mnodqy8a-vq9s6cxhgb",
+                            "filePath": "Assets\\UI\\material\\Wings4.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },

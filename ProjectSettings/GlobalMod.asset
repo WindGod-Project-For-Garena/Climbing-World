@@ -117,6 +117,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "pqjdplf1h6c-mnojx4g3-1r692e8umw4",
+      "filePath": "Assets\\FCG\\SeverFCG\\S_camera.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

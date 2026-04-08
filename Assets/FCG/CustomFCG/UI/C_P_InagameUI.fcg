@@ -1,14 +1,18 @@
 // 挂载于 P_IngameHud 根节点；路径 /Button/Button 的 OnClick -> Button_button
 // 将本地玩家传送到 (0,0,0)，重置 C_P_Climbing2 攀爬/跳跃/悬挂逻辑，并通知服务端停止 Climbing、Falling、Dance 动画
+// /Touchpad (UIWidgetTouchPad) 点击/拖动 -> /Drag 跟随触摸位置，/Text 显示 Drag.PosX - 361
 
 import "StdLibrary.fcc" as std
 import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
 import "EditorGenLib.fcc" as gen
 import "Hud.fcc" as hud
 import "Player.fcc" as playerlib
+import "Convert.fcc" as convert
 
 [platform_client]
 graph C_freezebutton {
+	// 共享辅助函数：根据触摸点更新 /Drag 位置和 /Text 内容
+
 	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		var origin = Vector3{0, 0, 0}
 		SetLocalPlayerPosition(origin)

@@ -150,6 +150,18 @@
           },
           "scriptName": "Treasure_effect",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "qq2tg9k2lb-mnodhbba-zqbpxue1hzd",
+            "filePath": "Assets\\UI\\Drag.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Drag",
+          "children": []
         }
       ]
     },

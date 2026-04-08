@@ -5,6 +5,7 @@ import "Hud.fcc" as Hud
 
 graph DefaultUI {
     tipUI entity<UITweenTip>
+    
 
     func CreateTweenTipUI(content string) {
         Destroy(tipUI)

@@ -48,17 +48,18 @@ graph C_P_Climbing2 {
 	FallStartY float = 0
 	// 落地传送后的本地镜头轻微抖动序号（用于避免重复抖动冲突）
 	landingShakeSeq int = 0
+	DragUI entity<CustomUI> = nil
+	CreateDragUI bool = false
 
 
-	event OnAwake() {
+	event OnAwake() {   
+		
     
-		
-		frame = 0
-		Curent_height = Vector3{0, 0, 0}
-		
 	}
 
 	event OnPlayerJoin(joinedPlayer entity<Player>) {
+		
+
 		Speed_muti = 10
 		// ECA: CreateCustomHudClientV2；客户端创建 UI 需使用项目支持的客户端 API，此处预留
 		// CreateCustomUI 为服务端 API，若引擎提供客户端创建 HUD 的接口请替换

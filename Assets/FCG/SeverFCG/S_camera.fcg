@@ -1,0 +1,68 @@
+import "StdLibrary.fcc" as std
+import "EditorGenLib.fcc" as gen
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
+import "Convert.fcc" as convert
+import "Map.fcc" as map
+
+[platform_server]
+graph S_camera {
+    
+    CameraUI entity<CustomUI> = nil
+    uivisable bool = false
+    CameraUI_ByPlayer Map<entity<Player>, entity<CustomUI>> = nil
+    event OnAwake() {
+        CameraUI_ByPlayer = map.New()
+    }
+
+
+    event OnPlayerJoin(player entity<Player>) {
+        CreateCustomUI(out var caremaui, player,EResUI.Drag)
+        CameraUI_ByPlayer[player] = caremaui as entity<CustomUI>
+        CameraUI = caremaui as entity<CustomUI>
+      
+    }
+func ApplyTouchPos( CameraUI entity<CustomUI>, touchPos Vector2) {
+  
+ 
+    var ui = GetChildByIndex(CameraUI,1) 
+
+ 
+
+    var dragWidget = GetChildByIndex(ui, 2)
+    
+  
+    if dragWidget != nil {
+        var ap = dragWidget<UIWidget>.AnchorPosition
+        if touchPos.X < 292.0 {
+            touchPos.X = 292.0
+        }
+        if touchPos.X > 592.0 {
+            touchPos.X = 592.0
+        }
+        dragWidget<UIWidget>.AnchorPosition = Vector3{touchPos.X, ap.Y, ap.Z}
+
+        var textWidget = GetChildByIndex(ui, 3)
+        if textWidget != nil {
+            var xOffset = (touchPos.X - 292.0)/300.0
+            textWidget<UIWidgetLabel>.Content = convert.ToString(xOffset as int)
+        }
+    }
+    
+}
+event __Custom6event_drag__(  touchPos Vector2,player entity<Player>) {
+  
+    if player!=nil {
+        ApplyTouchPos(CameraUI_ByPlayer[player], touchPos)
+    }
+}
+event __Custom6event_CameraButton____( player entity<Player>) {
+    var ui = GetChildByIndex(CameraUI_ByPlayer[player],1) 
+    if ui!=nil {
+        ui<CustomUI>.IsVisible = uivisable
+        uivisable = true
+    }
+}
+    
+
+}

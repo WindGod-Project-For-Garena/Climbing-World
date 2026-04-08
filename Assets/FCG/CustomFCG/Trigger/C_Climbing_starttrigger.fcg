@@ -34,7 +34,7 @@ graph C_Climbing_starttrigger {
 	}
 
 	event OnPlayerEnter(player entity<Player>) {
-		LogInfo("进入攀爬起点")
+
 	
 		// 获取 Custom trigger（该实体）下的子节点 TeleportPoint 的位置坐标
 		var teleportPoint = GetChildByName(thisEntity, "TeleportPoint")

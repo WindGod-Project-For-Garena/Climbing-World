@@ -830,11 +830,11 @@
                             "y": 0.5
                           },
                           "anchoredPosition": {
-                            "x": 8,
-                            "y": -13
+                            "x": 6,
+                            "y": 10
                           },
                           "sizeDelta": {
-                            "x": 182,
+                            "x": 302,
                             "y": 244
                           }
                         },
@@ -842,8 +842,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "j0812dxl9b-mmn4jf5u-sof57gsnifp",
-                            "filePath": "Assets\\UI\\material\\Wings\\天使翅膀1.png",
+                            "fileId": "i8okhx61js-mnojeiq0-uups320hrff",
+                            "filePath": "Assets\\UI\\material\\ATower_s.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },
@@ -1810,11 +1810,11 @@
                             "y": 0.5
                           },
                           "anchoredPosition": {
-                            "x": -9,
+                            "x": -13,
                             "y": 20
                           },
                           "sizeDelta": {
-                            "x": 182,
+                            "x": 350,
                             "y": 244
                           }
                         },
@@ -1822,8 +1822,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "jduzuo1qh-mmn4jfbk-4vxu0wtdkir",
-                            "filePath": "Assets\\UI\\material\\Wings\\天使翅膀2.png",
+                            "fileId": "cwhw88avmav-mnojd5dj-eojttqxz43p",
+                            "filePath": "Assets\\UI\\material\\BTower_s.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },

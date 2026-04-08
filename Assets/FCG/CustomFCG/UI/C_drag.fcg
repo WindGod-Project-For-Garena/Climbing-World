@@ -1,0 +1,29 @@
+import "StdLibrary.fcc" as std
+import "EditorGenLib.fcc" as gen
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
+import "Convert.fcc" as convert
+[platform_client]
+graph C_drag {
+    event OnAwake() {
+
+      
+    }
+   
+ 
+  
+
+	// /Touchpad 按下时触发（OnTouchDown）
+	
+    event  OnDrag(player entity<Player>, startPosition Vector2, delta Vector2) {
+     
+       
+        DispatchEventToEntity(__Custom6event_drag__, globalEntity, PlatformType.Server, List<object>{startPosition + delta,player})
+    }
+   
+    event  OnTouchDown(player entity<Player>, touchPos Vector2) {
+
+     
+        DispatchEventToEntity(__Custom6event_drag__, globalEntity, PlatformType.Server, List<object>{touchPos,player})
+    }
+}
