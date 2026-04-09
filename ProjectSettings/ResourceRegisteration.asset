@@ -255,6 +255,54 @@
           },
           "scriptName": "BTower",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "ix4e5e0ajt-mnram1wz-dvw9a1qiyh",
+            "filePath": "Assets\\Prefabs\\wings\\Wings5.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings5",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "eq2rvbcnnc7-mnram3ku-ot9tjo0hbti",
+            "filePath": "Assets\\Prefabs\\wings\\Wings6.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings6",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "xmqe6ov7ds-mnram66u-usd8jkt217",
+            "filePath": "Assets\\Prefabs\\wings\\Wings7.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings7",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "d9ap7el0njd-mnram7py-9jcvjr2xyhq",
+            "filePath": "Assets\\Prefabs\\wings\\Wings8.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings8",
+          "children": []
         }
       ]
     },
@@ -406,8 +454,12 @@
     "skilltype": {
       "id": "skilltype",
       "children": []
+    },
+    "pd": {
+      "id": "pd",
+      "children": []
     }
   },
   "children": []
 }
-//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

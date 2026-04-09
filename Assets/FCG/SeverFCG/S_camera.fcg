@@ -2,6 +2,7 @@ import "StdLibrary.fcc" as std
 import "EditorGenLib.fcc" as gen
 import "Hud.fcc" as hud
 import "Player.fcc" as playerlib
+import "Camera.fcc" as camerafcc
 import "Convert.fcc" as convert
 import "Map.fcc" as map
 
@@ -9,20 +10,33 @@ import "Map.fcc" as map
 graph S_camera {
     
     CameraUI entity<CustomUI> = nil
-    uivisable bool = false
+   
     CameraUI_ByPlayer Map<entity<Player>, entity<CustomUI>> = nil
+    OriginalCamera_ByPlayer Map<entity<Player>, entity<Camera>> = nil
     event OnAwake() {
         CameraUI_ByPlayer = map.New()
+        OriginalCamera_ByPlayer = map.New()
     }
 
 
     event OnPlayerJoin(player entity<Player>) {
         CreateCustomUI(out var caremaui, player,EResUI.Drag)
-        CameraUI_ByPlayer[player] = caremaui as entity<CustomUI>
+       
         CameraUI = caremaui as entity<CustomUI>
+        CreateCamera(CameraType.ThirdPerson, out var createdEntity)
+
+        SwitchCamera(player, createdEntity, CameraTransitionType.Default, 0)
+        var offset Vector3 = Vector3{0,0,0}
+        SetCameraFollow(createdEntity, player, offset, CoordinateSystemType.LocalPosition )
+        CameraUI_ByPlayer[player] = caremaui as entity<CustomUI>
+
+        OriginalCamera_ByPlayer[player] = createdEntity
+        LogInfo("OriginalCameraOffset_ByPlayer:" + OriginalCamera_ByPlayer[player])
+       
+
       
     }
-func ApplyTouchPos( CameraUI entity<CustomUI>, touchPos Vector2) {
+func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Vector2) {
   
  
     var ui = GetChildByIndex(CameraUI,1) 
@@ -44,8 +58,21 @@ func ApplyTouchPos( CameraUI entity<CustomUI>, touchPos Vector2) {
 
         var textWidget = GetChildByIndex(ui, 3)
         if textWidget != nil {
-            var xOffset = (touchPos.X - 292.0)/300.0
+            var xOffset = 1.0+(touchPos.X - 292.0)/300.0
             textWidget<UIWidgetLabel>.Content = convert.ToString(xOffset as int)
+           var mainCam = OriginalCamera_ByPlayer[player]
+            if mainCam != nil {
+                LogInfo("mainCam:" + mainCam)
+                if !ContainKey(OriginalCamera_ByPlayer, player) {
+                    LogInfo("mainCam not found")
+                   
+                }
+               
+                var originalCamera = OriginalCamera_ByPlayer[player]
+                LogInfo("originalCamera:" + originalCamera)
+                var originalCameraFov = originalCamera<Camera>.FOV
+                originalCamera<Camera>.FOV =  originalCameraFov*xOffset
+            }
         }
     }
     
@@ -53,14 +80,23 @@ func ApplyTouchPos( CameraUI entity<CustomUI>, touchPos Vector2) {
 event __Custom6event_drag__(  touchPos Vector2,player entity<Player>) {
   
     if player!=nil {
-        ApplyTouchPos(CameraUI_ByPlayer[player], touchPos)
+        ApplyTouchPos(player, CameraUI_ByPlayer[player], touchPos)
     }
 }
-event __Custom6event_CameraButton____( player entity<Player>) {
+event OnPlayerQuit(player entity<Player>) {
+    if ContainKey(CameraUI_ByPlayer, player) {
+        map.Remove(CameraUI_ByPlayer, player)
+    }
+    if ContainKey(OriginalCamera_ByPlayer, player) {
+        map.Remove(OriginalCamera_ByPlayer, player)
+    }
+}
+event __Custom6event_CameraButton____( player entity<Player>, status bool) {
+    LogInfo("__Custom6event_CameraButton____")
     var ui = GetChildByIndex(CameraUI_ByPlayer[player],1) 
     if ui!=nil {
-        ui<CustomUI>.IsVisible = uivisable
-        uivisable = true
+        //ui<CustomUI>.IsVisible = status
+        
     }
 }
     

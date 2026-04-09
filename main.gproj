@@ -1,10 +1,11 @@
 {
-  "mainScene": "ew30utg8hd7-lw7lj2ed-m7knbltuzlg",
   "name": "Climbing World",
-  "nsId": "lqLzjBR3",
+  "projectType": "",
   "isDirty": false,
-  "cachePort": 56060,
-  "version": "1.16.4231768",
+  "id": "zr07eenccui-mm4obyu4-nwuwz87h9ye",
+  "mainScene": "ew30utg8hd7-lw7lj2ed-m7knbltuzlg",
+  "version": "1.17.4326539",
+  "nsId": "lqLzjBR3",
   "internalProject": true,
-  "id": "zr07eenccui-mm4obyu4-nwuwz87h9ye"
+  "cachePort": 56060
 }

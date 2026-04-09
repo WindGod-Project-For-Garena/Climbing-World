@@ -741,23 +741,6 @@
       "version": 45,
       "key": "signal_18389130"
     },
-    "signal_25413720": {
-      "name": "Custom event_CameraButton__",
-      "eventType": 0,
-      "enitityType": "Component",
-      "typeID": 100038,
-      "props": [
-        {
-          "name": "player",
-          "value": "Player",
-          "key": 1
-        }
-      ],
-      "propCount": 1,
-      "apiTargetV2": "both",
-      "version": 45,
-      "key": "signal_25413720"
-    },
     "signal_20075104": {
       "name": "Custom event_drag",
       "eventType": 0,
@@ -779,6 +762,28 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_20075104"
+    },
+    "signal_25413720": {
+      "name": "Custom event_CameraButton__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100038,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "status",
+          "value": "Bool",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_25413720"
     }
   },
   "customName": {
@@ -819,8 +824,8 @@
     "Custom event_ShowTreasureSelect____": "signal_66013608",
     "Custom event_TreasurePanelSlide____": "signal_78793885",
     "Custom event_TreasureOpenBox____": "signal_18389130",
-    "Custom event_CameraButton__": "signal_25413720",
-    "Custom event_drag": "signal_20075104"
+    "Custom event_drag": "signal_20075104",
+    "Custom event_CameraButton__": "signal_25413720"
   },
   "children": []
 }

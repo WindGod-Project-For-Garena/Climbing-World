@@ -8,8 +8,9 @@ import "Player.fcc" as playerlib
 graph C_CameraButton {
   
     
-    event  OnClick(Player entity<Player>) {
+    event  OnToggle(player entity<Player>, status bool) {
+        LogInfo("C_CameraButton OnPressed")
     
-        DispatchEventToEntity(__Custom6event_CameraButton____, globalEntity, PlatformType.Server, List<object>{Player})
+        DispatchEventToEntity(__Custom6event_CameraButton____, globalEntity, PlatformType.Server, List<object>{player,status})
     }
 }

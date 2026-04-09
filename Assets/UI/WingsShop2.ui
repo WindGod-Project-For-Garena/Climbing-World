@@ -470,8 +470,8 @@
                 "y": 270
               },
               "sizeDelta": {
-                "x": 681,
-                "y": 367
+                "x": 680,
+                "y": 366
               }
             },
             "alpha": 100,
@@ -574,8 +574,8 @@
                 "y": 312
               },
               "sizeDelta": {
-                "x": 75,
-                "y": 75
+                "x": 74,
+                "y": 74
               }
             },
             "alpha": 100,
@@ -4976,8 +4976,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "n4w06k842h-mmn4jf05-6difwnvhm1e",
-                            "filePath": "Assets\\UI\\material\\Wings\\恶魔翅膀2.png",
+                            "fileId": "p8wt8g8nss9-mnqy8u89-c83ze0sy638",
+                            "filePath": "Assets\\UI\\material\\Wings5.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },
@@ -5958,8 +5958,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "n4w06k842h-mmn4jf05-6difwnvhm1e",
-                            "filePath": "Assets\\UI\\material\\Wings\\恶魔翅膀2.png",
+                            "fileId": "o0f9wo01zo7-mnqy9av3-br5osn6jkk",
+                            "filePath": "Assets\\UI\\material\\Wings6.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },
@@ -6940,8 +6940,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "n4w06k842h-mmn4jf05-6difwnvhm1e",
-                            "filePath": "Assets\\UI\\material\\Wings\\恶魔翅膀2.png",
+                            "fileId": "yivs78hj6-mnqy9igw-0jbbrp31l7nh",
+                            "filePath": "Assets\\UI\\material\\Wings7.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },
@@ -7922,8 +7922,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "n4w06k842h-mmn4jf05-6difwnvhm1e",
-                            "filePath": "Assets\\UI\\material\\Wings\\恶魔翅膀2.png",
+                            "fileId": "1vt88mzbq4p-mnqy9qmg-akx7sb0tsu8",
+                            "filePath": "Assets\\UI\\material\\Wings8.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },
