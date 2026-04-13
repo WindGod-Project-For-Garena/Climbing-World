@@ -53,6 +53,13 @@ func GetPlayerCameraScale(player entity<Player>) float {
     }
     return DefaultXOffsetScale
 }
+func ApplyPlayerCameraWithYOffset(player entity<Player>, yOffset float) {
+    if !ContainKey(OriginalCamera_ByPlayer, player) {
+        return
+    }
+    var offset = Vector3{0, yOffset, 3*GetPlayerCameraScale(player)}
+    SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
+}
 func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Vector2) {
   
  
@@ -85,10 +92,7 @@ func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Ve
                    
                 }
                
-                var offset = Vector3{0,0,3}*GetPlayerCameraScale(player)
-              
-                
-                SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
+                ApplyPlayerCameraWithYOffset(player, 0)
             }
         }
     }
@@ -126,7 +130,6 @@ event __Custom6event_CameraButton____( player entity<Player>, status bool) {
 event __Custom6event_reback__(player entity<Player>) {
     LogInfo("__Custom6event_reback__")
     
-    var offset = Vector3{0,0,3}*GetPlayerCameraScale(player)
-    SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
+    ApplyPlayerCameraWithYOffset(player, 0)
 }
 }

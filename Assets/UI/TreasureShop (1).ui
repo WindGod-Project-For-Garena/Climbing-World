@@ -3179,11 +3179,11 @@
                           },
                           "anchoredPosition": {
                             "x": 5,
-                            "y": 0
+                            "y": 9
                           },
                           "sizeDelta": {
                             "x": 182,
-                            "y": 244
+                            "y": 206
                           }
                         },
                         "alpha": 100,
@@ -3573,8 +3573,8 @@
                         "priority": 0,
                         "image": {
                           "source": {
-                            "fileId": "jduzuo1qh-mmn4jfbk-4vxu0wtdkir",
-                            "filePath": "Assets\\UI\\material\\Wings\\天使翅膀2.png",
+                            "fileId": "id7limp9ijk-mnx0emer-q7lqasf3z1",
+                            "filePath": "Assets\\UI\\material\\Treasure2.png",
                             "_tag": {
                               "type": "GFileRefer"
                             },
