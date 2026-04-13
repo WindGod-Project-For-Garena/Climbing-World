@@ -1,0 +1,121 @@
+{
+  "_entityName": "Prefab",
+  "_tag": {
+    "type": "Prefab"
+  },
+  "_entityId": "aGZebA0y",
+  "children": [
+    {
+      "_entityName": "power",
+      "_tag": {
+        "type": "SceneEditEntity",
+        "resourceId": "Primitive/Empty"
+      },
+      "_entityId": "VHZKEJSu",
+      "children": [],
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": null,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 10,
+        "y": 10,
+        "z": 10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "BTPath": [
+        null
+      ],
+      "visible": true,
+      "VisibilityLayer": 0,
+      "modelOptimization": 0,
+      "streamingLayer": "",
+      "attributes": [
+        2,
+        4
+      ],
+      "isTrigger": false,
+      "collidable": true,
+      "physicalLayer": 0,
+      "aoiSetting": 0,
+      "initialTypes": {},
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "tempIndex": 239,
+      "itemID": 222,
+      "seParent": null,
+      "ecaScripts": [
+        null
+      ],
+      "ecaProps": {
+        "TextEntity": {},
+        "LevelObject": {},
+        "Transform": {},
+        "Entity": {},
+        "Visibility": {}
+      },
+      "propsData": {
+        "TextKey": "0",
+        "fontColor": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "IsBillboard": true,
+        "fontStyleRef": {
+          "bold": false,
+          "italic": false,
+          "underline": false
+        },
+        "FontSize": 48,
+        "IgnoreDepth": false,
+        "AlwaysInScreen": false,
+        "Depth": 0,
+        "Width": 100,
+        "Height": 100,
+        "FondOverFlowMod": 2,
+        "fontType": "UIFONT_LATIN",
+        "fontStyle": 0,
+        "_levelObjectID": 7,
+        "TextDisplay": "0",
+        "fontTypeRef": "UIFONT_LATIN"
+      },
+      "_performanceConfigData": {
+        "ItemID": 222,
+        "MeshCount": 0,
+        "MaterialCount": 0,
+        "AnimationCount": 0,
+        "BoneCount": 0,
+        "ParticleEmitterCount": 0,
+        "ParticleCount": 0,
+        "TextureMemory": 0,
+        "ModelMemory": 0,
+        "AudioMemory": 0
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "prefabVariant": null
+    }
+  ],
+  "prefabVariant": null,
+  "activeValue": null,
+  "unlockedValue": null,
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "HintCraftlandCombineMesh": false,
+  "discriminator": "ISceneLike"
+}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

@@ -57,8 +57,10 @@ graph S_treasureShopUI {
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.Treasureshop2)
 			TreasureShop[player] = createdEntity
-			HideAllTreasureSelect(player, createdEntity as entity<CustomUI>)
-			TreasureSelectState[player] = 0
+			var createdUI = createdEntity as entity<CustomUI>
+			TreasureSelectState[player] = 1
+			ApplyTreasureSelectState(player, createdUI, 1)
+			UpdateTreasureDisplay(player, createdUI, 1)
 		}
 	}
 

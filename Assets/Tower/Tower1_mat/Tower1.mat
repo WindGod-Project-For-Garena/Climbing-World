@@ -6,8 +6,14 @@
   "_entityId": "lwyxW58B",
   "children": [],
   "prefabVariant": null,
-  "activeValue": null,
-  "unlockedValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "shader": {
@@ -32,13 +38,13 @@
       }
     },
     "_Color": {
-      "r": 139,
-      "g": 106,
-      "b": 80,
+      "r": 255,
+      "g": 10,
+      "b": 10,
       "a": 1
     },
     "_Cutoff": 0.5,
     "_CullMode": 2
   }
 }
-//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

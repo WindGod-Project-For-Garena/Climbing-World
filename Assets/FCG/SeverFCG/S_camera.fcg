@@ -13,9 +13,11 @@ graph S_camera {
    
     CameraUI_ByPlayer Map<entity<Player>, entity<CustomUI>> = nil
     OriginalCamera_ByPlayer Map<entity<Player>, entity<Camera>> = nil
+ 
     event OnAwake() {
         CameraUI_ByPlayer = map.New()
         OriginalCamera_ByPlayer = map.New()
+       
     }
 
 
@@ -24,14 +26,16 @@ graph S_camera {
        
         CameraUI = caremaui as entity<CustomUI>
         CreateCamera(CameraType.ThirdPerson, out var createdEntity)
+    
 
         SwitchCamera(player, createdEntity, CameraTransitionType.Default, 0)
-        var offset Vector3 = Vector3{0,0,0}
+        var offset Vector3 = Vector3{0,0,3}
         SetCameraFollow(createdEntity, player, offset, CoordinateSystemType.LocalPosition )
         CameraUI_ByPlayer[player] = caremaui as entity<CustomUI>
-
+     
         OriginalCamera_ByPlayer[player] = createdEntity
-        LogInfo("OriginalCameraOffset_ByPlayer:" + OriginalCamera_ByPlayer[player])
+      
+      
        
 
       
@@ -62,16 +66,16 @@ func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Ve
             textWidget<UIWidgetLabel>.Content = convert.ToString(xOffset as int)
            var mainCam = OriginalCamera_ByPlayer[player]
             if mainCam != nil {
-                LogInfo("mainCam:" + mainCam)
+        
                 if !ContainKey(OriginalCamera_ByPlayer, player) {
-                    LogInfo("mainCam not found")
+            
                    
                 }
                
-                var originalCamera = OriginalCamera_ByPlayer[player]
-                LogInfo("originalCamera:" + originalCamera)
-                var originalCameraFov = originalCamera<Camera>.FOV
-                originalCamera<Camera>.FOV =  originalCameraFov*xOffset
+                var offset = Vector3{0,0,3}*xOffset
+              
+                
+                SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
             }
         }
     }
@@ -92,7 +96,7 @@ event OnPlayerQuit(player entity<Player>) {
     }
 }
 event __Custom6event_CameraButton____( player entity<Player>, status bool) {
-    LogInfo("__Custom6event_CameraButton____")
+
     var ui = GetChildByIndex(CameraUI_ByPlayer[player],1) 
     if ui!=nil {
         //ui<CustomUI>.IsVisible = status
