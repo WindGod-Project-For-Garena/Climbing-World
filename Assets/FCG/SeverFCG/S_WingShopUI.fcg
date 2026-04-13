@@ -12,9 +12,9 @@ import "Math.fcc" as Math
 [platform_server]
 graph S_WingShopUI {
 	Wingshop Map<object, object> = nil
-	// 玩家 -> 上次选中的翅膀索引（0=无，1-4=Wing1~4），用于退出 trigger 或关闭界面后再次进入时恢复显隐状态
+	// 玩家 -> 上次选中的翅膀索引（0=无，1-12=Wing1~12），用于退出 trigger 或关闭界面后再次进入时恢复显隐状态
 	WingSelectState Map<entity<Player>, int> = nil
-	// 玩家 -> 已解锁的翅膀数量（0-8），用于 BUY/Trick/Locked 显隐
+	// 玩家 -> 已解锁的翅膀数量（0-12），用于 BUY/Trick/Locked 显隐
 	WingUnlockState Map<entity<Player>, int> = nil
 	// 由场景实体 Wingshoptrigger 客户端 OnAwake 上报，用于攀爬落地后 OnShowHint
 	worldPos Vector3=Vector3{-1.048412,0.001,5.96745}
@@ -125,6 +125,10 @@ graph S_WingShopUI {
 		var s6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/Select")
 		var s7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/Select")
 		var s8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/Select")
+		var s9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/Select")
+		var s10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/Select")
+		var s11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/Select")
+		var s12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/Select")
 		if s1 != nil { s1<UIWidget>.IsVisible = false }
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
@@ -133,6 +137,10 @@ graph S_WingShopUI {
 		if s6 != nil { s6<UIWidget>.IsVisible = false }
 		if s7 != nil { s7<UIWidget>.IsVisible = false }
 		if s8 != nil { s8<UIWidget>.IsVisible = false }
+		if s9 != nil { s9<UIWidget>.IsVisible = false }
+		if s10 != nil { s10<UIWidget>.IsVisible = false }
+		if s11 != nil { s11<UIWidget>.IsVisible = false }
+		if s12 != nil { s12<UIWidget>.IsVisible = false }
 		// 不修改 Trick 显隐，由 ApplyWingBuyState 按解锁状态单独控制
 		var e1 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings1/Equipped")
 		var e2 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings2/Equipped")
@@ -142,6 +150,10 @@ graph S_WingShopUI {
 		var e6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/Equipped")
 		var e7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/Equipped")
 		var e8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/Equipped")
+		var e9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/Equipped")
+		var e10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/Equipped")
+		var e11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/Equipped")
+		var e12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/Equipped")
 		if e1 != nil { e1<UIWidget>.IsVisible = false }
 		if e2 != nil { e2<UIWidget>.IsVisible = false }
 		if e3 != nil { e3<UIWidget>.IsVisible = false }
@@ -150,6 +162,10 @@ graph S_WingShopUI {
 		if e6 != nil { e6<UIWidget>.IsVisible = false }
 		if e7 != nil { e7<UIWidget>.IsVisible = false }
 		if e8 != nil { e8<UIWidget>.IsVisible = false }
+		if e9 != nil { e9<UIWidget>.IsVisible = false }
+		if e10 != nil { e10<UIWidget>.IsVisible = false }
+		if e11 != nil { e11<UIWidget>.IsVisible = false }
+		if e12 != nil { e12<UIWidget>.IsVisible = false }
 		if wingIndex == 1 && s1 != nil { s1<UIWidget>.IsVisible = true; if e1 != nil { e1<UIWidget>.IsVisible = true } }
 		if wingIndex == 2 && s2 != nil { s2<UIWidget>.IsVisible = true; if e2 != nil { e2<UIWidget>.IsVisible = true } }
 		if wingIndex == 3 && s3 != nil { s3<UIWidget>.IsVisible = true; if e3 != nil { e3<UIWidget>.IsVisible = true } }
@@ -158,6 +174,10 @@ graph S_WingShopUI {
 		if wingIndex == 6 && s6 != nil { s6<UIWidget>.IsVisible = true; if e6 != nil { e6<UIWidget>.IsVisible = true } }
 		if wingIndex == 7 && s7 != nil { s7<UIWidget>.IsVisible = true; if e7 != nil { e7<UIWidget>.IsVisible = true } }
 		if wingIndex == 8 && s8 != nil { s8<UIWidget>.IsVisible = true; if e8 != nil { e8<UIWidget>.IsVisible = true } }
+		if wingIndex == 9 && s9 != nil { s9<UIWidget>.IsVisible = true; if e9 != nil { e9<UIWidget>.IsVisible = true } }
+		if wingIndex == 10 && s10 != nil { s10<UIWidget>.IsVisible = true; if e10 != nil { e10<UIWidget>.IsVisible = true } }
+		if wingIndex == 11 && s11 != nil { s11<UIWidget>.IsVisible = true; if e11 != nil { e11<UIWidget>.IsVisible = true } }
+		if wingIndex == 12 && s12 != nil { s12<UIWidget>.IsVisible = true; if e12 != nil { e12<UIWidget>.IsVisible = true } }
 	}
 
 	func HideAllWingSelect(player entity<Player>, wingshopUI entity<CustomUI>) {
@@ -169,6 +189,10 @@ graph S_WingShopUI {
 		var s6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/Select")
 		var s7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/Select")
 		var s8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/Select")
+		var s9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/Select")
+		var s10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/Select")
+		var s11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/Select")
+		var s12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/Select")
 		if s1 != nil { s1<UIWidget>.IsVisible = false }
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
@@ -177,6 +201,10 @@ graph S_WingShopUI {
 		if s6 != nil { s6<UIWidget>.IsVisible = false }
 		if s7 != nil { s7<UIWidget>.IsVisible = false }
 		if s8 != nil { s8<UIWidget>.IsVisible = false }
+		if s9 != nil { s9<UIWidget>.IsVisible = false }
+		if s10 != nil { s10<UIWidget>.IsVisible = false }
+		if s11 != nil { s11<UIWidget>.IsVisible = false }
+		if s12 != nil { s12<UIWidget>.IsVisible = false }
 		// 不修改 Trick 显隐，由 ApplyWingBuyState 按解锁状态单独控制
 		var e1 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings1/Equipped")
 		var e2 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings2/Equipped")
@@ -186,6 +214,10 @@ graph S_WingShopUI {
 		var e6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/Equipped")
 		var e7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/Equipped")
 		var e8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/Equipped")
+		var e9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/Equipped")
+		var e10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/Equipped")
+		var e11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/Equipped")
+		var e12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/Equipped")
 		if e1 != nil { e1<UIWidget>.IsVisible = false }
 		if e2 != nil { e2<UIWidget>.IsVisible = false }
 		if e3 != nil { e3<UIWidget>.IsVisible = false }
@@ -194,6 +226,10 @@ graph S_WingShopUI {
 		if e6 != nil { e6<UIWidget>.IsVisible = false }
 		if e7 != nil { e7<UIWidget>.IsVisible = false }
 		if e8 != nil { e8<UIWidget>.IsVisible = false }
+		if e9 != nil { e9<UIWidget>.IsVisible = false }
+		if e10 != nil { e10<UIWidget>.IsVisible = false }
+		if e11 != nil { e11<UIWidget>.IsVisible = false }
+		if e12 != nil { e12<UIWidget>.IsVisible = false }
 	}
 
 	// 隐藏所有 BUY 按钮
@@ -206,6 +242,10 @@ graph S_WingShopUI {
 		var b6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/BUY")
 		var b7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/BUY")
 		var b8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/BUY")
+		var b9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/BUY")
+		var b10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/BUY")
+		var b11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/BUY")
+		var b12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/BUY")
 		if b1 != nil { b1<UIWidget>.IsVisible = false }
 		if b2 != nil { b2<UIWidget>.IsVisible = false }
 		if b3 != nil { b3<UIWidget>.IsVisible = false }
@@ -214,6 +254,10 @@ graph S_WingShopUI {
 		if b6 != nil { b6<UIWidget>.IsVisible = false }
 		if b7 != nil { b7<UIWidget>.IsVisible = false }
 		if b8 != nil { b8<UIWidget>.IsVisible = false }
+		if b9 != nil { b9<UIWidget>.IsVisible = false }
+		if b10 != nil { b10<UIWidget>.IsVisible = false }
+		if b11 != nil { b11<UIWidget>.IsVisible = false }
+		if b12 != nil { b12<UIWidget>.IsVisible = false }
 	}
 
 	// 按解锁数量应用 BUY/Trick/Locked 显隐：unlockCount 0=仅 Wing1/BUY 可见；≥1 时 Wing1/Trick 可见、Wing1/Locked 不可视，依次类推
@@ -226,6 +270,10 @@ graph S_WingShopUI {
 		var b6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/BUY")
 		var b7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/BUY")
 		var b8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/BUY")
+		var b9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/BUY")
+		var b10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/BUY")
+		var b11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/BUY")
+		var b12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/BUY")
 		var t1 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings1/Trick")
 		var t2 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings2/Trick")
 		var t3 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings3/Trick")
@@ -234,6 +282,10 @@ graph S_WingShopUI {
 		var t6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/Trick")
 		var t7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/Trick")
 		var t8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/Trick")
+		var t9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/Trick")
+		var t10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/Trick")
+		var t11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/Trick")
+		var t12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/Trick")
 		var l1 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings1/Locked")
 		var l2 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings2/Locked")
 		var l3 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings3/Locked")
@@ -242,6 +294,10 @@ graph S_WingShopUI {
 		var l6 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings6/Locked")
 		var l7 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings7/Locked")
 		var l8 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings8/Locked")
+		var l9 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings9/Locked")
+		var l10 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings10/Locked")
+		var l11 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings11/Locked")
+		var l12 = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings12/Locked")
 		// BUY：仅下一个待解锁的显示
 		if b1 != nil { b1<UIWidget>.IsVisible = (unlockCount == 0) }
 		if b2 != nil { b2<UIWidget>.IsVisible = (unlockCount == 1) }
@@ -251,6 +307,10 @@ graph S_WingShopUI {
 		if b6 != nil { b6<UIWidget>.IsVisible = (unlockCount == 5) }
 		if b7 != nil { b7<UIWidget>.IsVisible = (unlockCount == 6) }
 		if b8 != nil { b8<UIWidget>.IsVisible = (unlockCount == 7) }
+		if b9 != nil { b9<UIWidget>.IsVisible = (unlockCount == 8) }
+		if b10 != nil { b10<UIWidget>.IsVisible = (unlockCount == 9) }
+		if b11 != nil { b11<UIWidget>.IsVisible = (unlockCount == 10) }
+		if b12 != nil { b12<UIWidget>.IsVisible = (unlockCount == 11) }
 		// Trick：已解锁的显示
 		if t1 != nil { t1<UIWidget>.IsVisible = (unlockCount >= 1) }
 		if t2 != nil { t2<UIWidget>.IsVisible = (unlockCount >= 2) }
@@ -260,6 +320,10 @@ graph S_WingShopUI {
 		if t6 != nil { t6<UIWidget>.IsVisible = (unlockCount >= 6) }
 		if t7 != nil { t7<UIWidget>.IsVisible = (unlockCount >= 7) }
 		if t8 != nil { t8<UIWidget>.IsVisible = (unlockCount >= 8) }
+		if t9 != nil { t9<UIWidget>.IsVisible = (unlockCount >= 9) }
+		if t10 != nil { t10<UIWidget>.IsVisible = (unlockCount >= 10) }
+		if t11 != nil { t11<UIWidget>.IsVisible = (unlockCount >= 11) }
+		if t12 != nil { t12<UIWidget>.IsVisible = (unlockCount >= 12) }
 		// Locked：未解锁的显示，已解锁的不可视
 		if l1 != nil { l1<UIWidget>.IsVisible = (unlockCount < 1) }
 		if l2 != nil { l2<UIWidget>.IsVisible = (unlockCount < 2) }
@@ -269,5 +333,9 @@ graph S_WingShopUI {
 		if l6 != nil { l6<UIWidget>.IsVisible = (unlockCount < 6) }
 		if l7 != nil { l7<UIWidget>.IsVisible = (unlockCount < 7) }
 		if l8 != nil { l8<UIWidget>.IsVisible = (unlockCount < 8) }
+		if l9 != nil { l9<UIWidget>.IsVisible = (unlockCount < 9) }
+		if l10 != nil { l10<UIWidget>.IsVisible = (unlockCount < 10) }
+		if l11 != nil { l11<UIWidget>.IsVisible = (unlockCount < 11) }
+		if l12 != nil { l12<UIWidget>.IsVisible = (unlockCount < 12) }
 	}
 }

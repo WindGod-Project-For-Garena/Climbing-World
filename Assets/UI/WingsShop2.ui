@@ -4799,7 +4799,7 @@
                   "_entityId": "Qz8m4jyg",
                   "children": [
                     {
-                      "_entityName": "Wing4",
+                      "_entityName": "Wing5",
                       "_tag": {
                         "type": "UIButtonEntity",
                         "resourceId": ""
@@ -8727,7 +8727,7 @@
                   "_entityId": "KJwo0Vjg",
                   "children": [
                     {
-                      "_entityName": "Wing4",
+                      "_entityName": "Wing9",
                       "_tag": {
                         "type": "UIButtonEntity",
                         "resourceId": ""
@@ -8787,7 +8787,10 @@
                           "enableBorderImage": true,
                           "clickHandlers": [
                             {
-                              "eventName": "OnClick"
+                              "eventName": "OnClick",
+                              "funcKey": "Wing9_button",
+                              "type": "ugcscript",
+                              "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
                           ],
                           "disableCollider": false,
@@ -9590,7 +9593,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY9_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -9767,7 +9770,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
+                              "funcKey": "Wing10_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -10572,7 +10575,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY10_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -10749,7 +10752,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
+                              "funcKey": "Wing11_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -11554,7 +11557,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY11_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -11731,7 +11734,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
+                              "funcKey": "Wing12_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -12536,7 +12539,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY12_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }

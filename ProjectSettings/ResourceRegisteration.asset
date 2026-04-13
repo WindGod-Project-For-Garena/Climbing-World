@@ -327,6 +327,54 @@
           },
           "scriptName": "CTower",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "260q8sygdit-mnwsywz2-z1glttzr3m",
+            "filePath": "Assets\\Prefabs\\wings\\Wings9.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings9",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "a64034jgp58-mnwmfz10-8xdrdv8ixck",
+            "filePath": "Assets\\Prefabs\\wings\\Wings10.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings10",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "byy207xlntb-mnwsyzj1-sdvc16cmck",
+            "filePath": "Assets\\Prefabs\\wings\\Wings11.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings11",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "gmivak249dt-mnwmf7hc-bma0assqtqn",
+            "filePath": "Assets\\Prefabs\\wings\\Wings12.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Wings12",
+          "children": []
         }
       ]
     },

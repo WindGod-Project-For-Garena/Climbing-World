@@ -1,37 +1,152 @@
 {
-  "_entityName": "Prefab",
+  "_entityName": "Wings8",
   "_tag": {
     "type": "Prefab"
   },
   "_entityId": "tjgo39b6",
   "children": [
     {
-      "_entityName": "Wings8",
+      "_entityName": "Empty",
       "_tag": {
         "type": "UGCSceneEntity",
-        "resourceId": ""
+        "resourceId": "Primitive/Empty"
       },
-      "_entityId": "jBTFOqOA",
-      "children": [],
+      "_entityId": "aIPvgBWs",
+      "children": [
+        {
+          "_entityName": "Wings8",
+          "_tag": {
+            "type": "UGCSceneEntity",
+            "resourceId": ""
+          },
+          "_entityId": "jBTFOqOA",
+          "children": [],
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "position": {
+            "x": 0,
+            "y": 0.001,
+            "z": 0
+          },
+          "scale": {
+            "x": 0.9999999403953552,
+            "y": 0.9999999403953552,
+            "z": 1
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 90
+          },
+          "BTPath": [
+            null
+          ],
+          "visible": true,
+          "VisibilityLayer": 0,
+          "modelOptimization": 0,
+          "streamingLayer": "",
+          "attributes": [
+            2,
+            4
+          ],
+          "isTrigger": false,
+          "collidable": true,
+          "physicalLayer": 0,
+          "aoiSetting": 0,
+          "initialTypes": {},
+          "componentList": [
+            "MeshRender",
+            "ColliderShape",
+            "Collider"
+          ],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "mesh": {
+            "fileId": "mjgmfbzu6s-mnr9vxif-5r6redik9f7-Wings8.~@FFFUB",
+            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings8.fbx\\Wings8.mesh",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "mesh"
+          },
+          "materials": [
+            {
+              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
+              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "material"
+            }
+          ],
+          "colliders": [],
+          "IsNPC": false,
+          "isCreateAsEmpty": false,
+          "Rigidbody": {
+            "Type": 1,
+            "Mass": 1,
+            "CenterOfMass": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "UseGravity": true,
+            "Drag": 0.05,
+            "AngularDrag": 0.05,
+            "FreezePosX": false,
+            "FreezeRotX": false,
+            "FreezePosY": false,
+            "FreezeRotY": false,
+            "FreezePosZ": false,
+            "FreezeRotZ": false
+          },
+          "ecaScripts": [],
+          "ecaProps": {
+            "CustomLevelObject": {},
+            "LevelObject": {},
+            "Transform": {},
+            "Entity": {},
+            "Visibility": {},
+            "MeshRender": {},
+            "ColliderShape": {},
+            "Collider": {}
+          },
+          "propsData": {},
+          "entityVersion": 3,
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "prefabVariant": null
+        }
+      ],
+      "prefabVariant": null,
       "activeValue": {
         "selfValue": true,
         "valueTag": "activeValue"
       },
       "unlockedValue": null,
+      "editorLockValue": false,
+      "editorVisibleValue": true,
       "position": {
         "x": 0,
         "y": 0,
         "z": 0
       },
       "scale": {
-        "x": 500,
-        "y": 500,
+        "x": 500.000244140625,
+        "y": 500.000244140625,
         "z": 500
       },
       "rotation": {
-        "x": 180,
-        "y": 180,
-        "z": 90
+        "x": -0.0000050089570322597865,
+        "y": 0.000005008956577512436,
+        "z": 270
       },
       "BTPath": [
         null
@@ -49,35 +164,15 @@
       "physicalLayer": 0,
       "aoiSetting": 0,
       "initialTypes": {},
-      "componentList": [
-        "MeshRender",
-        "ColliderShape",
-        "Collider"
-      ],
+      "componentList": [],
       "entityTagData": {
         "tagPointers": []
       },
-      "mesh": {
-        "fileId": "mjgmfbzu6s-mnr9vxif-5r6redik9f7-Wings8.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings8.fbx\\Wings8.mesh",
-        "_tag": {
-          "type": "GFileRefer"
-        },
-        "fileType": "mesh"
-      },
-      "materials": [
-        {
-          "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-          "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-          "_tag": {
-            "type": "GFileRefer"
-          },
-          "fileType": "material"
-        }
-      ],
+      "mesh": null,
+      "materials": [],
       "colliders": [],
       "IsNPC": false,
-      "isCreateAsEmpty": false,
+      "isCreateAsEmpty": true,
       "Rigidbody": {
         "Type": 1,
         "Mass": 1,
@@ -102,16 +197,10 @@
         "LevelObject": {},
         "Transform": {},
         "Entity": {},
-        "Visibility": {},
-        "MeshRender": {},
-        "ColliderShape": {},
-        "Collider": {}
+        "Visibility": {}
       },
       "propsData": {},
-      "entityVersion": 3,
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "prefabVariant": null
+      "entityVersion": 3
     }
   ],
   "prefabVariant": null,
@@ -119,7 +208,10 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": null,
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,
