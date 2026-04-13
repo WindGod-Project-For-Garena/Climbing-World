@@ -14,6 +14,7 @@ graph S_camera {
     CameraUI_ByPlayer Map<entity<Player>, entity<CustomUI>> = nil
     OriginalCamera_ByPlayer Map<entity<Player>, entity<Camera>> = nil
     xOffset Map<entity<Player>, float> = nil
+    DefaultXOffsetScale float = 2.0
  
     event OnAwake() {
         CameraUI_ByPlayer = map.New()
@@ -31,7 +32,8 @@ graph S_camera {
     
 
         SwitchCamera(player, createdEntity, CameraTransitionType.Default, 0)
-        var offset Vector3 = Vector3{0,0,3}
+        xOffset[player] = DefaultXOffsetScale
+        var offset Vector3 = Vector3{0,0,3}*DefaultXOffsetScale
         SetCameraFollow(createdEntity, player, offset, CoordinateSystemType.LocalPosition )
         CameraUI_ByPlayer[player] = caremaui as entity<CustomUI>
      
@@ -42,6 +44,15 @@ graph S_camera {
 
       
     }
+func GetPlayerCameraScale(player entity<Player>) float {
+    if ContainKey(xOffset, player) {
+        var scale = xOffset[player]
+        if scale > 0 {
+            return scale
+        }
+    }
+    return DefaultXOffsetScale
+}
 func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Vector2) {
   
  
@@ -74,7 +85,7 @@ func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Ve
                    
                 }
                
-                var offset = Vector3{0,0,3}*xOffset[player]
+                var offset = Vector3{0,0,3}*GetPlayerCameraScale(player)
               
                 
                 SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
@@ -96,6 +107,9 @@ event OnPlayerQuit(player entity<Player>) {
     if ContainKey(OriginalCamera_ByPlayer, player) {
         map.Remove(OriginalCamera_ByPlayer, player)
     }
+    if ContainKey(xOffset, player) {
+        map.Remove(xOffset, player)
+    }
 }
 event __Custom6event_CameraButton____( player entity<Player>, status bool) {
 
@@ -112,7 +126,7 @@ event __Custom6event_CameraButton____( player entity<Player>, status bool) {
 event __Custom6event_reback__(player entity<Player>) {
     LogInfo("__Custom6event_reback__")
     
-    var offset = Vector3{0,0,3}*xOffset[player]
+    var offset = Vector3{0,0,3}*GetPlayerCameraScale(player)
     SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
 }
 }

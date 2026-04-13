@@ -232,17 +232,15 @@ graph C_P_Climbing2 {
 			return
 		}
 		var lp = GetLocalPlayer()
-		var offsetY float = 10000
+		// 避免客户端用极端 offset 覆盖主相机跟随参数；仅保留短暂落地节奏后恢复服务端相机
 		for i = 0, 10, 1 {
 			if shakeSeq != landingShakeSeq {
 				return
 			}
-			camerafcc.SetCameraFollow(mainCam as entity<Entity>, lp as entity<Entity>, Vector3{0, offsetY, 0}, CoordinateSystemType.LocalPosition)
-			offsetY = -offsetY
 			WaitForMillisecond(100)
 		}
 		if shakeSeq == landingShakeSeq {
-			camerafcc.SetCameraFollow(mainCam as entity<Entity>, lp as entity<Entity>, Vector3{0, 0, 0}, CoordinateSystemType.LocalPosition)
+			DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{lp})
 		}
 	}
 
