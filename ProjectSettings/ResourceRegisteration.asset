@@ -375,6 +375,18 @@
           },
           "scriptName": "Wings12",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "zucr2ljh6sc-mnwxkbos-hmfytg9gs4r",
+            "filePath": "Assets\\Prefabs\\power.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "power",
+          "children": []
         }
       ]
     },

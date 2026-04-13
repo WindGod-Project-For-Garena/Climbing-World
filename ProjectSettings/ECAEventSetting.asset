@@ -165,7 +165,7 @@
       "name": "Custom event_Pressclimbing_button",
       "eventType": 0,
       "enitityType": "Component",
-      "typeID": 100000,
+      "typeID": 100039,
       "props": [
         {
           "name": "player",
@@ -784,6 +784,23 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_25413720"
+    },
+    "signal_64611984": {
+      "name": "Custom event_reback",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100044,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_64611984"
     }
   },
   "customName": {
@@ -825,8 +842,9 @@
     "Custom event_TreasurePanelSlide____": "signal_78793885",
     "Custom event_TreasureOpenBox____": "signal_18389130",
     "Custom event_drag": "signal_20075104",
-    "Custom event_CameraButton__": "signal_25413720"
+    "Custom event_CameraButton__": "signal_25413720",
+    "Custom event_reback": "signal_64611984"
   },
   "children": []
 }
-//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

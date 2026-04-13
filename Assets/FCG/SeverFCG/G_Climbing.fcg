@@ -161,6 +161,8 @@ graph G_Climbing {
 			var hintDest = globalEntity<S_WingShopUI>.GetWingshopHintPosition()
 			map.Remove(awaitingTutorialWingshopHintAfterLand, player)
 			DispatchEventToEntity(OnShowHint, player, PlatformType.Client, List<object>{hintDest})
+			DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{player})
+
 		}
 	}
 

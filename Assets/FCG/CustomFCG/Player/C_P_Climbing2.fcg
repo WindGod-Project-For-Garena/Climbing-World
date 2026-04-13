@@ -177,6 +177,7 @@ graph C_P_Climbing2 {
 			if Curent_height.Y < 2 {
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
 				SetLocalPlayerPosition(Curent_height)
+				DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{player})
 				StartLandingCameraShake(Curent_height)
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 				fallVelocity = 0

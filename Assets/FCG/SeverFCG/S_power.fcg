@@ -1,0 +1,50 @@
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Playable.fcc" as playable
+import "EditorGenLib.fcc" as gen
+import "Player.fcc" as playerlib
+
+[platform_server]
+graph S_power {
+    PlayerPower Map<entity<Player>, entity> = nil
+    PlayerPowerFollow Map<entity<Player>, entity> = nil
+    FollowOffset Vector3 = Vector3{0, 1.5, 0}
+
+    event OnAwake() {
+        PlayerPower = map.New()
+        PlayerPowerFollow = map.New()
+    }
+
+    event OnPlayerJoin(player entity<Player>) {
+        // 避免重复创建
+        if ContainKey(PlayerPower, player) {
+            return
+        }
+
+        // 注意：这里的枚举名请按你项目里实际资源名调整
+        // 可能是 EResPrefab.power 或 EResPrefab.Power
+        CreateFromPrefab(out var powerEntity, EResPrefab.power)
+        if powerEntity == nil {
+            return
+        }
+
+        PlayerPower[player] = powerEntity
+
+        playable.CreateFollow(powerEntity, player, FollowOffset, CoordinateSystemType.LocalPosition, out var followEntity, true)
+        PlayerPowerFollow[player] = followEntity
+    }
+
+    event OnPlayerQuit(player entity<Player>) {
+        if ContainKey(PlayerPowerFollow, player) {
+            var followEntity = PlayerPowerFollow[player] as entity
+            Destroy(followEntity)
+            map.Remove(PlayerPowerFollow, player)
+        }
+
+        if ContainKey(PlayerPower, player) {
+            var powerEntity = PlayerPower[player] as entity
+            Destroy(powerEntity)
+            map.Remove(PlayerPower, player)
+        }
+    }
+}

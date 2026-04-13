@@ -13,10 +13,12 @@ graph S_camera {
    
     CameraUI_ByPlayer Map<entity<Player>, entity<CustomUI>> = nil
     OriginalCamera_ByPlayer Map<entity<Player>, entity<Camera>> = nil
+    xOffset Map<entity<Player>, float> = nil
  
     event OnAwake() {
         CameraUI_ByPlayer = map.New()
         OriginalCamera_ByPlayer = map.New()
+        xOffset = map.New()
        
     }
 
@@ -62,8 +64,8 @@ func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Ve
 
         var textWidget = GetChildByIndex(ui, 3)
         if textWidget != nil {
-            var xOffset = 1.0+(touchPos.X - 292.0)/300.0
-            textWidget<UIWidgetLabel>.Content = convert.ToString(xOffset as int)
+            xOffset[player] = 1.0+(touchPos.X - 292.0)/300.0
+            textWidget<UIWidgetLabel>.Content = convert.ToString( xOffset[player]  as int)
            var mainCam = OriginalCamera_ByPlayer[player]
             if mainCam != nil {
         
@@ -72,7 +74,7 @@ func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Ve
                    
                 }
                
-                var offset = Vector3{0,0,3}*xOffset
+                var offset = Vector3{0,0,3}*xOffset[player]
               
                 
                 SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
@@ -102,7 +104,15 @@ event __Custom6event_CameraButton____( player entity<Player>, status bool) {
         //ui<CustomUI>.IsVisible = status
         
     }
-}
+
     
 
+}
+
+event __Custom6event_reback__(player entity<Player>) {
+    LogInfo("__Custom6event_reback__")
+    
+    var offset = Vector3{0,0,3}*xOffset[player]
+    SetCameraFollow(OriginalCamera_ByPlayer[player], player, offset, CoordinateSystemType.LocalPosition )
+}
 }
