@@ -298,23 +298,26 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": -44.222862243652344,
-            "y": 9188.240234375,
-            "z": -102.69235229492188
+            "x": -838.4257202148438,
+            "y": 9189.4619140625,
+            "z": -464.1540222167969
           },
           "scale": {
-            "x": 10000,
-            "y": 10000,
-            "z": 10000
+            "x": 100000,
+            "y": 100000,
+            "z": 100000
           },
           "rotation": {
-            "x": 299.074951171875,
-            "y": -0.000021082851162645966,
-            "z": 312.2156677246094
+            "x": 299.07501220703125,
+            "y": 0,
+            "z": 312.21600341796875
           },
           "BTPath": [
             null
@@ -4899,23 +4902,26 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 0,
-            "y": 137.44532775878906,
-            "z": -57.15107727050781
+            "x": -871.856201171875,
+            "y": 702.781494140625,
+            "z": -57.1510009765625
           },
           "scale": {
-            "x": 10000,
-            "y": 10000,
-            "z": 10000
+            "x": 100000,
+            "y": 100000,
+            "z": 100000
           },
           "rotation": {
-            "x": 275.7302551269531,
-            "y": 0.000017101980120060034,
-            "z": 132.88919067382812
+            "x": 275.72991943359375,
+            "y": 0,
+            "z": 132.8890380859375
           },
           "BTPath": [
             null
@@ -5007,22 +5013,25 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 0,
-            "y": 1000,
-            "z": -61.668922424316406
+            "x": -343.53948974609375,
+            "y": 2000,
+            "z": -61.66899871826172
           },
           "scale": {
-            "x": 10000,
-            "y": 10000,
-            "z": 10000
+            "x": 100000,
+            "y": 100000,
+            "z": 100000
           },
           "rotation": {
             "x": 270,
-            "y": 198.1689453125,
+            "y": 198.16900634765625,
             "z": 0
           },
           "BTPath": [
@@ -5115,23 +5124,26 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 0,
+            "x": -1149.002685546875,
             "y": 3000,
-            "z": 64.60581970214844
+            "z": 119.08765411376953
           },
           "scale": {
-            "x": 10000,
-            "y": 10000,
-            "z": 10000
+            "x": 100000,
+            "y": 100000,
+            "z": 100000
           },
           "rotation": {
-            "x": 329.6072998046875,
-            "y": 163.632080078125,
-            "z": 210.1367645263672
+            "x": 329.6069641113281,
+            "y": 163.6320037841797,
+            "z": 210.13699340820312
           },
           "BTPath": [
             null
@@ -5223,22 +5235,25 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": -21.89399528503418,
+            "x": -703.6880493164062,
             "y": 5000,
-            "z": -71.135498046875
+            "z": -71.13500213623047
           },
           "scale": {
-            "x": 10000,
-            "y": 10000,
-            "z": 10000
+            "x": 100000,
+            "y": 100000,
+            "z": 100000
           },
           "rotation": {
             "x": 270,
-            "y": 337.3126220703125,
+            "y": 337.31298828125,
             "z": 0
           },
           "BTPath": [
@@ -5331,23 +5346,26 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "position": {
-            "x": 0,
+            "x": -634.4061279296875,
             "y": 7000,
-            "z": 81.32066345214844
+            "z": 29.79125213623047
           },
           "scale": {
-            "x": 10000,
-            "y": 10000,
-            "z": 10000
+            "x": 100000,
+            "y": 100000,
+            "z": 100000
           },
           "rotation": {
-            "x": 350.7099609375,
-            "y": 141.03411865234375,
-            "z": 269.610595703125
+            "x": 350.7099914550781,
+            "y": 141.03399658203125,
+            "z": 269.6109619140625
           },
           "BTPath": [
             null

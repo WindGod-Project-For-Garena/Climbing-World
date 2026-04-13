@@ -1,0 +1,178 @@
+{
+  "_entityName": "",
+  "_tag": {
+    "type": "Material"
+  },
+  "_entityId": "swP2VjSu",
+  "children": [],
+  "prefabVariant": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "shader": {
+    "fileId": "s-c50a71f4-e4c2-e833-0362-480bc627f749",
+    "filePath": "lib://ffshaders/BRMobile/UGC/DiffuseColor_MultiLight",
+    "_tag": {
+      "type": "GFileRefer"
+    },
+    "fileType": "shader"
+  },
+  "paramValue": {
+    "_MainTex": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 928
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_DiffuseIntensity": 3.92,
+    "_BumpMap": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_Shininess": 1,
+    "_SpecularColor": {
+      "r": 0,
+      "g": 143,
+      "b": 155,
+      "a": 1
+    },
+    "_SpecularMask": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_SpecularIntensity": 7.02,
+    "_CullMode": 2,
+    "_Mask": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_MaskColor": {
+      "r": 64,
+      "g": 115,
+      "b": 235,
+      "a": 1
+    },
+    "BlendMode": "Opaque",
+    "_TintColor": {
+      "r": 0,
+      "g": 143,
+      "b": 155,
+      "a": 1
+    },
+    "_NormalGlossMap": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_FresnelPow": 1.11,
+    "_FresnelInstensity": 0,
+    "_FresnelColor": {
+      "r": 183,
+      "g": 223,
+      "b": 238,
+      "a": 1
+    },
+    "_EmissionPow": 0,
+    "_Color": {
+      "r": 27,
+      "g": 43,
+      "b": 145,
+      "a": 1
+    },
+    "_Cutoff": 0.17,
+    "_Brightness": 3.63,
+    "_Ramp": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "specType": "",
+    "_NormalGloss": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_Gloss": 1,
+    "_SpecularStr": 1,
+    "_Matcap": {
+      "Texture": null,
+      "Tiling": {
+        "x": 1,
+        "y": 1
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_MatcapStr": 1,
+    "_MatcapBrightness": 1,
+    "_BlendDst": 1,
+    "_BlendSrc": 5,
+    "_FixValue": {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "w": 0
+    },
+    "ColorCorrection": 0,
+    "OpenMainRot": false,
+    "DISABLEMASK": false,
+    "_MyZWrite": 0,
+    "_MyZTest": 4,
+    "_MyCullMode": 2,
+    "renderQueue": 3000
+  }
+}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

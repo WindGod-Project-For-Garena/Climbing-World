@@ -1,0 +1,107 @@
+{
+  "fileId": "sfka7l5l6vg-mnscok05-a4x87b99ph9",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "Object_4.001.~@FFFUB",
+        "MeshName": "Object_4.001",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      },
+      {
+        "Name": "Object_9.~@FFFUB",
+        "MeshName": "Object_9",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "东京塔2",
+      "ImportSucceeded": true,
+      "MaterialCount": 4,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": "Material.001"
+        },
+        {
+          "Index": 1,
+          "MaterialName": ".001"
+        },
+        {
+          "Index": 2,
+          "MaterialName": "material_0"
+        },
+        {
+          "Index": 3,
+          "MaterialName": "material"
+        }
+      ],
+      "MeshCount": 2,
+      "MeshDetail": [
+        {
+          "MeshName": "Object_4.001",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              -7.37215e-10,
+              1.52933e-10,
+              -0.00900345
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        },
+        {
+          "MeshName": "Object_9",
+          "MaterialIndex": [
+            1,
+            0,
+            2,
+            3
+          ],
+          "Transform": {
+            "Position": [
+              -9.61365e-12,
+              -9.61365e-12,
+              0.019021
+            ],
+            "Rotation": [
+              0,
+              0,
+              0
+            ],
+            "Scale": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "sfka7l5l6vg-mnscok05-a4x87b99ph9-Object_4.001.~@FFFUB": 0,
+    "sfka7l5l6vg-mnscok05-a4x87b99ph9-Object_9.~@FFFUB": 0
+  }
+}

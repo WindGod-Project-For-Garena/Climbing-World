@@ -1,5 +1,5 @@
 // 根据玩家槽位查找位置和朝向，并按点击索引选择预制体：
-// towerIndex=2 生成 BTower，其余生成 ATower
+// towerIndex=1 生成 ATower，2 生成 BTower，3 生成 CTower
 
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
@@ -93,6 +93,8 @@ graph G_Tower {
 		LogInfo("towerIndex:" + towerIndex)
 		if towerIndex == 2 {
 			wantedTowerType = 2
+		} else if towerIndex == 3 {
+			wantedTowerType = 3
 		}
 		if ContainKey(spawnedTowers, towerSummonIndex) && (spawnedTowers[towerSummonIndex] as bool) {
 			if ContainKey(spawnedTowerType, towerSummonIndex) && (spawnedTowerType[towerSummonIndex] as int) == wantedTowerType {
@@ -113,6 +115,9 @@ graph G_Tower {
 		if wantedTowerType == 2 {
 			CreateFromPrefab(out var btower, EResPrefab.BTower)
 			tower = btower
+		} else if wantedTowerType == 3 {
+			CreateFromPrefab(out var ctower, EResPrefab.CTower)
+			tower = ctower
 		} else {
 			CreateFromPrefab(out var atower, EResPrefab.ATower)
 			tower = atower

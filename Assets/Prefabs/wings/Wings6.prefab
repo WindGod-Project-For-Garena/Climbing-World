@@ -21,7 +21,7 @@
       "position": {
         "x": 0,
         "y": 0,
-        "z": 0
+        "z": 0.2763102352619171
       },
       "scale": {
         "x": 500,
@@ -29,9 +29,9 @@
         "z": 500
       },
       "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
+        "x": 180,
+        "y": 180,
+        "z": 90
       },
       "BTPath": [
         null
@@ -115,7 +115,10 @@
     }
   ],
   "prefabVariant": null,
-  "activeValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
   "unlockedValue": null,
   "editorLockValue": false,
   "editorVisibleValue": true,

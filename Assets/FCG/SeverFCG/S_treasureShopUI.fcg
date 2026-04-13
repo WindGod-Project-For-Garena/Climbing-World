@@ -55,7 +55,7 @@ graph S_treasureShopUI {
 				UpdateTreasureDisplay(player, treasureEntity as entity<CustomUI>, savedIndex)
 			}
 		} else {
-			CreateCustomUI(out var createdEntity, player, EResUI.TreasureShop)
+			CreateCustomUI(out var createdEntity, player, EResUI.Treasureshop2)
 			TreasureShop[player] = createdEntity
 			HideAllTreasureSelect(player, createdEntity as entity<CustomUI>)
 			TreasureSelectState[player] = 0
@@ -274,7 +274,7 @@ graph S_treasureShopUI {
 	}
 
 	event __Custom6event_TreasureOpenBox______(player entity<Player>) {
-        if Buying {
+        if Buying {LogInfo("TreasureOpenBox1")
             return
         }
         Buying = true

@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 14,
+      "tempIndex": 185,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -356,7 +356,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 15,
+      "tempIndex": 186,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -692,7 +692,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 16,
+      "tempIndex": 187,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -798,7 +798,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 17,
+      "tempIndex": 188,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -1237,7 +1237,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 18,
+          "tempIndex": 189,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1338,7 +1338,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 19,
+      "tempIndex": 190,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -1823,7 +1823,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 20,
+          "tempIndex": 191,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1924,7 +1924,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 21,
+      "tempIndex": 192,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -2409,7 +2409,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 22,
+          "tempIndex": 193,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -2510,7 +2510,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 23,
+      "tempIndex": 194,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -2995,7 +2995,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 24,
+          "tempIndex": 195,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -3096,7 +3096,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 25,
+      "tempIndex": 196,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -3393,1620 +3393,138 @@
       }
     },
     {
-      "_entityName": "Particle Emitter",
+      "_entityName": "Wings9",
       "_tag": {
         "type": "UGCSceneEntity",
         "resourceId": ""
       },
-      "_entityId": "JL7o2JPu",
+      "_entityId": "ICk0cqZa",
       "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": 11.043087005615234,
-        "y": 0.0008792877197265625,
-        "z": 30.88507843017578
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "physicalMaterial": null,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [
-        "Particles"
-      ],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "materials": [],
-      "colliders": [],
-      "IsNPC": false,
-      "isCreateAsEmpty": false,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {},
-        "Particles": {},
-        "Playable": {},
-        "Loopable": {},
-        "MeshRender": {}
-      },
-      "propsData": {},
-      "entityVersion": 3
-    },
-    {
-      "_entityName": "Btower1",
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": ""
-      },
-      "_entityId": "Jrk1cNBT",
-      "children": [
-        {
-          "_entityName": "geometry_0.001",
+      "prefabVariant": {
+        "prefabFile": {
+          "fileId": "260q8sygdit-mnwsywz2-z1glttzr3m",
+          "filePath": "Assets\\Prefabs\\wings\\Wings9.prefab",
           "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
+            "type": "GFileRefer"
           },
-          "_entityId": "siTv86TT",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": -0.08800014108419418,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.001.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.001.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.001.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.001.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
+          "fileType": "Prefab"
         },
-        {
-          "_entityName": "geometry_0.002",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "Qd9y0Rrl",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0009999999310821295,
-            "y": -0.07600004971027374,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.002.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.002.mesh",
-            "_tag": {
-              "type": "GFileRefer"
+        "snapShots": {
+          "ICk0cqZa": {
+            "_entityId": "scsfGj5L",
+            "activeValue": {
+              "selfValue": true,
+              "valueTag": "activeValue"
             },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.002.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.002.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
+            "unlockedValue": null,
+            "scale": {
+              "x": 500,
+              "y": 500,
+              "z": 500
+            },
+            "BTPath": [
+              null
+            ],
+            "visible": true,
+            "VisibilityLayer": 0,
+            "modelOptimization": 0,
+            "streamingLayer": "",
+            "attributes": [
+              2,
+              4
+            ],
+            "isTrigger": false,
+            "collidable": true,
+            "physicalLayer": 0,
+            "aoiSetting": 0,
+            "initialTypes": {},
+            "componentList": [
+              "MeshRender",
+              "ColliderShape",
+              "Collider"
+            ],
+            "entityTagData": {
+              "tagPointers": []
+            },
+            "mesh": {
+              "fileId": "b41efumliy6-mnsu0gav-wi0yi9fajhm-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.~@FFFUB",
+              "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings1.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.mesh",
+              "fileType": "mesh"
+            },
+            "materials": [
+              {
+                "fileId": "nobtgplqcv9-mnsu4r4m-1xrlxfjfmpnj",
+                "filePath": "Assets\\Tower\\Tower3_decoration\\T\\BTower1.mat",
+                "fileType": "material"
+              }
+            ],
+            "colliders": [
+              {
+                "enable": true,
+                "colliderType": "MeshCollider",
+                "meshUUID": {
+                  "fileId": "b41efumliy6-mnsu0gav-wi0yi9fajhm-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.~@FFFUB",
+                  "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings1.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.mesh",
+                  "fileType": "mesh"
                 },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.003",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "puTtabgW",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0009999999310821295,
-            "y": -0.05100004002451897,
-            "z": -0.0009999998146668077
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.003.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.003.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.003.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.003.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
+                "position": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
                 },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.004",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "dtAUhmCW",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0009999999310821295,
-            "y": -0.03600001707673073,
-            "z": -0.0009999998146668077
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.004.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.004.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.004.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.004.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
+                "size": {
+                  "x": 1,
+                  "y": 1,
+                  "z": 1
                 },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.005",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "tO9B1E3L",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": -0.11400014162063599,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.005.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.005.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.005.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.005.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
                 },
-                "fileType": "mesh"
-              },
-              "position": {
+                "radius": 0.5,
+                "height": 1,
+                "isConvexIfMesh": false
+              }
+            ],
+            "IsNPC": false,
+            "isCreateAsEmpty": false,
+            "Rigidbody": {
+              "Type": 1,
+              "Mass": 1,
+              "CenterOfMass": {
                 "x": 0,
                 "y": 0,
                 "z": 0
               },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
+              "UseGravity": true,
+              "Drag": 0.05,
+              "AngularDrag": 0.05,
+              "FreezePosX": false,
+              "FreezeRotX": false,
+              "FreezePosY": false,
+              "FreezeRotY": false,
+              "FreezePosZ": false,
+              "FreezeRotZ": false
             },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.006",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "SnYuDeoC",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": -0.13300000131130219,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.006.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.006.mesh",
-            "_tag": {
-              "type": "GFileRefer"
+            "ecaScripts": [],
+            "ecaProps": {
+              "CustomLevelObject": {},
+              "LevelObject": {},
+              "Transform": {},
+              "Entity": {},
+              "Visibility": {},
+              "MeshRender": {},
+              "ColliderShape": {},
+              "Collider": {}
             },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.006.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.006.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.007",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "S9aGwAE8",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.007.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.007.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.007.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.007.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.008",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "tCbAeyzp",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": -0.01599999889731407,
-            "z": 0.0009999999310821295
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.008.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.008.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.008.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.008.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.009",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "qxLSzKTS",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0009999999310821295,
-            "y": 0.004412112291902304,
-            "z": 0.0009999999310821295
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.009.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.009.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.009.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.009.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.010",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "hA04oW4n",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": -0.15699999034404755,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.010.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.010.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.010.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.010.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "geometry_0.011",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "G8yYEcD5",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": 0,
-            "y": -0.1450001448392868,
-            "z": 0
-          },
-          "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.011.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.011.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            {
-              "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-              "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "material"
-            }
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "21ymu8jdg16-mnr8ghbd-585ept4h9yy-geometry_0.011.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Btower1.fbx\\geometry_0.011.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "CustomLevelObject": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {},
-            "MeshRender": {},
-            "ColliderShape": {},
-            "Collider": {}
-          },
-          "propsData": {},
-          "entityVersion": 3
+            "propsData": {},
+            "entityVersion": 3,
+            "editorLockValue": false,
+            "editorVisibleValue": true
+          }
         }
-      ],
-      "prefabVariant": null,
+      },
       "activeValue": {
         "selfValue": true,
         "valueTag": "activeValue"
@@ -5015,1410 +3533,9 @@
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
-        "x": 13.706999778747559,
-        "y": 98.81942749023438,
-        "z": -20.156999588012695
-      },
-      "scale": {
-        "x": 10000,
-        "y": 10000,
-        "z": 10000
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "mesh": null,
-      "materials": [],
-      "colliders": [],
-      "IsNPC": false,
-      "isCreateAsEmpty": false,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {}
-      },
-      "propsData": {},
-      "entityVersion": 3
-    },
-    {
-      "_entityName": "飞机",
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": ""
-      },
-      "_entityId": "KwWETyZo",
-      "children": [
-        {
-          "_entityName": "Wings5",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "BR3mWeiO",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.000239967,
-            "y": 0.0636331,
-            "z": 1.62571
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings5.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings5.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings5.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings5.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "Wings6",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "PEyzsQK4",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.00824897,
-            "y": -0.011518,
-            "z": 11.3556
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings6.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings6.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings6.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings6.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "Wings7",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "AJfmbYLR",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0527319,
-            "y": 0.00646822,
-            "z": 7.64162
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings7.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings7.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings7.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings7.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "Wings8",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "ZXaUDKxJ",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0364726,
-            "y": -0.029959,
-            "z": 13.3225
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings8.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings8.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-Wings8.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\Wings8.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "小笼包",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "eQAUlJV0",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.00483688,
-            "y": 0.0454136,
-            "z": 15.69
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-小笼包.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\小笼包.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-小笼包.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\小笼包.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "旗袍",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "zdfIxpsK",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0585536,
-            "y": 0.0669999,
-            "z": 0.0329759
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-旗袍.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\旗袍.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-旗袍.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\旗袍.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "熊猫",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "JjOLERLL",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.101637,
-            "y": -0.109084,
-            "z": 3.58057
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-熊猫.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\熊猫.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-熊猫.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\熊猫.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "玉璧",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "TyuM3mz1",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0012307,
-            "y": -0.00479441,
-            "z": 14.4802
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-玉璧.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\玉璧.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-玉璧.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\玉璧.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "花瓶",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "LehbnpHo",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.00226941,
-            "y": 0.00621544,
-            "z": 8.78872
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-花瓶.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\花瓶.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "3nnc41cq675-mnr9mvzb-k713k645g2-花瓶.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\花瓶.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        },
-        {
-          "_entityName": "飞机",
-          "_tag": {
-            "type": "UGCSceneEntity",
-            "resourceId": ""
-          },
-          "_entityId": "erMKcKId",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.0722957,
-            "y": -0.112438,
-            "z": 5.14507
-          },
-          "scale": {
-            "x": 100,
-            "y": 100,
-            "z": 100
-          },
-          "rotation": {
-            "x": -90,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [
-            "MeshRender",
-            "ColliderShape",
-            "Collider"
-          ],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "mesh": {
-            "fileId": "t2sexsnwebq-mnr9vvn9-1lnd2ubq53c-飞机.~@FFFUB",
-            "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\飞机.mesh",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "mesh"
-          },
-          "materials": [
-            null
-          ],
-          "colliders": [
-            {
-              "enable": true,
-              "colliderType": "MeshCollider",
-              "meshUUID": {
-                "fileId": "t2sexsnwebq-mnr9vvn9-1lnd2ubq53c-飞机.~@FFFUB",
-                "filePath": "fab://Assets\\Tower\\Tower2_decoration\\飞机.fbx\\飞机.mesh",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "mesh"
-              },
-              "position": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "size": {
-                "x": 1,
-                "y": 1,
-                "z": 1
-              },
-              "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-              },
-              "radius": 0.5,
-              "height": 1,
-              "isConvexIfMesh": false
-            }
-          ],
-          "IsNPC": false,
-          "isCreateAsEmpty": false,
-          "Rigidbody": {
-            "Type": 1,
-            "Mass": 1,
-            "CenterOfMass": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "UseGravity": true,
-            "Drag": 0.05,
-            "AngularDrag": 0.05,
-            "FreezePosX": false,
-            "FreezeRotX": false,
-            "FreezePosY": false,
-            "FreezeRotY": false,
-            "FreezePosZ": false,
-            "FreezeRotZ": false
-          },
-          "ecaScripts": [],
-          "ecaProps": {},
-          "propsData": {},
-          "entityVersion": 3
-        }
-      ],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": null,
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": -15.063621520996094,
-        "y": 0.0011968612670898438,
-        "z": -24.49046516418457
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "rotation": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "mesh": null,
-      "materials": [],
-      "colliders": [],
-      "IsNPC": false,
-      "isCreateAsEmpty": false,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {}
-      },
-      "propsData": {},
-      "entityVersion": 3
-    },
-    {
-      "_entityName": "Wings5",
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": ""
-      },
-      "_entityId": "HxUHGxJ6",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": null,
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": 11.057999610900879,
-        "y": 5.024452209472656,
-        "z": 8.569000244140625
+        "x": 12.067499160766602,
+        "y": 4.946014881134033,
+        "z": -20.58099937438965
       },
       "scale": {
         "x": 500,
@@ -6455,8 +3572,8 @@
         "tagPointers": []
       },
       "mesh": {
-        "fileId": "x66qsle7v1k-mnr9vw23-8ol8rgmk88k-Wings5.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings5.fbx\\Wings5.mesh",
+        "fileId": "b41efumliy6-mnsu0gav-wi0yi9fajhm-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.~@FFFUB",
+        "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings1.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.mesh",
         "_tag": {
           "type": "GFileRefer"
         },
@@ -6464,15 +3581,46 @@
       },
       "materials": [
         {
-          "fileId": "219hyanz4z5-mnr8kpbd-n0d3ssqtgqm",
-          "filePath": "Assets\\Tower\\Tower2_decoration\\Texture\\BTower1.mat",
+          "fileId": "nobtgplqcv9-mnsu4r4m-1xrlxfjfmpnj",
+          "filePath": "Assets\\Tower\\Tower3_decoration\\T\\BTower1.mat",
           "_tag": {
             "type": "GFileRefer"
           },
           "fileType": "material"
         }
       ],
-      "colliders": [],
+      "colliders": [
+        {
+          "enable": true,
+          "colliderType": "MeshCollider",
+          "meshUUID": {
+            "fileId": "b41efumliy6-mnsu0gav-wi0yi9fajhm-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.~@FFFUB",
+            "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings1.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.007.mesh",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "mesh"
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "size": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "radius": 0.5,
+          "height": 1,
+          "isConvexIfMesh": false
+        }
+      ],
       "IsNPC": false,
       "isCreateAsEmpty": false,
       "Rigidbody": {
@@ -6508,14 +3656,138 @@
       "entityVersion": 3
     },
     {
-      "_entityName": "Wings6",
+      "_entityName": "Wings10",
       "_tag": {
         "type": "UGCSceneEntity",
         "resourceId": ""
       },
-      "_entityId": "zJ20lqqV",
+      "_entityId": "vFia45dj",
       "children": [],
-      "prefabVariant": null,
+      "prefabVariant": {
+        "prefabFile": {
+          "fileId": "byy207xlntb-mnwsyzj1-sdvc16cmck",
+          "filePath": "Assets\\Prefabs\\wings\\Wings10 (1).prefab",
+          "_tag": {
+            "type": "GFileRefer"
+          },
+          "fileType": "Prefab"
+        },
+        "snapShots": {
+          "vFia45dj": {
+            "_entityId": "BJsx5QWD",
+            "activeValue": {
+              "selfValue": true,
+              "valueTag": "activeValue"
+            },
+            "unlockedValue": null,
+            "scale": {
+              "x": 500,
+              "y": 500,
+              "z": 500
+            },
+            "BTPath": [
+              null
+            ],
+            "visible": true,
+            "VisibilityLayer": 0,
+            "modelOptimization": 0,
+            "streamingLayer": "",
+            "attributes": [
+              2,
+              4
+            ],
+            "isTrigger": false,
+            "collidable": true,
+            "physicalLayer": 0,
+            "aoiSetting": 0,
+            "initialTypes": {},
+            "componentList": [
+              "MeshRender",
+              "ColliderShape",
+              "Collider"
+            ],
+            "entityTagData": {
+              "tagPointers": []
+            },
+            "mesh": {
+              "fileId": "s5qq0dp4df-mnsu0iq7-u3v29rkno-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.~@FFFUB",
+              "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings3.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.mesh",
+              "fileType": "mesh"
+            },
+            "materials": [
+              {
+                "fileId": "nobtgplqcv9-mnsu4r4m-1xrlxfjfmpnj",
+                "filePath": "Assets\\Tower\\Tower3_decoration\\T\\BTower1.mat",
+                "fileType": "material"
+              }
+            ],
+            "colliders": [
+              {
+                "enable": true,
+                "colliderType": "MeshCollider",
+                "meshUUID": {
+                  "fileId": "s5qq0dp4df-mnsu0iq7-u3v29rkno-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.~@FFFUB",
+                  "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings3.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.mesh",
+                  "fileType": "mesh"
+                },
+                "position": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "size": {
+                  "x": 1,
+                  "y": 1,
+                  "z": 1
+                },
+                "rotation": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "radius": 0.5,
+                "height": 1,
+                "isConvexIfMesh": false
+              }
+            ],
+            "IsNPC": false,
+            "isCreateAsEmpty": false,
+            "Rigidbody": {
+              "Type": 1,
+              "Mass": 1,
+              "CenterOfMass": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "UseGravity": true,
+              "Drag": 0.05,
+              "AngularDrag": 0.05,
+              "FreezePosX": false,
+              "FreezeRotX": false,
+              "FreezePosY": false,
+              "FreezeRotY": false,
+              "FreezePosZ": false,
+              "FreezeRotZ": false
+            },
+            "ecaScripts": [],
+            "ecaProps": {
+              "CustomLevelObject": {},
+              "LevelObject": {},
+              "Transform": {},
+              "Entity": {},
+              "Visibility": {},
+              "MeshRender": {},
+              "ColliderShape": {},
+              "Collider": {}
+            },
+            "propsData": {},
+            "entityVersion": 3,
+            "editorLockValue": false,
+            "editorVisibleValue": true
+          }
+        }
+      },
       "activeValue": {
         "selfValue": true,
         "valueTag": "activeValue"
@@ -6524,9 +3796,9 @@
       "editorLockValue": false,
       "editorVisibleValue": true,
       "position": {
-        "x": 9.345999717712402,
-        "y": 6.155829429626465,
-        "z": -0.628000020980835
+        "x": 13.780041694641113,
+        "y": 9.680349349975586,
+        "z": -27.928239822387695
       },
       "scale": {
         "x": 500,
@@ -6563,219 +3835,55 @@
         "tagPointers": []
       },
       "mesh": {
-        "fileId": "1f233bipwawh-mnr9vwjm-iffknzajvb-Wings6.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings6.fbx\\Wings6.mesh",
+        "fileId": "s5qq0dp4df-mnsu0iq7-u3v29rkno-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.~@FFFUB",
+        "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings3.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.mesh",
         "_tag": {
           "type": "GFileRefer"
         },
         "fileType": "mesh"
       },
       "materials": [
-        null
+        {
+          "fileId": "nobtgplqcv9-mnsu4r4m-1xrlxfjfmpnj",
+          "filePath": "Assets\\Tower\\Tower3_decoration\\T\\BTower1.mat",
+          "_tag": {
+            "type": "GFileRefer"
+          },
+          "fileType": "material"
+        }
       ],
-      "colliders": [],
-      "IsNPC": false,
-      "isCreateAsEmpty": false,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {},
-        "MeshRender": {},
-        "ColliderShape": {},
-        "Collider": {}
-      },
-      "propsData": {},
-      "entityVersion": 3
-    },
-    {
-      "_entityName": "Wings7",
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": ""
-      },
-      "_entityId": "NwGmtRn7",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": null,
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": 9.397000312805176,
-        "y": 5.1653666496276855,
-        "z": 16.756999969482422
-      },
-      "scale": {
-        "x": 500,
-        "y": 500,
-        "z": 500
-      },
-      "rotation": {
-        "x": 270,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
+      "colliders": [
+        {
+          "enable": true,
+          "colliderType": "MeshCollider",
+          "meshUUID": {
+            "fileId": "s5qq0dp4df-mnsu0iq7-u3v29rkno-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.~@FFFUB",
+            "filePath": "fab://Assets\\Tower\\Tower3_decoration\\Wings3.fbx\\tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.009.mesh",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "mesh"
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "size": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "radius": 0.5,
+          "height": 1,
+          "isConvexIfMesh": false
+        }
       ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [
-        "MeshRender",
-        "ColliderShape",
-        "Collider"
-      ],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "mesh": {
-        "fileId": "2blfdz1u24b-mnr9vx3a-elwmt279xe-Wings7.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings7.fbx\\Wings7.mesh",
-        "_tag": {
-          "type": "GFileRefer"
-        },
-        "fileType": "mesh"
-      },
-      "materials": [
-        null
-      ],
-      "colliders": [],
-      "IsNPC": false,
-      "isCreateAsEmpty": false,
-      "Rigidbody": {
-        "Type": 1,
-        "Mass": 1,
-        "CenterOfMass": {
-          "x": 0,
-          "y": 0,
-          "z": 0
-        },
-        "UseGravity": true,
-        "Drag": 0.05,
-        "AngularDrag": 0.05,
-        "FreezePosX": false,
-        "FreezeRotX": false,
-        "FreezePosY": false,
-        "FreezeRotY": false,
-        "FreezePosZ": false,
-        "FreezeRotZ": false
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "CustomLevelObject": {},
-        "LevelObject": {},
-        "Transform": {},
-        "Entity": {},
-        "Visibility": {},
-        "MeshRender": {},
-        "ColliderShape": {},
-        "Collider": {}
-      },
-      "propsData": {},
-      "entityVersion": 3
-    },
-    {
-      "_entityName": "Wings8",
-      "_tag": {
-        "type": "UGCSceneEntity",
-        "resourceId": ""
-      },
-      "_entityId": "dDlamimW",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": null,
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "position": {
-        "x": 6.232999801635742,
-        "y": 4.013038635253906,
-        "z": 7.586999893188477
-      },
-      "scale": {
-        "x": 500,
-        "y": 500,
-        "z": 500
-      },
-      "rotation": {
-        "x": 270,
-        "y": 0,
-        "z": 0
-      },
-      "BTPath": [
-        null
-      ],
-      "visible": true,
-      "VisibilityLayer": 0,
-      "modelOptimization": 0,
-      "streamingLayer": "",
-      "attributes": [
-        2,
-        4
-      ],
-      "isTrigger": false,
-      "collidable": true,
-      "physicalLayer": 0,
-      "aoiSetting": 0,
-      "initialTypes": {},
-      "componentList": [
-        "MeshRender",
-        "ColliderShape",
-        "Collider"
-      ],
-      "entityTagData": {
-        "tagPointers": []
-      },
-      "mesh": {
-        "fileId": "mjgmfbzu6s-mnr9vxif-5r6redik9f7-Wings8.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings8.fbx\\Wings8.mesh",
-        "_tag": {
-          "type": "GFileRefer"
-        },
-        "fileType": "mesh"
-      },
-      "materials": [
-        null
-      ],
-      "colliders": [],
       "IsNPC": false,
       "isCreateAsEmpty": false,
       "Rigidbody": {

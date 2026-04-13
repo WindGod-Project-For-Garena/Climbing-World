@@ -1,0 +1,62 @@
+{
+  "fileId": "4joidmpqcgc-mnsu0m99-edz3td3cboi",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.006.~@FFFUB",
+        "MeshName": "tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.006",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "不倒翁",
+      "ImportSucceeded": true,
+      "MaterialCount": 1,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": "Material.001"
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.006",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              -0.127997,
+              0.0508175,
+              3.80164
+            ],
+            "Rotation": [
+              -90,
+              0,
+              0
+            ],
+            "Scale": [
+              100,
+              100,
+              100
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "4joidmpqcgc-mnsu0m99-edz3td3cboi-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.006.~@FFFUB": 0
+  }
+}

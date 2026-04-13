@@ -1,5 +1,5 @@
 {
-  "_entityName": "Prefab",
+  "_entityName": "Wings5",
   "_tag": {
     "type": "Prefab"
   },
@@ -17,11 +17,14 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "position": {
         "x": 0,
         "y": 0,
-        "z": 0
+        "z": 0.5519031882286072
       },
       "scale": {
         "x": 500,
@@ -45,7 +48,7 @@
         4
       ],
       "isTrigger": false,
-      "collidable": true,
+      "collidable": false,
       "physicalLayer": 0,
       "aoiSetting": 0,
       "initialTypes": {},
@@ -58,8 +61,8 @@
         "tagPointers": []
       },
       "mesh": {
-        "fileId": "x66qsle7v1k-mnr9vw23-8ol8rgmk88k-Wings5.~@FFFUB",
-        "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings5.fbx\\Wings5.mesh",
+        "fileId": "kitk1jff0u-mnstg4rr-lrpaere6p1-Wings5.~@FFFUB",
+        "filePath": "fab://Assets\\Tower\\Tower2_decoration\\Wings5 (1).fbx\\Wings5.mesh",
         "_tag": {
           "type": "GFileRefer"
         },
@@ -115,8 +118,14 @@
     }
   ],
   "prefabVariant": null,
-  "activeValue": null,
-  "unlockedValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,

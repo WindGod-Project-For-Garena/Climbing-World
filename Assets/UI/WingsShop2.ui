@@ -431,110 +431,6 @@
           }
         },
         {
-          "_entityName": "Image (4)",
-          "_tag": {
-            "type": "UIImageEntity",
-            "resourceId": ""
-          },
-          "_entityId": "he2x6sWj",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": {
-            "selfValue": true,
-            "valueTag": "unlockedValue"
-          },
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "propsData": {
-            "activeSelf": true,
-            "transform": {
-              "rotate": 0,
-              "anchorMin": {
-                "x": 0.5,
-                "y": 0.5
-              },
-              "anchorMax": {
-                "x": 0.5,
-                "y": 0.5
-              },
-              "pivot": {
-                "x": 0.5,
-                "y": 0.5
-              },
-              "anchoredPosition": {
-                "x": -335,
-                "y": 270
-              },
-              "sizeDelta": {
-                "x": 680,
-                "y": 366
-              }
-            },
-            "alpha": 100,
-            "priority": 0,
-            "image": {
-              "source": {
-                "fileId": "oh6qdyelcz9-mncxflbk-5oo4mqeb4me",
-                "filePath": "Assets\\UI\\material\\Wing1front.png",
-                "_tag": {
-                  "type": "GFileRefer"
-                },
-                "fileType": "texture"
-              },
-              "color": "#ffffff",
-              "reverse": {
-                "x": false,
-                "y": false
-              },
-              "fillType": 1,
-              "slicedBorder": {
-                "left": 0,
-                "right": 0,
-                "top": 0,
-                "bottom": 0
-              },
-              "tiledBorder": {
-                "left": 0,
-                "right": 0,
-                "top": 0,
-                "bottom": 0
-              },
-              "centerInvisible": false,
-              "fillDir": 0,
-              "fillAmount": 0,
-              "invertFill": false,
-              "flip": 0,
-              "gradient": 1,
-              "gradientTop": {
-                "r": 255,
-                "g": 255,
-                "b": 255,
-                "a": 1
-              },
-              "gradientBottom": {
-                "r": 255,
-                "g": 255,
-                "b": 255,
-                "a": 1
-              }
-            }
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "HudImageWidget": {},
-            "HudWidget": {},
-            "Entity": {}
-          },
-          "componentList": [],
-          "entityTagData": {
-            "tagPointers": []
-          }
-        },
-        {
           "_entityName": "Close_Button",
           "_tag": {
             "type": "UIButtonEntity",
@@ -651,6 +547,96 @@
           "entityTagData": {
             "tagPointers": []
           }
+        },
+        {
+          "_entityName": "Title name1 (1)",
+          "_tag": {
+            "type": "UITextEntity",
+            "resourceId": ""
+          },
+          "_entityId": "dInFpTi7",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "propsData": {
+            "activeSelf": true,
+            "transform": {
+              "rotate": 0,
+              "anchorMin": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchorMax": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchoredPosition": {
+                "x": -534,
+                "y": 304
+              },
+              "sizeDelta": {
+                "x": 414,
+                "y": 134
+              }
+            },
+            "alpha": 100,
+            "priority": 0,
+            "text": {
+              "value": "Wings",
+              "key": "",
+              "font": "Default",
+              "fontSize": 99,
+              "fontStyle": {
+                "bold": false,
+                "italic": false,
+                "underline": false
+              },
+              "color": "#ffffff",
+              "alignment": {
+                "h": "center",
+                "v": "middle"
+              },
+              "lineSpacing": 0,
+              "background": false,
+              "backgroundColor": "#e7b200",
+              "overflow": 0,
+              "backgroundRGBA": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 0
+              },
+              "shadow": true,
+              "shadowColor": "#000000",
+              "shadowOffset": {
+                "x": 10,
+                "y": 1
+              }
+            }
+          },
+          "ecaScripts": [],
+          "ecaProps": {
+            "HudLabelWidget": {},
+            "HudWidget": {},
+            "Entity": {}
+          },
+          "componentList": [],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true
         },
         {
           "_entityName": "Roll",
@@ -4874,7 +4860,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
+                              "funcKey": "Wing5_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -5679,7 +5665,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY5_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -5856,7 +5842,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
+                              "funcKey": "Wing6_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -6661,7 +6647,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY6_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -6838,7 +6824,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
+                              "funcKey": "Wing7_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -7643,7 +7629,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY7_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -7820,7 +7806,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
+                              "funcKey": "Wing8_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -8625,7 +8611,7 @@
                           "clickHandlers": [
                             {
                               "eventName": "OnClick",
-                              "funcKey": "BUY4_button",
+                              "funcKey": "BUY8_button",
                               "type": "ugcscript",
                               "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                             }
@@ -8801,10 +8787,7 @@
                           "enableBorderImage": true,
                           "clickHandlers": [
                             {
-                              "eventName": "OnClick",
-                              "funcKey": "Wing4_button",
-                              "type": "ugcscript",
-                              "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
+                              "eventName": "OnClick"
                             }
                           ],
                           "disableCollider": false,
@@ -12972,4 +12955,4 @@
   "discriminator": "ISceneLike",
   "version": 3
 }
-//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

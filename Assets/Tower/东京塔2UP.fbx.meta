@@ -1,0 +1,77 @@
+{
+  "fileId": "121bg7zc80zi-mnsd03pa-gumwhf2jm",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "Object_9.~@FFFUB",
+        "MeshName": "Object_9",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "东京塔2UP",
+      "ImportSucceeded": true,
+      "MaterialCount": 4,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": ".001"
+        },
+        {
+          "Index": 1,
+          "MaterialName": "Material.001"
+        },
+        {
+          "Index": 2,
+          "MaterialName": "material_0"
+        },
+        {
+          "Index": 3,
+          "MaterialName": "material"
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "Object_9",
+          "MaterialIndex": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "Transform": {
+            "Position": [
+              -1.31078,
+              1.91428,
+              -4.80683e-10
+            ],
+            "Rotation": [
+              -90,
+              0,
+              0
+            ],
+            "Scale": [
+              100,
+              100,
+              100
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "121bg7zc80zi-mnsd03pa-gumwhf2jm-Object_9.~@FFFUB": 0
+  }
+}

@@ -162,6 +162,18 @@
           },
           "scriptName": "Drag",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "ofoccjcplr-mnpsy2b2-pv9uo3e6z5r",
+            "filePath": "Assets\\UI\\TreasureShop (1).ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Treasureshop2",
+          "children": []
         }
       ]
     },
@@ -302,6 +314,18 @@
             "fileType": "prefab"
           },
           "scriptName": "Wings8",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "ifu9wbzthd-mnsif6k5-gtywjkwzu05",
+            "filePath": "Assets\\Prefabs\\Tower\\CTower.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "CTower",
           "children": []
         }
       ]

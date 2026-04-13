@@ -1,0 +1,62 @@
+{
+  "fileId": "pccw08q1dr-mnsu0gxm-s71x6rmr5je",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.008.~@FFFUB",
+        "MeshName": "tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.008",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "Wings2",
+      "ImportSucceeded": true,
+      "MaterialCount": 1,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": "Material.001"
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.008",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              0.00725333,
+              -0.0356201,
+              -1.5763
+            ],
+            "Rotation": [
+              -90,
+              0,
+              0
+            ],
+            "Scale": [
+              100,
+              100,
+              100
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "pccw08q1dr-mnsu0gxm-s71x6rmr5je-tripo_node_9f37003d-00e4-46ad-b435-aad72360b564.008.~@FFFUB": 0
+  }
+}

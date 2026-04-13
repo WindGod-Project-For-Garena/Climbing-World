@@ -25,7 +25,7 @@ graph C_treasureUI {
 	}
 
 	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 	}
 
 	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {

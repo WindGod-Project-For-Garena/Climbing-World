@@ -69,6 +69,7 @@ graph C_TowershopUI {
 		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
 		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 3
 		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
+		DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3, triggerEntity})
 		triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 3
 	}
 
