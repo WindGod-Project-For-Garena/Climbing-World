@@ -1,0 +1,119 @@
+{
+  "_entityName": "Blue",
+  "_tag": {
+    "type": "Prefab"
+  },
+  "_entityId": "A1wqOnaS",
+  "children": [
+    {
+      "_entityName": "Visual effects",
+      "_tag": {
+        "type": "SceneEditEntity",
+        "resourceId": "Primitive/Empty"
+      },
+      "_entityId": "gAalGwFu",
+      "children": [],
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "BTPath": [
+        null
+      ],
+      "visible": true,
+      "VisibilityLayer": 0,
+      "modelOptimization": 0,
+      "streamingLayer": "",
+      "attributes": [
+        2,
+        4
+      ],
+      "isTrigger": false,
+      "collidable": true,
+      "physicalLayer": 0,
+      "physicalMaterial": null,
+      "aoiSetting": 0,
+      "initialTypes": {},
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      },
+      "tempIndex": 63,
+      "itemID": 224,
+      "seParent": null,
+      "ecaScripts": [
+        null
+      ],
+      "ecaProps": {
+        "EffectEntityGenerator": {},
+        "ItemContainerGenerator": {},
+        "Entity": {},
+        "EffectEntity": {},
+        "Playable": {},
+        "Loopable": {},
+        "LevelObject": {},
+        "Transform": {},
+        "Visibility": {}
+      },
+      "propsData": {
+        "effectColor": {
+          "r": 0,
+          "g": 4,
+          "b": 255,
+          "a": 1
+        },
+        "playSpeed": 100,
+        "autoPlay": true,
+        "effectTypeResId": "",
+        "effectTexture": "",
+        "effectTextureRef": null,
+        "effectTypeRef": {
+          "fileId": "EffectType_WS_FF_VFX_Griza_Grenade_Explode_02",
+          "filePath": "lib://ffEffects/T_40_WZY_WS_NEWVFX18",
+          "_tag": {
+            "type": "GFileRefer"
+          },
+          "fileType": "effecttype"
+        },
+        "effectType": "WS_FF_VFX_Griza_Grenade_Explode_02",
+        "isLoop": 2
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "prefabVariant": null
+    }
+  ],
+  "prefabVariant": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "HintCraftlandCombineMesh": false,
+  "discriminator": "ISceneLike"
+}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

@@ -16,7 +16,7 @@ graph S_treasureShopUI {
 	ProbabilityData Map<object, object> = nil
 	PowerGrowthData Map<object, object> = nil
 	TreasureEffect Map<object, object> = nil
-    Buying bool =false
+	TreasureBuyingState Map<entity<Player>, bool> = nil
 
 	event OnAwake() {
 		TreasureShop = map.New()
@@ -25,16 +25,27 @@ graph S_treasureShopUI {
 		ProbabilityData = map.New()
 		PowerGrowthData = map.New()
 		TreasureEffect = map.New()
+		TreasureBuyingState = map.New()
 
 		ProbabilityData[1] = List<int>{40, 30, 20, 10,5}
 		ProbabilityData[2] = List<int>{35, 30, 25, 10,5}
 		ProbabilityData[3] = List<int>{25, 25, 30, 20,5}
 		ProbabilityData[4] = List<int>{20, 20, 30, 30,5}
+		ProbabilityData[5] = List<int>{20, 20, 30, 30,5}
+		ProbabilityData[6] = List<int>{20, 20, 30, 30,5}
+		ProbabilityData[7] = List<int>{20, 20, 30, 30,5}
+		ProbabilityData[8] = List<int>{20, 20, 30, 30,5}
+		ProbabilityData[9] = List<int>{20, 20, 30, 30,5}
 
 		PowerGrowthData[1] = List<int>{5, 10, 15, 20,40}
 		PowerGrowthData[2] = List<int>{10, 20, 30, 40,60}
 		PowerGrowthData[3] = List<int>{15, 30, 45, 60,80}
 		PowerGrowthData[4] = List<int>{20, 40, 60, 80,100}
+		PowerGrowthData[5] = List<int>{20, 40, 60, 80,100}
+		PowerGrowthData[6] = List<int>{20, 40, 60, 80,100}
+		PowerGrowthData[7] = List<int>{20, 40, 60, 80,100}
+		PowerGrowthData[8] = List<int>{20, 40, 60, 80,100}
+		PowerGrowthData[9] = List<int>{20, 40, 60, 80,100}
 	}
 
 	event __Custom6event_TreasureshopEnter____(player entity<Player>) {
@@ -92,35 +103,29 @@ graph S_treasureShopUI {
 		var s2 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower2/Select")
 		var s3 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower3/Select")
 		var s4 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower4/Select")
+		var s5 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings5/Select")
+		var s6 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings6/Select")
+		var s7 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings7/Select")
+		var s8 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings8/Select")
+		var s9 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings9/Select")
 		if s1 != nil { s1<UIWidget>.IsVisible = false }
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
 		if s4 != nil { s4<UIWidget>.IsVisible = false }
+		if s5 != nil { s5<UIWidget>.IsVisible = false }
+		if s6 != nil { s6<UIWidget>.IsVisible = false }
+		if s7 != nil { s7<UIWidget>.IsVisible = false }
+		if s8 != nil { s8<UIWidget>.IsVisible = false }
+		if s9 != nil { s9<UIWidget>.IsVisible = false }
 		if treasureIndex == 1 && s1 != nil { s1<UIWidget>.IsVisible = true }
 		if treasureIndex == 2 && s2 != nil { s2<UIWidget>.IsVisible = true }
 		if treasureIndex == 3 && s3 != nil { s3<UIWidget>.IsVisible = true }
 		if treasureIndex == 4 && s4 != nil { s4<UIWidget>.IsVisible = true }
-	}
-
-	event __Custom6event_TreasurePanelSlide______(triggerPlayer entity<Player>, direction int) {
-		if !ContainKey(TreasureShop, triggerPlayer) {
-			return
-		}
-		var treasureEntity = TreasureShop[triggerPlayer] as entity
-		var treasureUI = treasureEntity as entity<CustomUI>
-		if direction > 0 {
-			var panel = GetWidgetByPath(triggerPlayer, treasureUI, "/Panel")
-			if panel != nil {
-				var ap = panel<UIWidget>.AnchorPosition
-				panel<UIWidget>.AnchorPosition = Vector3{ap.X, ap.Y + SlideStep, ap.Z}
-			}
-		} else {
-			var roll = GetWidgetByPath(triggerPlayer, treasureUI, "/Panel/Roll")
-			if roll != nil {
-				var ap = roll<UIWidget>.AnchorPosition
-				roll<UIWidget>.AnchorPosition = Vector3{ap.X, ap.Y - SlideStep, ap.Z}
-			}
-		}
+		if treasureIndex == 5 && s5 != nil { s5<UIWidget>.IsVisible = true }
+		if treasureIndex == 6 && s6 != nil { s6<UIWidget>.IsVisible = true }
+		if treasureIndex == 7 && s7 != nil { s7<UIWidget>.IsVisible = true }
+		if treasureIndex == 8 && s8 != nil { s8<UIWidget>.IsVisible = true }
+		if treasureIndex == 9 && s9 != nil { s9<UIWidget>.IsVisible = true }
 	}
 
 	func UpdateTreasureDisplay(player entity<Player>, treasureUI entity<CustomUI>, treasureIndex int) {
@@ -184,10 +189,20 @@ graph S_treasureShopUI {
 		var s2 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower2/Select")
 		var s3 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower3/Select")
 		var s4 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower4/Select")
+		var s5 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings5/Select")
+		var s6 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings6/Select")
+		var s7 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings7/Select")
+		var s8 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings8/Select")
+		var s9 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings9/Select")
 		if s1 != nil { s1<UIWidget>.IsVisible = false }
 		if s2 != nil { s2<UIWidget>.IsVisible = false }
 		if s3 != nil { s3<UIWidget>.IsVisible = false }
 		if s4 != nil { s4<UIWidget>.IsVisible = false }
+		if s5 != nil { s5<UIWidget>.IsVisible = false }
+		if s6 != nil { s6<UIWidget>.IsVisible = false }
+		if s7 != nil { s7<UIWidget>.IsVisible = false }
+		if s8 != nil { s8<UIWidget>.IsVisible = false }
+		if s9 != nil { s9<UIWidget>.IsVisible = false }
 	}
 
 	// 混合缓入：easedT = (1-blend)*t + blend*t²
@@ -276,22 +291,24 @@ graph S_treasureShopUI {
 	}
 
 	event __Custom6event_TreasureOpenBox______(player entity<Player>) {
-        if Buying {LogInfo("TreasureOpenBox1")
-            return
-        }
-        Buying = true
+		if ContainKey(TreasureBuyingState, player) && TreasureBuyingState[player] {
+			LogInfo("TreasureOpenBox1")
+			return
+		}
+		TreasureBuyingState[player] = true
 		if !ContainKey(TreasureSelectState, player) {
+			TreasureBuyingState[player] = false
 			return
 		}
 		var treasureIndex = TreasureSelectState[player]
 		if treasureIndex == 0 {
+			TreasureBuyingState[player] = false
 			return
 		}
+		var growthValue = RollPowerGrowthByProbability(treasureIndex)
+		DispatchEventToEntity(__Custom6event_AddPowerGrowth______, globalEntity, PlatformType.Server, List<object>{player, growthValue})
 
-		if ContainKey(TreasureShop, player) {
-			var shopEntity = TreasureShop[player] as entity
-			shopEntity<CustomUI>.IsVisible = false
-		}
+	
 
 		var effectEntity entity<CustomUI>
 		if ContainKey(TreasureEffect, player) {
@@ -302,10 +319,106 @@ graph S_treasureShopUI {
 			effectEntity = createdEffect as entity<CustomUI>
 			TreasureEffect[player] = effectEntity
 		}
-		start PlayTreasureEffect(player, effectEntity, treasureIndex)
+		start PlayTreasureEffect(player, effectEntity, treasureIndex, growthValue)
 	}
 
-	async func PlayTreasureEffect(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int) {
+	func RollPowerGrowthByProbability(treasureIndex int) int {
+		if !ContainKey(ProbabilityData, treasureIndex) {
+			return 0
+		}
+		if !ContainKey(PowerGrowthData, treasureIndex) {
+			return 0
+		}
+		var probabilityArray = ProbabilityData[treasureIndex] as List<int>
+		var growthArray = PowerGrowthData[treasureIndex] as List<int>
+		if probabilityArray == nil || growthArray == nil {
+			return 0
+		}
+		var probabilityCount = list.Length(probabilityArray)
+
+		if probabilityCount < 1 {
+			return 0
+		}
+		var growthCount = list.Length(growthArray)
+		if growthCount < 1 {
+			return 0
+		}
+		var useCount = probabilityCount
+		if growthCount < useCount {
+			useCount = growthCount
+		}
+		var totalWeight = 0
+		for i = 0, useCount, 1 {
+			var weight = probabilityArray[i]
+			if weight > 0 {
+				totalWeight = totalWeight + weight
+			}
+		}
+		if totalWeight <= 0 {
+			return growthArray[0]
+		}
+		var roll = math.RandomInt(1, totalWeight)
+		var currentWeight = 0
+		for i = 0, useCount, 1 {
+			var weight = probabilityArray[i]
+			if weight <= 0 {
+				continue
+			}
+			currentWeight = currentWeight + weight
+			if roll <= currentWeight {
+				return growthArray[i]
+			}
+		}
+		return growthArray[useCount - 1]
+	}
+
+	func GetGrowthTierByValue(treasureIndex int, growthValue int) int {
+		if !ContainKey(PowerGrowthData, treasureIndex) {
+			return 5
+		}
+		var growthArray = PowerGrowthData[treasureIndex] as List<int>
+		if growthArray == nil {
+			return 5
+		}
+		var growthCount = list.Length(growthArray)
+		for i = 0, growthCount, 1 {
+			if growthValue == growthArray[i] {
+				return i + 1
+			}
+		}
+		return 5
+	}
+
+	func ApplyVisualEffectPrefabByGrowth(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
+		var indexStr = convert.ToString(treasureIndex)
+		var visualEffect = GetWidgetByPath(player, effectUI, "/Treasure" + indexStr + "_empty/Treasure" + indexStr + "_opened/Visual_effect")
+		if visualEffect == nil {
+			visualEffect = GetWidgetByPath(player, effectUI, "/Treasure" + indexStr + "_empty/Treasure" + indexStr + "_opened/Visual_effect_5")
+		}
+		if visualEffect == nil {
+			return
+		}
+		var tier = GetGrowthTierByValue(treasureIndex, growthValue)
+		if tier == 1 {
+			visualEffect<Hud3DContainer>.Resource = EResPrefab.Green
+			return
+		}
+		if tier == 2 {
+			visualEffect<Hud3DContainer>.Resource = EResPrefab.Blue
+			return
+		}
+		if tier == 3 {
+			visualEffect<Hud3DContainer>.Resource = EResPrefab.purple
+			return
+		}
+		if tier == 4 {
+			visualEffect<Hud3DContainer>.Resource = EResPrefab.Yellow
+			return
+		}
+		// tier==5: Red，沿用默认 Visual effects.prefab（当前默认红色）
+	}
+
+	async func PlayTreasureEffect(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
 		var indexStr = convert.ToString(treasureIndex)
 
 		for i = 1, 10, 1 {
@@ -329,6 +442,7 @@ graph S_treasureShopUI {
 		var center = GetWidgetByPath(player, effectUI, centerPath)
 		var left = GetWidgetByPath(player, effectUI, leftPath)
 		var right = GetWidgetByPath(player, effectUI, rightPath)
+		ApplyVisualEffectPrefabByGrowth(player, effectUI, treasureIndex, growthValue)
 
 		if opened != nil { opened<UIWidget>.IsVisible = false }
 		if center != nil { center<UIWidget>.IsVisible = true }
@@ -389,6 +503,6 @@ graph S_treasureShopUI {
 
 		WaitForMillisecond(500)
 		effectUI<CustomUI>.IsVisible = false
-		Buying = false
+		TreasureBuyingState[player] = false
 	}
 }

@@ -387,6 +387,54 @@
           },
           "scriptName": "power",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "dv6hymrwygj-mnyayu9m-u7ntg5o41a",
+            "filePath": "Assets\\Prefabs\\Blue.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Blue",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "mfq3refkl1-mnyaz47h-exq75d804db",
+            "filePath": "Assets\\Prefabs\\Green.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Green",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "losz2aftr4-mnyazc3d-59ljjs43qx8",
+            "filePath": "Assets\\Prefabs\\purple.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "purple",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "ima96dyvpcp-mnyb5ldu-5twzclr9sj5",
+            "filePath": "Assets\\Prefabs\\Yellow.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Yellow",
+          "children": []
         }
       ]
     },

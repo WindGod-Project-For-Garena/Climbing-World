@@ -16,29 +16,42 @@ graph C_treasureUI {
 		DispatchEventToEntity(__Custom6event_TreasureshopLeave____, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
-	func Tower1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	func Treasure1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 	}
 
-	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+	func Treasure2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 	}
 
-	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+	func Treasure3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
 	}
 
-	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	func Treasure4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
 	}
 
-	func UP_Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_TreasurePanelSlide______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+	func Treasure5_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 5})
 	}
 
-	func Down_Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_TreasurePanelSlide______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, -1})
+	func Treasure6_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 6})
 	}
+
+	func Treasure7_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 7})
+	}
+
+	func Treasure8_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 8})
+	}
+
+	func Treasure9_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 9})
+	}
+
 
 	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		
