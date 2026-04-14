@@ -222,15 +222,16 @@ graph S_treasureShopUI {
 			stepMs = 1
 		}
 		var ap = center<UIWidget>.AnchorPosition
-		center<UIWidget>.AnchorPosition = Vector3{ap.X, fromY, ap.Z}
+		var apX = ap.X
+		var apZ = ap.Z
+		center<UIWidget>.AnchorPosition = Vector3{apX, fromY, apZ}
 		center<UIWidget>.Size = Vector2{fromSize, fromSize}
 		for i = 0, stepCount + 1, 1 {
 			var t = convert.IntToFloat(i) / convert.IntToFloat(stepCount)
 			var easedT = (1.0 - blend) * t + blend * t * t
 			var y = math.Lerp(fromY, toY, easedT)
 			var sz = math.Lerp(fromSize, toSize, t)
-			var curAp = center<UIWidget>.AnchorPosition
-			center<UIWidget>.AnchorPosition = Vector3{curAp.X, y, curAp.Z}
+			center<UIWidget>.AnchorPosition = Vector3{apX, y, apZ}
 			center<UIWidget>.Size = Vector2{sz, sz}
 			if i < stepCount {
 				WaitForMillisecond(stepMs)
@@ -254,14 +255,15 @@ graph S_treasureShopUI {
 			stepMs = 1
 		}
 		var ap = center<UIWidget>.AnchorPosition
-		center<UIWidget>.AnchorPosition = Vector3{ap.X, fromY, ap.Z}
+		var apX = ap.X
+		var apZ = ap.Z
+		center<UIWidget>.AnchorPosition = Vector3{apX, fromY, apZ}
 		for i = 0, stepCount + 1, 1 {
 			var t = convert.IntToFloat(i) / convert.IntToFloat(stepCount)
 			var inv = 1.0 - t
 			var easedT = 1.0 - math.Exponentiation(inv, power)
 			var y = math.Lerp(fromY, toY, easedT)
-			var curAp = center<UIWidget>.AnchorPosition
-			center<UIWidget>.AnchorPosition = Vector3{curAp.X, y, curAp.Z}
+			center<UIWidget>.AnchorPosition = Vector3{apX, y, apZ}
 			if i < stepCount {
 				WaitForMillisecond(stepMs)
 			}
@@ -318,6 +320,13 @@ graph S_treasureShopUI {
 			CreateCustomUI(out var createdEffect, player, EResUI.Treasure_effect)
 			effectEntity = createdEffect as entity<CustomUI>
 			TreasureEffect[player] = effectEntity
+			for i = 1, 10, 1 {
+				var iStr = convert.ToString(i)
+				var c = GetWidgetByPath(player, effectEntity, "/Treasure" + iStr + "_empty")
+				if c != nil {
+					c<UIWidget>.IsVisible = false
+				}
+			}
 		}
 		start PlayTreasureEffect(player, effectEntity, treasureIndex, growthValue)
 	}
@@ -421,14 +430,6 @@ graph S_treasureShopUI {
 	async func PlayTreasureEffect(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
 		var indexStr = convert.ToString(treasureIndex)
 
-		for i = 1, 10, 1 {
-			var iStr = convert.ToString(i)
-			var container = GetWidgetByPath(player, effectUI, "/Treasure" + iStr + "_empty")
-			if container != nil {
-				container<UIWidget>.IsVisible = false
-			}
-		}
-
 		var emptyPath = "/Treasure" + indexStr + "_empty"
 		var emptyContainer = GetWidgetByPath(player, effectUI, emptyPath)
 		if emptyContainer != nil { emptyContainer<UIWidget>.IsVisible = true }
@@ -502,6 +503,7 @@ graph S_treasureShopUI {
 		if center != nil { center<UIWidget>.Size = Vector2{500, 500} }
 
 		WaitForMillisecond(500)
+		if emptyContainer != nil { emptyContainer<UIWidget>.IsVisible = false }
 		effectUI<CustomUI>.IsVisible = false
 		TreasureBuyingState[player] = false
 	}

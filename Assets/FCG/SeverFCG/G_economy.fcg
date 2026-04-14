@@ -6,6 +6,8 @@ import "Map.fcc" as map
 import "Player.fcc" as player
 import "List.fcc" as list
 import "EditorGenLib.fcc" as gen
+import "Convert.fcc" as convert
+import "./S_power.fcg" as S_power
 
 
 [platform_server]
@@ -37,14 +39,28 @@ graph G_economy {
 		}
 	}
 
-	// 玩家点击跳跃或从塔顶坠落到地面时，将下落起始 Y 转为金币累加并通知 UI 更新 GoldCoin
+	// 玩家落地时：奖励 = 下坠距离 * 玩家当前 power，并通知 UI 更新 GoldCoin
 	event __Custom6event_AddFallReward____(player entity<Player>, fallY float) {
 		if fallY <= 0 {
 			return
 		}
 		if ContainKey(PlayerGold, player) {
+			var powerValue = 0
+			if ContainKey(globalEntity<S_power>.PlayerPowerValue, player) {
+				powerValue = globalEntity<S_power>.PlayerPowerValue[player]
+			}
+			if powerValue <= 1 {
+				powerValue=1
+			}
+
+			
+			
+			var reward = fallY * convert.IntToFloat(powerValue)
+			if reward <= 0 {
+				return
+			}
 			var gold float = PlayerGold[player]
-			gold = gold + fallY
+			gold = gold + reward
 			PlayerGold[player] = gold
 			DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
 		}

@@ -185,7 +185,11 @@ graph C_P_Climbing2 {
 				SwitchFall = true
 				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 				var landPos = GetLocalPlayer()<Player>.Position
-				var rewardGold float = FallStartY
+				var fallDistance = FallStartY - Curent_height.Y
+				if fallDistance < 0 {
+					fallDistance = 0
+				}
+				var rewardGold float = fallDistance
 				var sessionTimeSec float = 0
 				if climbSessionStartFrame == 0 {
 					sessionTimeSec = (frame - climbSessionStartFrame) as float / 30.0
@@ -197,7 +201,7 @@ graph C_P_Climbing2 {
 				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, landPos})
 				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player,0})
 				// 将下落起始 Y 发给经济系统，用于增加金币并刷新 P_IngameHud/GoldCoin
-				DispatchEventToEntity(__Custom6event_AddFallReward____, globalEntity, PlatformType.Server, List<object>{player, FallStartY})
+				DispatchEventToEntity(__Custom6event_AddFallReward____, globalEntity, PlatformType.Server, List<object>{player, fallDistance})
 				FallStartY = 0
 				frame = 0
 				WingSpeedDecay=WingSpeed

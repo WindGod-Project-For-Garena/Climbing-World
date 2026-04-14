@@ -38,24 +38,24 @@
             "transform": {
               "rotate": 0,
               "anchorMin": {
-                "x": 0.5,
-                "y": 0.5
+                "x": 0,
+                "y": 0
               },
               "anchorMax": {
-                "x": 0.5,
-                "y": 0.5
+                "x": 1,
+                "y": 1
               },
               "pivot": {
                 "x": 0.5,
                 "y": 0.5
               },
               "anchoredPosition": {
-                "x": -4,
-                "y": 8
+                "x": 0,
+                "y": 0
               },
               "sizeDelta": {
-                "x": 1334,
-                "y": 750
+                "x": 2,
+                "y": 2
               }
             },
             "alpha": 100,

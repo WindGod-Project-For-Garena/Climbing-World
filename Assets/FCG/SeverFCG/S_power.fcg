@@ -57,6 +57,40 @@ graph S_power {
         UpdatePowerEntityText(player, totalPower)
     }
 
+    func FormatBigNumber(value float) string {
+        if value < 1000.0 {
+            return convert.NumToString(value, 0)
+        }
+        if value < 1000000.0 {
+            return convert.NumToString(value / 1000.0, 1) + "K"
+        }
+        if value < 1000000000.0 {
+            return convert.NumToString(value / 1000000.0, 1) + "M"
+        }
+        if value < 1000000000000.0 {
+            return convert.NumToString(value / 1000000000.0, 1) + "B"
+        }
+        if value < 1000000000000000.0 {
+            return convert.NumToString(value / 1000000000000.0, 1) + "T"
+        }
+        if value < 1000000000000000000.0 {
+            return convert.NumToString(value / 1000000000000000.0, 1) + "Qa"
+        }
+        if value < 1000000000000000000000.0 {
+            return convert.NumToString(value / 1000000000000000000.0, 1) + "Qi"
+        }
+        if value < 1000000000000000000000000.0 {
+            return convert.NumToString(value / 1000000000000000000000.0, 1) + "Sx"
+        }
+        if value < 1000000000000000000000000000.0 {
+            return convert.NumToString(value / 1000000000000000000000000.0, 1) + "Sp"
+        }
+        if value < 1000000000000000000000000000000.0 {
+            return convert.NumToString(value / 1000000000000000000000000000.0, 1) + "Oc"
+        }
+        return convert.NumToString(value / 1000000000000000000000000000000.0, 1) + "No"
+    }
+
     func UpdatePowerEntityText(player entity<Player>, powerValue int) {
         if !ContainKey(PlayerPower, player) {
             return
@@ -65,7 +99,7 @@ graph S_power {
         if powerEntity == nil {
             return
         }
-        powerEntity<Text>.Content = convert.ToString(powerValue)
+        powerEntity<Text>.Content = FormatBigNumber(convert.IntToFloat(powerValue))
     }
 
     event OnPlayerQuit(player entity<Player>) {

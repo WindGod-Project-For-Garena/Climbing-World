@@ -61,7 +61,7 @@ graph G_UIcontrollor {
 			} else {
 				gold = globalEntity<G_economy>.PlayerGold[player]
 			}
-			goldCoinWidget<HudLabelWidget>.Text = convert.NumToString(gold, 0)
+			goldCoinWidget<HudLabelWidget>.Text = FormatBigNumber(gold)
 		}
 		var ingameUIMap = map.New()
 		ingameUIMap["P_IngameHud"] = P_IngameHudEntity
@@ -148,7 +148,41 @@ graph G_UIcontrollor {
 		}
 		var goldCoinWidget = GoldCoin_Widget[player] as entity
 		if goldCoinWidget != nil {
-			goldCoinWidget<HudLabelWidget>.Text = convert.NumToString(gold, 0)
+			goldCoinWidget<HudLabelWidget>.Text = FormatBigNumber(gold)
 		}
+	}
+
+	func FormatBigNumber(value float) string {
+		if value < 1000.0 {
+			return convert.NumToString(value, 0)
+		}
+		if value < 1000000.0 {
+			return convert.NumToString(value / 1000.0, 1) + "K"
+		}
+		if value < 1000000000.0 {
+			return convert.NumToString(value / 1000000.0, 1) + "M"
+		}
+		if value < 1000000000000.0 {
+			return convert.NumToString(value / 1000000000.0, 1) + "B"
+		}
+		if value < 1000000000000000.0 {
+			return convert.NumToString(value / 1000000000000.0, 1) + "T"
+		}
+		if value < 1000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000.0, 1) + "Qa"
+		}
+		if value < 1000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000.0, 1) + "Qi"
+		}
+		if value < 1000000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000000.0, 1) + "Sx"
+		}
+		if value < 1000000000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000000000.0, 1) + "Sp"
+		}
+		if value < 1000000000000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000000000000.0, 1) + "Oc"
+		}
+		return convert.NumToString(value / 1000000000000000000000000000000.0, 1) + "No"
 	}
 }
