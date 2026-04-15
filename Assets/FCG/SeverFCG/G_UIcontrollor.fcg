@@ -76,14 +76,14 @@ graph G_UIcontrollor {
 			hudEntity<CustomUI>.IsVisible = true
 			var jumpBtn = GetWidgetByPath(player, hudEntity as entity<CustomUI>, "/Jumping_button")
 			if jumpBtn != nil {
-				jumpBtn<UIWidget>.IsVisible = false
+				jumpBtn<UIWidget>.IsVisible = true
 			}
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.ClimbingUI)
 			Climbing_button[player] = createdEntity
 			var jumpBtn = GetWidgetByPath(player, createdEntity as entity<CustomUI>, "/Jumping_button")
 			if jumpBtn != nil {
-				jumpBtn<UIWidget>.IsVisible = false
+				jumpBtn<UIWidget>.IsVisible = true
 			}
 		}
 	}

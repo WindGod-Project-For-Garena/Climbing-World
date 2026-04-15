@@ -50,11 +50,29 @@ graph C_P_Climbing2 {
 	landingShakeSeq int = 0
 	DragUI entity<CustomUI> = nil
 	CreateDragUI bool = false
+	// 上一次已发送给服务端的爬墙状态，用于防止每帧重复 dispatch 导致 Jumping_button 闪烁
+	lastSentIsClimb bool = false
+	lastSentIsFall bool = false
+	lastSentIsHanging bool = false
 
 
 	event OnAwake() {   
-		
+		bIsClimb = false
+		ishanging = false
+		lastSentIsClimb = false
+		lastSentIsFall = false
+		lastSentIsHanging = false
     
+	}
+
+	// 只在状态真正改变时才向服务端发送 ClimbStateChanged，避免每帧推送导致 UI 闪烁
+	func MaybeSendClimbStateChanged() {
+		if bIsClimb != lastSentIsClimb || bIsFall != lastSentIsFall || ishanging != lastSentIsHanging {
+			lastSentIsClimb = bIsClimb
+			lastSentIsFall = bIsFall
+			lastSentIsHanging = ishanging
+			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
+		}
 	}
 
 	event OnPlayerJoin(joinedPlayer entity<Player>) {
@@ -100,7 +118,7 @@ graph C_P_Climbing2 {
 			Curent_height = Vector3{HighClimbTeleportPos.X, HighClimbTeleportPos.Y, HighClimbTeleportPos.Z}
 	
 			maxSessionHeightY = 0
-			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
+			MaybeSendClimbStateChanged()
 			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
 			
 		}
@@ -142,11 +160,11 @@ graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, GetLocalPlayer()<Player>.Position.Y})
 		
 			var heightVal = Curent_height.Y * 535.0 / 9280.0 -312.0
-			DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
-				
-			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
+		DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
 			
-			// 如果 Curent_height.Y < 1
+		MaybeSendClimbStateChanged()
+		
+		// 如果 Curent_height.Y < 1
 
 			
 		} else if bIsFall == true{
@@ -157,11 +175,11 @@ graph C_P_Climbing2 {
 			}
 			
 			SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
-			// 下落中：自由落体，速度随下坠累积（v += g，每帧重力约 15）
+			// 下落中：自由落体，速度随下坠累积（v += g，每帧；重力与上限为原值 2 倍）
 			var fallY = GetLocalPlayer()<Player>.Position.Y
-			var gravity float = 9.8/30
+			var gravity float = 39.2/30
 			fallVelocity = fallVelocity + gravity
-			var maxFallSpeed float = 1000
+			var maxFallSpeed float = 4000
 			if fallVelocity > maxFallSpeed {
 				fallVelocity = maxFallSpeed
 			}
@@ -171,20 +189,20 @@ graph C_P_Climbing2 {
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, GetLocalPlayer()<Player>.Position.Y})
 			
 			var heightVal = Curent_height.Y * 535.0 / 9280.0 - 312.0
-			DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
-			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
-			
-			if Curent_height.Y < 2 {
+		DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
+		MaybeSendClimbStateChanged()
+		
+		if Curent_height.Y < 2 {
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
 				SetLocalPlayerPosition(Curent_height)
 				DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{player})
 				StartLandingCameraShake(Curent_height)
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 				fallVelocity = 0
-				bIsFall = false
-				SwitchFall = true
-				DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
-				var landPos = GetLocalPlayer()<Player>.Position
+			bIsFall = false
+			SwitchFall = true
+			MaybeSendClimbStateChanged()
+			var landPos = GetLocalPlayer()<Player>.Position
 				var fallDistance = FallStartY - Curent_height.Y
 				if fallDistance < 0 {
 					fallDistance = 0
@@ -217,11 +235,11 @@ graph C_P_Climbing2 {
 		}
 		if ishanging == true {
 		
-			SetLocalPlayerPosition(Curent_height)
-			
-			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
-			
-			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
+		SetLocalPlayerPosition(Curent_height)
+		
+		MaybeSendClimbStateChanged()
+		
+		DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
 		}
 	}
 
@@ -268,8 +286,9 @@ graph C_P_Climbing2 {
 		reportor<CustomUI>.InScene = true
 		reportor<CustomUI>.WorldPosition = Vector3{landPos.X, landPos.Y + 1.5, landPos.Z}
 		reportor<CustomUI>.Scale = Vector3{2.5, 2.5, 2.5}
-		// 与落地 SetLocalPlayerForward(-Curent_Forward) 一致，水平面 Y 轴偏航（符号按引擎 UI 正面轴微调）
-		var face = Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z}
+		// OngroundReportor 朝向应为“当前方向的相反方向”：
+		// 落地时玩家朝向已被设为 -Curent_Forward，因此 Reportor 取其反向即 Curent_Forward
+		var face = Vector3{Curent_Forward.X, Curent_Forward.Y, Curent_Forward.Z}
 		var yawDeg float = ATan2(face.X, face.Z)
 		reportor<CustomUI>.Rotation = Vector3{0, -yawDeg, 0}
 		var lp = GetLocalPlayer()

@@ -42,6 +42,7 @@ graph C_Climbing_button {
 		// anim.PlayAnimation(triggerPlayer, "d4MFw2ge", 1, AnimationOverrideLoopType.Loop)
 		
 		DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		DispatchEventToEntity(__Custom6event_leavetrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
 	func Pressclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {

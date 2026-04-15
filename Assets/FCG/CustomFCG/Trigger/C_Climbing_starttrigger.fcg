@@ -69,6 +69,10 @@ graph C_Climbing_starttrigger {
 
 		// 【自动攀爬】仅 Empty 层级下的 Custom trigger + 本地玩家：等价于按下 Climbing（Press），不改变 Jumping/Release/AutoClimbing 等其它按钮逻辑
 		if  player == GetLocalPlayer() {
+			// 重置状态追踪，确保 MaybeSendClimbStateChanged 在下一帧一定重新 dispatch
+			player<C_P_Climbing2>.lastSentIsClimb = false
+			player<C_P_Climbing2>.lastSentIsFall = false
+			player<C_P_Climbing2>.lastSentIsHanging = false
 			player<C_P_Climbing2>.bIsClimb = true
 			player<C_P_Climbing2>.ishanging = false
 			player<C_P_Climbing2>.player = player
@@ -80,6 +84,11 @@ graph C_Climbing_starttrigger {
 	}
 
 	event OnPlayerLeave(player entity<Player>) {
-		DispatchEventToEntity(__Custom6event_leavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
-	}
+		if player<C_P_Climbing2>.bIsClimb == false && player<C_P_Climbing2>.ishanging == false {
+			DispatchEventToEntity(__Custom6event_leavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
+
+		}
+	
+	
+}
 }
