@@ -921,11 +921,11 @@
                           },
                           "anchoredPosition": {
                             "x": 10,
-                            "y": -160
+                            "y": -145
                           },
                           "sizeDelta": {
-                            "x": 232,
-                            "y": 94
+                            "x": 200,
+                            "y": 50
                           }
                         },
                         "alpha": 100,
@@ -1431,7 +1431,7 @@
                             "alpha": 100,
                             "priority": 0,
                             "text": {
-                              "value": "10$BUY \n",
+                              "value": "BUY \n",
                               "key": "",
                               "font": "Default",
                               "fontSize": 24,
@@ -1504,7 +1504,7 @@
                           },
                           "anchoredPosition": {
                             "x": 11,
-                            "y": -236
+                            "y": -300
                           },
                           "sizeDelta": {
                             "x": 150,
@@ -1901,11 +1901,11 @@
                           },
                           "anchoredPosition": {
                             "x": -12,
-                            "y": -160
+                            "y": -145
                           },
                           "sizeDelta": {
-                            "x": 232,
-                            "y": 94
+                            "x": 200,
+                            "y": 50
                           }
                         },
                         "alpha": 100,
@@ -2411,7 +2411,7 @@
                             "alpha": 100,
                             "priority": 0,
                             "text": {
-                              "value": "10$BUY \n",
+                              "value": "BUY \n",
                               "key": "",
                               "font": "Default",
                               "fontSize": 24,
@@ -2484,7 +2484,7 @@
                           },
                           "anchoredPosition": {
                             "x": -5,
-                            "y": -237
+                            "y": -300
                           },
                           "sizeDelta": {
                             "x": 150,
@@ -2883,11 +2883,11 @@
                           },
                           "anchoredPosition": {
                             "x": 4,
-                            "y": -160
+                            "y": -145
                           },
                           "sizeDelta": {
-                            "x": 232,
-                            "y": 94
+                            "x": 200,
+                            "y": 50
                           }
                         },
                         "alpha": 100,
@@ -3393,7 +3393,7 @@
                             "alpha": 100,
                             "priority": 0,
                             "text": {
-                              "value": "10$BUY \n",
+                              "value": "BUY \n",
                               "key": "",
                               "font": "Default",
                               "fontSize": 24,
@@ -3466,7 +3466,7 @@
                           },
                           "anchoredPosition": {
                             "x": 11,
-                            "y": -239
+                            "y": -300
                           },
                           "sizeDelta": {
                             "x": 150,
@@ -3865,11 +3865,11 @@
                           },
                           "anchoredPosition": {
                             "x": 4,
-                            "y": -160
+                            "y": -145
                           },
                           "sizeDelta": {
-                            "x": 232,
-                            "y": 94
+                            "x": 200,
+                            "y": 50
                           }
                         },
                         "alpha": 100,
@@ -4321,6 +4321,471 @@
                       },
                       "editorLockValue": false,
                       "editorVisibleValue": true
+                    },
+                    {
+                      "_entityName": "Cupimage",
+                      "_tag": {
+                        "type": "UIImageEntity",
+                        "resourceId": ""
+                      },
+                      "_entityId": "tCxgTkva",
+                      "children": [
+                        {
+                          "_entityName": "Text",
+                          "_tag": {
+                            "type": "UITextEntity",
+                            "resourceId": ""
+                          },
+                          "_entityId": "Ywtqs0ij",
+                          "children": [],
+                          "prefabVariant": null,
+                          "activeValue": {
+                            "selfValue": true,
+                            "valueTag": "activeValue"
+                          },
+                          "unlockedValue": null,
+                          "editorLockValue": false,
+                          "editorVisibleValue": true,
+                          "propsData": {
+                            "activeSelf": true,
+                            "transform": {
+                              "rotate": 0,
+                              "anchorMin": {
+                                "x": 0.5,
+                                "y": 0.5
+                              },
+                              "anchorMax": {
+                                "x": 0.5,
+                                "y": 0.5
+                              },
+                              "pivot": {
+                                "x": 0.5,
+                                "y": 0.5
+                              },
+                              "anchoredPosition": {
+                                "x": 88,
+                                "y": -2
+                              },
+                              "sizeDelta": {
+                                "x": 120,
+                                "y": 50
+                              }
+                            },
+                            "alpha": 100,
+                            "priority": 0,
+                            "text": {
+                              "value": "2",
+                              "key": "",
+                              "font": "Default",
+                              "fontSize": 99,
+                              "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false
+                              },
+                              "color": "#ffffff",
+                              "alignment": {
+                                "h": "center",
+                                "v": "middle"
+                              },
+                              "lineSpacing": 0,
+                              "background": false,
+                              "backgroundColor": "#e7b200",
+                              "overflow": 0,
+                              "backgroundRGBA": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 0
+                              },
+                              "shadow": false,
+                              "shadowColor": "#000000",
+                              "shadowOffset": {
+                                "x": 1,
+                                "y": 1
+                              }
+                            }
+                          },
+                          "ecaScripts": [],
+                          "ecaProps": {
+                            "HudLabelWidget": {},
+                            "HudWidget": {},
+                            "Entity": {}
+                          },
+                          "componentList": [],
+                          "entityTagData": {
+                            "tagPointers": []
+                          }
+                        }
+                      ],
+                      "prefabVariant": null,
+                      "activeValue": {
+                        "selfValue": true,
+                        "valueTag": "activeValue"
+                      },
+                      "unlockedValue": null,
+                      "editorLockValue": false,
+                      "editorVisibleValue": true,
+                      "propsData": {
+                        "activeSelf": true,
+                        "transform": {
+                          "rotate": 0,
+                          "anchorMin": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchorMax": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "pivot": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchoredPosition": {
+                            "x": -724,
+                            "y": -205
+                          },
+                          "sizeDelta": {
+                            "x": 50,
+                            "y": 50
+                          }
+                        },
+                        "alpha": 100,
+                        "priority": 0,
+                        "image": {
+                          "source": {
+                            "fileId": "5060p9o2zw4-mo0wsnbk-1v25fwwiy5a",
+                            "filePath": "Assets\\UI\\material\\Cup.png",
+                            "_tag": {
+                              "type": "GFileRefer"
+                            },
+                            "fileType": "texture"
+                          },
+                          "color": "#ffffff",
+                          "reverse": {
+                            "x": false,
+                            "y": false
+                          },
+                          "fillType": 1,
+                          "slicedBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "tiledBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "centerInvisible": false,
+                          "fillDir": 0,
+                          "fillAmount": 0,
+                          "invertFill": false,
+                          "flip": 0,
+                          "gradient": 1,
+                          "gradientTop": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          },
+                          "gradientBottom": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          }
+                        }
+                      },
+                      "ecaScripts": [],
+                      "ecaProps": {
+                        "HudImageWidget": {},
+                        "HudWidget": {},
+                        "Entity": {}
+                      },
+                      "componentList": [],
+                      "entityTagData": {
+                        "tagPointers": []
+                      }
+                    },
+                    {
+                      "_entityName": "Cupimage2",
+                      "_tag": {
+                        "type": "UIImageEntity",
+                        "resourceId": ""
+                      },
+                      "_entityId": "MTa9IdxJ",
+                      "children": [
+                        {
+                          "_entityName": "Text",
+                          "_tag": {
+                            "type": "UITextEntity",
+                            "resourceId": ""
+                          },
+                          "_entityId": "KRj6MX0V",
+                          "children": [],
+                          "prefabVariant": null,
+                          "activeValue": {
+                            "selfValue": true,
+                            "valueTag": "activeValue"
+                          },
+                          "unlockedValue": null,
+                          "propsData": {
+                            "activeSelf": true,
+                            "transform": {
+                              "rotate": 0,
+                              "anchorMin": {
+                                "x": 0.5,
+                                "y": 0.5
+                              },
+                              "anchorMax": {
+                                "x": 0.5,
+                                "y": 0.5
+                              },
+                              "pivot": {
+                                "x": 0.5,
+                                "y": 0.5
+                              },
+                              "anchoredPosition": {
+                                "x": 88,
+                                "y": -2
+                              },
+                              "sizeDelta": {
+                                "x": 120,
+                                "y": 50
+                              }
+                            },
+                            "alpha": 100,
+                            "priority": 0,
+                            "text": {
+                              "value": "20",
+                              "key": "",
+                              "font": "Default",
+                              "fontSize": 99,
+                              "fontStyle": {
+                                "bold": false,
+                                "italic": false,
+                                "underline": false
+                              },
+                              "color": "#ffffff",
+                              "alignment": {
+                                "h": "center",
+                                "v": "middle"
+                              },
+                              "lineSpacing": 0,
+                              "background": false,
+                              "backgroundColor": "#e7b200",
+                              "overflow": 0,
+                              "backgroundRGBA": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 0,
+                                "a": 0
+                              },
+                              "shadow": false,
+                              "shadowColor": "#000000",
+                              "shadowOffset": {
+                                "x": 1,
+                                "y": 1
+                              }
+                            }
+                          },
+                          "ecaScripts": [],
+                          "ecaProps": {
+                            "HudLabelWidget": {},
+                            "HudWidget": {},
+                            "Entity": {}
+                          },
+                          "componentList": [],
+                          "entityTagData": {
+                            "tagPointers": []
+                          },
+                          "editorLockValue": false,
+                          "editorVisibleValue": true
+                        }
+                      ],
+                      "prefabVariant": null,
+                      "activeValue": {
+                        "selfValue": true,
+                        "valueTag": "activeValue"
+                      },
+                      "unlockedValue": null,
+                      "propsData": {
+                        "activeSelf": true,
+                        "transform": {
+                          "rotate": 0,
+                          "anchorMin": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchorMax": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "pivot": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchoredPosition": {
+                            "x": -370,
+                            "y": -205
+                          },
+                          "sizeDelta": {
+                            "x": 50,
+                            "y": 50
+                          }
+                        },
+                        "alpha": 100,
+                        "priority": 0,
+                        "image": {
+                          "source": {
+                            "fileId": "5060p9o2zw4-mo0wsnbk-1v25fwwiy5a",
+                            "filePath": "Assets\\UI\\material\\Cup.png",
+                            "_tag": {
+                              "type": "GFileRefer"
+                            },
+                            "fileType": "texture"
+                          },
+                          "color": "#ffffff",
+                          "reverse": {
+                            "x": false,
+                            "y": false
+                          },
+                          "fillType": 1,
+                          "slicedBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "tiledBorder": {
+                            "left": 0,
+                            "right": 0,
+                            "top": 0,
+                            "bottom": 0
+                          },
+                          "centerInvisible": false,
+                          "fillDir": 0,
+                          "fillAmount": 0,
+                          "invertFill": false,
+                          "flip": 0,
+                          "gradient": 1,
+                          "gradientTop": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          },
+                          "gradientBottom": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255,
+                            "a": 1
+                          }
+                        }
+                      },
+                      "ecaScripts": [],
+                      "ecaProps": {
+                        "HudImageWidget": {},
+                        "HudWidget": {},
+                        "Entity": {}
+                      },
+                      "componentList": [],
+                      "entityTagData": {
+                        "tagPointers": []
+                      },
+                      "editorLockValue": false,
+                      "editorVisibleValue": true
+                    },
+                    {
+                      "_entityName": "not enough cup",
+                      "_tag": {
+                        "type": "UITextEntity",
+                        "resourceId": ""
+                      },
+                      "_entityId": "qoesYAP7",
+                      "children": [],
+                      "prefabVariant": null,
+                      "activeValue": {
+                        "selfValue": true,
+                        "valueTag": "activeValue"
+                      },
+                      "unlockedValue": null,
+                      "editorLockValue": false,
+                      "editorVisibleValue": true,
+                      "propsData": {
+                        "activeSelf": true,
+                        "transform": {
+                          "rotate": 0,
+                          "anchorMin": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchorMax": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "pivot": {
+                            "x": 0.5,
+                            "y": 0.5
+                          },
+                          "anchoredPosition": {
+                            "x": -509,
+                            "y": -55
+                          },
+                          "sizeDelta": {
+                            "x": 1092,
+                            "y": 300
+                          }
+                        },
+                        "alpha": 100,
+                        "priority": 0,
+                        "text": {
+                          "value": "You don't have enough trophies",
+                          "key": "",
+                          "font": "Default",
+                          "fontSize": 99,
+                          "fontStyle": {
+                            "bold": false,
+                            "italic": false,
+                            "underline": false
+                          },
+                          "color": "#ffffff",
+                          "alignment": {
+                            "h": "center",
+                            "v": "middle"
+                          },
+                          "lineSpacing": 0,
+                          "background": false,
+                          "backgroundColor": "#e7b200",
+                          "overflow": 0,
+                          "backgroundRGBA": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0,
+                            "a": 0
+                          },
+                          "shadow": true,
+                          "shadowColor": "#000000",
+                          "shadowOffset": {
+                            "x": 10,
+                            "y": 1
+                          }
+                        }
+                      },
+                      "ecaScripts": [],
+                      "ecaProps": {
+                        "HudLabelWidget": {},
+                        "HudWidget": {},
+                        "Entity": {}
+                      },
+                      "componentList": [],
+                      "entityTagData": {
+                        "tagPointers": []
+                      }
                     }
                   ],
                   "prefabVariant": null,

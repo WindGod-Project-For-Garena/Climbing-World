@@ -8,6 +8,7 @@ import "Player.fcc" as player
 import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 import "Math.fcc" as Math
+import "./S_Cupcount.fcg" as S_Cupcount
 
 
 [platform_server]
@@ -46,6 +47,8 @@ graph S_TowershopUI {
 				savedUnlock = TowerUnlockState[player]
 			}
 			ApplyWingBuyState(player, TowershopEntity as entity<CustomUI>, savedUnlock)
+			ApplyTower4CupImageState(player, TowershopEntity as entity<CustomUI>, savedUnlock)
+			SetTower4NotEnoughCupVisible(player, TowershopEntity as entity<CustomUI>, false)
 		} else {
             LogInfo("TowershopEnter2")
 			CreateCustomUI(out var createdEntity, player, EResUI.TowerShop)
@@ -56,6 +59,9 @@ graph S_TowershopUI {
 			TowerUnlockState[player] = 1
 			HideAllBUY(player, createdEntity as entity<CustomUI>)
 			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, 1)
+			// Tower UI 首次创建时，Cupimage 可见；Cupimage2 在解锁 Tower2 后显示
+			ApplyTower4CupImageState(player, createdEntity as entity<CustomUI>, 1)
+			SetTower4NotEnoughCupVisible(player, createdEntity as entity<CustomUI>, false)
 		}
 	}
 
@@ -90,8 +96,88 @@ graph S_TowershopUI {
 		if Towerindex != currentUnlock + 1 {
 			return
 		}
+		if !CanUnlockTowerByCup(player, Towerindex) {
+			ShowTower4NotEnoughCupForTwoSeconds(player, Towershop[player] as entity<CustomUI>)
+			return
+		}
+		DeductPlayerCupByTowerUnlock(player, Towerindex)
+		SetTower4NotEnoughCupVisible(player, Towershop[player] as entity<CustomUI>, false)
 		TowerUnlockState[player] = Towerindex
 		ApplyWingBuyState(player, Towershop[player] as entity<CustomUI>, Towerindex)
+		ApplyTower4CupImageState(player, Towershop[player] as entity<CustomUI>, Towerindex)
+		DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, Towerindex, nil})
+		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{player, Towerindex})
+		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, player, PlatformType.Client, List<object>{player, Towerindex})
+	}
+
+	func CanUnlockTowerByCup(player entity<Player>, Towerindex int) bool {
+		if Towerindex == 2 {
+			return GetPlayerCupCount(player) > 2
+		}
+		if Towerindex == 3 {
+			return GetPlayerCupCount(player) > 20
+		}
+		return true
+	}
+
+	func GetPlayerCupCount(player entity<Player>) int {
+		if ContainKey(globalEntity<S_Cupcount>.PlayerCupCount, player) {
+			return globalEntity<S_Cupcount>.PlayerCupCount[player] as int
+		}
+		return 0
+	}
+
+	func GetTowerUnlockCupCost(Towerindex int) int {
+		if Towerindex == 2 {
+			return 2
+		}
+		if Towerindex == 3 {
+			return 20
+		}
+		return 0
+	}
+
+	func DeductPlayerCupByTowerUnlock(player entity<Player>, Towerindex int) {
+		var cost = GetTowerUnlockCupCost(Towerindex)
+		if cost <= 0 {
+			return
+		}
+		var currentCup = GetPlayerCupCount(player)
+		var nextCup = currentCup - cost
+		if nextCup < 0 {
+			nextCup = 0
+		}
+		globalEntity<S_Cupcount>.PlayerCupCount[player] = nextCup
+		globalEntity<S_Cupcount>.RefreshCupcountUI(player)
+	}
+
+	func ApplyTower4CupImageState(player entity<Player>, TowershopUI entity<CustomUI>, unlockCount int) {
+		var cupImage = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Tower4/Cupimage")
+		var cupImage2 = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Tower4/Cupimage2")
+		if cupImage != nil { cupImage<UIWidget>.IsVisible = true }
+		if cupImage2 != nil { cupImage2<UIWidget>.IsVisible = (unlockCount >= 2) }
+	}
+
+	func SetTower4NotEnoughCupVisible(player entity<Player>, TowershopUI entity<CustomUI>, visible bool) {
+		var notEnoughCup = GetWidgetByPath(player, TowershopUI, "/Panel/Roll/Layout/Tower4/not enough cup")
+		if notEnoughCup != nil { notEnoughCup<UIWidget>.IsVisible = visible }
+	}
+
+	func ShowTower4NotEnoughCupForTwoSeconds(player entity<Player>, TowershopUI entity<CustomUI>) {
+		SetTower4NotEnoughCupVisible(player, TowershopUI, true)
+		start HideTower4NotEnoughCupDelayed(player, TowershopUI)
+	}
+
+	async func HideTower4NotEnoughCupDelayed(player entity<Player>, TowershopUI entity<CustomUI>) {
+		WaitForMillisecond(2000)
+		if !ContainKey(Towershop, player) {
+			return
+		}
+		var currentUI = Towershop[player] as entity<CustomUI>
+		if currentUI == nil || currentUI != TowershopUI {
+			return
+		}
+		SetTower4NotEnoughCupVisible(player, currentUI, false)
 	}
 
 	// 应用指定翅膀的 Select/Equipped 显隐状态，Towerindex 为 0 时全部隐藏

@@ -1,5 +1,5 @@
 {
-  "_entityName": "Prefab",
+  "_entityName": "CTower",
   "_tag": {
     "type": "Prefab"
   },
@@ -1390,7 +1390,7 @@
             "valueTag": "unlockedValue"
           },
           "position": {
-            "x": 0.5940017700195312,
+            "x": 0.593999981880188,
             "y": 9235.8193359375,
             "z": 0
           },
@@ -1430,7 +1430,14 @@
             "tagPointers": []
           },
           "materials": [
-            null
+            {
+              "fileId": "i0okweeim1d-mnzyc9gu-z3kfka57jeq",
+              "filePath": "Assets\\Tower\\Tower1_mat\\顶.mat",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "material"
+            }
           ],
           "colliders": [
             {
@@ -2197,6 +2204,364 @@
               "editorLockValue": false,
               "editorVisibleValue": true,
               "prefabVariant": null
+            },
+            {
+              "_entityId": "SGyzU2QF",
+              "children": [
+                {
+                  "_entityId": "j13fWOfw",
+                  "children": [],
+                  "_entityName": "奖杯",
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "rotation": {
+                    "x": 270,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": false,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [
+                    "MeshRender",
+                    "ColliderShape",
+                    "Collider"
+                  ],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "mesh": {
+                    "fileId": "w6a7i2sd4yn-mnzv41ev-7mnm0vn9r0d-tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403.~@FFFUB",
+                    "filePath": "fab://Assets\\Tower\\奖杯\\奖杯.fbx\\tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403.mesh",
+                    "_tag": {
+                      "type": "GFileRefer"
+                    },
+                    "fileType": "mesh"
+                  },
+                  "materials": [
+                    {
+                      "fileId": "tg3sv9mmki-mnzv4m04-wwjarrg1zuk",
+                      "filePath": "Assets\\Tower\\奖杯\\奖杯.mat",
+                      "_tag": {
+                        "type": "GFileRefer"
+                      },
+                      "fileType": "material"
+                    }
+                  ],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "MeshCollider",
+                      "meshUUID": {
+                        "fileId": "w6a7i2sd4yn-mnzv41ev-7mnm0vn9r0d-tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403.~@FFFUB",
+                        "filePath": "fab://Assets\\Tower\\奖杯\\奖杯.fbx\\tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403.mesh",
+                        "_tag": {
+                          "type": "GFileRefer"
+                        },
+                        "fileType": "mesh"
+                      },
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "radius": 0.5,
+                      "height": 1,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "MeshRender": {},
+                    "ColliderShape": {},
+                    "Collider": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "prefabVariant": null,
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
+                },
+                {
+                  "_entityId": "rlUmnsrW",
+                  "children": [],
+                  "_entityName": "Custom trigger",
+                  "_tag": {
+                    "type": "UGCSceneEntity",
+                    "resourceId": ""
+                  },
+                  "activeValue": {
+                    "selfValue": true,
+                    "valueTag": "activeValue"
+                  },
+                  "unlockedValue": {
+                    "selfValue": true,
+                    "valueTag": "unlockedValue"
+                  },
+                  "position": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "scale": {
+                    "x": 0.009999999776482582,
+                    "y": 0.009999999776482582,
+                    "z": 0.009999999776482582
+                  },
+                  "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                  },
+                  "BTPath": [
+                    null
+                  ],
+                  "visible": true,
+                  "VisibilityLayer": 0,
+                  "modelOptimization": 0,
+                  "streamingLayer": "",
+                  "attributes": [
+                    2,
+                    4
+                  ],
+                  "isTrigger": true,
+                  "collidable": true,
+                  "physicalLayer": 0,
+                  "aoiSetting": 0,
+                  "initialTypes": {},
+                  "componentList": [
+                    "ColliderShape",
+                    "Collider"
+                  ],
+                  "entityTagData": {
+                    "tagPointers": []
+                  },
+                  "mesh": null,
+                  "materials": [],
+                  "colliders": [
+                    {
+                      "enable": true,
+                      "colliderType": "Box",
+                      "position": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "size": {
+                        "x": 1,
+                        "y": 1,
+                        "z": 1
+                      },
+                      "rotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "radius": 0.5,
+                      "height": 1,
+                      "isConvexIfMesh": false
+                    }
+                  ],
+                  "IsNPC": false,
+                  "isCreateAsEmpty": false,
+                  "Rigidbody": {
+                    "Type": 1,
+                    "Mass": 1,
+                    "CenterOfMass": {
+                      "x": 0,
+                      "y": 0,
+                      "z": 0
+                    },
+                    "UseGravity": true,
+                    "Drag": 0.05,
+                    "AngularDrag": 0.05,
+                    "FreezePosX": false,
+                    "FreezeRotX": false,
+                    "FreezePosY": false,
+                    "FreezeRotY": false,
+                    "FreezePosZ": false,
+                    "FreezeRotZ": false
+                  },
+                  "ecaScripts": [
+                    {
+                      "fileId": "lsks6i2uht-mnzyf7mu-yi5hg5odw7j",
+                      "filePath": "Assets\\FCG\\CustomFCG\\Trigger\\C_Cuptrigger.fcg",
+                      "_tag": {
+                        "type": "GFileRefer"
+                      },
+                      "fileType": "ugcscript"
+                    }
+                  ],
+                  "ecaProps": {
+                    "CustomLevelObject": {},
+                    "LevelObject": {},
+                    "Transform": {},
+                    "Entity": {},
+                    "Visibility": {},
+                    "ColliderShape": {},
+                    "Collider": {},
+                    "MeshRender": {}
+                  },
+                  "propsData": {},
+                  "entityVersion": 3,
+                  "prefabVariant": null,
+                  "editorLockValue": false,
+                  "editorVisibleValue": true
+                }
+              ],
+              "_entityName": "奖杯",
+              "_tag": {
+                "type": "UGCSceneEntity",
+                "resourceId": "Primitive/Empty"
+              },
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
+              "position": {
+                "x": 5.1837263107299805,
+                "y": 4651.78515625,
+                "z": 0.3401346504688263
+              },
+              "scale": {
+                "x": 500,
+                "y": 500,
+                "z": 500
+              },
+              "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "BTPath": [
+                null
+              ],
+              "visible": true,
+              "VisibilityLayer": 0,
+              "modelOptimization": 0,
+              "streamingLayer": "",
+              "attributes": [
+                2,
+                4
+              ],
+              "isTrigger": false,
+              "collidable": true,
+              "physicalLayer": 0,
+              "aoiSetting": 0,
+              "initialTypes": {},
+              "componentList": [],
+              "entityTagData": {
+                "tagPointers": []
+              },
+              "mesh": null,
+              "materials": [],
+              "colliders": [],
+              "IsNPC": false,
+              "isCreateAsEmpty": true,
+              "Rigidbody": {
+                "Type": 1,
+                "Mass": 1,
+                "CenterOfMass": {
+                  "x": 0,
+                  "y": 0,
+                  "z": 0
+                },
+                "UseGravity": true,
+                "Drag": 0.05,
+                "AngularDrag": 0.05,
+                "FreezePosX": false,
+                "FreezeRotX": false,
+                "FreezePosY": false,
+                "FreezeRotY": false,
+                "FreezePosZ": false,
+                "FreezeRotZ": false
+              },
+              "ecaScripts": [],
+              "ecaProps": {
+                "CustomLevelObject": {},
+                "LevelObject": {},
+                "Transform": {},
+                "Entity": {},
+                "Visibility": {},
+                "MeshRender": {}
+              },
+              "propsData": {},
+              "entityVersion": 3,
+              "prefabVariant": null,
+              "editorLockValue": false,
+              "editorVisibleValue": true
             }
           ],
           "activeValue": {
@@ -2292,7 +2657,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": -1160.626220703125,
             "y": 1000,
@@ -2431,7 +2799,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": -758.6206665039062,
             "y": 2382.593505859375,
@@ -2570,7 +2941,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": -801.1563110351562,
             "y": 3957.001953125,
@@ -2709,7 +3083,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": -397.760986328125,
             "y": 8957.001953125,
@@ -2848,7 +3225,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "position": {
             "x": -814.3867797851562,
             "y": 6205.31005859375,
@@ -3057,7 +3437,7 @@
       "editorVisibleValue": true,
       "prefabVariant": {
         "prefabFile": {
-          "fileId": "ifu9wbzthd-mnsif6k5-gtywjkwzu05",
+          "fileId": "2qd64zhu8ca-mnwmq5lm-7pq2h5dyr1x",
           "filePath": "Assets\\Prefabs\\Tower\\CTower.prefab",
           "_tag": {
             "type": "GFileRefer"
@@ -5210,7 +5590,10 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": null,
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,

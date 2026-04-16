@@ -28,6 +28,9 @@ graph G_Climbing {
 	lastClimbAnimSpeed Map<entity<Player>, float> = nil
 	climbSpeedUpdateCounter Map<entity<Player>, int> = nil
 	awaitingTutorialWingshopHintAfterLand Map<entity<Player>, bool> = nil
+	// 玩家 -> 被隐藏的 CupTrigger 父对象（落地后恢复）
+	hiddenTowerParentByPlayer Map<entity<Player>, entity<Entity>> = nil
+	hiddenTowerParentPosByPlayer Map<entity<Player>, Vector3> = nil
 	event OnAwake() {       
 		playerCustomGravity = map.New()
 		PlayerCurentHeight = map.New()
@@ -37,6 +40,8 @@ graph G_Climbing {
 		lastClimbAnimSpeed = map.New()
 		climbSpeedUpdateCounter = map.New()
 		awaitingTutorialWingshopHintAfterLand = map.New()
+		hiddenTowerParentByPlayer = map.New()
+		hiddenTowerParentPosByPlayer = map.New()
 	}
 
 	func SetAwaitingTutorialWingshopHintAfterLand(p entity<Player>, v bool) {
@@ -124,6 +129,18 @@ graph G_Climbing {
 		start DestroyEffectAfterDelay(effectEntity, 2.0)
 	}
 
+	func RestoreHiddenTowerParent(player entity<Player>) {
+		if !ContainKey(hiddenTowerParentByPlayer, player) {
+			return
+		}
+		var hiddenParent = hiddenTowerParentByPlayer[player] as entity<Entity>
+		if hiddenParent != nil && ContainKey(hiddenTowerParentPosByPlayer, player) && HasComponent(hiddenParent, typeof(Transform)) {
+			hiddenParent<Transform>.Position = hiddenTowerParentPosByPlayer[player] as Vector3
+		}
+		map.Remove(hiddenTowerParentByPlayer, player)
+		map.Remove(hiddenTowerParentPosByPlayer, player)
+	}
+
 	async func DestroyEffectAfterDelay(e entity, delaySec float) {
 		WaitForMillisecond(10000 )
 		Destroy(e)
@@ -157,6 +174,7 @@ graph G_Climbing {
 
 	event __Custom6event_onground__(player entity<Player>, Vector Vector3, effectPos Vector3) {
 		Onground(player, Vector, effectPos)
+		RestoreHiddenTowerParent(player)
 		if ContainKey(awaitingTutorialWingshopHintAfterLand, player) && (awaitingTutorialWingshopHintAfterLand[player] as bool) {
 			var hintDest = globalEntity<S_WingShopUI>.GetWingshopHintPosition()
 			map.Remove(awaitingTutorialWingshopHintAfterLand, player)
@@ -182,7 +200,24 @@ graph G_Climbing {
 
 	event __Custom6event_freeze_rescue______(player entity<Player>) {
 		map.Remove(awaitingTutorialWingshopHintAfterLand, player)
+		RestoreHiddenTowerParent(player)
 		FreezeRescue(player)
+	}
+
+	// C_Cuptrigger 触发：隐藏当前塔 trigger 的父对象，等待玩家落地后恢复显示
+	func HideCupTowerParent(player entity<Player>, towerParent entity<Entity>) {
+		if towerParent == nil {
+			return
+		}
+		if !HasComponent(towerParent, typeof(Transform)) {
+			return
+		}
+		if ContainKey(hiddenTowerParentByPlayer, player) {
+			return
+		}
+		hiddenTowerParentByPlayer[player] = towerParent
+		hiddenTowerParentPosByPlayer[player] = towerParent<Transform>.Position
+		towerParent<Transform>.Position = towerParent<Transform>.Position + Vector3{0, -20000, 0}
 	}
 
 	// 由 C_P_Climbing2 在 Y>100 时通知调用；仅停止攀爬动画，传送在客户端执行

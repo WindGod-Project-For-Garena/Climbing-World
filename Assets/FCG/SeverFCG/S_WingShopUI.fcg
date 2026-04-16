@@ -8,6 +8,9 @@ import "Player.fcc" as player
 import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 import "Math.fcc" as Math
+import "Convert.fcc" as convert
+import "./S_WingsPrice.fcg" as S_WingsPrice
+import "./G_economy.fcg" as G_economy
 
 [platform_server]
 graph S_WingShopUI {
@@ -65,6 +68,10 @@ graph S_WingShopUI {
 				savedUnlock = WingUnlockState[player]
 			}
 			ApplyWingBuyState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
+			// BUY_F 面板：按已解锁数量恢复状态，not enough cup 恢复隐藏
+			ApplyBUY_FPanelState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
+			SetNotEnoughCupVisible(player, wingshopEntity as entity<CustomUI>, false)
+			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, wingshopEntity as entity<CustomUI>)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.Wingshop2)
 			Wingshop[player] = createdEntity
@@ -73,6 +80,10 @@ graph S_WingShopUI {
 			WingUnlockState[player] = 0
 			HideAllBUY(player, createdEntity as entity<CustomUI>)
 			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, 0)
+			// BUY_F 面板：首次创建时仅 Wings1/BUY_F 可见，not enough cup 隐藏
+			ApplyBUY_FPanelState(player, createdEntity as entity<CustomUI>, 0)
+			SetNotEnoughCupVisible(player, createdEntity as entity<CustomUI>, false)
+			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, createdEntity as entity<CustomUI>)
 		}
 	}
 
@@ -94,12 +105,11 @@ graph S_WingShopUI {
 		ApplyWingSelectState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
 	}
 
-	// 玩家点击 BUY：当前 BUY 不可视，下一格 BUY 可视，对应 Trick 可视，对应 Locked 不可视
+	// 玩家点击 BUY：校验金币 -> 扣款 -> 更新状态/UI -> 回推客户端成功
 	event __Custom6event___WingBuyUnlock__(player entity<Player>, wingIndex int) {
 		if !ContainKey(Wingshop, player) {
 			return
 		}
-	
 		var currentUnlock = 0
 		if ContainKey(WingUnlockState, player) {
 			currentUnlock = WingUnlockState[player]
@@ -107,8 +117,32 @@ graph S_WingShopUI {
 		if wingIndex != currentUnlock + 1 {
 			return
 		}
+
+		// 金币校验
+		var price = globalEntity<S_WingsPrice>.GetPrice(wingIndex)
+		var gold float = 0
+		if ContainKey(globalEntity<G_economy>.PlayerGold, player) {
+			gold = globalEntity<G_economy>.PlayerGold[player]
+		}
+		if gold < convert.IntToFloat(price) {
+			// 金币不足：提示两秒后消失
+			ShowNotEnoughCupForTwoSeconds(player, Wingshop[player] as entity<CustomUI>)
+			return
+		}
+
+		// 扣款
+		var newGold = gold - convert.IntToFloat(price)
+		globalEntity<G_economy>.PlayerGold[player] = newGold
+		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
+
+		// 更新解锁状态与 UI
 		WingUnlockState[player] = wingIndex
 		ApplyWingBuyState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
+		ApplyBUY_FPanelState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
+		SetNotEnoughCupVisible(player, Wingshop[player] as entity<CustomUI>, false)
+
+		// 回推客户端同步解锁状态/速度
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, player, PlatformType.Client, List<object>{player, wingIndex})
 	}
 
 	// 应用指定翅膀的 Select/Equipped 显隐状态，wingIndex 为 0 时全部隐藏
@@ -337,5 +371,40 @@ graph S_WingShopUI {
 		if l10 != nil { l10<UIWidget>.IsVisible = (unlockCount < 10) }
 		if l11 != nil { l11<UIWidget>.IsVisible = (unlockCount < 11) }
 		if l12 != nil { l12<UIWidget>.IsVisible = (unlockCount < 12) }
+	}
+
+	// 控制 /Wings{N}/BUY_F 整体面板显隐：unlockCount+1 对应的翅膀面板可见，其余隐藏
+	func ApplyBUY_FPanelState(player entity<Player>, wingshopUI entity<CustomUI>, unlockCount int) {
+		var nextIndex = unlockCount + 1
+		for i = 1, 13, 1 {
+			var panel = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings" + i + "/BUY_F")
+			if panel != nil {
+				panel<UIWidget>.IsVisible = (i == nextIndex)
+			}
+		}
+	}
+
+	func SetNotEnoughCupVisible(player entity<Player>, wingshopUI entity<CustomUI>, visible bool) {
+		var tip = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/not enough cup (1)")
+		if tip != nil {
+			tip<UIWidget>.IsVisible = visible
+		}
+	}
+
+	func ShowNotEnoughCupForTwoSeconds(player entity<Player>, wingshopUI entity<CustomUI>) {
+		SetNotEnoughCupVisible(player, wingshopUI, true)
+		start HideNotEnoughCupDelayed(player, wingshopUI)
+	}
+
+	async func HideNotEnoughCupDelayed(player entity<Player>, wingshopUI entity<CustomUI>) {
+		WaitForMillisecond(2000)
+		if !ContainKey(Wingshop, player) {
+			return
+		}
+		var currentUI = Wingshop[player] as entity<CustomUI>
+		if currentUI == nil || currentUI != wingshopUI {
+			return
+		}
+		SetNotEnoughCupVisible(player, currentUI, false)
 	}
 }

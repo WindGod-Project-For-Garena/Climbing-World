@@ -1,0 +1,50 @@
+{
+  "_entityName": "",
+  "_tag": {
+    "type": "Material"
+  },
+  "_entityId": "lwyxW58B",
+  "children": [],
+  "prefabVariant": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "shader": {
+    "fileId": "s-c50a71f4-e4c2-e833-0362-480bc627f749",
+    "filePath": "lib://ffshaders/BRMobile/UGC/DiffuseColor_MultiLight",
+    "_tag": {
+      "type": "GFileRefer"
+    },
+    "fileType": "shader"
+  },
+  "paramValue": {
+    "BlendMode": "Opaque",
+    "_MainTex": {
+      "Texture": null,
+      "Tiling": {
+        "x": 2,
+        "y": 2000
+      },
+      "Offset": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    "_Color": {
+      "r": 4,
+      "g": 174,
+      "b": 186,
+      "a": 1
+    },
+    "_Cutoff": 0.5,
+    "_CullMode": 2
+  }
+}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

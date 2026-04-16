@@ -1,5 +1,5 @@
-// 翅膀数据：玩家 + 翅膀名 -> 翅膀信息（名称、售价、名义速度、是否已购买）
-// 通过 PlayerWingData[player][wingName] 获取 Map{"Name", "Price", "NominalSpeed", "IsPurchased"}
+// 翅膀数据：玩家 + 翅膀名 -> 翅膀信息（名称、售价、速度、是否已购买）
+// 价格/速度与 S_WingsPrice.fcg 中的数据表保持一致
 
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
@@ -18,64 +18,46 @@ graph S_WingsData {
 		WingConfig = map.New()
 		PlayerWingData = map.New()
 
-		// 初始化翅膀静态配置（与 C_WingshopUI 的 Wing1~4 对应）
-		var w1 = map.New()
-		w1["Name"] = "初级翅膀"
-		w1["Price"] = 1
-		w1["NominalSpeed"] = 58
-		WingConfig["Wing1"] = w1
-
-		var w2 = map.New()
-		w2["Name"] = "中级翅膀"
-		w2["Price"] = 500
-		w2["NominalSpeed"] = 116
-		WingConfig["Wing2"] = w2
-
-		var w3 = map.New()
-		w3["Name"] = "高级翅膀"
-		w3["Price"] = 2000
-		w3["NominalSpeed"] = 232
-		WingConfig["Wing3"] = w3
-
-		var w4 = map.New()
-		w4["Name"] = "顶级翅膀"
-		w4["Price"] = 8000
-		w4["NominalSpeed"] = 464
-		WingConfig["Wing4"] = w4
+		InitWingConfig("Wing1",  "翅膀 Lv.1",  0,        29)
+		InitWingConfig("Wing2",  "翅膀 Lv.2",  580,      58)
+		InitWingConfig("Wing3",  "翅膀 Lv.3",  1740,     116)
+		InitWingConfig("Wing4",  "翅膀 Lv.4",  4176,     232)
+		InitWingConfig("Wing5",  "翅膀 Lv.5",  9280,     464)
+		InitWingConfig("Wing6",  "翅膀 Lv.6",  19952,    928)
+		InitWingConfig("Wing7",  "翅膀 Lv.7",  42688,    1856)
+		InitWingConfig("Wing8",  "翅膀 Lv.8",  89088,    3712)
+		InitWingConfig("Wing9",  "翅膀 Lv.9",  185600,   7424)
+		InitWingConfig("Wing10", "翅膀 Lv.10", 386048,   14848)
+		InitWingConfig("Wing11", "翅膀 Lv.11", 2969600,  29696)
+		InitWingConfig("Wing12", "翅膀 Lv.12", 23756800, 59392)
 	}
 
-	event OnPlayerJoin(player entity<Player>) {
-		// 为新玩家初始化翅膀数据，Wing1 默认已拥有
+	func InitWingConfig(key string, name string, price int, speed int) {
+		var w = map.New()
+		w["Name"] = name
+		w["Price"] = price
+		w["NominalSpeed"] = speed
+		WingConfig[key] = w
+	}
+
+	event OnPlayerJoin(joinedPlayer entity<Player>) {
 		var playerWings = map.New()
-		var w1 = map.New()
-		w1["Name"] = "初级翅膀"
-		w1["Price"] = 0
-		w1["NominalSpeed"] = 58
-		w1["IsPurchased"] = true
-		playerWings["Wing1"] = w1
+		var allKeys = map.GetAllKeys(WingConfig)
+		for idx, key in allKeys {
+			var cfg = WingConfig[key] as Map<object, object>
+			var w = map.New()
+			w["Name"] = cfg["Name"]
+			w["Price"] = cfg["Price"]
+			w["NominalSpeed"] = cfg["NominalSpeed"]
+			// Wing1 默认已拥有
+			w["IsPurchased"] = (key as string == "Wing1")
+			playerWings[key] = w
+		}
+		PlayerWingData[joinedPlayer] = playerWings
+	}
 
-		var w2 = map.New()
-		w2["Name"] = "中级翅膀"
-		w2["Price"] = 500
-		w2["NominalSpeed"] = 116
-		w2["IsPurchased"] = false
-		playerWings["Wing2"] = w2
-
-		var w3 = map.New()
-		w3["Name"] = "高级翅膀"
-		w3["Price"] = 2000
-		w3["NominalSpeed"] = 232
-		w3["IsPurchased"] = false
-		playerWings["Wing3"] = w3
-
-		var w4 = map.New()
-		w4["Name"] = "顶级翅膀"
-		w4["Price"] = 8000
-		w4["NominalSpeed"] = 464
-		w4["IsPurchased"] = false
-		playerWings["Wing4"] = w4
-
-		PlayerWingData[player] = playerWings
+	event OnPlayerQuit(leftPlayer entity<Player>) {
+		map.Remove(PlayerWingData, leftPlayer)
 	}
 
 	// 获取玩家某翅膀的完整信息，不存在则返回 nil

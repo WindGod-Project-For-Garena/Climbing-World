@@ -1,0 +1,100 @@
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Hud.fcc" as hud
+import "Convert.fcc" as convert
+import "Player.fcc" as player
+import "./G_UIcontrollor.fcg" as G_UIcontrollor
+
+[platform_server]
+graph S_Cupcount {
+	// 玩家奖杯数（初始为 0）
+	PlayerCupCount Map<entity<Player>, int> = nil
+	// 玩家 -> P_IngameHud 中 /Cupcpunt 文本控件
+	CupcountWidgetByPlayer Map<entity<Player>, entity> = nil
+
+	event OnAwake() {
+		PlayerCupCount = map.New()
+		CupcountWidgetByPlayer = map.New()
+	}
+
+	event OnPlayerJoin(player entity<Player>) {
+		PlayerCupCount[player] = 0
+		TryBindCupcountWidget(player)
+		RefreshCupcountUI(player)
+	}
+
+	event OnPlayerQuit(leftPlayer entity<Player>) {
+		map.Remove(PlayerCupCount, leftPlayer)
+		map.Remove(CupcountWidgetByPlayer, leftPlayer)
+	}
+
+	func TryBindCupcountWidget(player entity<Player>) {
+		if ContainKey(CupcountWidgetByPlayer, player) {
+			var oldWidget = CupcountWidgetByPlayer[player] as entity
+			if oldWidget != nil {
+				return
+			}
+		}
+		if !ContainKey(globalEntity<G_UIcontrollor>.P_IngameHud_ByPlayer, player) {
+			return
+		}
+		var pIngameHud = globalEntity<G_UIcontrollor>.P_IngameHud_ByPlayer[player] as entity<CustomUI>
+		if pIngameHud == nil {
+			return
+		}
+		var cupWidget = GetWidgetByPath(player, pIngameHud, "/Cupcpunt")
+		if cupWidget != nil {
+			CupcountWidgetByPlayer[player] = cupWidget
+		}
+	}
+
+	func RefreshCupcountUI(player entity<Player>) {
+		TryBindCupcountWidget(player)
+		if !ContainKey(CupcountWidgetByPlayer, player) {
+			return
+		}
+		var cupWidget = CupcountWidgetByPlayer[player] as entity
+		if cupWidget == nil {
+			return
+		}
+		var cupCount = 0
+		if ContainKey(PlayerCupCount, player) {
+			cupCount = PlayerCupCount[player] as int
+		}
+		cupWidget<HudLabelWidget>.Text = convert.NumToString(cupCount, 0)
+	}
+
+	// 根据奖杯触发器所在塔类型返回加分：ATower +1, BTower +10, CTower +20
+	func ResolveCupDeltaByTrigger(cupTrigger entity<Entity>) int {
+		var current entity = cupTrigger as entity
+		for i = 0, 16, 1 {
+			if current == nil {
+				break
+			}
+			if HasTag(current, "CTower") {
+				return 20
+			}
+			if HasTag(current, "BTower") {
+				return 10
+			}
+			if HasTag(current, "ATower") {
+				return 1
+			}
+			current = GetParent(current)
+		}
+		return 1
+	}
+
+	func AddCupByTrigger(player entity<Player>, cupTrigger entity<Entity>) {
+		if player == nil || cupTrigger == nil {
+			return
+		}
+		if !ContainKey(PlayerCupCount, player) {
+			PlayerCupCount[player] = 0
+		}
+		var delta = ResolveCupDeltaByTrigger(cupTrigger)
+		var currentCount = PlayerCupCount[player] as int
+		PlayerCupCount[player] = currentCount + delta
+		RefreshCupcountUI(player)
+	}
+}

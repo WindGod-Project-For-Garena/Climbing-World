@@ -1,0 +1,62 @@
+{
+  "fileId": "w6a7i2sd4yn-mnzv41ev-7mnm0vn9r0d",
+  "globalscale": 1,
+  "enabletangent": false,
+  "properties": {
+    "Common": ""
+  },
+  "subDynamicResources": {},
+  "version": "1.6.4",
+  "manifest": {
+    "Meshes": [
+      {
+        "Name": "tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403.~@FFFUB",
+        "MeshName": "tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403",
+        "Type": "common",
+        "OrgExtName": ".~@FFFUB"
+      }
+    ],
+    "BoneInfos": [],
+    "Anims": [],
+    "ManifestJSON": {
+      "FBXName": "奖杯",
+      "ImportSucceeded": true,
+      "MaterialCount": 1,
+      "MaterialDetail": [
+        {
+          "Index": 0,
+          "MaterialName": "tripo_material_def4b8a3-fb5b-4cf2-b719-2854301bc403"
+        }
+      ],
+      "MeshCount": 1,
+      "MeshDetail": [
+        {
+          "MeshName": "tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403",
+          "MaterialIndex": [
+            0
+          ],
+          "Transform": {
+            "Position": [
+              0,
+              0,
+              0
+            ],
+            "Rotation": [
+              -90,
+              0,
+              0
+            ],
+            "Scale": [
+              100,
+              100,
+              100
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "subColliderLOD": {
+    "w6a7i2sd4yn-mnzv41ev-7mnm0vn9r0d-tripo_node_def4b8a3-fb5b-4cf2-b719-2854301bc403.~@FFFUB": 0
+  }
+}

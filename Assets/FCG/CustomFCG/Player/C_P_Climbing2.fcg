@@ -34,6 +34,9 @@ graph C_P_Climbing2 {
 	WingSpeed float = 29
 	// 攀爬开始时的 frame，用于计算攀爬时长；WingSpeed<464 且攀爬≥20s 后速度每秒降 5%
 	WingSpeedDecay float = 29
+	// 塔速度倍率：实际速度 = 翅膀速度 * (1 - 塔衰减/100)
+	// Tower1=1.0(衰减0%)，Tower2=0.065(衰减93.5%)，Tower3=0.005(衰减99.5%)
+	TowerSpeedMultiplier float = 1.0
 	climbingStartFrame int = 0
 	// 本轮上塔会话：落地 OngroundReportor（下落时 climbingStartFrame 会清零，故单独记时/最大高度）
 	climbSessionStartFrame int = 0
@@ -152,7 +155,12 @@ graph C_P_Climbing2 {
 			// 攀爬中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
 			//攀爬速度公式
 			
-			var formulaY =WingSpeedDecay/30 //Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
+			var effectiveSpeed = WingSpeedDecay * TowerSpeedMultiplier
+			// 各塔统一最大爬行速度上限
+			if effectiveSpeed > 593.92 {
+				effectiveSpeed = 593.92
+			}
+			var formulaY =effectiveSpeed/30 //Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
 			var AnimationSpeed = formulaY*3
 			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+formulaY, Curent_height.Z})
 			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
@@ -286,11 +294,13 @@ graph C_P_Climbing2 {
 		reportor<CustomUI>.InScene = true
 		reportor<CustomUI>.WorldPosition = Vector3{landPos.X, landPos.Y + 1.5, landPos.Z}
 		reportor<CustomUI>.Scale = Vector3{2.5, 2.5, 2.5}
-		// OngroundReportor 朝向应为“当前方向的相反方向”：
-		// 落地时玩家朝向已被设为 -Curent_Forward，因此 Reportor 取其反向即 Curent_Forward
 		var face = Vector3{Curent_Forward.X, Curent_Forward.Y, Curent_Forward.Z}
+		// 玩家3/4（Tower_3/Tower_4）从自己的塔落地时，Reportor 方向需要取当前生成方向的反向
+		if HasTag(GetLocalPlayer(), "Tower_3") || HasTag(GetLocalPlayer(), "Tower_4") {
+			face = Vector3{face.X, face.Y, face.Z}
+		}
 		var yawDeg float = ATan2(face.X, face.Z)
-		reportor<CustomUI>.Rotation = Vector3{0, -yawDeg, 0}
+		reportor<CustomUI>.Rotation = Vector3{0, yawDeg, 0}
 		var lp = GetLocalPlayer()
 		var w1 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (1)")
 		var w4 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (4)")

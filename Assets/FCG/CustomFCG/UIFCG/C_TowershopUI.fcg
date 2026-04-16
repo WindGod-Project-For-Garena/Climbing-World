@@ -59,18 +59,10 @@ graph C_TowershopUI {
 
 	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
-		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 2
-		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
-		DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2, triggerEntity})
-		triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 2
 	}
 
 	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
-		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 3
-		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
-		DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3, triggerEntity})
-		triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 3
 	}
 
 	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
@@ -78,5 +70,13 @@ graph C_TowershopUI {
 		triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = 4
 		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
 		triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = 4
+	}
+
+	// 服务端验证通过后回推，客户端同步最高解锁塔阶，防止本地状态与服务端不一致
+	event __Custom6event___TowerBuyUnlock____(triggerPlayer entity<Player>, Towerindex int) {
+		if triggerPlayer == GetLocalPlayer() {
+			triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = Towerindex
+			triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = Towerindex
+		}
 	}
 }

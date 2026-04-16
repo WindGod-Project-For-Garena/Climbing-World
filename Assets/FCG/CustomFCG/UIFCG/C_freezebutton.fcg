@@ -1,0 +1,46 @@
+import "StdLibrary.fcc" as std
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
+import "EditorGenLib.fcc" as gen
+import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+
+[platform_client]
+graph C_freezebutton {
+	// 挂载于 P_IngameHud/Button，点击后重置本地攀爬状态并请求服务端执行救援传送
+	func ResetPlayerStateAndRescue(triggerPlayer entity<Player>) {
+		var bornPos = Vector3{0, 0, 0}
+		var bornForward = Vector3{1, 0, 0}
+
+		// 先做本地状态清理，避免卡在攀爬/悬挂/下落逻辑
+		SetLocalPlayerPosition(bornPos)
+		SetLocalPlayerForward(bornForward)
+		triggerPlayer<C_P_Climbing2>.bIsClimb = false
+		triggerPlayer<C_P_Climbing2>.ishanging = false
+		triggerPlayer<C_P_Climbing2>.bIsFall = false
+		triggerPlayer<C_P_Climbing2>.fallVelocity = 0
+		triggerPlayer<C_P_Climbing2>.SwitchFall = true
+		triggerPlayer<C_P_Climbing2>.climbingStartFrame = 0
+		triggerPlayer<C_P_Climbing2>.climbSessionStartFrame = 0
+		triggerPlayer<C_P_Climbing2>.maxSessionHeightY = 0
+		triggerPlayer<C_P_Climbing2>.Tower_Height = 0
+		triggerPlayer<C_P_Climbing2>.WingSpeedDecay = triggerPlayer<C_P_Climbing2>.WingSpeed
+		triggerPlayer<C_P_Climbing2>.Curent_height = bornPos
+		triggerPlayer<C_P_Climbing2>.player = triggerPlayer
+		triggerPlayer<C_P_Climbing2>.FallStartY = 0
+
+		// 通知服务端同步动画/重力/位置，确保多端一致
+		DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, false, false, false})
+		DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 0})
+		DispatchEventToEntity(__Custom6event_freeze_rescue______, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	// 脚本直接挂在 Button 上时，点击会直接触发该事件
+	event OnTapped(triggerPlayer entity<Player>) {
+		ResetPlayerStateAndRescue(triggerPlayer)
+	}
+
+	// 兼容 UI 手动绑定函数的场景（例如 OnClick -> Button）
+	func Button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		ResetPlayerStateAndRescue(triggerPlayer)
+	}
+}

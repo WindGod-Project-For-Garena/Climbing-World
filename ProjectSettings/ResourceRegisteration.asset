@@ -318,18 +318,6 @@
         },
         {
           "refer": {
-            "fileId": "ifu9wbzthd-mnsif6k5-gtywjkwzu05",
-            "filePath": "Assets\\Prefabs\\Tower\\CTower.prefab",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "prefab"
-          },
-          "scriptName": "CTower",
-          "children": []
-        },
-        {
-          "refer": {
             "fileId": "260q8sygdit-mnwsywz2-z1glttzr3m",
             "filePath": "Assets\\Prefabs\\wings\\Wings9.prefab",
             "_tag": {
@@ -445,7 +433,7 @@
             },
             "fileType": "prefab"
           },
-          "scriptName": "Key",
+          "scriptName": "CTower",
           "children": []
         }
       ]

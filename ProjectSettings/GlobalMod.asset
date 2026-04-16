@@ -133,6 +133,22 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "lkwf4qb5mn-mo008rpx-xame3r30dqe",
+      "filePath": "Assets\\FCG\\SeverFCG\\S_Cupcount.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    },
+    {
+      "fileId": "wly78uh8vee-mo14g8r4-3izdxihsgmq",
+      "filePath": "Assets\\FCG\\SeverFCG\\S_WingsPrice.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

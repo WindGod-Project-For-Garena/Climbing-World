@@ -1,0 +1,22 @@
+import "StdLibrary.fcc" as std
+import "Math.fcc" as math
+
+[platform_server]
+graph C_Cup {
+	// 每帧绕 Y 轴旋转角度（度）：0.2 约等于每秒 6 度（30fps）
+	RotateSpeedDegPerFrame float = 0.2
+	CurrentYawDeg float = 0.0
+
+	event OnAwake() {
+		var fwd = thisEntity<Transform>.Forward
+		CurrentYawDeg = ATan2(fwd.X, fwd.Z)
+	}
+
+	event OnUpdate() {
+		CurrentYawDeg = CurrentYawDeg + RotateSpeedDegPerFrame
+		if CurrentYawDeg >= 360 {
+			CurrentYawDeg = CurrentYawDeg - 360
+		}
+		thisEntity<Transform>.Forward = Vector3{math.Sin(CurrentYawDeg), 0, math.Cos(CurrentYawDeg)}
+	}
+}

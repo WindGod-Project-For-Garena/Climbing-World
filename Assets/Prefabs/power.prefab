@@ -1,5 +1,5 @@
 {
-  "_entityName": "Prefab",
+  "_entityName": "power",
   "_tag": {
     "type": "Prefab"
   },
@@ -17,9 +17,12 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "position": {
-        "x": 0,
+        "x": -1.4164495468139648,
         "y": 0,
         "z": 0
       },
@@ -53,7 +56,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 239,
+      "tempIndex": 145,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -111,8 +114,14 @@
     }
   ],
   "prefabVariant": null,
-  "activeValue": null,
-  "unlockedValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "HintCraftlandCombineMesh": false,

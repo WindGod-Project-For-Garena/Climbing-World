@@ -115,12 +115,15 @@ graph G_Tower {
 		if wantedTowerType == 2 {
 			CreateFromPrefab(out var btower, EResPrefab.BTower)
 			tower = btower
+			AddTag(tower, "BTower")
 		} else if wantedTowerType == 3 {
 			CreateFromPrefab(out var ctower, EResPrefab.CTower)
 			tower = ctower
+			AddTag(tower, "CTower")
 		} else {
 			CreateFromPrefab(out var atower, EResPrefab.ATower)
 			tower = atower
+			AddTag(tower, "ATower")
 		}
 	  
 		var trigForSlot = Towertrigger[towerSummonIndex] as entity
@@ -143,6 +146,13 @@ graph G_Tower {
 		var climbingStart = GetChildByName(tower, "Custom trigger")
 		if climbingStart != nil {
 			AddTag(climbingStart, "Tower_" + towerSummonIndex)
+			if wantedTowerType == 2 {
+				AddTag(climbingStart, "BTower")
+			} else if wantedTowerType == 3 {
+				AddTag(climbingStart, "CTower")
+			} else {
+				AddTag(climbingStart, "ATower")
+			}
 		}
 		
 		spawnedTowers[towerSummonIndex] = true

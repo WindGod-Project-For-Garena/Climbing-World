@@ -42,6 +42,8 @@ graph C_Climbing_starttrigger {
 			player<C_P_Climbing2>.HighClimbTeleportPos = teleportPoint<Transform>.Position
 		
 		}
+		// 塔速度衰减：实际速度 = 原翅膀速度 * (1 - 塔衰减/100)
+		// 改为按生成塔类型判定：ATower 衰减0%，BTower 衰减93.5%，CTower 衰减99.5%
 		if HasTag(thisEntity, "Tower_1") {
 		
 			Current_forward = Vector3{-1, 0, 0}
@@ -55,6 +57,12 @@ graph C_Climbing_starttrigger {
 		
 			Current_forward = Vector3{0, 0, -1}
 			
+		}
+		player<C_P_Climbing2>.TowerSpeedMultiplier = 1.0
+		if HasTag(thisEntity, "BTower") {
+			player<C_P_Climbing2>.TowerSpeedMultiplier = 0.065
+		} else if HasTag(thisEntity, "CTower") {
+			player<C_P_Climbing2>.TowerSpeedMultiplier = 0.005
 		}
 		
 		// 无塔标签时 Forward 可能为 0，避免 SetLocalPlayerForward 使用零向量导致异常，与默认攀爬朝向一致

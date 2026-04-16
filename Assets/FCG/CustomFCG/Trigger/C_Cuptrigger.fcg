@@ -1,0 +1,29 @@
+import "StdLibrary.fcc" as std
+import "LevelObject.fcc" as levelobject
+import "Map.fcc" as map
+import "../../SeverFCG/G_Climbing.fcg" as G_Climbing
+import "../../SeverFCG/S_Cupcount.fcg" as S_Cupcount
+
+[platform_server]
+graph C_Cuptrigger {
+	// 玩家触碰奖杯触发器时：隐藏当前触发器父对象，落地后由 G_Climbing 恢复
+	event OnPlayerEnter(player entity<Player>) {
+		var towerParent = GetParent(thisEntity)
+		var targetParent entity<Entity> = nil
+		if towerParent != nil {
+			targetParent = towerParent as entity<Entity>
+		} else {
+			targetParent = thisEntity as entity<Entity>
+		}
+		if !HasComponent(targetParent, typeof(Transform)) {
+			return
+		}
+		if map.ContainKey(globalEntity<G_Climbing>.hiddenTowerParentByPlayer, player) {
+			return
+		}
+		globalEntity<S_Cupcount>.AddCupByTrigger(player, thisEntity as entity<Entity>)
+		globalEntity<G_Climbing>.hiddenTowerParentByPlayer[player] = targetParent
+		globalEntity<G_Climbing>.hiddenTowerParentPosByPlayer[player] = targetParent<Transform>.Position
+		targetParent<Transform>.Position = targetParent<Transform>.Position + Vector3{0, -20000, 0}
+	}
+}
