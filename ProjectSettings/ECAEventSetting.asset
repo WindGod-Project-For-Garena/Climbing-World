@@ -823,6 +823,28 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_41955666"
+    },
+    "signal_46459014": {
+      "name": "Custom event_BuyWings_success",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100046,
+      "props": [
+        {
+          "name": "Wings",
+          "value": "Int",
+          "key": 1
+        },
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_46459014"
     }
   },
   "customName": {
@@ -866,7 +888,8 @@
     "Custom event_drag": "signal_20075104",
     "Custom event_CameraButton__": "signal_25413720",
     "Custom event_reback": "signal_64611984",
-    "Custom event_AddPowerGrowth____": "signal_41955666"
+    "Custom event_AddPowerGrowth____": "signal_41955666",
+    "Custom event_BuyWings_success": "signal_46459014"
   },
   "children": []
 }

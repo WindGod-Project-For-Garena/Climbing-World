@@ -107,6 +107,7 @@ graph S_WingShopUI {
 
 	// 玩家点击 BUY：校验金币 -> 扣款 -> 更新状态/UI -> 回推客户端成功
 	event __Custom6event___WingBuyUnlock__(player entity<Player>, wingIndex int) {
+		LogInfo("__Custom6event___WingBuyUnlock__: " + wingIndex)
 		if !ContainKey(Wingshop, player) {
 			return
 		}
@@ -114,7 +115,8 @@ graph S_WingShopUI {
 		if ContainKey(WingUnlockState, player) {
 			currentUnlock = WingUnlockState[player]
 		}
-		if wingIndex != currentUnlock + 1 {
+		// 已购买过（重复点击）直接忽略
+		if wingIndex <= currentUnlock {
 			return
 		}
 
@@ -134,19 +136,26 @@ graph S_WingShopUI {
 		var newGold = gold - convert.IntToFloat(price)
 		globalEntity<G_economy>.PlayerGold[player] = newGold
 		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
-
+		DispatchEventToEntity(__Custom6event_BuyWings_success__, Wingshop[player] as entity, PlatformType.Client, List<object>{wingIndex, player})
 		// 更新解锁状态与 UI
 		WingUnlockState[player] = wingIndex
+		WingSelectState[player] = wingIndex
 		ApplyWingBuyState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
 		ApplyBUY_FPanelState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
 		SetNotEnoughCupVisible(player, Wingshop[player] as entity<CustomUI>, false)
+		// 购买即装备：显示对应翅膀的 Equipped 标记
+		ApplyWingSelectState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
+		// 通知 S_Equipment 服务端立即装备翅膀（bone=nil，使用 Follow/LookAt 方式挂载）
+		var nilBone entity<Skeleton> = nil
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{player, wingIndex, nilBone})
 
-		// 回推客户端同步解锁状态/速度
-		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, player, PlatformType.Client, List<object>{player, wingIndex})
+		// 回推客户端同步解锁状态/速度（客户端收到后会以骨骼方式重新挂载）
+		
 	}
 
 	// 应用指定翅膀的 Select/Equipped 显隐状态，wingIndex 为 0 时全部隐藏
 	func ApplyWingSelectState(player entity<Player>, wingshopUI entity<CustomUI>, wingIndex int) {
+		LogInfo("ApplyWingSelectState: " + wingIndex)
 		if wingIndex == 0 {
 			HideAllWingSelect(player, wingshopUI)
 			return

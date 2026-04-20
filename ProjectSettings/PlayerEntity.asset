@@ -238,8 +238,8 @@
     "start_ep": 0,
     "auto_healing": false,
     "limited_ammo": true,
-    "damage": 100,
-    "damaged": 100,
+    "damage": 0,
+    "damaged": 0,
     "move_speed": 100,
     "jump_height": 100,
     "enable_active_skill": true,
@@ -333,7 +333,9 @@
     "playerskill_electricgirl_cd_percent": 100,
     "playerskill_auroraboy_cd_percent": 100,
     "DisableEnemyFootstepVibrate": false,
-    "receive_damage": 100
+    "receive_damage": 100,
+    "playerskill_eclipseman_cd_percent": 100,
+    "EnableCheckPlayerMatchState": false
   },
   "physicsData": {
     "ECCTParam_Gravity": {
@@ -368,6 +370,9 @@
       "type": "GFileRefer"
     },
     "fileType": "ac"
-  }
+  },
+  "avatarType": 0,
+  "genderType": 0,
+  "usePDV2": false
 }
-//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

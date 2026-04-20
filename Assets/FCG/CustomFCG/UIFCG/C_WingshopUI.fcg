@@ -1,6 +1,6 @@
 // Wingshop 根节点挂载的客户端脚本
 // BUY{N}_button 仅向服务端派发购买请求；服务端校验金币通过后回推 __Custom6event___WingBuyUnlock__ 至客户端
-// 客户端收到回推后才更新 HighestWingIndex 和 WingSpeed
+// 客户端收到回推后更新 HighestWingIndex，并调用 EquipWing 完成装备与速度同步
 
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
@@ -18,22 +18,8 @@ graph C_WingshopUI {
 	event OnAwake() {
 	}
 
-	// 服务端验证购买成功后回推，客户端同步解锁状态和翅膀速度
-	event __Custom6event___WingBuyUnlock__(triggerPlayer entity<Player>, wingIndex int) {
-		if triggerPlayer != GetLocalPlayer() {
-			return
-		}
-		triggerPlayer<C_PlayerWingsData>.HighestWingIndex = wingIndex
-		triggerPlayer<C_PlayerWingsData>.PlayerNameToHighestWingIndex[triggerPlayer] = wingIndex
-		var speed = GetWingGameplaySpeed(wingIndex)
-		triggerPlayer<C_P_Climbing2>.WingSpeed = speed
-		triggerPlayer<C_P_Climbing2>.WingSpeedDecay = speed
-		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, speed})
-		bone = GetSkeletonPartByName(triggerPlayer, "bone_Left_Spine_Backpack")
-		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, wingIndex, bone})
-	}
 
-	// 翅膀在游戏内的实际速度值（与 UI 显示速度不同）
+	// 翅膀在游戏内的实际速度值
 	func GetWingGameplaySpeed(wingIndex int) float {
 		if wingIndex == 1  { return 58 }
 		if wingIndex == 2  { return 116 }
@@ -50,166 +36,167 @@ graph C_WingshopUI {
 		return 58
 	}
 
+	// 装备翅膀：设置速度、更新 HUD、通知服务端挂载模型
+	func EquipWing(triggerPlayer entity<Player>, wingIndex int) {
+		var speed = GetWingGameplaySpeed(wingIndex)
+		triggerPlayer<C_P_Climbing2>.WingSpeed = speed
+		triggerPlayer<C_P_Climbing2>.WingSpeedDecay = speed
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, speed})
+		bone = GetSkeletonPartByName(triggerPlayer, "bone_Left_Spine_Backpack")
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, wingIndex, bone})
+		LogInfo("EquipWing: " + speed)
+	}
+	func BuyWings(triggerPlayer entity<Player>, wingIndex int) {
+		LogInfo("BuyWings: " + wingIndex)
+		triggerPlayer<C_PlayerWingsData>.HighestWingIndex=wingIndex
+		EquipWing(triggerPlayer, wingIndex)
+	}	
+
 	func Close_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event_WingshopLeave__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
 	// Wing{N}_button：点击已解锁翅膀，切换速度和外观
 	func Wing1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		LogInfo("Wing1_button: " + 1)
 		if 1 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			bone = GetSkeletonPartByName(triggerPlayer, "bone_Left_Spine_Backpack")
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 58
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 58
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 58})
+			EquipWing(triggerPlayer, 1)
+			LogInfo("Wing1_button: " + 58)
 		}
 	}
 
 	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 2 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 116
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 116
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 116})
+			EquipWing(triggerPlayer, 2)
 		}
 	}
 
 	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 3 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 232
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 232
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 232})
+			EquipWing(triggerPlayer, 3)
 		}
 	}
 
 	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 4 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 464
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 464
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 464})
+			EquipWing(triggerPlayer, 4)
 		}
 	}
 
 	func Wing5_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 5 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 5, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 928
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 928
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 928})
+			EquipWing(triggerPlayer, 5)
 		}
 	}
 
 	func Wing6_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 6 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 6, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 1856
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 1856
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1856})
+			EquipWing(triggerPlayer, 6)
 		}
 	}
 
 	func Wing7_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 7 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 7, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 3712
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 3712
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3712})
+			EquipWing(triggerPlayer, 7)
 		}
 	}
 
 	func Wing8_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 8 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 8, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 7424
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 7424
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 7424})
+			EquipWing(triggerPlayer, 8)
 		}
 	}
 
 	func Wing9_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 9 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 9, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 14848
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 14848
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 14848})
+			EquipWing(triggerPlayer, 9)
 		}
 	}
 
 	func Wing10_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 10 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 10, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 29696
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 29696
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 29696})
+			EquipWing(triggerPlayer, 10)
 		}
 	}
 
 	func Wing11_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 11 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 11, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 59392
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 59392
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 59392})
+			EquipWing(triggerPlayer, 11)
 		}
 	}
 
 	func Wing12_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 12 <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
-			DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 12, bone})
-			triggerPlayer<C_P_Climbing2>.WingSpeed = 118784
-			triggerPlayer<C_P_Climbing2>.WingSpeedDecay = 118784
-			DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 118784})
+			EquipWing(triggerPlayer, 12)
 		}
 	}
 
-	// BUY{N}_button：仅向服务端派发购买请求，服务端校验金币后回推结果
+	// BUY{N}_button：仅向服务端派发购买请求，服务端校验金币后回推 __Custom6event___WingBuyUnlock__
 	func BUY1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 	}
 
 	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 	}
 
 	func BUY3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
 	}
 
 	func BUY4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
 	}
 
 	func BUY5_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 5})
 	}
 
 	func BUY6_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 6})
 	}
 
 	func BUY7_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 7})
 	}
 
 	func BUY8_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 8})
 	}
 
 	func BUY9_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 9})
 	}
 
 	func BUY10_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 10})
 	}
 
 	func BUY11_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 11})
 	}
 
 	func BUY12_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		
 		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 12})
+	}
+	// 服务端购买成功后回推，客户端更新解锁状态并立即装备翅膀
+	event __Custom6event_BuyWings_success__(Wings int, player entity<Player>) {
+		if player != GetLocalPlayer() {
+			return
+		}
+		LogInfo("BuyWings_success: " + Wings)
+		BuyWings(player, Wings)
 	}
 }

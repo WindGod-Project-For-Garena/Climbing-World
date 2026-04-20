@@ -2966,7 +2966,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY2_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -4201,7 +4201,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY3_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -5436,7 +5436,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY4_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -6671,7 +6671,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY5_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -7906,7 +7906,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY6_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -9141,7 +9141,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY7_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -10376,7 +10376,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY8_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -11611,7 +11611,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY9_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -12846,7 +12846,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY10_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -14081,7 +14081,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY11_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -15316,7 +15316,7 @@
                               "clickHandlers": [
                                 {
                                   "eventName": "OnClick",
-                                  "funcKey": "BUY1_button",
+                                  "funcKey": "BUY12_button",
                                   "type": "ugcscript",
                                   "fileID": "c9w8u1i2x3s4-h5o6p7u8i9w0-i1n2g3s4h5o6p"
                                 }
@@ -15555,96 +15555,6 @@
               "entityTagData": {
                 "tagPointers": []
               }
-            },
-            {
-              "_entityName": "not enough cup (1)",
-              "_tag": {
-                "type": "UITextEntity",
-                "resourceId": ""
-              },
-              "_entityId": "Ac4VGTVY",
-              "children": [],
-              "prefabVariant": null,
-              "activeValue": {
-                "selfValue": true,
-                "valueTag": "activeValue"
-              },
-              "unlockedValue": {
-                "selfValue": true,
-                "valueTag": "unlockedValue"
-              },
-              "propsData": {
-                "activeSelf": true,
-                "transform": {
-                  "rotate": 0,
-                  "anchorMin": {
-                    "x": 0.5,
-                    "y": 0.5
-                  },
-                  "anchorMax": {
-                    "x": 0.5,
-                    "y": 0.5
-                  },
-                  "pivot": {
-                    "x": 0.5,
-                    "y": 0.5
-                  },
-                  "anchoredPosition": {
-                    "x": -9,
-                    "y": 60
-                  },
-                  "sizeDelta": {
-                    "x": 976,
-                    "y": 300
-                  }
-                },
-                "alpha": 100,
-                "priority": 0,
-                "text": {
-                  "value": "You don't have enough money",
-                  "key": "",
-                  "font": "Default",
-                  "fontSize": 99,
-                  "fontStyle": {
-                    "bold": false,
-                    "italic": false,
-                    "underline": false
-                  },
-                  "color": "#ffffff",
-                  "alignment": {
-                    "h": "center",
-                    "v": "middle"
-                  },
-                  "lineSpacing": 0,
-                  "background": false,
-                  "backgroundColor": "#e7b200",
-                  "overflow": 0,
-                  "backgroundRGBA": {
-                    "r": 0,
-                    "g": 0,
-                    "b": 0,
-                    "a": 0
-                  },
-                  "shadow": true,
-                  "shadowColor": "#000000",
-                  "shadowOffset": {
-                    "x": 10,
-                    "y": 1
-                  }
-                }
-              },
-              "ecaScripts": [],
-              "ecaProps": {
-                "HudLabelWidget": {},
-                "HudWidget": {},
-                "Entity": {}
-              },
-              "componentList": [],
-              "entityTagData": {
-                "tagPointers": []
-              },
-              "editorLockValue": false,
-              "editorVisibleValue": true
             }
           ],
           "prefabVariant": null,
@@ -15767,11 +15677,11 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 5,
+            "x": 3.5,
             "y": -2
           },
           "sizeDelta": {
-            "x": 10,
+            "x": 13,
             "y": 16
           }
         },
