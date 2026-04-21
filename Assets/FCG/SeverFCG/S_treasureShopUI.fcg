@@ -70,41 +70,57 @@ graph S_treasureShopUI {
 	}
 
 	func FormatCSVFloat(value float) string {
-		return convert.NumToString(value, 2)
+		return FormatFixed2ByRound(value)
 	}
 
 	func FormatPrice(value float) string {
 		if value < 1000.0 {
-			return convert.NumToString(value, 2)
+			return FormatFixed2ByRound(value)
 		}
 		if value < 1000000.0 {
-			return convert.NumToString(value / 1000.0, 2) + "K"
+			return FormatFixed2ByRound(value / 1000.0) + "K"
 		}
 		if value < 1000000000.0 {
-			return convert.NumToString(value / 1000000.0, 2) + "M"
+			return FormatFixed2ByRound(value / 1000000.0) + "M"
 		}
 		if value < 1000000000000.0 {
-			return convert.NumToString(value / 1000000000.0, 2) + "B"
+			return FormatFixed2ByRound(value / 1000000000.0) + "B"
 		}
 		if value < 1000000000000000.0 {
-			return convert.NumToString(value / 1000000000000.0, 2) + "T"
+			return FormatFixed2ByRound(value / 1000000000000.0) + "T"
 		}
 		if value < 1000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000.0, 2) + "Qa"
+			return FormatFixed2ByRound(value / 1000000000000000.0) + "Qa"
 		}
 		if value < 1000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000.0, 2) + "Qi"
+			return FormatFixed2ByRound(value / 1000000000000000000.0) + "Qi"
 		}
 		if value < 1000000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000000.0, 2) + "Sx"
+			return FormatFixed2ByRound(value / 1000000000000000000000.0) + "Sx"
 		}
 		if value < 1000000000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000000000.0, 2) + "Sp"
+			return FormatFixed2ByRound(value / 1000000000000000000000000.0) + "Sp"
 		}
 		if value < 1000000000000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000000000000.0, 2) + "Oc"
+			return FormatFixed2ByRound(value / 1000000000000000000000000000.0) + "Oc"
 		}
-		return convert.NumToString(value / 1000000000000000000000000000000.0, 2) + "No"
+		return FormatFixed2ByRound(value / 1000000000000000000000000000000.0) + "No"
+	}
+
+	func FormatFixed2ByRound(value float) string {
+		var scaled = math.Round(value * 100.0)
+		var sign = ""
+		if scaled < 0 {
+			sign = "-"
+			scaled = -scaled
+		}
+		var integerPart = scaled / 100
+		var decimalPart = scaled - integerPart * 100
+		var decimalStr = convert.ToString(decimalPart)
+		if decimalPart < 10 {
+			decimalStr = "0" + decimalStr
+		}
+		return sign + convert.ToString(integerPart) + "." + decimalStr
 	}
 
 	event __Custom6event_TreasureshopEnter____(player entity<Player>) {
