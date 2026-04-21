@@ -17,6 +17,7 @@ graph S_treasureShopUI {
 	SlideStep float = 80.0
 	ProbabilityData Map<object, object> = nil
 	PowerGrowthData Map<object, object> = nil
+	TreasurePriceData Map<object, object> = nil
 	TreasureEffect Map<object, object> = nil
 	TreasureBuyingState Map<entity<Player>, bool> = nil
 
@@ -26,6 +27,7 @@ graph S_treasureShopUI {
 
 		ProbabilityData = map.New()
 		PowerGrowthData = map.New()
+		TreasurePriceData = map.New()
 		TreasureEffect = map.New()
 		TreasureBuyingState = map.New()
 
@@ -33,11 +35,14 @@ graph S_treasureShopUI {
 	}
 
 	func LoadTreasureChestData() {
+		var priceColumn = ReadCSVColumn(EResCSV.ChestDataTypes, 2)
 		var probabilityColumn = ReadCSVColumn(EResCSV.ChestDataTypes, 3)
 		var magnificationColumn = ReadCSVColumn(EResCSV.ChestDataTypes, 4)
 		for treasureIndex = 1, 10, 1 {
 			var probabilityList = list.New(0, 5)
 			var magnificationList = list.New(0, 5)
+			var priceRowIndex = 2 + (treasureIndex - 1) * 5
+			TreasurePriceData[treasureIndex] = ParseCSVFloat(priceColumn, priceRowIndex)
 			for offset = 0, 5, 1 {
 				var rowIndex = 2 + (treasureIndex - 1) * 5 + offset
 				list.Append(probabilityList, ParseCSVFloat(probabilityColumn, rowIndex))
@@ -66,6 +71,40 @@ graph S_treasureShopUI {
 
 	func FormatCSVFloat(value float) string {
 		return convert.NumToString(value, 2)
+	}
+
+	func FormatPrice(value float) string {
+		if value < 1000.0 {
+			return convert.NumToString(value, 2)
+		}
+		if value < 1000000.0 {
+			return convert.NumToString(value / 1000.0, 2) + "K"
+		}
+		if value < 1000000000.0 {
+			return convert.NumToString(value / 1000000.0, 2) + "M"
+		}
+		if value < 1000000000000.0 {
+			return convert.NumToString(value / 1000000000.0, 2) + "B"
+		}
+		if value < 1000000000000000.0 {
+			return convert.NumToString(value / 1000000000000.0, 2) + "T"
+		}
+		if value < 1000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000.0, 2) + "Qa"
+		}
+		if value < 1000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000.0, 2) + "Qi"
+		}
+		if value < 1000000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000000.0, 2) + "Sx"
+		}
+		if value < 1000000000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000000000.0, 2) + "Sp"
+		}
+		if value < 1000000000000000000000000000000.0 {
+			return convert.NumToString(value / 1000000000000000000000000000.0, 2) + "Oc"
+		}
+		return convert.NumToString(value / 1000000000000000000000000000000.0, 2) + "No"
 	}
 
 	event __Custom6event_TreasureshopEnter____(player entity<Player>) {
@@ -155,8 +194,17 @@ graph S_treasureShopUI {
 		if !ContainKey(PowerGrowthData, treasureIndex) {
 			return
 		}
+		if !ContainKey(TreasurePriceData, treasureIndex) {
+			return
+		}
 		var probArray = ProbabilityData[treasureIndex] as List<float>
 		var powerArray = PowerGrowthData[treasureIndex] as List<float>
+		var treasurePrice = TreasurePriceData[treasureIndex] as float
+
+		var priceText = GetWidgetByPath(player, treasureUI, "/Panel/Button/Text")
+		if priceText != nil {
+			priceText<UIWidgetLabel>.Content = FormatPrice(treasurePrice)
+		}
 
 		var p1 = GetWidgetByPath(player, treasureUI, "/Panel/display button1/probability1")
 		if p1 != nil {
