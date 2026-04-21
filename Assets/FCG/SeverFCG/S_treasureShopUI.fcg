@@ -289,6 +289,13 @@ graph S_treasureShopUI {
 		if s9 != nil { s9<UIWidget>.IsVisible = false }
 	}
 
+	func GetTreasurePrice(treasureIndex int) float {
+		if !ContainKey(TreasurePriceData, treasureIndex) {
+			return 0.0
+		}
+		return TreasurePriceData[treasureIndex] as float
+	}
+
 	// 混合缓入：easedT = (1-blend)*t + blend*t²
 	// blend=1.0 纯二次（初速=0，越落越快）
 	// blend=0.0 线性（初速最快，匀速）
@@ -391,17 +398,21 @@ graph S_treasureShopUI {
 			TreasureBuyingState[player] = false
 			return
 		}
+		var treasurePrice = GetTreasurePrice(treasureIndex)
+		var gold float = 0.0
+		if ContainKey(globalEntity<G_economy>.PlayerGold, player) {
+			gold = globalEntity<G_economy>.PlayerGold[player]
+		}
+		if gold < treasurePrice {
+			TreasureBuyingState[player] = false
+			return
+		}
+		var newGold = gold - treasurePrice
+		globalEntity<G_economy>.PlayerGold[player] = newGold
+		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
 		var growthValue = RollPowerGrowthByProbability(treasureIndex)
 		DispatchEventToEntity(__Custom6event_AddPowerGrowth______, globalEntity, PlatformType.Server, List<object>{player, growthValue})
 
-		// 开箱后刷新 GoldCoin 显示，确保余额以两位小数呈现
-		var currentGold float = 0
-		if ContainKey(globalEntity<G_economy>.PlayerGold, player) {
-			currentGold = globalEntity<G_economy>.PlayerGold[player]
-		}
-		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, currentGold})
-
-	
 
 		var effectEntity entity<CustomUI>
 		if ContainKey(TreasureEffect, player) {

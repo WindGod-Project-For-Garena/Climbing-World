@@ -75,7 +75,7 @@ graph G_UIcontrollor {
 		DispatchEventToEntity(__Custom6event_CreateIngameUI__, player, PlatformType.Client, List<object>{ingameUIMap})
 
 		// 创建新手指引 UI，隐藏所有元素，只显示 /Summon
-		CreateCustomUI(out var beginnerGuideEntity, player, EResUI.Beginners_Guide)
+		/*CreateCustomUI(out var beginnerGuideEntity, player, EResUI.Beginners_Guide)
 		Beginners_Guide_UI[player] = beginnerGuideEntity
 		BeginnerGuide_Stage[player] = 0
 		var bgSummon = GetWidgetByPath(player, beginnerGuideEntity as entity<CustomUI>, "/Summon")
@@ -89,9 +89,10 @@ graph G_UIcontrollor {
 		}
 		if bgBuy != nil {
 			bgBuy<UIWidget>.IsVisible = false
-		}
+		}*/
 		
 	}
+		
 
 	event __Custom6event_entertrigger__(player entity<Player>) {
 		if ContainKey(Climbing_button, player) {

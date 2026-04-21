@@ -12,110 +12,7 @@
         "resourceId": "Primitive/Empty"
       },
       "_entityId": "VHZKEJSu",
-      "children": [
-        {
-          "_entityName": "Icon object",
-          "_tag": {
-            "type": "SceneEditEntity",
-            "resourceId": "Primitive/Empty"
-          },
-          "_entityId": "RjKCNpQM",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": null,
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "position": {
-            "x": -0.20415830612182617,
-            "y": 0,
-            "z": 0
-          },
-          "scale": {
-            "x": 0.5,
-            "y": 0.6,
-            "z": 0.5
-          },
-          "rotation": {
-            "x": 0,
-            "y": 0,
-            "z": 0
-          },
-          "BTPath": [
-            null
-          ],
-          "visible": true,
-          "VisibilityLayer": 0,
-          "modelOptimization": 0,
-          "streamingLayer": "",
-          "attributes": [
-            2,
-            4
-          ],
-          "isTrigger": false,
-          "collidable": true,
-          "physicalLayer": 0,
-          "aoiSetting": 0,
-          "initialTypes": {},
-          "componentList": [],
-          "entityTagData": {
-            "tagPointers": []
-          },
-          "tempIndex": 44,
-          "itemID": 223,
-          "seParent": null,
-          "ecaScripts": [
-            null
-          ],
-          "ecaProps": {
-            "IconEntity": {},
-            "LevelObject": {},
-            "Transform": {},
-            "Entity": {},
-            "Visibility": {}
-          },
-          "propsData": {
-            "iconColor": {
-              "r": 255,
-              "g": 255,
-              "b": 255,
-              "a": 1
-            },
-            "IsBillboard": true,
-            "IgnoreDepth": false,
-            "AlwaysInScreen": false,
-            "Width": 100,
-            "Height": 100,
-            "Depth": 0,
-            "iconType": "437ejr7yq41-mo0wo1pc-5vl1bevz9",
-            "_levelObjectID": 1,
-            "renderType": 0,
-            "iconTypeRef": {
-              "fileId": "437ejr7yq41-mo0wo1pc-5vl1bevz9",
-              "filePath": "Assets\\UI\\material\\GoldCoin_add.png",
-              "_tag": {
-                "type": "GFileRefer"
-              },
-              "fileType": "texture"
-            }
-          },
-          "_performanceConfigData": {
-            "ItemID": 223,
-            "MeshCount": 0,
-            "MaterialCount": 0,
-            "AnimationCount": 0,
-            "BoneCount": 0,
-            "ParticleEmitterCount": 0,
-            "ParticleCount": 0,
-            "TextureMemory": 0,
-            "ModelMemory": 0,
-            "AudioMemory": 0
-          }
-        }
-      ],
+      "children": [],
       "activeValue": {
         "selfValue": true,
         "valueTag": "activeValue"
@@ -159,7 +56,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 43,
+      "tempIndex": 38,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
