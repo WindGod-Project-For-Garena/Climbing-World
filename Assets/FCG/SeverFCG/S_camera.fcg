@@ -16,7 +16,8 @@ graph S_camera {
     xOffset Map<entity<Player>, float> = nil
     DefaultXOffsetScale float = 2.0
  
-    event OnAwake() {
+    event OnGameStart() {
+        LogInfo("S_camera OnAwake")
         CameraUI_ByPlayer = map.New()
         OriginalCamera_ByPlayer = map.New()
         xOffset = map.New()

@@ -845,6 +845,57 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_46459014"
+    },
+    "signal_73350392": {
+      "name": "Custom event__Custom6event_TutorialTowerSpawned__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100047,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_73350392"
+    },
+    "signal_76152805": {
+      "name": "Custom event__Custom6event_TutorialPlayerLanded__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100048,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_76152805"
+    },
+    "signal_76589813": {
+      "name": "Custom event",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100049,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_76589813"
     }
   },
   "customName": {
@@ -889,7 +940,10 @@
     "Custom event_CameraButton__": "signal_25413720",
     "Custom event_reback": "signal_64611984",
     "Custom event_AddPowerGrowth____": "signal_41955666",
-    "Custom event_BuyWings_success": "signal_46459014"
+    "Custom event_BuyWings_success": "signal_46459014",
+    "Custom event__Custom6event_TutorialTowerSpawned__": "signal_73350392",
+    "Custom event__Custom6event_TutorialPlayerLanded__": "signal_76152805",
+    "Custom event": "signal_76589813"
   },
   "children": []
 }

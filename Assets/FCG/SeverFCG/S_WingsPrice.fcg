@@ -1,7 +1,7 @@
-// 翅膀价格与速度数据表（相当于 CSV）
-// 列1: 翅膀ID（1-12）
-// 列2: 售价  0 / 580 / 1740 / 4176 / 9280 / 19952 / 42688 / 89088 / 185600 / 386048 / 2969600 / 23756800
-// 列3: 速度  29 / 58 / 116 / 232 / 464 / 928 / 1856 / 3712 / 7424 / 14848 / 29696 / 59392
+// 翅膀价格与速度数据表
+// 价格从服务端 CSV "WingsDataTypes" 第三列（索引2）第三行至第十四行动态读取
+// 列3: 售价（行3-14，共12条，对应 Wings1-Wings12）
+// 速度: 保留本地数据
 // 挂载 globalEntity，供 S_WingShopUI 调用 RefreshAllWingPriceSpeedUI 填充标签
 
 import "StdLibrary.fcc" as std
@@ -9,51 +9,51 @@ import "List.fcc" as list
 import "Convert.fcc" as convert
 import "Hud.fcc" as hud
 import "Player.fcc" as playerlib
+import "Other.fcc" as other
+import "CSVData.fcc" as csvdata
 
 [platform_server]
 graph S_WingsPrice {
 	// 索引 0 对应 Wings1，索引 11 对应 Wings12
-	Prices List<int> = nil
+	// Price 使用 float 以支持 CSV 中的小数和科学计数法大数值
+	Prices List<float> = nil
 	Speeds List<int> = nil
 
-	event OnAwake() {
+	event OnGameStart() {
+        LogInfo("S_WingsPrice OnAwake")
+        
+		// 从 WingsDataTypes CSV 第三列（0-based 索引2）读取全列，取第3行到第14行（0-based 索引2~13）
+		// Price 列类型为 float，使用 StringToFloat 解析，避免小数和科学计数法导致 StringToInt 返回 0
+		var priceColumn = ReadCSVColumnFromServer("WingsDataTypes", 2)
 		Prices = list.New(0, 12)
-		list.Append(Prices, 580)
-		list.Append(Prices, 1740)
-		list.Append(Prices, 4176)
-		list.Append(Prices, 9280)
-		list.Append(Prices, 19952)
-		list.Append(Prices, 42688)
-		list.Append(Prices, 89088)
-		list.Append(Prices, 185600)
-		list.Append(Prices, 386048)
-		list.Append(Prices, 2969600)
-		list.Append(Prices, 23756800)
-        list.Append(Prices, 190054400)
-        list.Append(Prices, 1520435200)
+		for i = 2, 14, 1 {
+			var rawVal = priceColumn[i]
+			var priceStr = convert.ToString(rawVal)
+            LogInfo("priceStr: " + priceStr)
+			convert.StringToFloat(priceStr, out var priceFloat, out var parseOk)
+			list.Append(Prices, priceFloat)
+            LogInfo("price: " + Prices)
+		}
 
-
+		// 从 WingsDataTypes CSV 第二列（0-based 索引1）读取全列，取第3行到第14行（0-based 索引2~13）
+		var speedColumn = ReadCSVColumnFromServer("WingsDataTypes", 1)
 		Speeds = list.New(0, 12)
-		list.Append(Speeds, 58)
-		list.Append(Speeds, 116)
-		list.Append(Speeds, 232)
-		list.Append(Speeds, 464)
-		list.Append(Speeds, 928)
-		list.Append(Speeds, 1856)
-		list.Append(Speeds, 3712)
-		list.Append(Speeds, 7424)
-		list.Append(Speeds, 14848)
-		list.Append(Speeds, 29696)
-		list.Append(Speeds, 59392)
-        list.Append(Speeds, 118784)
+		for j = 2, 14, 1 {
+			var rawSpeed = speedColumn[j]
+			var speedStr = convert.ToString(rawSpeed)
+            LogInfo("speedStr: " + speedStr)
+			convert.StringToInt(speedStr, out var speedInt, out var speedOk)
+			list.Append(Speeds, speedInt)
+            LogInfo("speed: " + Speeds)
+		}
 	}
 
-	func GetPrice(wingIndex int) int {
+	func GetPrice(wingIndex int) float {
 		var idx = wingIndex - 1
 		if Prices == nil || idx < 0 || idx >= list.Length(Prices) {
-			return 0
+			return 0.0
 		}
-		return Prices[idx] as int
+		return Prices[idx] as float
 	}
 
 	func GetSpeed(wingIndex int) int {
@@ -72,10 +72,10 @@ graph S_WingsPrice {
 			var priceWidget = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings" + i + "/BUY_F/price")
 			var speedWidget = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings" + i + "/BUY_F/Speed")
 			if priceWidget != nil {
-				priceWidget<HudLabelWidget>.Text = convert.NumToString(price, 0)
+				priceWidget<HudLabelWidget>.Text = convert.NumToString(price, 2)
 			}
 			if speedWidget != nil {
-				speedWidget<HudLabelWidget>.Text = convert.NumToString(speed, 0)
+				speedWidget<HudLabelWidget>.Text = convert.NumToString(speed, 2)
 			}
 		}
 	}

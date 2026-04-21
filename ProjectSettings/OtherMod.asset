@@ -1,0 +1,16 @@
+{
+  "_entityName": "Other模组",
+  "_tag": {
+    "type": "ff.other"
+  },
+  "_entityId": "Pe5xRofM",
+  "children": [],
+  "prefabVariant": null,
+  "activeValue": null,
+  "unlockedValue": null,
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "modId": 10,
+  "modOpen": true
+}
+//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}

@@ -12,7 +12,8 @@ graph S_Cupcount {
 	// 玩家 -> P_IngameHud 中 /Cupcpunt 文本控件
 	CupcountWidgetByPlayer Map<entity<Player>, entity> = nil
 
-	event OnAwake() {
+	event OnGameStart() {
+		LogInfo("S_Cupcount OnAwake")
 		PlayerCupCount = map.New()
 		CupcountWidgetByPlayer = map.New()
 	}
@@ -61,7 +62,7 @@ graph S_Cupcount {
 		if ContainKey(PlayerCupCount, player) {
 			cupCount = PlayerCupCount[player] as int
 		}
-		cupWidget<HudLabelWidget>.Text = convert.NumToString(cupCount, 0)
+		cupWidget<HudLabelWidget>.Text = convert.NumToString(cupCount, 2)
 	}
 
 	// 根据奖杯触发器所在塔类型返回加分：ATower +1, BTower +10, CTower +20

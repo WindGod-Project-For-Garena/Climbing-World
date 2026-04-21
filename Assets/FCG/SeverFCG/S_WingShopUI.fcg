@@ -126,14 +126,14 @@ graph S_WingShopUI {
 		if ContainKey(globalEntity<G_economy>.PlayerGold, player) {
 			gold = globalEntity<G_economy>.PlayerGold[player]
 		}
-		if gold < convert.IntToFloat(price) {
+		if gold < price {
 			// 金币不足：提示两秒后消失
 			ShowNotEnoughCupForTwoSeconds(player, Wingshop[player] as entity<CustomUI>)
 			return
 		}
 
 		// 扣款
-		var newGold = gold - convert.IntToFloat(price)
+		var newGold = gold - price
 		globalEntity<G_economy>.PlayerGold[player] = newGold
 		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
 		DispatchEventToEntity(__Custom6event_BuyWings_success__, Wingshop[player] as entity, PlatformType.Client, List<object>{wingIndex, player})

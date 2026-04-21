@@ -182,6 +182,8 @@ graph G_Climbing {
 			DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{player})
 
 		}
+		// 通知新手引导：玩家攀爬后落地
+		DispatchEventToEntity(__Custom6event__Custom6event_TutorialPlayerLanded____, globalEntity, PlatformType.Server, List<object>{player})
 	}
 
 	// 卡死救援：将指定玩家传送到 (0,0,0)，终止攀爬/坠落/舞蹈等动画（由 P_IngameHud /Button/Button 客户端触发）

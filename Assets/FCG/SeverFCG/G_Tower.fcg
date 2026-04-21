@@ -156,6 +156,9 @@ graph G_Tower {
 		}
 		
 		spawnedTowers[towerSummonIndex] = true
+
+		// 通知新手引导：玩家成功召唤塔
+		DispatchEventToEntity(__Custom6event__Custom6event_TutorialTowerSpawned____, globalEntity, PlatformType.Server, List<object>{player})
 	}
 
 	event __Custom6event_TowershopEnter____(player entity<Player>, triggerEntity entity<Entity>, towerSummonIndex int) {

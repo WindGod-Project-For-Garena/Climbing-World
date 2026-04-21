@@ -8,6 +8,7 @@ import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 import "Convert.fcc" as convert
 import "Math.fcc" as math
+import "./G_economy.fcg" as G_economy
 [platform_server]
 graph S_treasureShopUI {
 	TreasureShop Map<object, object> = nil
@@ -309,6 +310,13 @@ graph S_treasureShopUI {
 		}
 		var growthValue = RollPowerGrowthByProbability(treasureIndex)
 		DispatchEventToEntity(__Custom6event_AddPowerGrowth______, globalEntity, PlatformType.Server, List<object>{player, growthValue})
+
+		// 开箱后刷新 GoldCoin 显示，确保余额以两位小数呈现
+		var currentGold float = 0
+		if ContainKey(globalEntity<G_economy>.PlayerGold, player) {
+			currentGold = globalEntity<G_economy>.PlayerGold[player]
+		}
+		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, currentGold})
 
 	
 

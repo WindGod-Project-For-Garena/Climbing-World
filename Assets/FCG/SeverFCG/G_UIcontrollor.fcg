@@ -27,15 +27,20 @@ graph G_UIcontrollor {
 	Realtime_Height Map<object, object> = nil
 	Current_Speed Map<object, object> = nil
 	GoldCoin_Widget Map<object, object> = nil
+	Beginners_Guide_UI Map<object, object> = nil
+	BeginnerGuide_Stage Map<object, object> = nil
 
 
 	event OnAwake() {
+		LogInfo("OnAwake")
 		Climbing_button = map.New()
 		Climbing_UI = map.New()
 		P_IngameHud_ByPlayer = map.New()
 		Realtime_Height = map.New()
 		Current_Speed = map.New()
 		GoldCoin_Widget = map.New()
+		Beginners_Guide_UI = map.New()
+		BeginnerGuide_Stage = map.New()
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
@@ -49,7 +54,7 @@ graph G_UIcontrollor {
 			Realtime_Height[player] = labelWidget
 		}
 		var currentSpeedWidget = GetWidgetByPath(player, P_IngameHudEntity as entity<CustomUI>, "/Current_Speed")
-		LogInfo("currentSpeedWidget1: " + currentSpeedWidget)
+	
 		if currentSpeedWidget != nil {
 			LogInfo("currentSpeedWidget2: " + currentSpeedWidget)
 			Current_Speed[player] = currentSpeedWidget
@@ -68,7 +73,23 @@ graph G_UIcontrollor {
 		var ingameUIMap = map.New()
 		ingameUIMap["P_IngameHud"] = P_IngameHudEntity
 		DispatchEventToEntity(__Custom6event_CreateIngameUI__, player, PlatformType.Client, List<object>{ingameUIMap})
-		
+
+		// 创建新手指引 UI，隐藏所有元素，只显示 /Summon
+		CreateCustomUI(out var beginnerGuideEntity, player, EResUI.Beginners_Guide)
+		Beginners_Guide_UI[player] = beginnerGuideEntity
+		BeginnerGuide_Stage[player] = 0
+		var bgSummon = GetWidgetByPath(player, beginnerGuideEntity as entity<CustomUI>, "/Summon")
+		var bgClimbing = GetWidgetByPath(player, beginnerGuideEntity as entity<CustomUI>, "/Climbing")
+		var bgBuy = GetWidgetByPath(player, beginnerGuideEntity as entity<CustomUI>, "/Buy")
+		if bgSummon != nil {
+			bgSummon<UIWidget>.IsVisible = true
+		}
+		if bgClimbing != nil {
+			bgClimbing<UIWidget>.IsVisible = false
+		}
+		if bgBuy != nil {
+			bgBuy<UIWidget>.IsVisible = false
+		}
 		
 	}
 
@@ -119,7 +140,7 @@ graph G_UIcontrollor {
 			var speedWidget = Current_Speed[player] as entity
 			LogInfo("speedWidget: " + speedWidget)
 			if speedWidget != nil {
-				speedWidget<HudLabelWidget>.Text = convert.NumToString(Nominal_Speed, 0)
+				speedWidget<HudLabelWidget>.Text = FormatFixed2ByRound(Nominal_Speed)
 			}
 		}
 	}
@@ -155,37 +176,125 @@ graph G_UIcontrollor {
 		}
 	}
 
+	func FormatFixed2ByRound(value float) string {
+		var scaled = math.Round(value * 100.0)
+		var sign = ""
+		if scaled < 0 {
+			sign = "-"
+			scaled = -scaled
+		}
+		var integerPart = scaled / 100
+		var decimalPart = scaled - integerPart * 100
+		var decimalStr = convert.ToString(decimalPart)
+		if decimalPart < 10 {
+			decimalStr = "0" + decimalStr
+		}
+		return sign + convert.ToString(integerPart) + "." + decimalStr
+	}
+
+	// 新手引导：玩家成功召唤塔后，隐藏 /Summon，显示 /Climbing
+	event __Custom6event__Custom6event_TutorialTowerSpawned____(player entity<Player>) {
+		if !ContainKey(BeginnerGuide_Stage, player) {
+			return
+		}
+		if (BeginnerGuide_Stage[player] as int) != 0 {
+			return
+		}
+		BeginnerGuide_Stage[player] = 1
+		if !ContainKey(Beginners_Guide_UI, player) {
+			return
+		}
+		var guideUI = Beginners_Guide_UI[player] as entity
+		if guideUI == nil {
+			return
+		}
+		var bgSummon = GetWidgetByPath(player, guideUI as entity<CustomUI>, "/Summon")
+		var bgClimbing = GetWidgetByPath(player, guideUI as entity<CustomUI>, "/Climbing")
+		if bgSummon != nil {
+			bgSummon<UIWidget>.IsVisible = false
+		}
+		if bgClimbing != nil {
+			bgClimbing<UIWidget>.IsVisible = true
+		}
+	}
+
+	// 新手引导：玩家攀爬落地后，隐藏 /Climbing，显示 /Buy
+	event __Custom6event__Custom6event_TutorialPlayerLanded____(player entity<Player>) {
+		if !ContainKey(BeginnerGuide_Stage, player) {
+			return
+		}
+		if (BeginnerGuide_Stage[player] as int) != 1 {
+			return
+		}
+		BeginnerGuide_Stage[player] = 2
+		if !ContainKey(Beginners_Guide_UI, player) {
+			return
+		}
+		var guideUI = Beginners_Guide_UI[player] as entity
+		if guideUI == nil {
+			return
+		}
+		var bgClimbing = GetWidgetByPath(player, guideUI as entity<CustomUI>, "/Climbing")
+		var bgBuy = GetWidgetByPath(player, guideUI as entity<CustomUI>, "/Buy")
+		if bgClimbing != nil {
+			bgClimbing<UIWidget>.IsVisible = false
+		}
+		if bgBuy != nil {
+			bgBuy<UIWidget>.IsVisible = true
+		}
+	}
+
+	// 新手引导：玩家进入商店后，隐藏整个 Beginners_Guide UI
+	event __Custom6event_WingshopEnter__(player entity<Player>) {
+		if !ContainKey(BeginnerGuide_Stage, player) {
+			return
+		}
+		if (BeginnerGuide_Stage[player] as int) >= 3 {
+			return
+		}
+		BeginnerGuide_Stage[player] = 3
+		if !ContainKey(Beginners_Guide_UI, player) {
+			return
+		}
+		var guideUI = Beginners_Guide_UI[player] as entity
+		if guideUI == nil {
+			return
+		}
+		guideUI<CustomUI>.IsVisible = false
+	}
+
 	func FormatBigNumber(value float) string {
 		if value < 1000.0 {
-			return convert.NumToString(value, 0)
+			
+			return FormatFixed2ByRound(value)
 		}
 		if value < 1000000.0 {
-			return convert.NumToString(value / 1000.0, 1) + "K"
+			return FormatFixed2ByRound(value / 1000.0) + "K"
 		}
 		if value < 1000000000.0 {
-			return convert.NumToString(value / 1000000.0, 1) + "M"
+			return FormatFixed2ByRound(value / 1000000.0) + "M"
 		}
 		if value < 1000000000000.0 {
-			return convert.NumToString(value / 1000000000.0, 1) + "B"
+			return FormatFixed2ByRound(value / 1000000000.0) + "B"
 		}
 		if value < 1000000000000000.0 {
-			return convert.NumToString(value / 1000000000000.0, 1) + "T"
+			return FormatFixed2ByRound(value / 1000000000000.0) + "T"
 		}
 		if value < 1000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000.0, 1) + "Qa"
+			return FormatFixed2ByRound(value / 1000000000000000.0) + "Qa"
 		}
 		if value < 1000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000.0, 1) + "Qi"
+			return FormatFixed2ByRound(value / 1000000000000000000.0) + "Qi"
 		}
 		if value < 1000000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000000.0, 1) + "Sx"
+			return FormatFixed2ByRound(value / 1000000000000000000000.0) + "Sx"
 		}
 		if value < 1000000000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000000000.0, 1) + "Sp"
+			return FormatFixed2ByRound(value / 1000000000000000000000000.0) + "Sp"
 		}
 		if value < 1000000000000000000000000000000.0 {
-			return convert.NumToString(value / 1000000000000000000000000000.0, 1) + "Oc"
+			return FormatFixed2ByRound(value / 1000000000000000000000000000.0) + "Oc"
 		}
-		return convert.NumToString(value / 1000000000000000000000000000000.0, 1) + "No"
+		return FormatFixed2ByRound(value / 1000000000000000000000000000000.0) + "No"
 	}
 }
