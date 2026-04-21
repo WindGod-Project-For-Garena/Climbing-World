@@ -32,7 +32,7 @@ graph G_UIcontrollor {
 
 
 	event OnAwake() {
-		LogInfo("OnAwake")
+		LogInfo("G_UIcontrollorOnAwake")
 		Climbing_button = map.New()
 		Climbing_UI = map.New()
 		P_IngameHud_ByPlayer = map.New()

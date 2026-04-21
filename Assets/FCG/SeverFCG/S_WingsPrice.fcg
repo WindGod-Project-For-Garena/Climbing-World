@@ -11,6 +11,8 @@ import "Hud.fcc" as hud
 import "Player.fcc" as playerlib
 import "Other.fcc" as other
 import "CSVData.fcc" as csvdata
+import "EditorGenLib.fcc" as EditorGenLib
+import "Math.fcc" as math
 
 [platform_server]
 graph S_WingsPrice {
@@ -20,11 +22,11 @@ graph S_WingsPrice {
 	Speeds List<int> = nil
 
 	event OnGameStart() {
-        LogInfo("S_WingsPrice OnAwake")
+    
         
 		// 从 WingsDataTypes CSV 第三列（0-based 索引2）读取全列，取第3行到第14行（0-based 索引2~13）
 		// Price 列类型为 float，使用 StringToFloat 解析，避免小数和科学计数法导致 StringToInt 返回 0
-		var priceColumn = ReadCSVColumnFromServer("WingsDataTypes", 2)
+		var priceColumn = ReadCSVColumn(EResCSV.WingsDataTypes, 3)
 		Prices = list.New(0, 12)
 		for i = 2, 14, 1 {
 			var rawVal = priceColumn[i]
@@ -32,11 +34,11 @@ graph S_WingsPrice {
             LogInfo("priceStr: " + priceStr)
 			convert.StringToFloat(priceStr, out var priceFloat, out var parseOk)
 			list.Append(Prices, priceFloat)
-            LogInfo("price: " + Prices)
+        
 		}
 
 		// 从 WingsDataTypes CSV 第二列（0-based 索引1）读取全列，取第3行到第14行（0-based 索引2~13）
-		var speedColumn = ReadCSVColumnFromServer("WingsDataTypes", 1)
+		var speedColumn = ReadCSVColumn(EResCSV.WingsDataTypes, 2)
 		Speeds = list.New(0, 12)
 		for j = 2, 14, 1 {
 			var rawSpeed = speedColumn[j]
@@ -44,7 +46,7 @@ graph S_WingsPrice {
             LogInfo("speedStr: " + speedStr)
 			convert.StringToInt(speedStr, out var speedInt, out var speedOk)
 			list.Append(Speeds, speedInt)
-            LogInfo("speed: " + Speeds)
+           
 		}
 	}
 
@@ -72,11 +74,63 @@ graph S_WingsPrice {
 			var priceWidget = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings" + i + "/BUY_F/price")
 			var speedWidget = GetWidgetByPath(player, wingshopUI, "/Panel/Roll/Layout/Wings" + i + "/BUY_F/Speed")
 			if priceWidget != nil {
-				priceWidget<HudLabelWidget>.Text = convert.NumToString(price, 2)
+                var DPrice=FormatBigNumber(price)
+				priceWidget<HudLabelWidget>.Text = DPrice
 			}
 			if speedWidget != nil {
-				speedWidget<HudLabelWidget>.Text = convert.NumToString(speed, 2)
+                var DSpeed=FormatBigNumber(speed)
+				speedWidget<HudLabelWidget>.Text = DSpeed
 			}
 		}
+	}
+    
+	func FormatBigNumber(value float) string {
+		if value < 1000.0 {
+			
+			return FormatFixed2ByRound(value)
+		}
+		if value < 1000000.0 {
+			return FormatFixed2ByRound(value / 1000.0) + "K"
+		}
+		if value < 1000000000.0 {
+			return FormatFixed2ByRound(value / 1000000.0) + "M"
+		}
+		if value < 1000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000.0) + "B"
+		}
+		if value < 1000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000.0) + "T"
+		}
+		if value < 1000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000.0) + "Qa"
+		}
+		if value < 1000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000.0) + "Qi"
+		}
+		if value < 1000000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000000.0) + "Sx"
+		}
+		if value < 1000000000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000000000.0) + "Sp"
+		}
+		if value < 1000000000000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000000000000.0) + "Oc"
+		}
+		return FormatFixed2ByRound(value / 1000000000000000000000000000000.0) + "No"
+	}
+    func FormatFixed2ByRound(value float) string {
+		var scaled = math.Round(value * 100.0)
+		var sign = ""
+		if scaled < 0 {
+			sign = "-"
+			scaled = -scaled
+		}
+		var integerPart = scaled / 100
+		var decimalPart = scaled - integerPart * 100
+		var decimalStr = convert.ToString(decimalPart)
+		if decimalPart < 10 {
+			decimalStr = "0" + decimalStr
+		}
+		return sign + convert.ToString(integerPart) + "." + decimalStr
 	}
 }

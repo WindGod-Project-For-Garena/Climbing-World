@@ -544,6 +544,18 @@
           },
           "scriptName": "WingsDataTypes",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "gwq9jk9v4mb-mo89d57k-1wuhikg3tmx",
+            "filePath": "Assets\\CSV\\ChestDataTypes.csv",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "csv"
+          },
+          "scriptName": "ChestDataTypes",
+          "children": []
         }
       ]
     },
