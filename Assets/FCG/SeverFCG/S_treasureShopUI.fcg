@@ -20,6 +20,8 @@ graph S_treasureShopUI {
 	TreasurePriceData Map<object, object> = nil
 	TreasureEffect Map<object, object> = nil
 	TreasureBuyingState Map<entity<Player>, bool> = nil
+	TreasureChestCount int = 9
+	TreasureOutcomeCount int = 5
 
 	event OnAwake() {
 		TreasureShop = map.New()
@@ -38,18 +40,19 @@ graph S_treasureShopUI {
 		var priceColumn = ReadCSVColumn(EResCSV.ChestDataTypes, 2)
 		var probabilityColumn = ReadCSVColumn(EResCSV.ChestDataTypes, 3)
 		var magnificationColumn = ReadCSVColumn(EResCSV.ChestDataTypes, 4)
-		for treasureIndex = 1, 10, 1 {
+		for treasureIndex = 1, TreasureChestCount + 1, 1 {
 			var probabilityList = list.New(0, 5)
 			var magnificationList = list.New(0, 5)
 			var priceRowIndex = 2 + (treasureIndex - 1) * 5
 			TreasurePriceData[treasureIndex] = ParseCSVFloat(priceColumn, priceRowIndex)
-			for offset = 0, 5, 1 {
+			for offset = 0, TreasureOutcomeCount, 1 {
 				var rowIndex = 2 + (treasureIndex - 1) * 5 + offset
 				list.Append(probabilityList, ParseCSVFloat(probabilityColumn, rowIndex))
 				list.Append(magnificationList, ParseCSVFloat(magnificationColumn, rowIndex))
 			}
 			ProbabilityData[treasureIndex] = probabilityList
 			PowerGrowthData[treasureIndex] = magnificationList
+			LogInfo("TreasureLoad chest=" + convert.ToString(treasureIndex) + " probabilityCount=" + convert.ToString(list.Length(probabilityList)) + " growthCount=" + convert.ToString(list.Length(magnificationList)))
 		}
 	}
 
@@ -71,6 +74,34 @@ graph S_treasureShopUI {
 
 	func FormatCSVFloat(value float) string {
 		return FormatFixed2ByRound(value)
+	}
+
+	func BuildFloatListLog(values List<float>, count int) string {
+		if values == nil || count <= 0 {
+			return "[]"
+		}
+		var result = "["
+		for i = 0, count, 1 {
+			if i > 0 {
+				result = result + ", "
+			}
+			result = result + FormatCSVFloat(values[i])
+		}
+		return result + "]"
+	}
+
+	func BuildWeightListLog(probabilityArray List<float>, count int) string {
+		if probabilityArray == nil || count <= 0 {
+			return "[]"
+		}
+		var result = "["
+		for i = 0, count, 1 {
+			if i > 0 {
+				result = result + ", "
+			}
+			result = result + convert.ToString(math.Round(probabilityArray[i] * 100.0))
+		}
+		return result + "]"
 	}
 
 	func FormatPrice(value float) string {
@@ -216,6 +247,14 @@ graph S_treasureShopUI {
 		var probArray = ProbabilityData[treasureIndex] as List<float>
 		var powerArray = PowerGrowthData[treasureIndex] as List<float>
 		var treasurePrice = TreasurePriceData[treasureIndex] as float
+		if probArray == nil || powerArray == nil {
+			LogInfo("TreasureDisplayError chest=" + convert.ToString(treasureIndex) + " reason=nilList")
+			return
+		}
+		if list.Length(probArray) < TreasureOutcomeCount || list.Length(powerArray) < TreasureOutcomeCount {
+			LogInfo("TreasureDisplayError chest=" + convert.ToString(treasureIndex) + " probabilityCount=" + convert.ToString(list.Length(probArray)) + " growthCount=" + convert.ToString(list.Length(powerArray)))
+			return
+		}
 
 		var priceText = GetWidgetByPath(player, treasureUI, "/Panel/Button/Text")
 		if priceText != nil {
@@ -411,6 +450,7 @@ graph S_treasureShopUI {
 		globalEntity<G_economy>.PlayerGold[player] = newGold
 		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
 		var growthValue = RollPowerGrowthByProbability(treasureIndex)
+		LogInfo("TreasureRollResult chest=" + convert.ToString(treasureIndex) + " price=" + FormatPrice(treasurePrice) + " goldBefore=" + FormatPrice(gold) + " goldAfter=" + FormatPrice(newGold) + " growth=" + convert.ToString(growthValue) + " tier=" + convert.ToString(GetGrowthTierByValue(treasureIndex, growthValue)))
 		DispatchEventToEntity(__Custom6event_AddPowerGrowth______, globalEntity, PlatformType.Server, List<object>{player, growthValue})
 
 
@@ -458,6 +498,7 @@ graph S_treasureShopUI {
 		if growthCount < useCount {
 			useCount = growthCount
 		}
+		LogInfo("TreasureRollConfig chest=" + convert.ToString(treasureIndex) + " probabilities=" + BuildFloatListLog(probabilityArray, useCount) + " growths=" + BuildFloatListLog(growthArray, useCount))
 		var totalWeight = 0
 		for i = 0, useCount, 1 {
 			var weight = math.Round(probabilityArray[i] * 100.0)
@@ -466,9 +507,11 @@ graph S_treasureShopUI {
 			}
 		}
 		if totalWeight <= 0 {
+			LogInfo("TreasureRollFallback chest=" + convert.ToString(treasureIndex) + " reason=totalWeight<=0 growth=" + convert.ToString(math.Round(growthArray[0])))
 			return math.Round(growthArray[0])
 		}
 		var roll = math.RandomInt(1, totalWeight)
+		LogInfo("TreasureRollRandom chest=" + convert.ToString(treasureIndex) + " weights=" + BuildWeightListLog(probabilityArray, useCount) + " totalWeight=" + convert.ToString(totalWeight) + " roll=" + convert.ToString(roll))
 		var currentWeight = 0
 		for i = 0, useCount, 1 {
 			var weight = math.Round(probabilityArray[i] * 100.0)
@@ -477,9 +520,11 @@ graph S_treasureShopUI {
 			}
 			currentWeight = currentWeight + weight
 			if roll <= currentWeight {
+				LogInfo("TreasureRollHit chest=" + convert.ToString(treasureIndex) + " slot=" + convert.ToString(i + 1) + " cumulativeWeight=" + convert.ToString(currentWeight) + " growth=" + convert.ToString(math.Round(growthArray[i])))
 				return math.Round(growthArray[i])
 			}
 		}
+		LogInfo("TreasureRollFallback chest=" + convert.ToString(treasureIndex) + " reason=rollOverflow growth=" + convert.ToString(math.Round(growthArray[useCount - 1])))
 		return math.Round(growthArray[useCount - 1])
 	}
 
