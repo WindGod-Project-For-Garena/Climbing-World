@@ -63,6 +63,7 @@ graph G_economy {
 			gold = gold + reward
 			PlayerGold[player] = gold
 			DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
+			DispatchEventToEntity(__Custom6event_ShowActualFallReward______, player, PlatformType.Client, List<object>{player, reward})
 		}
 	}
 }

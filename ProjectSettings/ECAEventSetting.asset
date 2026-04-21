@@ -896,6 +896,28 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_76589813"
+    },
+    "signal_52296471": {
+      "name": "Custom event_ShowActualFallReward____",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100050,
+      "props": [
+        {
+          "name": "targetPlayer",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "rewardGold",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_52296471"
     }
   },
   "customName": {
@@ -943,8 +965,9 @@
     "Custom event_BuyWings_success": "signal_46459014",
     "Custom event__Custom6event_TutorialTowerSpawned__": "signal_73350392",
     "Custom event__Custom6event_TutorialPlayerLanded__": "signal_76152805",
-    "Custom event": "signal_76589813"
+    "Custom event": "signal_76589813",
+    "Custom event_ShowActualFallReward____": "signal_52296471"
   },
   "children": []
 }
-//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4335043","c":{"FF":5001},"s":100}

@@ -57,6 +57,10 @@ graph C_P_Climbing2 {
 	lastSentIsClimb bool = false
 	lastSentIsFall bool = false
 	lastSentIsHanging bool = false
+	pendingRewardLandPos Vector3 = Vector3{0, 0, 0}
+	pendingRewardSessionTimeSec float = 0
+	pendingRewardPeakHeightY float = 0
+	hasPendingRewardReport bool = false
 
 
 	event OnAwake() {   
@@ -215,13 +219,15 @@ graph C_P_Climbing2 {
 				if fallDistance < 0 {
 					fallDistance = 0
 				}
-				var rewardGold float = fallDistance
 				var sessionTimeSec float = 0
 				if climbSessionStartFrame == 0 {
 					sessionTimeSec = (frame - climbSessionStartFrame) as float / 30.0
 				}
 				var peakH = maxSessionHeightY
-				ShowOngroundReportorAt(landPos, rewardGold, sessionTimeSec, peakH)
+				pendingRewardLandPos = landPos
+				pendingRewardSessionTimeSec = sessionTimeSec
+				pendingRewardPeakHeightY = peakH
+				hasPendingRewardReport = fallDistance > 0
 				climbSessionStartFrame = 0
 				maxSessionHeightY = 0
 				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, landPos})
@@ -306,7 +312,11 @@ graph C_P_Climbing2 {
 		var w4 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (4)")
 		var w5 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (5)")
 		if w1 != nil {
-			w1<HudLabelWidget>.Text = convert.NumToString(math.Round(rewardGold), 0)
+			if rewardGold == math.Round(rewardGold) {
+				w1<HudLabelWidget>.Text = convert.NumToString(rewardGold, 0)
+			} else {
+				w1<HudLabelWidget>.Text = convert.NumToString(rewardGold, 1)
+			}
 		}
 		if w4 != nil {
 			w4<HudLabelWidget>.Text = convert.NumToString(sessionTimeSec, 1)
@@ -318,6 +328,17 @@ graph C_P_Climbing2 {
 		start DestroyOngroundReportorAfterDelay(reportor as entity<CustomUI>, 3000)
 	}
 
+	event __Custom6event_ShowActualFallReward______(targetPlayer entity<Player>, rewardGold float) {
+		if targetPlayer != GetLocalPlayer() {
+			return
+		}
+		if !hasPendingRewardReport {
+			return
+		}
+		ShowOngroundReportorAt(pendingRewardLandPos, rewardGold, pendingRewardSessionTimeSec, pendingRewardPeakHeightY)
+		hasPendingRewardReport = false
+	}
+
 	async func DestroyOngroundReportorAfterDelay(uiEntity entity<CustomUI>, delayMs int) {
 		WaitForMillisecond(delayMs)
 		if uiEntity != nil {
@@ -326,4 +347,3 @@ graph C_P_Climbing2 {
 	}
 	
 }
-
