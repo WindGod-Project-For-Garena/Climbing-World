@@ -31,6 +31,7 @@ graph C_TowershopUI {
 
 	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 2 <= triggerPlayer<C_PlayerTowerData>.HighestTowerIndex {
+			LogInfo("召唤塔2")
 			DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2, triggerEntity})
 			DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 		}
@@ -75,7 +76,7 @@ graph C_TowershopUI {
 	}
 
 	// 服务端验证通过后回推，客户端同步最高解锁塔阶，防止本地状态与服务端不一致
-	event __Custom6event___TowerBuyUnlock____(triggerPlayer entity<Player>, Towerindex int) {
+	event __Custom6event__Custom6event___TowerUnlock______(triggerPlayer entity<Player>, Towerindex int) {
 		if triggerPlayer == GetLocalPlayer() {
 			LogInfo("本地玩家解锁塔阶" + Towerindex)
 			triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = Towerindex

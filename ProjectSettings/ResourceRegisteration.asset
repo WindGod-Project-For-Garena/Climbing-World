@@ -186,6 +186,19 @@
           },
           "scriptName": "Beginners_Guide",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "0ex8hv6m8g6k-mo9u4t75-cg47ottqekw",
+            "filePath": "Assets\\UI\\DEnough.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "DEnough",
+          "children": [],
+          "_isNewInSession": true
         }
       ]
     },

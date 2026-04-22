@@ -940,6 +940,28 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_10583398"
+    },
+    "signal_25679713": {
+      "name": "Custom event__Custom6event___TowerUnlock____",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100052,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "Towerindex",
+          "value": "Int",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_25679713"
     }
   },
   "customName": {
@@ -989,7 +1011,8 @@
     "Custom event__Custom6event_TutorialPlayerLanded__": "signal_76152805",
     "Custom event": "signal_76589813",
     "Custom event_ShowActualFallReward____": "signal_52296471",
-    "Custom event_SetDragUIVisible____": "signal_10583398"
+    "Custom event_SetDragUIVisible____": "signal_10583398",
+    "Custom event__Custom6event___TowerUnlock____": "signal_25679713"
   },
   "children": []
 }

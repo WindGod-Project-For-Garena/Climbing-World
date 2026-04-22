@@ -22,7 +22,7 @@ graph G_economy {
 
 	event OnPlayerJoin(player entity<Player>) {
 		// 玩家初次进入游戏，写入字典，经济初始为 100
-		PlayerGold[player] = 100
+		PlayerGold[player] = 10000000
 		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, 100.0})
 	}
 

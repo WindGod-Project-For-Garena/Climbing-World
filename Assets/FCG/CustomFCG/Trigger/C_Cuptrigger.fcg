@@ -6,8 +6,37 @@ import "../../SeverFCG/S_Cupcount.fcg" as S_Cupcount
 
 [platform_server]
 graph C_Cuptrigger {
+	func CanPlayerCollectThisCup(player entity<Player>, cupTrigger entity<Entity>) bool {
+		if player == nil || cupTrigger == nil {
+			return false
+		}
+		var current entity = cupTrigger as entity
+		for i = 0, 16, 1 {
+			if current == nil {
+				break
+			}
+			if HasTag(current, "Tower_1") {
+				return HasTag(player, "Tower_1")
+			}
+			if HasTag(current, "Tower_2") {
+				return HasTag(player, "Tower_2")
+			}
+			if HasTag(current, "Tower_3") {
+				return HasTag(player, "Tower_3")
+			}
+			if HasTag(current, "Tower_4") {
+				return HasTag(player, "Tower_4")
+			}
+			current = GetParent(current)
+		}
+		return true
+	}
+
 	// 玩家触碰奖杯触发器时：隐藏当前触发器父对象，落地后由 G_Climbing 恢复
 	event OnPlayerEnter(player entity<Player>) {
+		if !CanPlayerCollectThisCup(player, thisEntity as entity<Entity>) {
+			return
+		}
 		var towerParent = GetParent(thisEntity)
 		var targetParent entity<Entity> = nil
 		if towerParent != nil {

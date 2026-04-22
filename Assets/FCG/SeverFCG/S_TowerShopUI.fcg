@@ -110,7 +110,7 @@ graph S_TowershopUI {
 		ApplyTower4CupImageState(player, Towershop[player] as entity<CustomUI>, Towerindex)
 		DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, Towerindex, nil})
 		DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{player, Towerindex})
-		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, player, PlatformType.Client, List<object>{player, Towerindex})
+		DispatchEventToEntity(__Custom6event__Custom6event___TowerUnlock______, Towershop[player] as entity, PlatformType.Client, List<object>{player, Towerindex})
 	}
 
 	func CanUnlockTowerByCup(player entity<Player>, Towerindex int) bool {
