@@ -59,17 +59,17 @@ graph G_economy {
 			return
 		}
 		if ContainKey(PlayerGold, player) {
-			var powerValue = 0
+			var powerValue = 1.0
 			if ContainKey(globalEntity<S_power>.PlayerPowerValue, player) {
 				powerValue = globalEntity<S_power>.PlayerPowerValue[player]
 			}
 			if powerValue <= 1 {
-				powerValue=1
+				powerValue=1.0
 			}
 
 			var towerIndex = globalEntity<G_Tower>.GetPlayerEconomyTowerIndex(player)
 			var towerEconomyMultiplier = GetTowerEconomyMultiplier(towerIndex)
-			var reward = fallY * convert.IntToFloat(powerValue) * towerEconomyMultiplier
+			var reward = fallY * powerValue * towerEconomyMultiplier
 			if reward <= 0 {
 				return
 			}

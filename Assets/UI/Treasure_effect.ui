@@ -220,11 +220,11 @@
                     "y": 0.5
                   },
                   "anchoredPosition": {
-                    "x": -138,
+                    "x": -87,
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -242,7 +242,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -950,7 +950,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -968,7 +968,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -1678,7 +1678,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -1696,7 +1696,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -2406,7 +2406,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -2424,7 +2424,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -3134,7 +3134,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -3152,7 +3152,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -3862,7 +3862,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -3880,7 +3880,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -4593,7 +4593,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -4611,7 +4611,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -5324,7 +5324,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -5342,7 +5342,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,
@@ -6055,7 +6055,7 @@
                     "y": 117
                   },
                   "sizeDelta": {
-                    "x": 200,
+                    "x": 300,
                     "y": 200
                   }
                 },
@@ -6073,7 +6073,7 @@
                   },
                   "color": "#ffffff",
                   "alignment": {
-                    "h": "center",
+                    "h": "left",
                     "v": "middle"
                   },
                   "lineSpacing": 0,

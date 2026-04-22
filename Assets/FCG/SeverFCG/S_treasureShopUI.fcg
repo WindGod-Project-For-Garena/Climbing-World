@@ -454,7 +454,7 @@ graph S_treasureShopUI {
 		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
 		var growthValue = RollPowerGrowthByProbability(treasureIndex)
 		LogInfo("TreasureRollResult chest=" + convert.ToString(treasureIndex) + " price=" + FormatPrice(treasurePrice) + " goldBefore=" + FormatPrice(gold) + " goldAfter=" + FormatPrice(newGold) + " growth=" + convert.ToString(growthValue) + " tier=" + convert.ToString(GetGrowthTierByValue(treasureIndex, growthValue)))
-		DispatchEventToEntity(__Custom6event_AddPowerGrowth______, globalEntity, PlatformType.Server, List<object>{player, growthValue})
+		DispatchEventToEntity(__Custom6event_AddPowerGrowth______, globalEntity, PlatformType.Server, List<object>{player, math.Round(growthValue * 100.0)})
 
 
 		var effectEntity entity<CustomUI>
@@ -476,26 +476,26 @@ graph S_treasureShopUI {
 		start PlayTreasureEffect(player, effectEntity, treasureIndex, growthValue)
 	}
 
-	func RollPowerGrowthByProbability(treasureIndex int) int {
+	func RollPowerGrowthByProbability(treasureIndex int) float {
 		if !ContainKey(ProbabilityData, treasureIndex) {
-			return 0
+			return 0.0
 		}
 		if !ContainKey(PowerGrowthData, treasureIndex) {
-			return 0
+			return 0.0
 		}
 		var probabilityArray = ProbabilityData[treasureIndex] as List<float>
 		var growthArray = PowerGrowthData[treasureIndex] as List<float>
 		if probabilityArray == nil || growthArray == nil {
-			return 0
+			return 0.0
 		}
 		var probabilityCount = list.Length(probabilityArray)
 
 		if probabilityCount < 1 {
-			return 0
+			return 0.0
 		}
 		var growthCount = list.Length(growthArray)
 		if growthCount < 1 {
-			return 0
+			return 0.0
 		}
 		var useCount = probabilityCount
 		if growthCount < useCount {
@@ -510,8 +510,8 @@ graph S_treasureShopUI {
 			}
 		}
 		if totalWeight <= 0 {
-			LogInfo("TreasureRollFallback chest=" + convert.ToString(treasureIndex) + " reason=totalWeight<=0 growth=" + convert.ToString(math.Round(growthArray[0])))
-			return math.Round(growthArray[0])
+			LogInfo("TreasureRollFallback chest=" + convert.ToString(treasureIndex) + " reason=totalWeight<=0 growth=" + convert.ToString(growthArray[0]))
+			return growthArray[0]
 		}
 		var roll = math.RandomInt(1, totalWeight)
 		LogInfo("TreasureRollRandom chest=" + convert.ToString(treasureIndex) + " weights=" + BuildWeightListLog(probabilityArray, useCount) + " totalWeight=" + convert.ToString(totalWeight) + " roll=" + convert.ToString(roll))
@@ -523,15 +523,15 @@ graph S_treasureShopUI {
 			}
 			currentWeight = currentWeight + weight
 			if roll <= currentWeight {
-				LogInfo("TreasureRollHit chest=" + convert.ToString(treasureIndex) + " slot=" + convert.ToString(i + 1) + " cumulativeWeight=" + convert.ToString(currentWeight) + " growth=" + convert.ToString(math.Round(growthArray[i])))
-				return math.Round(growthArray[i])
+				LogInfo("TreasureRollHit chest=" + convert.ToString(treasureIndex) + " slot=" + convert.ToString(i + 1) + " cumulativeWeight=" + convert.ToString(currentWeight) + " growth=" + convert.ToString(growthArray[i]))
+				return growthArray[i]
 			}
 		}
-		LogInfo("TreasureRollFallback chest=" + convert.ToString(treasureIndex) + " reason=rollOverflow growth=" + convert.ToString(math.Round(growthArray[useCount - 1])))
-		return math.Round(growthArray[useCount - 1])
+		LogInfo("TreasureRollFallback chest=" + convert.ToString(treasureIndex) + " reason=rollOverflow growth=" + convert.ToString(growthArray[useCount - 1]))
+		return growthArray[useCount - 1]
 	}
 
-	func GetGrowthTierByValue(treasureIndex int, growthValue int) int {
+	func GetGrowthTierByValue(treasureIndex int, growthValue float) int {
 		if !ContainKey(PowerGrowthData, treasureIndex) {
 			return 5
 		}
@@ -541,14 +541,14 @@ graph S_treasureShopUI {
 		}
 		var growthCount = list.Length(growthArray)
 		for i = 0, growthCount, 1 {
-			if growthValue == math.Round(growthArray[i]) {
+			if math.Abs(growthValue - growthArray[i]) < 0.0001 {
 				return i + 1
 			}
 		}
 		return 5
 	}
 
-	func GetGrowthResultIndex(treasureIndex int, growthValue int) int {
+	func GetGrowthResultIndex(treasureIndex int, growthValue float) int {
 		if !ContainKey(PowerGrowthData, treasureIndex) {
 			return -1
 		}
@@ -558,14 +558,14 @@ graph S_treasureShopUI {
 		}
 		var growthCount = list.Length(growthArray)
 		for i = 0, growthCount, 1 {
-			if growthValue == math.Round(growthArray[i]) {
+			if math.Abs(growthValue - growthArray[i]) < 0.0001 {
 				return i
 			}
 		}
 		return -1
 	}
 
-	func ApplyOpenedResultText(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
+	func ApplyOpenedResultText(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue float) {
 		if !ContainKey(ProbabilityData, treasureIndex) {
 			return
 		}
@@ -596,7 +596,7 @@ graph S_treasureShopUI {
 		}
 	}
 
-	func ApplyVisualEffectPrefabByGrowth(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
+	func ApplyVisualEffectPrefabByGrowth(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue float) {
 		var indexStr = convert.ToString(treasureIndex)
 		var visualEffect = GetWidgetByPath(player, effectUI, "/Treasure" + indexStr + "_empty/Treasure" + indexStr + "_opened/Visual_effect")
 		if visualEffect == nil {
@@ -625,7 +625,7 @@ graph S_treasureShopUI {
 		// tier==5: Red，沿用默认 Visual effects.prefab（当前默认红色）
 	}
 
-	async func PlayTreasureEffect(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
+	async func PlayTreasureEffect(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue float) {
 		var indexStr = convert.ToString(treasureIndex)
 
 		var emptyPath = "/Treasure" + indexStr + "_empty"

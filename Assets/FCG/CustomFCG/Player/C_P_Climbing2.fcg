@@ -305,6 +305,40 @@ graph C_P_Climbing2 {
 		return sign + convert.ToString(integerPart) + "." + decimalStr
 	}
 
+	func FormatBigNumber(value float) string {
+		if value < 1000.0 {
+			return FormatFixed2ByRound(value)
+		}
+		if value < 1000000.0 {
+			return FormatFixed2ByRound(value / 1000.0) + "K"
+		}
+		if value < 1000000000.0 {
+			return FormatFixed2ByRound(value / 1000000.0) + "M"
+		}
+		if value < 1000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000.0) + "B"
+		}
+		if value < 1000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000.0) + "T"
+		}
+		if value < 1000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000.0) + "Qa"
+		}
+		if value < 1000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000.0) + "Qi"
+		}
+		if value < 1000000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000000.0) + "Sx"
+		}
+		if value < 1000000000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000000000.0) + "Sp"
+		}
+		if value < 1000000000000000000000000000000.0 {
+			return FormatFixed2ByRound(value / 1000000000000000000000000000.0) + "Oc"
+		}
+		return FormatFixed2ByRound(value / 1000000000000000000000000000000.0) + "No"
+	}
+
 	func ShowOngroundReportorAt(landPos Vector3, rewardGold float, sessionTimeSec float, peakHeightY float) {
 		if thisEntity<Player> != GetLocalPlayer() {
 			return
@@ -328,13 +362,13 @@ graph C_P_Climbing2 {
 		var w4 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (4)")
 		var w5 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (5)")
 		if w1 != nil {
-			w1<HudLabelWidget>.Text = FormatFixed2ByRound(rewardGold)
+			w1<HudLabelWidget>.Text = FormatBigNumber(rewardGold)
 		}
 		if w4 != nil {
 			w4<HudLabelWidget>.Text = FormatFixed2ByRound(sessionTimeSec)
 		}
 		if w5 != nil {
-			w5<HudLabelWidget>.Text = FormatFixed2ByRound(peakHeightY)
+			w5<HudLabelWidget>.Text = FormatBigNumber(peakHeightY)
 		}
 		reportor<CustomUI>.IsVisible = true
 		start DestroyOngroundReportorAfterDelay(reportor as entity<CustomUI>, 3000)

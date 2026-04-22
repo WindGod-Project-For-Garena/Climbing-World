@@ -11,7 +11,7 @@ import "Math.fcc" as math
 graph S_power {
     PlayerPower Map<entity<Player>, entity> = nil
     PlayerPowerFollow Map<entity<Player>, entity> = nil
-    PlayerPowerValue Map<entity<Player>, int> = nil
+    PlayerPowerValue Map<entity<Player>, float> = nil
     FollowOffset Vector3 = Vector3{0, 1.5, 0}
 
     event OnAwake() {
@@ -34,8 +34,8 @@ graph S_power {
         }
 
         PlayerPower[player] = powerEntity
-        PlayerPowerValue[player] = 0
-        UpdatePowerEntityText(player, 0)
+        PlayerPowerValue[player] = 1.0
+        UpdatePowerEntityText(player, 1.0)
 
         playable.CreateFollow(powerEntity, player, FollowOffset, CoordinateSystemType.LocalPosition, out var followEntity, true)
         PlayerPowerFollow[player] = followEntity
@@ -46,14 +46,15 @@ graph S_power {
             return
         }
        
-        var currentPower = 0
+        var currentPower = 1.0
         if ContainKey(PlayerPowerValue, player) {
             currentPower = PlayerPowerValue[player]
         }
         if powerGrowth < 0 {
             powerGrowth = 0
         }
-        var totalPower = currentPower + powerGrowth
+        var growthValue = convert.IntToFloat(powerGrowth) / 100.0
+        var totalPower = currentPower + growthValue
         PlayerPowerValue[player] = totalPower
         UpdatePowerEntityText(player, totalPower)
     }
@@ -108,7 +109,7 @@ graph S_power {
         return FormatFixed2ByRound(value / 1000000000000000000000000000000.0) + "No"
     }
 
-    func UpdatePowerEntityText(player entity<Player>, powerValue int) {
+    func UpdatePowerEntityText(player entity<Player>, powerValue float) {
         if !ContainKey(PlayerPower, player) {
             return
         }
