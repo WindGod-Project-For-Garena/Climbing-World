@@ -270,7 +270,7 @@ graph S_treasureShopUI {
 
 		var bg = GetWidgetByPath(player, treasureUI, "/Panel/display button1/Power1")
 		if bg != nil {
-			bg<UIWidgetLabel>.Content = "+"+FormatCSVFloat(powerArray[0])
+			bg<UIWidgetLabel>.Content = "+" + FormatPrice(powerArray[0])
 		}
 
 		var p2 = GetWidgetByPath(player, treasureUI, "/Panel/display button2/probability2")
@@ -279,7 +279,7 @@ graph S_treasureShopUI {
 		}
 		var t2 = GetWidgetByPath(player, treasureUI, "/Panel/display button2/Power2")
 		if t2 != nil {
-			t2<UIWidgetLabel>.Content = "+"+FormatCSVFloat(powerArray[1])
+			t2<UIWidgetLabel>.Content = "+" + FormatPrice(powerArray[1])
 		}
 
 		var p3 = GetWidgetByPath(player, treasureUI, "/Panel/display button3/probability3")
@@ -288,7 +288,7 @@ graph S_treasureShopUI {
 		}
 		var t3 = GetWidgetByPath(player, treasureUI, "/Panel/display button3/Power3")
 		if t3 != nil {
-			t3<UIWidgetLabel>.Content = "+"+FormatCSVFloat(powerArray[2])
+			t3<UIWidgetLabel>.Content = "+" + FormatPrice(powerArray[2])
 		}
 
 		var p4 = GetWidgetByPath(player, treasureUI, "/Panel/display button4/probability4")
@@ -297,7 +297,7 @@ graph S_treasureShopUI {
 		}
 		var t4 = GetWidgetByPath(player, treasureUI, "/Panel/display button4/Power4")
 		if t4 != nil {
-			t4<UIWidgetLabel>.Content = "+"+FormatCSVFloat(powerArray[3])
+			t4<UIWidgetLabel>.Content = "+" + FormatPrice(powerArray[3])
 		}
 		var p5 = GetWidgetByPath(player, treasureUI, "/Panel/display button5/probability5")
 		if p5 != nil {
@@ -305,7 +305,7 @@ graph S_treasureShopUI {
 		}
 		var t5 = GetWidgetByPath(player, treasureUI, "/Panel/display button5/Power5")
 		if t5 != nil {
-			t5<UIWidgetLabel>.Content = "+"+FormatCSVFloat(powerArray[4])
+			t5<UIWidgetLabel>.Content = "+" + FormatPrice(powerArray[4])
 		}
 	}
 
