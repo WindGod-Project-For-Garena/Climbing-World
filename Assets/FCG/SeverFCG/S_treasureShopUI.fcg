@@ -547,6 +547,54 @@ graph S_treasureShopUI {
 		return 5
 	}
 
+	func GetGrowthResultIndex(treasureIndex int, growthValue int) int {
+		if !ContainKey(PowerGrowthData, treasureIndex) {
+			return -1
+		}
+		var growthArray = PowerGrowthData[treasureIndex] as List<float>
+		if growthArray == nil {
+			return -1
+		}
+		var growthCount = list.Length(growthArray)
+		for i = 0, growthCount, 1 {
+			if growthValue == math.Round(growthArray[i]) {
+				return i
+			}
+		}
+		return -1
+	}
+
+	func ApplyOpenedResultText(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
+		if !ContainKey(ProbabilityData, treasureIndex) {
+			return
+		}
+		if !ContainKey(PowerGrowthData, treasureIndex) {
+			return
+		}
+		var probabilityArray = ProbabilityData[treasureIndex] as List<float>
+		var growthArray = PowerGrowthData[treasureIndex] as List<float>
+		if probabilityArray == nil || growthArray == nil {
+			return
+		}
+		var resultIndex = GetGrowthResultIndex(treasureIndex, growthValue)
+		if resultIndex < 0 {
+			return
+		}
+		if resultIndex >= list.Length(probabilityArray) || resultIndex >= list.Length(growthArray) {
+			return
+		}
+		var indexStr = convert.ToString(treasureIndex)
+		var openedPath = "/Treasure" + indexStr + "_empty/Treasure" + indexStr + "_opened"
+		var probabilityWidget = GetWidgetByPath(player, effectUI, openedPath + "/Display_prosibility_" + indexStr)
+		if probabilityWidget != nil {
+			probabilityWidget<UIWidgetLabel>.Content = FormatCSVFloat(probabilityArray[resultIndex]) + "%"
+		}
+		var powerWidget = GetWidgetByPath(player, effectUI, openedPath + "/Display_power_" + indexStr)
+		if powerWidget != nil {
+			powerWidget<UIWidgetLabel>.Content = "+" + FormatCSVFloat(growthArray[resultIndex])
+		}
+	}
+
 	func ApplyVisualEffectPrefabByGrowth(player entity<Player>, effectUI entity<CustomUI>, treasureIndex int, growthValue int) {
 		var indexStr = convert.ToString(treasureIndex)
 		var visualEffect = GetWidgetByPath(player, effectUI, "/Treasure" + indexStr + "_empty/Treasure" + indexStr + "_opened/Visual_effect")
@@ -593,6 +641,7 @@ graph S_treasureShopUI {
 		var left = GetWidgetByPath(player, effectUI, leftPath)
 		var right = GetWidgetByPath(player, effectUI, rightPath)
 		ApplyVisualEffectPrefabByGrowth(player, effectUI, treasureIndex, growthValue)
+		ApplyOpenedResultText(player, effectUI, treasureIndex, growthValue)
 
 		if opened != nil { opened<UIWidget>.IsVisible = false }
 		if center != nil { center<UIWidget>.IsVisible = true }
