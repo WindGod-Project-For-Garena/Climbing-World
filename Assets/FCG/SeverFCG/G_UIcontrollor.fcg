@@ -50,6 +50,7 @@ graph G_UIcontrollor {
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
+		ApplyDefaultHudVisibility(player)
 		CreateCustomUI(out var G_IngamHud, player, EResUI.G_IngamHud)
 		CreateCustomUI(out var Avatar, nil, EResUI.Avatar)
 		CreateCustomUI(out var P_IngameHudEntity, player, EResUI.P_IngameHud)
@@ -108,6 +109,47 @@ graph G_UIcontrollor {
 			bgBuy<UIWidget>.IsVisible = false
 		}*/
 		
+	}
+
+	func ApplyDefaultHudVisibility(player entity<Player>) {
+		SetDefaultUIStatus(player, PlayerUISwitchType.Sprint, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Attack, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Jump, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.KillingTips, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.WeaponSlot, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.MiniMap, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Bag, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.MedicalProps, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Crouch, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Prone, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.TeammatesInfo, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.AttackGrenade, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.DefenceGrenade, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Emote, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.QuickChat, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Pickups, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.QuickChatShow, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.HP, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.EP, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Armor, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Reload, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.SweapWeaponQuick, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Speaker, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.MicroPhone, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Mark, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Settings, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Signal, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.ActiveSkill, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Crosshairs, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.PassiveSkill, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.FPPInspectionHUD, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.RequestHelp, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.HelpUpOthers, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.Attack2HUD, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.CombineWeaponHUD, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.SwimmingSurfHUD, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.ActionHud, CommonUISwitchValue.Close)
+		SetDefaultUIStatus(player, PlayerUISwitchType.TakePhotoHud, CommonUISwitchValue.Close)
 	}
 		
 
