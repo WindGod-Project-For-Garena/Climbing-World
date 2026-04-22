@@ -8,6 +8,7 @@ import "List.fcc" as list
 import "EditorGenLib.fcc" as gen
 import "Convert.fcc" as convert
 import "./S_power.fcg" as S_power
+import "./G_Tower.fcg" as G_Tower
 
 
 [platform_server]
@@ -22,8 +23,8 @@ graph G_economy {
 
 	event OnPlayerJoin(player entity<Player>) {
 		// 玩家初次进入游戏，写入字典，经济初始为 100
-		PlayerGold[player] = 10000000
-		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, 100.0})
+		PlayerGold[player] = 0.0
+		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, 0.0})
 	}
 
 	event __Custom6event_BUYWings__(player entity<Player>, price float) {
@@ -40,6 +41,19 @@ graph G_economy {
 	}
 
 	// 玩家落地时：奖励 = 下坠距离 * 玩家当前 power，并通知 UI 更新 GoldCoin
+	func GetTowerEconomyMultiplier(towerIndex int) float {
+		if towerIndex == 2 {
+			return 320.0
+		}
+		if towerIndex == 3 {
+			return 200.0
+		}
+		if towerIndex == 4 {
+			return 200.0
+		}
+		return 1.0
+	}
+
 	event __Custom6event_AddFallReward____(player entity<Player>, fallY float) {
 		if fallY <= 0 {
 			return
@@ -53,9 +67,9 @@ graph G_economy {
 				powerValue=1
 			}
 
-			
-			
-			var reward = fallY * convert.IntToFloat(powerValue)
+			var towerIndex = globalEntity<G_Tower>.GetPlayerEconomyTowerIndex(player)
+			var towerEconomyMultiplier = GetTowerEconomyMultiplier(towerIndex)
+			var reward = fallY * convert.IntToFloat(powerValue) * towerEconomyMultiplier
 			if reward <= 0 {
 				return
 			}

@@ -73,7 +73,7 @@ graph G_UIcontrollor {
 			var gold float = 0.0
 			GoldCoin_Widget[player] = goldCoinWidget
 			if !ContainKey(globalEntity<G_economy>.PlayerGold, player) {
-				gold = 100.0
+				gold = 0.0
 			} else {
 				gold = globalEntity<G_economy>.PlayerGold[player]
 			}

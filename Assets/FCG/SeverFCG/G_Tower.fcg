@@ -17,6 +17,7 @@ graph G_Tower {
 	towerTriggerPositions Map<int, Vector3> = nil
 	towerSlotToPlayer Map<int, entity<Player>> = nil
 	playerToTowerSlot Map<entity<Player>, int> = nil
+	playerCurrentTowerIndex Map<entity<Player>, int> = nil
 	towerIndex int = 0
 	triggerEntity entity<Entity> = nil
 	Towertrigger Map<int, entity<Entity>> = nil
@@ -31,6 +32,7 @@ graph G_Tower {
 		towerTriggerPositions = map.New()
 		towerSlotToPlayer = map.New()
 		playerToTowerSlot = map.New()
+		playerCurrentTowerIndex = map.New()
 		Towertrigger = map.New()
 		spawnPositions[1] = Vector3{-33.02439, 43.01403, 0}
 		spawnForwards[1] = Vector3{0, 0, 1}
@@ -57,6 +59,7 @@ graph G_Tower {
 		if slot > 0 {
 			towerSlotToPlayer[slot] = joinedPlayer
 			playerToTowerSlot[joinedPlayer] = slot
+			playerCurrentTowerIndex[joinedPlayer] = 1
 			AddTag(joinedPlayer, "Tower_" + slot)
 		}
 	}
@@ -67,6 +70,7 @@ graph G_Tower {
 				RemoveTag(player, "Tower_" + i)
 				map.Remove(towerSlotToPlayer, i)
 				map.Remove(playerToTowerSlot, player)
+				map.Remove(playerCurrentTowerIndex, player)
 				break
 			}
 		}
@@ -90,6 +94,7 @@ graph G_Tower {
 		if !ContainKey(spawnPositions, towerSummonIndex) || !ContainKey(spawnForwards, towerSummonIndex) {
 			return
 		}
+		playerCurrentTowerIndex[player] = towerIndex
 		LogInfo("towerIndex:" + towerIndex)
 		if towerIndex == 2 {
 			wantedTowerType = 2
@@ -189,6 +194,17 @@ graph G_Tower {
 			return Vector3{0, 0, 0}
 		}
 		return towerTriggerPositions[slot] as Vector3
+	}
+
+	func GetPlayerEconomyTowerIndex(p entity<Player>) int {
+		if !ContainKey(playerCurrentTowerIndex, p) {
+			return 1
+		}
+		var currentTowerIndex = playerCurrentTowerIndex[p] as int
+		if currentTowerIndex < 1 || currentTowerIndex > 4 {
+			return 1
+		}
+		return currentTowerIndex
 	}
 
 	// 已生成塔上 Empty/Custom trigger 的世界坐标（召唤完成后引导终点）

@@ -445,6 +445,7 @@ graph S_treasureShopUI {
 			gold = globalEntity<G_economy>.PlayerGold[player]
 		}
 		if gold < treasurePrice {
+			DispatchEventToEntity(__Custom6event_ShowDEnough________, globalEntity, PlatformType.Server, List<object>{player, "You don't have enough money!"})
 			TreasureBuyingState[player] = false
 			return
 		}
