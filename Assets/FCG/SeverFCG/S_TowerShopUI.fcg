@@ -101,6 +101,7 @@ graph S_TowershopUI {
 		if !CanUnlockTowerByCup(player, Towerindex) {
 			LogInfo("Player does not have enough cups to unlock Tower" )
 			ShowTower4NotEnoughCupForTwoSeconds(player, Towershop[player] as entity<CustomUI>)
+			DispatchEventToEntity(__Custom6event_ShowDEnough________, globalEntity, PlatformType.Server, List<object>{player, "You don't have enough trophies!"})
 			return
 		}
 		DeductPlayerCupByTowerUnlock(player, Towerindex)

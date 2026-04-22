@@ -27,6 +27,9 @@ graph G_UIcontrollor {
 	Realtime_Height Map<object, object> = nil
 	Current_Speed Map<object, object> = nil
 	GoldCoin_Widget Map<object, object> = nil
+	DEnough_UI_ByPlayer Map<object, object> = nil
+	DEnough_Text_ByPlayer Map<object, object> = nil
+	DEnough_ShowToken Map<object, object> = nil
 	Beginners_Guide_UI Map<object, object> = nil
 	BeginnerGuide_Stage Map<object, object> = nil
 
@@ -39,6 +42,9 @@ graph G_UIcontrollor {
 		Realtime_Height = map.New()
 		Current_Speed = map.New()
 		GoldCoin_Widget = map.New()
+		DEnough_UI_ByPlayer = map.New()
+		DEnough_Text_ByPlayer = map.New()
+		DEnough_ShowToken = map.New()
 		Beginners_Guide_UI = map.New()
 		BeginnerGuide_Stage = map.New()
 	}
@@ -47,8 +53,11 @@ graph G_UIcontrollor {
 		CreateCustomUI(out var G_IngamHud, player, EResUI.G_IngamHud)
 		CreateCustomUI(out var Avatar, nil, EResUI.Avatar)
 		CreateCustomUI(out var P_IngameHudEntity, player, EResUI.P_IngameHud)
+		CreateCustomUI(out var DEnoughEntity, player, EResUI.DEnough)
 		Climbing_UI[player] = Avatar
 		P_IngameHud_ByPlayer[player] = P_IngameHudEntity
+		DEnough_UI_ByPlayer[player] = DEnoughEntity
+		DEnough_ShowToken[player] = 0
 		var labelWidget = GetWidgetByPath(player, Avatar as entity<CustomUI>, "/Panel (1)/Realtime_Height")
 		if labelWidget != nil {
 			Realtime_Height[player] = labelWidget
@@ -69,6 +78,14 @@ graph G_UIcontrollor {
 				gold = globalEntity<G_economy>.PlayerGold[player]
 			}
 			goldCoinWidget<HudLabelWidget>.Text = FormatBigNumber(gold)
+		}
+		if DEnoughEntity != nil {
+			DEnoughEntity<CustomUI>.IsVisible = false
+			var dEnoughTextWidget = GetWidgetByPath(player, DEnoughEntity as entity<CustomUI>, "/Text")
+			if dEnoughTextWidget != nil {
+				DEnough_Text_ByPlayer[player] = dEnoughTextWidget
+				dEnoughTextWidget<UIWidget>.IsVisible = false
+			}
 		}
 		var ingameUIMap = map.New()
 		ingameUIMap["P_IngameHud"] = P_IngameHudEntity
@@ -174,6 +191,56 @@ graph G_UIcontrollor {
 		var goldCoinWidget = GoldCoin_Widget[player] as entity
 		if goldCoinWidget != nil {
 			goldCoinWidget<HudLabelWidget>.Text = FormatBigNumber(gold)
+		}
+	}
+
+	event __Custom6event_ShowDEnough________(player entity<Player>, tipText string) {
+		if !ContainKey(DEnough_UI_ByPlayer, player) {
+			return
+		}
+		var dEnoughUI = DEnough_UI_ByPlayer[player] as entity
+		if dEnoughUI == nil {
+			return
+		}
+		dEnoughUI<CustomUI>.IsVisible = true
+		if ContainKey(DEnough_Text_ByPlayer, player) {
+			var dEnoughTextWidget = DEnough_Text_ByPlayer[player] as entity
+			if dEnoughTextWidget != nil {
+				dEnoughTextWidget<UIWidget>.IsVisible = true
+				dEnoughTextWidget<HudLabelWidget>.Text = tipText
+			}
+		}
+		var showToken = 1
+		if ContainKey(DEnough_ShowToken, player) {
+			showToken = (DEnough_ShowToken[player] as int) + 1
+		}
+		DEnough_ShowToken[player] = showToken
+		start HideDEnoughDelayed(player, showToken)
+	}
+
+	async func HideDEnoughDelayed(player entity<Player>, showToken int) {
+		WaitForMillisecond(2000)
+		if !ContainKey(DEnough_ShowToken, player) {
+			return
+		}
+		if (DEnough_ShowToken[player] as int) != showToken {
+			return
+		}
+		SetDEnoughVisible(player, false)
+	}
+
+	func SetDEnoughVisible(player entity<Player>, visible bool) {
+		if ContainKey(DEnough_UI_ByPlayer, player) {
+			var dEnoughUI = DEnough_UI_ByPlayer[player] as entity
+			if dEnoughUI != nil {
+				dEnoughUI<CustomUI>.IsVisible = visible
+			}
+		}
+		if ContainKey(DEnough_Text_ByPlayer, player) {
+			var dEnoughTextWidget = DEnough_Text_ByPlayer[player] as entity
+			if dEnoughTextWidget != nil {
+				dEnoughTextWidget<UIWidget>.IsVisible = visible
+			}
 		}
 	}
 

@@ -131,6 +131,7 @@ graph S_WingShopUI {
 		if gold < price {
 			// 金币不足：提示两秒后消失
 			ShowNotEnoughCupForTwoSeconds(player, Wingshop[player] as entity<CustomUI>)
+			DispatchEventToEntity(__Custom6event_ShowDEnough________, globalEntity, PlatformType.Server, List<object>{player, "You don't have enough money!"})
 			return
 		}
 

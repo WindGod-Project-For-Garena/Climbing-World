@@ -962,6 +962,28 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_25679713"
+    },
+    "signal_91424070": {
+      "name": "Custom event_ShowDEnough______",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100053,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "String",
+          "value": "String",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_91424070"
     }
   },
   "customName": {
@@ -1012,7 +1034,8 @@
     "Custom event": "signal_76589813",
     "Custom event_ShowActualFallReward____": "signal_52296471",
     "Custom event_SetDragUIVisible____": "signal_10583398",
-    "Custom event__Custom6event___TowerUnlock____": "signal_25679713"
+    "Custom event__Custom6event___TowerUnlock____": "signal_25679713",
+    "Custom event_ShowDEnough______": "signal_91424070"
   },
   "children": []
 }
