@@ -50,6 +50,7 @@ graph S_WingShopUI {
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
 		LogInfo("WingshopEnter")
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
+		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, false})
 		if ContainKey(Wingshop, player) {
 			var wingshopEntity = Wingshop[player] as entity
 			wingshopEntity<CustomUI>.IsVisible = true
@@ -88,6 +89,7 @@ graph S_WingShopUI {
 	}
 
 	event __Custom6event_WingshopLeave__(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, true})
 		if ContainKey(Wingshop, player) {
 			var wingshopEntity = Wingshop[player] as entity
 			var panelWidget = GetWidgetByPath(player, wingshopEntity as entity<CustomUI>, "/Panel")

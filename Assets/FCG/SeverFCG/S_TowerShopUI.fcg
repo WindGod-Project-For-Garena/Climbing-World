@@ -86,6 +86,7 @@ graph S_TowershopUI {
 	// 玩家点击 BUY：当前 BUY 不可视，下一格 BUY 可视，对应 Trick 可视，对应 Locked 不可视
 	event __Custom6event___TowerBuyUnlock____(player entity<Player>, Towerindex int) {
 		if !ContainKey(Towershop, player) {
+			LogInfo("TowerBuyUnlock event received but player not in Towershop")
 			return
 		}
 	
@@ -94,9 +95,11 @@ graph S_TowershopUI {
 			currentUnlock = TowerUnlockState[player]
 		}
 		if Towerindex != currentUnlock + 1 {
+			LogInfo("Invalid Towerindex for unlock: " )
 			return
 		}
 		if !CanUnlockTowerByCup(player, Towerindex) {
+			LogInfo("Player does not have enough cups to unlock Tower" )
 			ShowTower4NotEnoughCupForTwoSeconds(player, Towershop[player] as entity<CustomUI>)
 			return
 		}
@@ -112,10 +115,10 @@ graph S_TowershopUI {
 
 	func CanUnlockTowerByCup(player entity<Player>, Towerindex int) bool {
 		if Towerindex == 2 {
-			return GetPlayerCupCount(player) > 2
+			return GetPlayerCupCount(player) >= 2
 		}
 		if Towerindex == 3 {
-			return GetPlayerCupCount(player) > 20
+			return GetPlayerCupCount(player) >= 20
 		}
 		return true
 	}

@@ -99,11 +99,22 @@ func ApplyTouchPos(player entity<Player>, CameraUI entity<CustomUI>, touchPos Ve
     }
     
 }
+
 event __Custom6event_drag__(  touchPos Vector2,player entity<Player>) {
   
     if player!=nil {
         ApplyTouchPos(player, CameraUI_ByPlayer[player], touchPos)
     }
+}
+event __Custom6event_SetDragUIVisible______(player entity<Player>, visible bool) {
+    if !ContainKey(CameraUI_ByPlayer, player) {
+        return
+    }
+    var uiEntity = CameraUI_ByPlayer[player]
+    if uiEntity == nil {
+        return
+    }
+    uiEntity<CustomUI>.IsVisible = visible
 }
 event OnPlayerQuit(player entity<Player>) {
     if ContainKey(CameraUI_ByPlayer, player) {

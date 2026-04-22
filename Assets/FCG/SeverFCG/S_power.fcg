@@ -5,6 +5,7 @@ import "EditorGenLib.fcc" as gen
 import "Player.fcc" as playerlib
 import "Convert.fcc" as convert
 import "Hud.fcc" as Hud
+import "Math.fcc" as math   
 
 [platform_server]
 graph S_power {
@@ -57,38 +58,54 @@ graph S_power {
         UpdatePowerEntityText(player, totalPower)
     }
 
+    func FormatFixed2ByRound(value float) string {
+        var scaled = math.Round(value * 100.0)
+        var sign = ""
+        if scaled < 0 {
+            sign = "-"
+            scaled = -scaled
+        }
+        var integerPart = scaled / 100
+        var decimalPart = scaled - integerPart * 100
+        var decimalStr = convert.ToString(decimalPart)
+        if decimalPart < 10 {
+            decimalStr = "0" + decimalStr
+        }
+        return sign + convert.ToString(integerPart) + "." + decimalStr
+    }
+
     func FormatBigNumber(value float) string {
         if value < 1000.0 {
-            return convert.NumToString(value, 0)
+            return FormatFixed2ByRound(value)
         }
         if value < 1000000.0 {
-            return convert.NumToString(value / 1000.0, 1) + "K"
+            return FormatFixed2ByRound(value / 1000.0) + "K"
         }
         if value < 1000000000.0 {
-            return convert.NumToString(value / 1000000.0, 1) + "M"
+            return FormatFixed2ByRound(value / 1000000.0) + "M"
         }
         if value < 1000000000000.0 {
-            return convert.NumToString(value / 1000000000.0, 1) + "B"
+            return FormatFixed2ByRound(value / 1000000000.0) + "B"
         }
         if value < 1000000000000000.0 {
-            return convert.NumToString(value / 1000000000000.0, 1) + "T"
+            return FormatFixed2ByRound(value / 1000000000000.0) + "T"
         }
         if value < 1000000000000000000.0 {
-            return convert.NumToString(value / 1000000000000000.0, 1) + "Qa"
+            return FormatFixed2ByRound(value / 1000000000000000.0) + "Qa"
         }
         if value < 1000000000000000000000.0 {
-            return convert.NumToString(value / 1000000000000000000.0, 1) + "Qi"
+            return FormatFixed2ByRound(value / 1000000000000000000.0) + "Qi"
         }
         if value < 1000000000000000000000000.0 {
-            return convert.NumToString(value / 1000000000000000000000.0, 1) + "Sx"
+            return FormatFixed2ByRound(value / 1000000000000000000000.0) + "Sx"
         }
         if value < 1000000000000000000000000000.0 {
-            return convert.NumToString(value / 1000000000000000000000000.0, 1) + "Sp"
+            return FormatFixed2ByRound(value / 1000000000000000000000000.0) + "Sp"
         }
         if value < 1000000000000000000000000000000.0 {
-            return convert.NumToString(value / 1000000000000000000000000000.0, 1) + "Oc"
+            return FormatFixed2ByRound(value / 1000000000000000000000000000.0) + "Oc"
         }
-        return convert.NumToString(value / 1000000000000000000000000000000.0, 1) + "No"
+        return FormatFixed2ByRound(value / 1000000000000000000000000000000.0) + "No"
     }
 
     func UpdatePowerEntityText(player entity<Player>, powerValue int) {
@@ -99,7 +116,7 @@ graph S_power {
         if powerEntity == nil {
             return
         }
-        powerEntity<Text>.Content = FormatBigNumber(convert.IntToFloat(powerValue))
+        powerEntity<Text>.Content = FormatBigNumber(powerValue)
     }
 
     event OnPlayerQuit(player entity<Player>) {

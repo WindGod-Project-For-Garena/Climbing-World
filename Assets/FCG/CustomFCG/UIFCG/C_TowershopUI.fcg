@@ -23,6 +23,7 @@ graph C_TowershopUI {
 	// 已解锁对应阶时，请求在玩家槽位生成塔（位置/朝向由 G_Tower 决定）
 	func Tower1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		if 1 <= triggerPlayer<C_PlayerTowerData>.HighestTowerIndex {
+			LogInfo("召唤塔1")	
 			DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1, triggerEntity})
 			DispatchEventToEntity(__Custom6event_ShowTowerSelect____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
 		}
@@ -58,6 +59,7 @@ graph C_TowershopUI {
 	}
 
 	func BUY2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		LogInfo("BUY2_button clicked")
 		DispatchEventToEntity(__Custom6event___TowerBuyUnlock____, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
 	}
 
@@ -75,6 +77,7 @@ graph C_TowershopUI {
 	// 服务端验证通过后回推，客户端同步最高解锁塔阶，防止本地状态与服务端不一致
 	event __Custom6event___TowerBuyUnlock____(triggerPlayer entity<Player>, Towerindex int) {
 		if triggerPlayer == GetLocalPlayer() {
+			LogInfo("本地玩家解锁塔阶" + Towerindex)
 			triggerPlayer<C_PlayerTowerData>.PlayerNameToHighestTowerIndex[triggerPlayer] = Towerindex
 			triggerPlayer<C_PlayerTowerData>.HighestTowerIndex = Towerindex
 		}

@@ -289,6 +289,22 @@ graph C_P_Climbing2 {
 		}
 	}
 
+	func FormatFixed2ByRound(value float) string {
+		var scaled = math.Round(value * 100.0)
+		var sign = ""
+		if scaled < 0 {
+			sign = "-"
+			scaled = -scaled
+		}
+		var integerPart = scaled / 100
+		var decimalPart = scaled - integerPart * 100
+		var decimalStr = convert.ToString(decimalPart)
+		if decimalPart < 10 {
+			decimalStr = "0" + decimalStr
+		}
+		return sign + convert.ToString(integerPart) + "." + decimalStr
+	}
+
 	func ShowOngroundReportorAt(landPos Vector3, rewardGold float, sessionTimeSec float, peakHeightY float) {
 		if thisEntity<Player> != GetLocalPlayer() {
 			return
@@ -312,17 +328,13 @@ graph C_P_Climbing2 {
 		var w4 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (4)")
 		var w5 = GetWidgetByPath(lp, reportor as entity<CustomUI>, "/Text (5)")
 		if w1 != nil {
-			if rewardGold == math.Round(rewardGold) {
-				w1<HudLabelWidget>.Text = convert.NumToString(rewardGold, 0)
-			} else {
-				w1<HudLabelWidget>.Text = convert.NumToString(rewardGold, 1)
-			}
+			w1<HudLabelWidget>.Text = FormatFixed2ByRound(rewardGold)
 		}
 		if w4 != nil {
-			w4<HudLabelWidget>.Text = convert.NumToString(sessionTimeSec, 1)
+			w4<HudLabelWidget>.Text = FormatFixed2ByRound(sessionTimeSec)
 		}
 		if w5 != nil {
-			w5<HudLabelWidget>.Text = convert.NumToString(math.Round(peakHeightY), 0)
+			w5<HudLabelWidget>.Text = FormatFixed2ByRound(peakHeightY)
 		}
 		reportor<CustomUI>.IsVisible = true
 		start DestroyOngroundReportorAfterDelay(reportor as entity<CustomUI>, 3000)

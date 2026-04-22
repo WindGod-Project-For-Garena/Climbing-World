@@ -156,6 +156,7 @@ graph S_treasureShopUI {
 
 	event __Custom6event_TreasureshopEnter____(player entity<Player>) {
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
+		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, false})
 		if ContainKey(TreasureShop, player) {
 			var treasureEntity = TreasureShop[player] as entity
 			treasureEntity<CustomUI>.IsVisible = true
@@ -182,6 +183,7 @@ graph S_treasureShopUI {
 	}
 
 	event __Custom6event_TreasureshopLeave____(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, true})
 		if ContainKey(TreasureShop, player) {
 			var treasureEntity = TreasureShop[player] as entity
 			var panelWidget = GetWidgetByPath(player, treasureEntity as entity<CustomUI>, "/Panel")
