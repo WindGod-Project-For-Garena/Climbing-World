@@ -14,7 +14,7 @@ graph S_camera {
     CameraUI_ByPlayer Map<entity<Player>, entity<CustomUI>> = nil
     OriginalCamera_ByPlayer Map<entity<Player>, entity<Camera>> = nil
     xOffset Map<entity<Player>, float> = nil
-    DefaultXOffsetScale float = 2.0
+    DefaultXOffsetScale float = 1.0
  
     event OnGameStart() {
         LogInfo("S_camera OnAwake")
