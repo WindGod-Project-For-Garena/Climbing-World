@@ -29,6 +29,7 @@ graph S_TowershopUI {
 
 	event __Custom6event_TowershopEnter____(player entity<Player>, triggerEntity entity<Entity>, towerSummonIndex int) {
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
+		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, false})
 		if ContainKey(Towershop, player) {
 			var TowershopEntity = Towershop[player] as entity
 			TowershopEntity<CustomUI>.IsVisible = true
@@ -66,6 +67,7 @@ graph S_TowershopUI {
 	}
 
 	event __Custom6event_TowershopLeave____(player entity<Player>) {
+		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, true})
 		if ContainKey(Towershop, player) {
 			var TowershopEntity = Towershop[player] as entity
 			var panelWidget = GetWidgetByPath(player, TowershopEntity as entity<CustomUI>, "/Panel")
