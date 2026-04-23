@@ -57,6 +57,7 @@ graph C_P_Climbing2 {
 	lastSentIsClimb bool = false
 	lastSentIsFall bool = false
 	lastSentIsHanging bool = false
+	hasTriggeredTiredUI bool = false
 	pendingRewardLandPos Vector3 = Vector3{0, 0, 0}
 	pendingRewardSessionTimeSec float = 0
 	pendingRewardPeakHeightY float = 0
@@ -110,6 +111,7 @@ graph C_P_Climbing2 {
 		}
 		if bIsClimb == false && ishanging == false {
 			climbingStartFrame = 0
+			hasTriggeredTiredUI = false
 		}
 		// 玩家 Y 轴高度大于 100 时：传送到 ATower 的 TeleportPoint，并通知 G_Climbing 停止攀爬动画（已弃用 C_Climbleavetrigger）
 		if (bIsClimb == true || ishanging == true) && GetLocalPlayer()<Player>.Position.Y > 9275 {
@@ -147,6 +149,10 @@ graph C_P_Climbing2 {
 			// WingSpeed<464 且攀爬时间≥20s 后，速度每秒下降 5%（FixedUpdate 约 30 次/秒）
 			var climbingFrames = frame - climbingStartFrame
 			if WingSpeed < 464 && climbingFrames >= 600 {
+				if !hasTriggeredTiredUI {
+					hasTriggeredTiredUI = true
+					DispatchEventToEntity(__Custom6event_ShowTired______, globalEntity, PlatformType.Server, List<object>{player})
+				}
 			
 				WingSpeedDecay = WingSpeedDecay * (1.0 - 0.05/30.0)
 				if WingSpeedDecay < 1.0 {
@@ -207,6 +213,8 @@ graph C_P_Climbing2 {
 		if Curent_height.Y < 2 {
 				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
 				SetLocalPlayerPosition(Curent_height)
+				DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{player})
+				StartLandingCameraShake(Curent_height)
 				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
 				fallVelocity = 0
 			bIsFall = false
@@ -253,6 +261,11 @@ graph C_P_Climbing2 {
 		
 		DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
 		}
+	}
+
+	func StartLandingCameraShake(basePos Vector3) {
+		landingShakeSeq = landingShakeSeq + 1
+		start LandingCameraShakeRoutine(landingShakeSeq)
 	}
 
 	async func LandingCameraShakeRoutine(shakeSeq int) {

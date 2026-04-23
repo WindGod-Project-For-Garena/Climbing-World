@@ -984,6 +984,23 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_91424070"
+    },
+    "signal_12386035": {
+      "name": "Custom event_ShowTired____",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100054,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        }
+      ],
+      "propCount": 1,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_12386035"
     }
   },
   "customName": {
@@ -1035,7 +1052,8 @@
     "Custom event_ShowActualFallReward____": "signal_52296471",
     "Custom event_SetDragUIVisible____": "signal_10583398",
     "Custom event__Custom6event___TowerUnlock____": "signal_25679713",
-    "Custom event_ShowDEnough______": "signal_91424070"
+    "Custom event_ShowDEnough______": "signal_91424070",
+    "Custom event_ShowTired____": "signal_12386035"
   },
   "children": []
 }

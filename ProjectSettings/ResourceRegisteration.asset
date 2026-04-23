@@ -209,6 +209,18 @@
             "fileType": "ui"
           },
           "scriptName": "Buy_button",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "bb708rdpl3t-mob4p0cl-auzedrtlzto",
+            "filePath": "Assets\\UI\\Tired.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Tired",
           "children": [],
           "_isNewInSession": true
         }
