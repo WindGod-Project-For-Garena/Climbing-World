@@ -220,7 +220,7 @@ graph C_P_Climbing2 {
 					fallDistance = 0
 				}
 				var sessionTimeSec float = 0
-				if climbSessionStartFrame == 0 {
+				if climbSessionStartFrame != 0 {
 					sessionTimeSec = (frame - climbSessionStartFrame) as float / 30.0
 				}
 				var peakH = maxSessionHeightY
@@ -339,6 +339,13 @@ graph C_P_Climbing2 {
 		return FormatFixed2ByRound(value / 1000000000000000000000000000000.0) + "No"
 	}
 
+	func FormatSessionTime(sessionTimeSec float) string {
+		if sessionTimeSec >= 100.0 {
+			return convert.NumToString(math.Round(sessionTimeSec), 0)
+		}
+		return FormatFixed2ByRound(sessionTimeSec)
+	}
+
 	func ShowOngroundReportorAt(landPos Vector3, rewardGold float, sessionTimeSec float, peakHeightY float) {
 		if thisEntity<Player> != GetLocalPlayer() {
 			return
@@ -365,7 +372,7 @@ graph C_P_Climbing2 {
 			w1<HudLabelWidget>.Text = FormatBigNumber(rewardGold)
 		}
 		if w4 != nil {
-			w4<HudLabelWidget>.Text = FormatFixed2ByRound(sessionTimeSec)
+			w4<HudLabelWidget>.Text = FormatSessionTime(sessionTimeSec)
 		}
 		if w5 != nil {
 			w5<HudLabelWidget>.Text = FormatBigNumber(peakHeightY)

@@ -198,6 +198,19 @@
           },
           "scriptName": "DEnough",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "70am5r9sii7-moaxo4c0-trsku28egsf",
+            "filePath": "Assets\\UI\\Buy_button.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Buy_button",
+          "children": [],
+          "_isNewInSession": true
         }
       ]
     },
@@ -501,6 +514,18 @@
             "fileType": "texture"
           },
           "scriptName": "HintDirection",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "6q86lvhgbxa-moax4l1y-qvbkjjxznc",
+            "filePath": "Assets\\UI\\material\\Button\\Jumping.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Jumping",
           "children": []
         }
       ]
