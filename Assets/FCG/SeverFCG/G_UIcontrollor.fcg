@@ -15,6 +15,7 @@ import "EditorGenLib.fcc" as gen
 import "Convert.fcc" as convert
 import "Math.fcc" as math
 import "./G_economy.fcg" as G_economy
+import "./S_power.fcg" as S_power
 
 
 [platform_server]
@@ -27,6 +28,7 @@ graph G_UIcontrollor {
 	Realtime_Height Map<object, object> = nil
 	Current_Speed Map<object, object> = nil
 	GoldCoin_Widget Map<object, object> = nil
+	GoldCoin_Muti_Widget Map<object, object> = nil
 	DEnough_UI_ByPlayer Map<object, object> = nil
 	DEnough_Text_ByPlayer Map<object, object> = nil
 	DEnough_ShowToken Map<object, object> = nil
@@ -42,6 +44,7 @@ graph G_UIcontrollor {
 		Realtime_Height = map.New()
 		Current_Speed = map.New()
 		GoldCoin_Widget = map.New()
+		GoldCoin_Muti_Widget = map.New()
 		DEnough_UI_ByPlayer = map.New()
 		DEnough_Text_ByPlayer = map.New()
 		DEnough_ShowToken = map.New()
@@ -79,6 +82,11 @@ graph G_UIcontrollor {
 				gold = globalEntity<G_economy>.PlayerGold[player]
 			}
 			goldCoinWidget<HudLabelWidget>.Text = FormatBigNumber(gold)
+		}
+		var goldCoinMutiWidget = GetWidgetByPath(player, P_IngameHudEntity as entity<CustomUI>, "/Goldcoin_muti")
+		if goldCoinMutiWidget != nil {
+			GoldCoin_Muti_Widget[player] = goldCoinMutiWidget
+			SetGoldCoinMultiplierUI(player, globalEntity<S_power>.GetPlayerPowerValue(player))
 		}
 		if DEnoughEntity != nil {
 			DEnoughEntity<CustomUI>.IsVisible = false
@@ -233,6 +241,16 @@ graph G_UIcontrollor {
 		var goldCoinWidget = GoldCoin_Widget[player] as entity
 		if goldCoinWidget != nil {
 			goldCoinWidget<HudLabelWidget>.Text = FormatBigNumber(gold)
+		}
+	}
+
+	func SetGoldCoinMultiplierUI(player entity<Player>, powerValue float) {
+		if !ContainKey(GoldCoin_Muti_Widget, player) {
+			return
+		}
+		var goldCoinMutiWidget = GoldCoin_Muti_Widget[player] as entity
+		if goldCoinMutiWidget != nil {
+			goldCoinMutiWidget<HudLabelWidget>.Text = globalEntity<S_power>.FormatPowerDisplayValue(powerValue)
 		}
 	}
 

@@ -70,6 +70,10 @@ graph S_power {
         return powerValue
     }
 
+    func FormatPowerDisplayValue(powerValue float) string {
+        return FormatBigNumber(powerValue)
+    }
+
     func FormatFixed2ByRound(value float) string {
         var scaled = math.Round(value * 100.0)
         var sign = ""

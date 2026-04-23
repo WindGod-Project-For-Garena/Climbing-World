@@ -56,7 +56,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 83,
+      "tempIndex": 151,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -72,9 +72,9 @@
       "propsData": {
         "TextKey": "0",
         "fontColor": {
-          "r": 255,
-          "g": 255,
-          "b": 255,
+          "r": 246,
+          "g": 206,
+          "b": 41,
           "a": 1
         },
         "IsBillboard": true,

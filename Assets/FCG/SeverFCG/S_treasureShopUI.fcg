@@ -10,6 +10,8 @@ import "Convert.fcc" as convert
 import "Math.fcc" as math
 import "CSVData.fcc" as csvdata
 import "./G_economy.fcg" as G_economy
+import "./G_UIcontrollor.fcg" as G_UIcontrollor
+import "./S_power.fcg" as S_power
 [platform_server]
 graph S_treasureShopUI {
 	TreasureShop Map<object, object> = nil
@@ -453,8 +455,10 @@ graph S_treasureShopUI {
 		globalEntity<G_economy>.PlayerGold[player] = newGold
 		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
 		var growthValue = RollPowerGrowthByProbability(treasureIndex)
+		var nextPowerValue = globalEntity<S_power>.GetPlayerPowerValue(player) + growthValue
 		LogInfo("TreasureRollResult chest=" + convert.ToString(treasureIndex) + " price=" + FormatPrice(treasurePrice) + " goldBefore=" + FormatPrice(gold) + " goldAfter=" + FormatPrice(newGold) + " growth=" + convert.ToString(growthValue) + " tier=" + convert.ToString(GetGrowthTierByValue(treasureIndex, growthValue)))
 		DispatchEventToEntity(__Custom6event_AddPowerGrowth______, globalEntity, PlatformType.Server, List<object>{player, math.Round(growthValue * 100.0)})
+		globalEntity<G_UIcontrollor>.SetGoldCoinMultiplierUI(player, nextPowerValue)
 
 
 		var effectEntity entity<CustomUI>
