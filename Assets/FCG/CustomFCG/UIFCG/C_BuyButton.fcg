@@ -1,0 +1,30 @@
+import "StdLibrary.fcc" as std
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
+import "List.fcc" as List
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_BuyButton {
+	PendingShopType int = 0
+
+	event OnAwake() {
+		if thisEntity != nil {
+			thisEntity<CustomUI>.IsVisible = false
+		}
+	}
+
+	func Jumping_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		if triggerPlayer != GetLocalPlayer() {
+			return
+		}
+		if thisEntity != nil {
+			thisEntity<CustomUI>.IsVisible = false
+		}
+		if PendingShopType == 2 {
+			DispatchEventToEntity(__Custom6event_TreasureshopEnter____, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+			return
+		}
+		DispatchEventToEntity(__Custom6event_WingshopEnter__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+}

@@ -59,6 +59,17 @@ graph S_power {
         UpdatePowerEntityText(player, totalPower)
     }
 
+    func GetPlayerPowerValue(player entity<Player>) float {
+        if !ContainKey(PlayerPowerValue, player) {
+            return 1.0
+        }
+        var powerValue float = PlayerPowerValue[player]
+        if powerValue < 1.0 {
+            return 1.0
+        }
+        return powerValue
+    }
+
     func FormatFixed2ByRound(value float) string {
         var scaled = math.Round(value * 100.0)
         var sign = ""

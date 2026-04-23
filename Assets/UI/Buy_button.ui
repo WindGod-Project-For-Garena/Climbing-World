@@ -27,7 +27,10 @@
             "selfValue": true,
             "valueTag": "activeValue"
           },
-          "unlockedValue": null,
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "propsData": {
             "activeSelf": true,
             "transform": {
@@ -75,7 +78,7 @@
                   "eventName": "OnClick",
                   "funcKey": "Jumping_button",
                   "type": "ugcscript",
-                  "fileID": "2cbpz26xswv-mm3bn2ek-3bsyiq2oyjd"
+                  "fileID": "jh0yc1toi0j-moaxudow-9opb6nlns5w"
                 }
               ],
               "disableCollider": false,
@@ -135,7 +138,10 @@
         "selfValue": true,
         "valueTag": "activeValue"
       },
-      "unlockedValue": null,
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "propsData": {
         "activeSelf": true,
         "transform": {
@@ -229,7 +235,10 @@
     "selfValue": true,
     "valueTag": "activeValue"
   },
-  "unlockedValue": null,
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
   "propsData": {
@@ -260,7 +269,16 @@
     "alpha": 100,
     "priority": 0
   },
-  "ecaScripts": [],
+  "ecaScripts": [
+    {
+      "fileId": "jh0yc1toi0j-moaxudow-9opb6nlns5w",
+      "filePath": "Assets\\FCG\\CustomFCG\\UIFCG\\C_BuyButton.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
+    }
+  ],
   "ecaProps": {
     "CustomHud": {},
     "Entity": {}

@@ -5,23 +5,46 @@
 import "StdLibrary.fcc" as std
 import "LevelObject.fcc" as levelobject
 import "List.fcc" as List
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
 import "EditorGenLib.fcc" as gen
+import "../UIFCG/C_BuyButton.fcg" as C_BuyButton
 
 [platform_client]
 graph C_Wingshoptrigger {
+	buyButtonUI entity<CustomUI> = nil
 
 	event OnAwake() {
 		
 	}
 
-	event OnPlayerEnter(player entity<Player>) {
-		DispatchEventToEntity(__Custom6event_RegisterWingshopHintPosition____, globalEntity, PlatformType.Server, List<object>{thisEntity<Transform>.Position})
+	func ShowBuyButton() {
+		if buyButtonUI == nil {
+			CreateCustomUIClient(out var createdEntity, EResUI.Buy_button)
+			if createdEntity == nil {
+				return
+			}
+			buyButtonUI = createdEntity
+		}
+		buyButtonUI<C_BuyButton>.PendingShopType = 1
+		buyButtonUI<CustomUI>.IsVisible = true
+	}
 
-		
-		DispatchEventToEntity(__Custom6event_WingshopEnter__, globalEntity, PlatformType.Server, List<object>{player})
+	event OnPlayerEnter(player entity<Player>) {
+		if player != GetLocalPlayer() {
+			return
+		}
+		DispatchEventToEntity(__Custom6event_RegisterWingshopHintPosition____, globalEntity, PlatformType.Server, List<object>{thisEntity<Transform>.Position})
+		ShowBuyButton()
 	}
 
 	event OnPlayerLeave(player entity<Player>) {
+		if player != GetLocalPlayer() {
+			return
+		}
+		if buyButtonUI != nil {
+			buyButtonUI<CustomUI>.IsVisible = false
+		}
 		DispatchEventToEntity(__Custom6event_WingshopLeave__, globalEntity, PlatformType.Server, List<object>{player})
 	}
 }

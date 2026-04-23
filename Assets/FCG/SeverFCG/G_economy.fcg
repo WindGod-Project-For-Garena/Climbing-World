@@ -6,7 +6,6 @@ import "Map.fcc" as map
 import "Player.fcc" as player
 import "List.fcc" as list
 import "EditorGenLib.fcc" as gen
-import "Convert.fcc" as convert
 import "./S_power.fcg" as S_power
 import "./G_Tower.fcg" as G_Tower
 
@@ -31,7 +30,7 @@ graph G_economy {
 		if ContainKey(PlayerGold, player) {
 			var gold float = PlayerGold[player]
 			gold = gold - price
-			if gold < 0 {
+			if gold < 0.0 {
 				return
 			}
 			PlayerGold[player] = gold
@@ -55,22 +54,15 @@ graph G_economy {
 	}
 
 	event __Custom6event_AddFallReward____(player entity<Player>, fallY float) {
-		if fallY <= 0 {
+		if fallY <= 0.0 {
 			return
 		}
 		if ContainKey(PlayerGold, player) {
-			var powerValue = 1.0
-			if ContainKey(globalEntity<S_power>.PlayerPowerValue, player) {
-				powerValue = globalEntity<S_power>.PlayerPowerValue[player]
-			}
-			if powerValue <= 1 {
-				powerValue=1.0
-			}
-
-			var towerIndex = globalEntity<G_Tower>.GetPlayerEconomyTowerIndex(player)
-			var towerEconomyMultiplier = GetTowerEconomyMultiplier(towerIndex)
-			var reward = fallY * powerValue * towerEconomyMultiplier
-			if reward <= 0 {
+			var powerValue float = globalEntity<S_power>.GetPlayerPowerValue(player)
+			var towerIndex int = globalEntity<G_Tower>.GetPlayerEconomyTowerIndex(player)
+			var towerEconomyMultiplier float = GetTowerEconomyMultiplier(towerIndex)
+			var reward float = fallY * powerValue * towerEconomyMultiplier
+			if reward <= 0.0 {
 				return
 			}
 			var gold float = PlayerGold[player]
