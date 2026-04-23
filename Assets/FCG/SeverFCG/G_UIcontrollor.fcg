@@ -66,6 +66,10 @@ graph G_UIcontrollor {
 		if labelWidget != nil {
 			Realtime_Height[player] = labelWidget
 		}
+		var avatarProfileWidget = GetWidgetByPath(player, Avatar as entity<CustomUI>, "/Panel (1)/Avatar (1)")
+		if avatarProfileWidget != nil {
+			avatarProfileWidget<UIWidgetProfile>.AccountID = player<Player>.UserUID
+		}
 		var currentSpeedWidget = GetWidgetByPath(player, P_IngameHudEntity as entity<CustomUI>, "/Current_Speed")
 	
 		if currentSpeedWidget != nil {
