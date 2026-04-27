@@ -1,13 +1,3 @@
-// 一比一转换自 C_Climbing_starttrigger.eca（未修改 ECA）
-// variables: entercount(Int=0), Climbing_UI(CustomHud=null)
-// block OnAwake -> grs vLRKSrNUC=1
-// block OnPlayerEnter(P1:Player) -> slsv4 signal_36346128(ow=GetGlobalEntity,P1)
-// block OnPlayerLeave(P1:Player) -> slsv4 signal_87440986(ow=GetGlobalEntity,P1)
-// block signal_36606368(ow,P1) -> ife1: if entercount==1 then grs entercount+=1; print PrintString("进入了")
-//
-// 【扩展】当本脚本挂在场景路径「…/Empty/…/Custom trigger」下的 Custom trigger 上时，本地玩家进入触发器会自动开始攀爬（与 C_Climbing_button.Pressclimbing_button 一致：状态 + 服务端 Pressclimbing 动画）。
-// 通过沿父节点查找名为 Empty 的祖先来识别；G_Tower 动态生成的 ATower 预制体下无 Empty 节点，仍仅能通过原有 UI 按钮攀爬，其它交互不变。
-
 import "StdLibrary.fcc" as std
 import "LevelObject.fcc" as levelobject
 import "EditorGenLib.fcc" as gen
@@ -21,82 +11,60 @@ graph C_Climbing_starttrigger {
 
 	event OnAwake() {
 		entercount = 1
-		
 	}
 
-	// 沿场景父链查找是否存在指定名称的祖先（用于识别 Empty 根下的攀爬触发器）
-
-
-	// 与 Pressclimbing_button 对齐：保证客户端状态与服务端 Climbing 动画、重力一致；仅应对本地玩家调用
 	func ApplyAutoClimbSameAsPressButton(player entity<Player>) {
-	
-		
 	}
 
 	event OnPlayerEnter(player entity<Player>) {
+		if player != GetLocalPlayer() {
+			return
+		}
+		Current_forward = Vector3{0, 0, 0}
 
-	
-		// 获取 Custom trigger（该实体）下的子节点 TeleportPoint 的位置坐标
 		var teleportPoint = GetChildByName(thisEntity, "TeleportPoint")
 		if teleportPoint != nil {
 			player<C_P_Climbing2>.HighClimbTeleportPos = teleportPoint<Transform>.Position
-		
 		}
-		// 塔速度衰减：实际速度 = 原翅膀速度 * (1 - 塔衰减/100)
-		// 改为按生成塔类型判定：ATower 衰减0%，BTower 衰减93.5%，CTower 衰减99.5%
+
 		if HasTag(thisEntity, "Tower_1") {
-		
 			Current_forward = Vector3{-1, 0, 0}
 		} else if HasTag(thisEntity, "Tower_2") {
-			
 			Current_forward = Vector3{1, 0, 0}
 		} else if HasTag(thisEntity, "Tower_3") {
-			
 			Current_forward = Vector3{0, 0, 1}
 		} else if HasTag(thisEntity, "Tower_4") {
-		
 			Current_forward = Vector3{0, 0, -1}
-			
 		}
+
 		player<C_P_Climbing2>.TowerSpeedMultiplier = 1.0
 		if HasTag(thisEntity, "BTower") {
 			player<C_P_Climbing2>.TowerSpeedMultiplier = 0.065
 		} else if HasTag(thisEntity, "CTower") {
 			player<C_P_Climbing2>.TowerSpeedMultiplier = 0.005
 		}
-		
-		// 无塔标签时 Forward 可能为 0，避免 SetLocalPlayerForward 使用零向量导致异常，与默认攀爬朝向一致
+
 		if Current_forward.X == 0 && Current_forward.Y == 0 && Current_forward.Z == 0 {
 			Current_forward = Vector3{1, 0, 0}
 		}
-		
 		player<C_P_Climbing2>.Curent_Forward = Current_forward
-		
-		// 原有逻辑：通知服务端显示攀爬 UI（ClimbingUI）、创建/显示按钮等
-		DispatchEventToEntity(__Custom6event_entertrigger__, globalEntity, PlatformType.Server, List<object>{player})
 
-		// 【自动攀爬】仅 Empty 层级下的 Custom trigger + 本地玩家：等价于按下 Climbing（Press），不改变 Jumping/Release/AutoClimbing 等其它按钮逻辑
-		if  player == GetLocalPlayer() {
-			// 重置状态追踪，确保 MaybeSendClimbStateChanged 在下一帧一定重新 dispatch
-			player<C_P_Climbing2>.lastSentIsClimb = false
-			player<C_P_Climbing2>.lastSentIsFall = false
-			player<C_P_Climbing2>.lastSentIsHanging = false
-			player<C_P_Climbing2>.bIsClimb = true
-			player<C_P_Climbing2>.ishanging = false
-			player<C_P_Climbing2>.player = player
-			player<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player, 1.0})
+		if player<C_P_Climbing2>.IsFalling() {
+			return
+		}
+
+		player<C_P_Climbing2>.ShowClimbingButtonUI()
+		if player<C_P_Climbing2>.StartClimbing(player, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true) {
 			DispatchEventToEntity(__Custom6event_TowerGuide_EndOnAutoClimb____, player, PlatformType.Server, nil)
 		}
-		
 	}
 
 	event OnPlayerLeave(player entity<Player>) {
-		if player<C_P_Climbing2>.bIsClimb == false && player<C_P_Climbing2>.ishanging == false {
-			DispatchEventToEntity(__Custom6event_leavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
-
+		if player != GetLocalPlayer() {
+			return
 		}
-	
-	
-}
+		if player<C_P_Climbing2>.bIsClimb == false && player<C_P_Climbing2>.ishanging == false {
+			player<C_P_Climbing2>.HideClimbingButtonUI()
+		}
+	}
 }

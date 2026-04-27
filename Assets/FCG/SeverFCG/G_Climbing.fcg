@@ -59,6 +59,9 @@ graph G_Climbing {
 	}
 
 	func Climbing(player entity<Player>, AnimationSpeed float) {
+		if ContainKey(playerIsJumping, player) && (playerIsJumping[player] as bool) {
+			return
+		}
 		// ECA: if CustomGravity!=0 then Set 0; StopAnimation(Falling); StopAnimation(Dance); PlayAnimation(Climbing,1,Loop)
 		var isFirstClimb = !ContainKey(playerIsClimbing, player) || !(playerIsClimbing[player] as bool)
 		if isFirstClimb {
@@ -98,7 +101,10 @@ graph G_Climbing {
 			return
 		}
 		playerIsJumping[player] = true
+		map.Remove(playerIsClimbing, player)
 		map.Remove(playerClimbingStopGuard, player)
+		map.Remove(lastClimbAnimSpeed, player)
+		map.Remove(climbSpeedUpdateCounter, player)
 		
 		
 		// ECA: if CustomGravity==0 then Stop(Climbing); Play(Falling,1,Loop); if DirectPositionVec3.Y<1 then Stop(Falling) else Set CustomGravity=-9.8
@@ -147,6 +153,9 @@ graph G_Climbing {
 	}
 
 	func Climbing_Stop(player entity<Player>) {
+		if ContainKey(playerIsJumping, player) && (playerIsJumping[player] as bool) {
+			return
+		}
 		if ContainKey(playerClimbingStopGuard, player) && (playerClimbingStopGuard[player] as bool) {
 			return
 		}

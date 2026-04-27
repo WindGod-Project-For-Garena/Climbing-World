@@ -53,6 +53,12 @@ graph C_P_Climbing2 {
 	landingShakeSeq int = 0
 	DragUI entity<CustomUI> = nil
 	CreateDragUI bool = false
+	ClimbingButtonUI entity<CustomUI> = nil
+	ClimbStateIdle int = 0
+	ClimbStateClimbing int = 1
+	ClimbStateHanging int = 2
+	ClimbStateFalling int = 3
+	climbState int = 0
 	// 上一次已发送给服务端的爬墙状态，用于防止每帧重复 dispatch 导致 Jumping_button 闪烁
 	lastSentIsClimb bool = false
 	lastSentIsFall bool = false
@@ -66,7 +72,9 @@ graph C_P_Climbing2 {
 
 	event OnAwake() {   
 		bIsClimb = false
+		bIsFall = false
 		ishanging = false
+		climbState = ClimbStateIdle
 		lastSentIsClimb = false
 		lastSentIsFall = false
 		lastSentIsHanging = false
@@ -81,6 +89,130 @@ graph C_P_Climbing2 {
 			lastSentIsHanging = ishanging
 			DispatchEventToEntity(__Custom6event_ClimbStateChanged__, globalEntity, PlatformType.Server, List<object>{GetLocalPlayer(), bIsClimb, bIsFall, ishanging})
 		}
+	}
+
+	func ForceSendClimbStateChanged() {
+		lastSentIsClimb = !bIsClimb
+		lastSentIsFall = !bIsFall
+		lastSentIsHanging = !ishanging
+		MaybeSendClimbStateChanged()
+	}
+
+	func SetClimbState(nextState int) {
+		climbState = nextState
+		bIsClimb = false
+		bIsFall = false
+		ishanging = false
+		if nextState == ClimbStateClimbing {
+			bIsClimb = true
+		} else if nextState == ClimbStateHanging {
+			ishanging = true
+		} else if nextState == ClimbStateFalling {
+			bIsFall = true
+		}
+		MaybeSendClimbStateChanged()
+	}
+
+	func NormalizeClimbState() {
+		if bIsFall == true {
+			SetClimbState(ClimbStateFalling)
+		} else if bIsClimb == true {
+			SetClimbState(ClimbStateClimbing)
+		} else if ishanging == true {
+			SetClimbState(ClimbStateHanging)
+		} else {
+			SetClimbState(ClimbStateIdle)
+		}
+	}
+
+	func IsFalling() bool {
+		return climbState == ClimbStateFalling || bIsFall == true
+	}
+
+	func ShowClimbingButtonUI() {
+		if thisEntity<Player> != GetLocalPlayer() {
+			return
+		}
+		if ClimbingButtonUI == nil {
+			CreateCustomUIClient(out var createdEntity, EResUI.ClimbingUI)
+			if createdEntity == nil {
+				return
+			}
+			ClimbingButtonUI = createdEntity
+		}
+		ClimbingButtonUI<CustomUI>.IsVisible = true
+	}
+
+	func HideClimbingButtonUI() {
+		if ClimbingButtonUI == nil {
+			return
+		}
+		ClimbingButtonUI<CustomUI>.IsVisible = false
+	}
+
+	func StartClimbing(targetPlayer entity<Player>, startPos Vector3, dispatchNow bool) bool {
+		if IsFalling() {
+			return false
+		}
+		player = targetPlayer
+		Curent_height = startPos
+		Tower_Height = startPos.Y
+		SetClimbState(ClimbStateClimbing)
+		if dispatchNow {
+			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{targetPlayer, 1.0})
+		}
+		return true
+	}
+
+	func StartHanging(targetPlayer entity<Player>, hangPos Vector3, dispatchNow bool) bool {
+		if IsFalling() {
+			return false
+		}
+		player = targetPlayer
+		Curent_height = hangPos
+		Tower_Height = hangPos.Y
+		SetClimbState(ClimbStateHanging)
+		if dispatchNow {
+			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{targetPlayer})
+		}
+		return true
+	}
+
+	func StartFalling(targetPlayer entity<Player>, startPos Vector3, dispatchNow bool) bool {
+		var wasFalling = IsFalling()
+		HideClimbingButtonUI()
+		player = targetPlayer
+		Curent_height = startPos
+		if !wasFalling {
+			fallVelocity = 0
+			SwitchFall = true
+			Tower_Height = 0
+		}
+		SetClimbState(ClimbStateFalling)
+		if dispatchNow && !wasFalling {
+			DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{targetPlayer})
+		}
+		return true
+	}
+
+	func ResetClimbStateAt(targetPlayer entity<Player>, pos Vector3) {
+		HideClimbingButtonUI()
+		player = targetPlayer
+		Curent_height = pos
+		climbState = ClimbStateIdle
+		bIsClimb = false
+		bIsFall = false
+		ishanging = false
+		fallVelocity = 0
+		SwitchFall = true
+		climbingStartFrame = 0
+		climbSessionStartFrame = 0
+		maxSessionHeightY = 0
+		Tower_Height = 0
+		WingSpeedDecay = WingSpeed
+		FallStartY = 0
+		hasPendingRewardReport = false
+		ForceSendClimbStateChanged()
 	}
 
 	event OnPlayerJoin(joinedPlayer entity<Player>) {
@@ -99,167 +231,135 @@ graph C_P_Climbing2 {
     
 	event OnFixedUpdate() {
 		frame = frame + 1
-		if (bIsClimb || ishanging) && climbSessionStartFrame == 0 {
+		NormalizeClimbState()
+		if player == nil {
+			player = GetLocalPlayer()
+		}
+
+		if (climbState == ClimbStateClimbing || climbState == ClimbStateHanging) && climbSessionStartFrame == 0 {
 			climbSessionStartFrame = frame
 			maxSessionHeightY = GetLocalPlayer()<Player>.Position.Y
 		}
-		if bIsClimb || bIsFall || ishanging {
-			var pySession = GetLocalPlayer()<Player>.Position.Y
-			if pySession > maxSessionHeightY {
-				maxSessionHeightY = pySession
+		if climbState != ClimbStateIdle {
+			var smSessionY = GetLocalPlayer()<Player>.Position.Y
+			if smSessionY > maxSessionHeightY {
+				maxSessionHeightY = smSessionY
 			}
 		}
-		if bIsClimb == false && ishanging == false {
+		if climbState != ClimbStateClimbing && climbState != ClimbStateHanging {
 			climbingStartFrame = 0
 			hasTriggeredTiredUI = false
 		}
-		// 玩家 Y 轴高度大于 100 时：传送到 ATower 的 TeleportPoint，并通知 G_Climbing 停止攀爬动画（已弃用 C_Climbleavetrigger）
-		if (bIsClimb == true || ishanging == true) && GetLocalPlayer()<Player>.Position.Y > 9275 {
-		
+
+		if (climbState == ClimbStateClimbing || climbState == ClimbStateHanging) && GetLocalPlayer()<Player>.Position.Y > 9275 {
 			SetLocalPlayerPosition(HighClimbTeleportPos)
-			
 			SetLocalPlayerForward(defaultForward)
-			bIsClimb = false
-			bIsFall = false
-			ishanging = false
 			fallVelocity = 0
-			Tower_Height =9280
+			Tower_Height = 9280
 			Curent_height = Vector3{HighClimbTeleportPos.X, HighClimbTeleportPos.Y, HighClimbTeleportPos.Z}
-	
+			climbSessionStartFrame = 0
 			maxSessionHeightY = 0
-			MaybeSendClimbStateChanged()
+			HideClimbingButtonUI()
+			SetClimbState(ClimbStateIdle)
 			DispatchEventToEntity(__Custom6event_ClimbLeavetrigger__, globalEntity, PlatformType.Server, List<object>{player})
-			
+			return
 		}
-		// 当玩家当前 Y 与 Tower_Height 的差值（下坠距离）大于 20 时，设为下落状态并记录下落起始 Y，用于落地奖励
-		var currentY = GetLocalPlayer()<Player>.Position.Y
-		if (Tower_Height - currentY) > 10{
-		
+
+		var smCurrentY = GetLocalPlayer()<Player>.Position.Y
+		if (climbState == ClimbStateClimbing || climbState == ClimbStateHanging) && (Tower_Height - smCurrentY) > 10 {
 			FallStartY = Tower_Height
-			bIsFall = true
-			Tower_Height =0
+			StartFalling(GetLocalPlayer(), Vector3{GetLocalPlayer()<Player>.Position.X, smCurrentY, GetLocalPlayer()<Player>.Position.Z}, true)
 		}
-		if bIsClimb == true {
-			
-		
-			// 记录攀爬开始帧
+
+		if climbState == ClimbStateFalling {
+			if FallStartY != 9280 && SwitchFall == true {
+				FallStartY = Round(GetLocalPlayer()<Player>.Position.Y)
+				SwitchFall = false
+			}
+
+			SetLocalPlayerForward(Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
+			var smFallY = GetLocalPlayer()<Player>.Position.Y
+			var smGravity float = 39.2/30
+			fallVelocity = fallVelocity + smGravity
+			var smMaxFallSpeed float = 4000
+			if fallVelocity > smMaxFallSpeed {
+				fallVelocity = smMaxFallSpeed
+			}
+			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, smFallY - fallVelocity, GetLocalPlayer()<Player>.Position.Z}
+			SetLocalPlayerPosition(Curent_height)
+			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, GetLocalPlayer()<Player>.Position.Y})
+			var smFallHeightVal = Curent_height.Y * 535.0 / 9280.0 - 312.0
+			DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, smFallHeightVal})
+			MaybeSendClimbStateChanged()
+
+			if Curent_height.Y < 1 {
+				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
+				SetLocalPlayerPosition(Curent_height)
+				DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{player})
+				StartLandingCameraShake(Curent_height)
+				SetLocalPlayerForward(Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
+				fallVelocity = 0
+				SwitchFall = true
+				Tower_Height = 0
+				var smLandPos = GetLocalPlayer()<Player>.Position
+				var smFallDistance = FallStartY - Curent_height.Y
+				if smFallDistance < 0 {
+					smFallDistance = 0
+				}
+				var smSessionTimeSec float = 0
+				if climbSessionStartFrame != 0 {
+					smSessionTimeSec = (frame - climbSessionStartFrame) as float / 30.0
+				}
+				var smPeakH = maxSessionHeightY
+				pendingRewardLandPos = smLandPos
+				pendingRewardSessionTimeSec = smSessionTimeSec
+				pendingRewardPeakHeightY = smPeakH
+				hasPendingRewardReport = smFallDistance > 0
+				climbSessionStartFrame = 0
+				maxSessionHeightY = 0
+				SetClimbState(ClimbStateIdle)
+				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, smLandPos})
+				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, 0})
+				DispatchEventToEntity(__Custom6event_AddFallReward____, globalEntity, PlatformType.Server, List<object>{player, smFallDistance})
+				FallStartY = 0
+				frame = 0
+				WingSpeedDecay = WingSpeed
+			}
+		} else if climbState == ClimbStateClimbing {
 			if climbingStartFrame == 0 {
 				climbingStartFrame = frame
 			}
-			// WingSpeed<464 且攀爬时间≥20s 后，速度每秒下降 5%（FixedUpdate 约 30 次/秒）
-			var climbingFrames = frame - climbingStartFrame
-			if WingSpeed < 464 && climbingFrames >= 600 {
+			var smClimbingFrames = frame - climbingStartFrame
+			if WingSpeed < 464 && smClimbingFrames >= 600 {
 				if !hasTriggeredTiredUI {
 					hasTriggeredTiredUI = true
 					DispatchEventToEntity(__Custom6event_ShowTired______, globalEntity, PlatformType.Server, List<object>{player})
 				}
-			
 				WingSpeedDecay = WingSpeedDecay * (1.0 - 0.05/30.0)
 				if WingSpeedDecay < 1.0 {
 					WingSpeedDecay = 1.0
 				}
 			}
 
-			
 			SetLocalPlayerForward(Curent_Forward)
-			// 攀爬中：用 Curent_height 缓存计算，避免读写 player<Transform> 触发 PropID:-97000 复制报错
-			//攀爬速度公式
-			
-			var effectiveSpeed = WingSpeedDecay * TowerSpeedMultiplier
-			// 各塔统一最大爬行速度上限
-			if effectiveSpeed > 593.92 {
-				effectiveSpeed = 593.92
+			var smEffectiveSpeed = WingSpeedDecay * TowerSpeedMultiplier
+			if smEffectiveSpeed > 593.92 {
+				smEffectiveSpeed = 593.92
 			}
-			var formulaY =effectiveSpeed/30 //Speed_muti*math.Exponentiation(0.1, Curent_height.Y/20)/30
-			var AnimationSpeed = formulaY*3
-			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y+formulaY, Curent_height.Z})
+			var smFormulaY = smEffectiveSpeed/30
+			var smAnimationSpeed = smFormulaY * 3
+			SetLocalPlayerPosition(Vector3{Curent_height.X, Curent_height.Y + smFormulaY, Curent_height.Z})
 			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player, AnimationSpeed})
+			Tower_Height = Curent_height.Y
+			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{player, smAnimationSpeed})
 			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, GetLocalPlayer()<Player>.Position.Y})
-		
-			var heightVal = Curent_height.Y * 535.0 / 9280.0 -312.0
-		DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
-			
-		MaybeSendClimbStateChanged()
-		
-		// 如果 Curent_height.Y < 1
-
-			
-		} else if bIsFall == true{
-			if FallStartY != 9280 && SwitchFall == true{
-				FallStartY=Round(GetLocalPlayer()<Player>.Position.Y)
-			
-				SwitchFall = false
-			}
-			
-			SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
-			// 下落中：自由落体，速度随下坠累积（v += g，每帧；重力与上限为原值 2 倍）
-			var fallY = GetLocalPlayer()<Player>.Position.Y
-			var gravity float = 39.2/30
-			fallVelocity = fallVelocity + gravity
-			var maxFallSpeed float = 4000
-			if fallVelocity > maxFallSpeed {
-				fallVelocity = maxFallSpeed
-			}
-			Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, fallY - fallVelocity, GetLocalPlayer()<Player>.Position.Z}
-			SetLocalPlayerPosition(Curent_height)
-			DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{player})
-			DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player, GetLocalPlayer()<Player>.Position.Y})
-			
-			var heightVal = Curent_height.Y * 535.0 / 9280.0 - 312.0
-		DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, heightVal})
-		MaybeSendClimbStateChanged()
-		
-		if Curent_height.Y < 2 {
-				Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, 0.5, GetLocalPlayer()<Player>.Position.Z}
-				SetLocalPlayerPosition(Curent_height)
-				DispatchEventToEntity(__Custom6event_reback__, globalEntity, PlatformType.Server, List<object>{player})
-				StartLandingCameraShake(Curent_height)
-				SetLocalPlayerForward( Vector3{-Curent_Forward.X, -Curent_Forward.Y, -Curent_Forward.Z})
-				fallVelocity = 0
-			bIsFall = false
-			SwitchFall = true
+			var smClimbHeightVal = Curent_height.Y * 535.0 / 9280.0 - 312.0
+			DispatchEventToEntity(__Custom6event_ClimbUI__, globalEntity, PlatformType.Server, List<object>{player, smClimbHeightVal})
 			MaybeSendClimbStateChanged()
-			var landPos = GetLocalPlayer()<Player>.Position
-				var fallDistance = FallStartY - Curent_height.Y
-				if fallDistance < 0 {
-					fallDistance = 0
-				}
-				var sessionTimeSec float = 0
-				if climbSessionStartFrame != 0 {
-					sessionTimeSec = (frame - climbSessionStartFrame) as float / 30.0
-				}
-				var peakH = maxSessionHeightY
-				pendingRewardLandPos = landPos
-				pendingRewardSessionTimeSec = sessionTimeSec
-				pendingRewardPeakHeightY = peakH
-				hasPendingRewardReport = fallDistance > 0
-				climbSessionStartFrame = 0
-				maxSessionHeightY = 0
-				DispatchEventToEntity(__Custom6event_onground__, globalEntity, PlatformType.Server, List<object>{player, Curent_height, landPos})
-				DispatchEventToEntity(__Custom6event6_ReportHeight__, globalEntity, PlatformType.Server, List<object>{player,0})
-				// 将下落起始 Y 发给经济系统，用于增加金币并刷新 P_IngameHud/GoldCoin
-				DispatchEventToEntity(__Custom6event_AddFallReward____, globalEntity, PlatformType.Server, List<object>{player, fallDistance})
-				FallStartY = 0
-				frame = 0
-				WingSpeedDecay=WingSpeed
-			}
-			// 如果IngameUI != nil，设置Text:HudLabelWidget = ToString(Curent_height.Y)
-			if IngameUI != nil {
-				var labelEntity = GetWidgetByPath(player, IngameUI, "/Panel (1)")
-				if labelEntity != nil {
-					// ECA: Set Text:HudLabelWidget = ToString(Curent_height.Y)；若引擎提供 SetWidgetText 等 API 可在此设置
-				}
-			}
-			
-		}
-		if ishanging == true {
-		
-		SetLocalPlayerPosition(Curent_height)
-		
-		MaybeSendClimbStateChanged()
-		
-		DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{player})
+		} else if climbState == ClimbStateHanging {
+			SetLocalPlayerPosition(Curent_height)
+			Tower_Height = Curent_height.Y
+			MaybeSendClimbStateChanged()
 		}
 	}
 

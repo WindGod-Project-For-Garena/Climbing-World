@@ -274,7 +274,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 180,
+      "tempIndex": 49,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -356,7 +356,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 181,
+      "tempIndex": 50,
       "itemID": 256,
       "seParent": null,
       "ecaScripts": [
@@ -692,7 +692,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 182,
+      "tempIndex": 51,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -798,7 +798,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 183,
+      "tempIndex": 52,
       "itemID": 222,
       "seParent": null,
       "ecaScripts": [
@@ -1237,7 +1237,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 184,
+          "tempIndex": 53,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1338,7 +1338,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 185,
+      "tempIndex": 54,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -1823,7 +1823,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 186,
+          "tempIndex": 55,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -1924,7 +1924,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 187,
+      "tempIndex": 56,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -2409,7 +2409,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 188,
+          "tempIndex": 57,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -2510,7 +2510,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 189,
+      "tempIndex": 58,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -2995,7 +2995,7 @@
           "entityTagData": {
             "tagPointers": []
           },
-          "tempIndex": 190,
+          "tempIndex": 59,
           "itemID": 222,
           "seParent": null,
           "ecaScripts": [
@@ -3096,7 +3096,7 @@
       "entityTagData": {
         "tagPointers": []
       },
-      "tempIndex": 191,
+      "tempIndex": 60,
       "itemID": 295,
       "seParent": null,
       "ecaScripts": [],
@@ -3502,7 +3502,16 @@
             "FreezePosZ": false,
             "FreezeRotZ": false
           },
-          "ecaScripts": [],
+          "ecaScripts": [
+            {
+              "fileId": "lsks6i2uht-mnzyf7mu-yi5hg5odw7j",
+              "filePath": "Assets\\FCG\\CustomFCG\\Trigger\\C_Cuptrigger.fcg",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "ugcscript"
+            }
+          ],
           "ecaProps": {
             "CustomLevelObject": {},
             "LevelObject": {},
@@ -3514,7 +3523,8 @@
             "MeshRender": {}
           },
           "propsData": {},
-          "entityVersion": 3
+          "entityVersion": 3,
+          "prefabVariant": null
         }
       ],
       "activeValue": {
@@ -3895,7 +3905,13 @@
               "FreezePosZ": false,
               "FreezeRotZ": false
             },
-            "ecaScripts": [],
+            "ecaScripts": [
+              {
+                "fileId": "lsks6i2uht-mnzyf7mu-yi5hg5odw7j",
+                "filePath": "Assets\\FCG\\CustomFCG\\Trigger\\C_Cuptrigger.fcg",
+                "fileType": "ugcscript"
+              }
+            ],
             "ecaProps": {
               "CustomLevelObject": {},
               "LevelObject": {},
@@ -3952,4 +3968,4 @@
     }
   }
 }
-//"{FE:{"v":"1.17.4326539","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4335043","c":{"FF":5001},"s":100}

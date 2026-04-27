@@ -1,11 +1,3 @@
-// 严格按 C_Climbing_button.eca 实现
-// C 开头 = 客户端脚本。变量 isclimb, isfall, Taptime, CustomUI, Hanging
-// OnAwake: Taptime=1
-// 按钮 Jumping: isfall=T,Hanging=F,isclimb=F -> StopAnimation -> PlayAnimation -> isclimb -> isfall -> Dispatch
-// 按钮 Climbing Press: isclimb=T,Hanging=F -> isclimb -> Dispatch Pressclimbing_button
-// 按钮 Climbing Release: isclimb=F,Hanging=T -> isclimb -> Dispatch releaseclimbing_button
-// 按钮 AutoClimbing Click: Taptime=1; 若 !isclimb 则 isclimb=T,Hanging=F, isclimb, Dispatch Press; 否则 isclimb=F,Hanging=T, PlayAnimation(0 DontChange), isclimb
-
 import "StdLibrary.fcc" as std
 import "Hud.fcc" as hud
 import "Animation.fcc" as anim
@@ -13,7 +5,6 @@ import "EditorGenLib.fcc" as gen
 import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
 import "Math.fcc" as Math
 import "Player.fcc" as playerlib
-
 
 [platform_client]
 graph C_Climbing_button {
@@ -28,68 +19,25 @@ graph C_Climbing_button {
 	}
 
 	func Jumping_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-	
-		triggerPlayer<C_P_Climbing2>.bIsClimb= false
-		triggerPlayer<C_P_Climbing2>.ishanging = false
-		triggerPlayer<C_P_Climbing2>.bIsFall = true
-		
-		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-	
-		// ECA: StopAnimationByController(player,vEAke9DY); PlayAnimationByController(player,d4MFw2ge,1,Loop)
-		// 需从项目动画控制器绑定状态 ID 后取消注释：
-		// anim.StopAnimation(triggerPlayer, "vEAke9DY")
-		// anim.PlayAnimation(triggerPlayer, "d4MFw2ge", 1, AnimationOverrideLoopType.Loop)
-		
-		DispatchEventToEntity(__Custom6event_Jumping_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
-		DispatchEventToEntity(__Custom6event_leavetrigger__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		triggerPlayer<C_P_Climbing2>.StartFalling(triggerPlayer, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true)
 	}
 
 	func Pressclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		triggerPlayer<C_P_Climbing2>.bIsClimb= true
-		triggerPlayer<C_P_Climbing2>.ishanging = false
-		triggerPlayer<C_P_Climbing2>.player = triggerPlayer
-		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-	
-		// ECA 此处调用 C_P_Climbing.isclimb(isclimb, Hanging, player)
-		//C_P_Climbing2.isclimb(isclimb, Hanging, triggerPlayer)
-		DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
+		triggerPlayer<C_P_Climbing2>.StartClimbing(triggerPlayer, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true)
 	}
 
 	func releaseclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		triggerPlayer<C_P_Climbing2>.bIsClimb= false
-		triggerPlayer<C_P_Climbing2>.ishanging = true
-		triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-		triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-	
-		DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+		triggerPlayer<C_P_Climbing2>.StartHanging(triggerPlayer, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true)
 	}
 
 	func AutoClimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-	
+		if triggerPlayer<C_P_Climbing2>.IsFalling() {
+			return
+		}
 		if triggerPlayer<C_P_Climbing2>.bIsClimb == false {
-			
-			triggerPlayer<C_P_Climbing2>.bIsClimb= true
-			triggerPlayer<C_P_Climbing2>.ishanging =false
-			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-			DispatchEventToEntity(__Custom6event_Pressclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1.0})
-			
+			triggerPlayer<C_P_Climbing2>.StartClimbing(triggerPlayer, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true)
 		} else {
-			
-			
-			/*triggerPlayer<C_P_Climbing2>.bIsClimb= false
-			triggerPlayer<C_P_Climbing2>.ishanging = true*/
-			triggerPlayer<C_P_Climbing2>.bIsClimb = false
-			triggerPlayer<C_P_Climbing2>.ishanging = true
-		
-			triggerPlayer<C_P_Climbing2>.player  = triggerPlayer
-			triggerPlayer<C_P_Climbing2>.Curent_height = Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}
-			// anim.PlayAnimation(triggerPlayer, "vEAke9DY", 0, AnimationOverrideLoopType.DontChange)
-			DispatchEventToEntity(__Custom6event_releaseclimbing_button__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})  // 添加此行
+			triggerPlayer<C_P_Climbing2>.StartHanging(triggerPlayer, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true)
 		}
 	}
-
-	// Nominal_Speed = 58，点击时设置 WingSpeed 并更新 P_IngameHud 的 Current_Speed
-
 }

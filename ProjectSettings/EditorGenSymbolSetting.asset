@@ -5,10 +5,136 @@
   "_entityId": "ilPzkGQx",
   "GenSymbol": {
     "Components": {},
-    "Events": {},
-    "Graphs": {},
+    "Events": {
+      "signal_30320840": {
+        "label": "onGround",
+        "params": {}
+      },
+      "signal_89581892": {
+        "label": "OnShowHint",
+        "params": {}
+      },
+      "signal_46304288": {
+        "label": "Custom_eventGoldChanged",
+        "params": {}
+      },
+      "signal_87134090": {
+        "label": "OnHideHint",
+        "params": {}
+      }
+    },
+    "Graphs": {
+      "hqzw5rp2t6-mlg84sjz-74g1685c5ve": {
+        "label": "C_Climbing_button",
+        "vars": {
+          "vyMqOhe9Q": {
+            "label": "isclimb"
+          },
+          "vFSSWJRKv": {
+            "label": "isfall"
+          },
+          "vD4c12CKr": {
+            "label": "Taptime"
+          },
+          "vbprCaWud": {
+            "label": "CustomUI"
+          },
+          "vP4Ixh9JP": {
+            "label": "Hanging"
+          }
+        },
+        "funcs": {}
+      },
+      "j7mlv41a3w-mlg9m6wn-x1kyc3b8fgg": {
+        "label": "C_Climbing_starttrigger",
+        "vars": {
+          "vLRKSrNUC": {
+            "label": "entercount"
+          },
+          "v0p7u5chY": {
+            "label": "Climbing_UI"
+          }
+        },
+        "funcs": {}
+      },
+      "eu59mep4fes-mlesbebl-t84h5stdwv": {
+        "label": "C_P_Climbing",
+        "vars": {
+          "vWvpaXyTh": {
+            "label": "receivecount"
+          },
+          "v8C92KJTF": {
+            "label": "a"
+          },
+          "vl8PKmZWl": {
+            "label": "isclimb"
+          },
+          "vVWgsWv8S": {
+            "label": "player"
+          },
+          "voiiYu3jo": {
+            "label": "Speed_muti"
+          },
+          "v2tma7YoI": {
+            "label": "isfall"
+          },
+          "vGdDjhuDE": {
+            "label": "Player_fall"
+          },
+          "vXsN9hapH": {
+            "label": "IngameUI"
+          },
+          "vOkBo7cwR": {
+            "label": "frame"
+          },
+          "vXiTVK7eJ": {
+            "label": "Curent_height"
+          },
+          "vt6KgN7qp": {
+            "label": "ishanging"
+          }
+        },
+        "funcs": {}
+      },
+      "7f6ig77cns5-mlezf381-dtyxri18hbd": {
+        "label": "G_Climbing",
+        "vars": {},
+        "funcs": {
+          "pM=umW1R8=hYz;NQAL_-": {
+            "label": "Climbing"
+          },
+          "P0(;P$omopp(N6+mR]Xk": {
+            "label": "Jumping"
+          },
+          "!cvv#:st^+uibe?|+I5^": {
+            "label": "Onground"
+          },
+          "|4E{8imU|*_.9`ic$(~$": {
+            "label": "Climbing_Stop"
+          }
+        }
+      },
+      "femu5l2t9sa-mm08cl5h-6r0vt71nspx": {
+        "label": "G_UIcontrollor",
+        "vars": {
+          "vV8LIfJPb": {
+            "label": "Climbing_button"
+          },
+          "vfmMVc2Se": {
+            "label": "VisibleUI"
+          },
+          "vFK3CRRe2": {
+            "label": "InvisibleUI"
+          },
+          "vWMsEi7ny": {
+            "label": "Climbing_UI"
+          }
+        },
+        "funcs": {}
+      }
+    },
     "Enums": {}
   },
   "children": []
 }
-//"{FE:{"v":"1.16.4231768","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4335043","c":{"FF":5001},"s":100}
