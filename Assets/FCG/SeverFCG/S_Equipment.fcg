@@ -27,6 +27,9 @@ graph S_Equipment {
 
 	// 监听翅膀选择事件：索引 1->Wings1 … 12->Wings12，其他->移除翅膀；bonePart 非空时 SetParent 挂载到骨骼
 	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndeax int, bone entity<Skeleton>) {
+		if wingIndeax < 0 {
+			return
+		}
 
         if wingIndeax == 1 {
 			EquipWings1(player, bone)

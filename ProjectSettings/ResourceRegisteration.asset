@@ -222,6 +222,19 @@
           },
           "scriptName": "Tired",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "fsr03d96l6w-mogzeo23-go2djyd13vi",
+            "filePath": "Assets\\UI\\WingShop_SOC_UI.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "WingShop_SOC_UI",
+          "children": [],
+          "_isNewInSession": true
         }
       ]
     },

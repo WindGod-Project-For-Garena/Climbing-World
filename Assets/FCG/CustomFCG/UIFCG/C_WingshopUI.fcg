@@ -5,6 +5,7 @@
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
 import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
 import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
 import "../Player/C_PlayerWingsData.fcg" as C_PlayerWingsData
 import "EditorGenLib.fcc" as gen
@@ -54,6 +55,68 @@ graph C_WingshopUI {
 
 	func Close_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event_WingshopLeave__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	// SOC tab buttons: request the server-owned UI to update tab colors.
+	func SelectSOCTab(button entity<UIWidgetButton>, triggerPlayer entity<Player>, selectedIndex int) {
+		var tabRequestIndex = -1
+		if selectedIndex == 1 {
+			tabRequestIndex = -2
+		}
+		if selectedIndex == 2 {
+			tabRequestIndex = -3
+		}
+
+		var nilBone entity<Skeleton> = nil
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, tabRequestIndex, nilBone})
+	}
+
+	func WingShop_SOC_UI_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 0)
+	}
+
+	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 0)
+	}
+
+	func Button1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 1)
+	}
+
+	func Button_1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 1)
+	}
+
+	func Button__1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 1)
+	}
+
+	func Button_1__button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 1)
+	}
+
+	func Button__1__button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 1)
+	}
+
+	func Button2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 2)
+	}
+
+	func Button_2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 2)
+	}
+
+	func Button__2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 2)
+	}
+
+	func Button_2__button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 2)
+	}
+
+	func Button__2__button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCTab(button, triggerPlayer, 2)
 	}
 
 	// Wing{N}_button：点击已解锁翅膀，切换速度和外观

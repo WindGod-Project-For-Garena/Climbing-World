@@ -1,0 +1,36 @@
+import "StdLibrary.fcc" as std
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
+import "List.fcc" as List
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_UI_AI {
+	func RequestSOCTabSelection(triggerPlayer entity<Player>, selectedIndex int) {
+		if triggerPlayer != GetLocalPlayer() {
+			return
+		}
+		var tabRequestIndex = -1
+		if selectedIndex == 1 {
+			tabRequestIndex = -2
+		}
+		if selectedIndex == 2 {
+			tabRequestIndex = -3
+		}
+
+		var nilBone entity<Skeleton> = nil
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, tabRequestIndex, nilBone})
+	}
+
+	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestSOCTabSelection(triggerPlayer, 0)
+	}
+
+	func Button_1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestSOCTabSelection(triggerPlayer, 1)
+	}
+
+	func Button_2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestSOCTabSelection(triggerPlayer, 2)
+	}
+}

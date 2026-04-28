@@ -47,6 +47,36 @@ graph S_WingShopUI {
 		hasWingshopHintPos = true
 	}
 
+	func SetSOCButtonColor(player entity<Player>, ui entity<CustomUI>, buttonPath string, selected bool) {
+		var buttonWidget = GetWidgetByPath(player, ui, buttonPath)
+		if buttonWidget != nil {
+			if selected {
+				buttonWidget<UIWidgetButton>.Color = #02FE00
+			} else {
+				buttonWidget<UIWidgetButton>.Color = #02DAE8
+			}
+		}
+
+		var buttonImage = GetWidgetByPath(player, ui, buttonPath + "/France")
+		if buttonImage != nil {
+			if selected {
+				buttonImage<UIWidgetImage>.Color = #02FE00
+			} else {
+				buttonImage<UIWidgetImage>.Color = #02DAE8
+			}
+		}
+	}
+
+	func ApplySOCTabSelection(player entity<Player>, ui entity<CustomUI>, selectedIndex int) {
+		if ui == nil {
+			return
+		}
+
+		SetSOCButtonColor(player, ui, "/Button", selectedIndex == 0)
+		SetSOCButtonColor(player, ui, "/Button (1)", selectedIndex == 1)
+		SetSOCButtonColor(player, ui, "/Button (2)", selectedIndex == 2)
+	}
+
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
 		LogInfo("WingshopEnter")
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
@@ -72,10 +102,12 @@ graph S_WingShopUI {
 			// BUY_F 面板：按已解锁数量恢复状态，not enough cup 恢复隐藏
 			ApplyBUY_FPanelState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
 			SetNotEnoughCupVisible(player, wingshopEntity as entity<CustomUI>, false)
+			ApplySOCTabSelection(player, wingshopEntity as entity<CustomUI>, 0)
 			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, wingshopEntity as entity<CustomUI>)
 		} else {
-			CreateCustomUI(out var createdEntity, player, EResUI.Wingshop2)
+			CreateCustomUI(out var createdEntity, player, EResUI.WingShop_SOC_UI)
 			Wingshop[player] = createdEntity
+			ApplySOCTabSelection(player, createdEntity as entity<CustomUI>, 0)
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			WingSelectState[player] = 0
 			WingUnlockState[player] = 0
@@ -101,6 +133,17 @@ graph S_WingShopUI {
 
 	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int, bone entity<Skeleton>) {
 		if !ContainKey(Wingshop, player) {
+			return
+		}
+		if wingIndex < 0 {
+			var selectedIndex = 0
+			if wingIndex == -2 {
+				selectedIndex = 1
+			}
+			if wingIndex == -3 {
+				selectedIndex = 2
+			}
+			ApplySOCTabSelection(player, Wingshop[player] as entity<CustomUI>, selectedIndex)
 			return
 		}
 		WingSelectState[player] = wingIndex
