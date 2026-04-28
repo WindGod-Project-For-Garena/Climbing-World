@@ -1,0 +1,1622 @@
+{
+  "_entityName": "Wingsshop_AI_AutoPlaced",
+  "_tag": {
+    "type": "UIRootEntity",
+    "resourceId": ""
+  },
+  "_entityId": "xjBOiY0a",
+  "children": [
+    {
+      "_entityName": "Background",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "MTPdk7P6",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 0,
+            "y": 0
+          },
+          "sizeDelta": {
+            "x": 1366,
+            "y": 768
+          }
+        },
+        "alpha": 1,
+        "priority": 0,
+        "image": {
+          "source": {
+            "fileId": "jxhn4za517q-mogz758z-3z40t0z7txn",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\background_game_world.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "WindowShell",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "gB7mQevx",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 0,
+            "y": 10
+          },
+          "sizeDelta": {
+            "x": 1226,
+            "y": 692
+          }
+        },
+        "alpha": 1,
+        "priority": 10,
+        "image": {
+          "source": {
+            "fileId": "ug5uvcr7tho-mogz7a5j-dr0hf5qrgmr",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\window_shell.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "TitleWings",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "4dAFFZBW",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -474,
+            "y": 320
+          },
+          "sizeDelta": {
+            "x": 210,
+            "y": 72
+          }
+        },
+        "alpha": 1,
+        "priority": 20,
+        "image": {
+          "source": {
+            "fileId": "x4l1fky7j8b-mogz7a0l-qy5gz9bm7ic",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\title_wings_text.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "BtnClose",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "d1fmvNoC",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 522,
+            "y": 301
+          },
+          "sizeDelta": {
+            "x": 82,
+            "y": 62
+          }
+        },
+        "alpha": 1,
+        "priority": 30,
+        "image": {
+          "source": {
+            "fileId": "9febzp0xks8-mogz76r0-r3x81dr31q",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\close_button.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "TabGrass",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "C8CgEUTB",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -246,
+            "y": 308
+          },
+          "sizeDelta": {
+            "x": 158,
+            "y": 46
+          }
+        },
+        "alpha": 1,
+        "priority": 24,
+        "image": {
+          "source": {
+            "fileId": "ql4144njc7-mogz79hn-7ajcky9gmri",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\tab_grass_active_baked.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "TabIce",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "Ww3gD7Kg",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -80,
+            "y": 308
+          },
+          "sizeDelta": {
+            "x": 142,
+            "y": 46
+          }
+        },
+        "alpha": 1,
+        "priority": 24,
+        "image": {
+          "source": {
+            "fileId": "4hzbv0b5auk-mogz79mp-bufcc4juvan",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\tab_ice_inactive_baked.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "TabVolcano",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "39ELRgny",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 88,
+            "y": 308
+          },
+          "sizeDelta": {
+            "x": 162,
+            "y": 46
+          }
+        },
+        "alpha": 1,
+        "priority": 24,
+        "image": {
+          "source": {
+            "fileId": "ddgsty43d24-mogz79w4-58k0fs3y47x",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\tab_volcano_inactive_baked.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "TabSky",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "3WXyV5j2",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 249,
+            "y": 308
+          },
+          "sizeDelta": {
+            "x": 128,
+            "y": 46
+          }
+        },
+        "alpha": 1,
+        "priority": 24,
+        "image": {
+          "source": {
+            "fileId": "ht46soaloy7-mogz79r8-ggy27kw21us",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\tab_sky_inactive_baked.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "LeftPanelBg",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "Fz1de1Ei",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -184,
+            "y": -9
+          },
+          "sizeDelta": {
+            "x": 790,
+            "y": 518
+          }
+        },
+        "alpha": 100,
+        "priority": 12,
+        "image": {
+          "source": {
+            "fileId": "2kvf4mtfifo-mogz780v-3cwyct78rdm",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\left_panel_bg.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "LeftPanelTitle",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "lxwTKF7y",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -389,
+            "y": 226
+          },
+          "sizeDelta": {
+            "x": 380,
+            "y": 48
+          }
+        },
+        "alpha": 1,
+        "priority": 21,
+        "image": {
+          "source": {
+            "fileId": "bpdaft6x5fs-mogz7885-89g8bhqhdj7",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\left_panel_title_baked.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "CardLeaf",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "RxpjCi8l",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -380,
+            "y": 98
+          },
+          "sizeDelta": {
+            "x": 342,
+            "y": 188
+          }
+        },
+        "alpha": 1,
+        "priority": 22,
+        "image": {
+          "source": {
+            "fileId": "gzj0kvuhl7u-mogz75hh-8cdeasp9746",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\card_leaf_complete.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "CardWind",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "YN8lr8Cf",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -6,
+            "y": 98
+          },
+          "sizeDelta": {
+            "x": 342,
+            "y": 188
+          }
+        },
+        "alpha": 1,
+        "priority": 22,
+        "image": {
+          "source": {
+            "fileId": "m75a6q8odu-mogz76ld-6kanag7nwtu",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\card_wind_complete.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "CardThunder",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "f7GLEpOq",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -380,
+            "y": -118
+          },
+          "sizeDelta": {
+            "x": 342,
+            "y": 188
+          }
+        },
+        "alpha": 1,
+        "priority": 22,
+        "image": {
+          "source": {
+            "fileId": "zsibwy2qss-mogz76dz-3yrorcetki6",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\card_thunder_complete.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "CardRoyal",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "nRYiBUHo",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": -6,
+            "y": -118
+          },
+          "sizeDelta": {
+            "x": 342,
+            "y": 188
+          }
+        },
+        "alpha": 1,
+        "priority": 22,
+        "image": {
+          "source": {
+            "fileId": "u9tgqvz24dc-mogz75wy-vpverf61qui",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\card_royal_selected_complete.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    },
+    {
+      "_entityName": "DetailPanelRoyal",
+      "_tag": {
+        "type": "UIImageEntity",
+        "resourceId": ""
+      },
+      "_entityId": "kdsVWZdj",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchorMax": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 409,
+            "y": -9
+          },
+          "sizeDelta": {
+            "x": 344,
+            "y": 518
+          }
+        },
+        "alpha": 1,
+        "priority": 22,
+        "image": {
+          "source": {
+            "fileId": "no781o0hpw-mogz7773-dbzxdghyu",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\detail_panel_royal_complete.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "color": "#ffffff",
+          "reverse": {
+            "x": false,
+            "y": false
+          },
+          "fillType": 1,
+          "slicedBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "tiledBorder": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          },
+          "centerInvisible": false,
+          "fillDir": 0,
+          "fillAmount": 0,
+          "invertFill": false,
+          "flip": 0,
+          "gradient": 1,
+          "gradientTop": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          },
+          "gradientBottom": {
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudImageWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
+    }
+  ],
+  "prefabVariant": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
+  "editorLockValue": false,
+  "editorVisibleValue": true,
+  "propsData": {
+    "activeSelf": true,
+    "transform": {
+      "rotate": 0,
+      "anchorMin": {
+        "x": 0,
+        "y": 0
+      },
+      "anchorMax": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "anchoredPosition": {
+        "x": 750,
+        "y": 375
+      },
+      "sizeDelta": {
+        "x": 1500,
+        "y": 750
+      }
+    },
+    "alpha": 100,
+    "priority": 0
+  },
+  "ecaScripts": [],
+  "ecaProps": {
+    "CustomHud": {},
+    "Entity": {}
+  },
+  "componentList": [],
+  "entityTagData": {
+    "tagPointers": []
+  },
+  "layer": 1025,
+  "discriminator": "ISceneLike",
+  "version": 3
+}
+//"{FE:{"v":"1.17.4335043","c":{"FF":5001},"s":100}

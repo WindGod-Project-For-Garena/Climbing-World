@@ -111,96 +111,6 @@
       }
     },
     {
-      "_entityName": "Wings",
-      "_tag": {
-        "type": "UITextEntity",
-        "resourceId": ""
-      },
-      "_entityId": "nlxWMhNg",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "propsData": {
-        "activeSelf": true,
-        "transform": {
-          "rotate": 0,
-          "anchorMin": {
-            "x": 0,
-            "y": 1
-          },
-          "anchorMax": {
-            "x": 0,
-            "y": 1
-          },
-          "pivot": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchoredPosition": {
-            "x": 112,
-            "y": -48
-          },
-          "sizeDelta": {
-            "x": 240,
-            "y": 108
-          }
-        },
-        "alpha": 100,
-        "priority": 0,
-        "text": {
-          "value": "Wings",
-          "key": "",
-          "font": "Default",
-          "fontSize": 99,
-          "fontStyle": {
-            "bold": false,
-            "italic": false,
-            "underline": false
-          },
-          "color": "#ffffff",
-          "alignment": {
-            "h": "center",
-            "v": "middle"
-          },
-          "lineSpacing": 0,
-          "background": false,
-          "backgroundColor": "#e7b200",
-          "overflow": 0,
-          "backgroundRGBA": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0
-          },
-          "shadow": true,
-          "shadowColor": "#000000",
-          "shadowOffset": {
-            "x": 5,
-            "y": 1
-          }
-        }
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "HudLabelWidget": {},
-        "HudWidget": {},
-        "Entity": {}
-      },
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      }
-    },
-    {
       "_entityName": "left_panel_bg",
       "_tag": {
         "type": "UIImageEntity",
@@ -872,7 +782,14 @@
           "disabled": "#494949",
           "onClicks": [],
           "enableBorderImage": true,
-          "clickHandlers": [],
+          "clickHandlers": [
+            {
+              "eventName": "OnClick",
+              "funcKey": "card_normal_base_button",
+              "type": "ugcscript",
+              "fileID": "jas4qqk4nm-moi2wlii-zok4kyqd6v9"
+            }
+          ],
           "disableCollider": false,
           "fillType": 1,
           "slicedBorder": {
@@ -1294,7 +1211,14 @@
           "disabled": "#494949",
           "onClicks": [],
           "enableBorderImage": true,
-          "clickHandlers": [],
+          "clickHandlers": [
+            {
+              "eventName": "OnClick",
+              "funcKey": "card_normal_base_1_button",
+              "type": "ugcscript",
+              "fileID": "jas4qqk4nm-moi2wlii-zok4kyqd6v9"
+            }
+          ],
           "disableCollider": false,
           "fillType": 1,
           "slicedBorder": {
@@ -1718,7 +1642,14 @@
           "disabled": "#494949",
           "onClicks": [],
           "enableBorderImage": true,
-          "clickHandlers": [],
+          "clickHandlers": [
+            {
+              "eventName": "OnClick",
+              "funcKey": "card_normal_base_2_button",
+              "type": "ugcscript",
+              "fileID": "jas4qqk4nm-moi2wlii-zok4kyqd6v9"
+            }
+          ],
           "disableCollider": false,
           "fillType": 1,
           "slicedBorder": {
@@ -2142,7 +2073,14 @@
           "disabled": "#494949",
           "onClicks": [],
           "enableBorderImage": true,
-          "clickHandlers": [],
+          "clickHandlers": [
+            {
+              "eventName": "OnClick",
+              "funcKey": "card_normal_base_3_button",
+              "type": "ugcscript",
+              "fileID": "jas4qqk4nm-moi2wlii-zok4kyqd6v9"
+            }
+          ],
           "disableCollider": false,
           "fillType": 1,
           "slicedBorder": {
@@ -3729,6 +3667,96 @@
       },
       "editorLockValue": false,
       "editorVisibleValue": true
+    },
+    {
+      "_entityName": "Wings",
+      "_tag": {
+        "type": "UITextEntity",
+        "resourceId": ""
+      },
+      "_entityId": "nlxWMhNg",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "propsData": {
+        "activeSelf": true,
+        "transform": {
+          "rotate": 0,
+          "anchorMin": {
+            "x": 0,
+            "y": 1
+          },
+          "anchorMax": {
+            "x": 0,
+            "y": 1
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchoredPosition": {
+            "x": 112,
+            "y": -48
+          },
+          "sizeDelta": {
+            "x": 240,
+            "y": 108
+          }
+        },
+        "alpha": 100,
+        "priority": 0,
+        "text": {
+          "value": "Wings",
+          "key": "",
+          "font": "Default",
+          "fontSize": 99,
+          "fontStyle": {
+            "bold": false,
+            "italic": false,
+            "underline": false
+          },
+          "color": "#ffffff",
+          "alignment": {
+            "h": "center",
+            "v": "middle"
+          },
+          "lineSpacing": 0,
+          "background": false,
+          "backgroundColor": "#e7b200",
+          "overflow": 0,
+          "backgroundRGBA": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0
+          },
+          "shadow": true,
+          "shadowColor": "#000000",
+          "shadowOffset": {
+            "x": 5,
+            "y": 1
+          }
+        }
+      },
+      "ecaScripts": [],
+      "ecaProps": {
+        "HudLabelWidget": {},
+        "HudWidget": {},
+        "Entity": {}
+      },
+      "componentList": [],
+      "entityTagData": {
+        "tagPointers": []
+      }
     }
   ],
   "prefabVariant": null,

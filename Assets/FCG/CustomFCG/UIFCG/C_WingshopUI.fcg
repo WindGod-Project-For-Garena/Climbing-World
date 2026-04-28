@@ -71,6 +71,11 @@ graph C_WingshopUI {
 		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, tabRequestIndex, nilBone})
 	}
 
+	func SelectSOCCard(button entity<UIWidgetButton>, triggerPlayer entity<Player>, selectedIndex int) {
+		var nilBone entity<Skeleton> = nil
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, -10 - selectedIndex, nilBone})
+	}
+
 	func WingShop_SOC_UI_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		SelectSOCTab(button, triggerPlayer, 0)
 	}
@@ -117,6 +122,22 @@ graph C_WingshopUI {
 
 	func Button__2__button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		SelectSOCTab(button, triggerPlayer, 2)
+	}
+
+	func card_normal_base_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCCard(button, triggerPlayer, 0)
+	}
+
+	func card_normal_base_1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCCard(button, triggerPlayer, 1)
+	}
+
+	func card_normal_base_2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCCard(button, triggerPlayer, 2)
+	}
+
+	func card_normal_base_3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectSOCCard(button, triggerPlayer, 3)
 	}
 
 	// Wing{N}_button：点击已解锁翅膀，切换速度和外观

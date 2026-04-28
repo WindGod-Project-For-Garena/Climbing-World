@@ -233,8 +233,7 @@
             "fileType": "ui"
           },
           "scriptName": "WingShop_SOC_UI",
-          "children": [],
-          "_isNewInSession": true
+          "children": []
         }
       ]
     },
@@ -551,6 +550,31 @@
           },
           "scriptName": "Jumping",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "yn9oh70ys6d-mogz765c-3ad0pkiylvx",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\card_selected_base.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "card_selected_base",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "vikla8gp10f-mogz75ru-046udhjqojz6",
+            "filePath": "Assets\\UI\\WingShop\\Sprite\\card_normal_base.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "card_normal_base",
+          "children": [],
+          "_isNewInSession": true
         }
       ]
     },

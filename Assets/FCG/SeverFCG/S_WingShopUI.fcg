@@ -77,6 +77,31 @@ graph S_WingShopUI {
 		SetSOCButtonColor(player, ui, "/Button (2)", selectedIndex == 2)
 	}
 
+	func SetSOCCardImageWidget(cardImage entity, selected bool) {
+		if cardImage == nil { return }
+		if selected {
+			cardImage<HudImageWidget>.SpriteName = EResSprite.card_selected_base
+		} else {
+			cardImage<HudImageWidget>.SpriteName = EResSprite.card_normal_base
+		}
+	}
+
+	func SetSOCCardImage(player entity<Player>, ui entity<CustomUI>, cardPath string, selected bool) {
+		SetSOCCardImageWidget(GetWidgetByPath(player, ui, cardPath + "/card_normal_base"), selected)
+		SetSOCCardImageWidget(GetWidgetByPath(player, ui, cardPath + "/card_Wings1"), selected)
+	}
+
+	func ApplySOCCardSelection(player entity<Player>, ui entity<CustomUI>, selectedIndex int) {
+		if ui == nil {
+			return
+		}
+
+		SetSOCCardImage(player, ui, "/card_normal_base", selectedIndex == 0)
+		SetSOCCardImage(player, ui, "/card_normal_base (1)", selectedIndex == 1)
+		SetSOCCardImage(player, ui, "/card_normal_base (2)", selectedIndex == 2)
+		SetSOCCardImage(player, ui, "/card_normal_base (3)", selectedIndex == 3)
+	}
+
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
 		LogInfo("WingshopEnter")
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
@@ -103,11 +128,13 @@ graph S_WingShopUI {
 			ApplyBUY_FPanelState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
 			SetNotEnoughCupVisible(player, wingshopEntity as entity<CustomUI>, false)
 			ApplySOCTabSelection(player, wingshopEntity as entity<CustomUI>, 0)
+			ApplySOCCardSelection(player, wingshopEntity as entity<CustomUI>, 0)
 			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, wingshopEntity as entity<CustomUI>)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.WingShop_SOC_UI)
 			Wingshop[player] = createdEntity
 			ApplySOCTabSelection(player, createdEntity as entity<CustomUI>, 0)
+			ApplySOCCardSelection(player, createdEntity as entity<CustomUI>, 0)
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			WingSelectState[player] = 0
 			WingUnlockState[player] = 0
@@ -133,6 +160,11 @@ graph S_WingShopUI {
 
 	event __Custom6event_ShowWingSelect__(player entity<Player>, wingIndex int, bone entity<Skeleton>) {
 		if !ContainKey(Wingshop, player) {
+			return
+		}
+		if wingIndex <= -10 {
+			var selectedIndex = 0 - wingIndex - 10
+			ApplySOCCardSelection(player, Wingshop[player] as entity<CustomUI>, selectedIndex)
 			return
 		}
 		if wingIndex < 0 {

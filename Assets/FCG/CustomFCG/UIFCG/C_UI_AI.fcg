@@ -22,6 +22,15 @@ graph C_UI_AI {
 		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, tabRequestIndex, nilBone})
 	}
 
+	func RequestSOCCardSelection(triggerPlayer entity<Player>, selectedIndex int) {
+		if triggerPlayer != GetLocalPlayer() {
+			return
+		}
+
+		var nilBone entity<Skeleton> = nil
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, -10 - selectedIndex, nilBone})
+	}
+
 	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		RequestSOCTabSelection(triggerPlayer, 0)
 	}
@@ -32,5 +41,21 @@ graph C_UI_AI {
 
 	func Button_2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		RequestSOCTabSelection(triggerPlayer, 2)
+	}
+
+	func card_normal_base_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestSOCCardSelection(triggerPlayer, 0)
+	}
+
+	func card_normal_base_1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestSOCCardSelection(triggerPlayer, 1)
+	}
+
+	func card_normal_base_2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestSOCCardSelection(triggerPlayer, 2)
+	}
+
+	func card_normal_base_3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestSOCCardSelection(triggerPlayer, 3)
 	}
 }
