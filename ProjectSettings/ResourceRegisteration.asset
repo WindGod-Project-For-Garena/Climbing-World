@@ -585,6 +585,138 @@
             "fileType": "texture"
           },
           "scriptName": "Wings1",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "41ukh0lwibp-mo15jau1-ahn5otw7ldf",
+            "filePath": "Assets\\UI\\material\\Wings11.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings11",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "g33tkpk2sbr-mo133cpm-ix9wrpguoa",
+            "filePath": "Assets\\UI\\material\\Wings12.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings12",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "z59qpwkfb2g-mnodqy8a-vq9s6cxhgb",
+            "filePath": "Assets\\UI\\material\\Wings4.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings4",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "p8wt8g8nss9-mnqy8u89-c83ze0sy638",
+            "filePath": "Assets\\UI\\material\\Wings5.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings5",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "o0f9wo01zo7-mnqy9av3-br5osn6jkk",
+            "filePath": "Assets\\UI\\material\\Wings6.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings6",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "yivs78hj6-mnqy9igw-0jbbrp31l7nh",
+            "filePath": "Assets\\UI\\material\\Wings7.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings7",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "1vt88mzbq4p-mnqy9qmg-akx7sb0tsu8",
+            "filePath": "Assets\\UI\\material\\Wings8.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings8",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "uxsme4oqfpm-mo130ta8-9azvh6o8otg",
+            "filePath": "Assets\\UI\\material\\Wings9.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings9",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "1pseio0220c-mo15uxi9-jgpsqwc3oz",
+            "filePath": "Assets\\UI\\material\\Wings\\Wings10.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings10",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "l2buph7407-mo15ywjj-ejgh6s8sd05",
+            "filePath": "Assets\\UI\\material\\Wings\\Wings2.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings2",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "uqblzsunnds-mnfxf41o-mx6lmnkjlu",
+            "filePath": "Assets\\UI\\material\\Wings\\Wings3.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings3",
           "children": [],
           "_isNewInSession": true
         }

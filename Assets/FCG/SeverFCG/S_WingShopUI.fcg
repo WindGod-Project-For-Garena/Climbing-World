@@ -19,6 +19,8 @@ graph S_WingShopUI {
 	WingSelectState Map<entity<Player>, int> = nil
 	// 玩家 -> 已解锁的翅膀数量（0-12），用于 BUY/Trick/Locked 显隐
 	WingUnlockState Map<entity<Player>, int> = nil
+	SOCTabState Map<entity<Player>, int> = nil
+	SOCCardState Map<entity<Player>, int> = nil
 	// 由场景实体 Wingshoptrigger 客户端 OnAwake 上报，用于攀爬落地后 OnShowHint
 	worldPos Vector3=Vector3{-1.048412,0.001,5.96745}
 	hasWingshopHintPos bool = true
@@ -27,6 +29,8 @@ graph S_WingShopUI {
 		Wingshop = map.New()
 		WingSelectState = map.New()
 		WingUnlockState = map.New()
+		SOCTabState = map.New()
+		SOCCardState = map.New()
 	}
 
 
@@ -77,7 +81,7 @@ graph S_WingShopUI {
 		SetSOCButtonColor(player, ui, "/Button (2)", selectedIndex == 2)
 	}
 
-	func SetSOCCardImageWidget(cardImage entity, selected bool) {
+	func SetSOCCardBaseWidget(cardImage entity, selected bool) {
 		if cardImage == nil { return }
 		if selected {
 			cardImage<HudImageWidget>.SpriteName = EResSprite.card_selected_base
@@ -86,9 +90,25 @@ graph S_WingShopUI {
 		}
 	}
 
-	func SetSOCCardImage(player entity<Player>, ui entity<CustomUI>, cardPath string, selected bool) {
-		SetSOCCardImageWidget(GetWidgetByPath(player, ui, cardPath + "/card_normal_base"), selected)
-		SetSOCCardImageWidget(GetWidgetByPath(player, ui, cardPath + "/card_Wings1"), selected)
+	func SetSOCWingSprite(wingImage entity, wingIndex int) {
+		if wingImage == nil { return }
+		if wingIndex == 1 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings1; return }
+		if wingIndex == 2 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings2; return }
+		if wingIndex == 3 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings3; return }
+		if wingIndex == 4 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings4; return }
+		if wingIndex == 5 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings5; return }
+		if wingIndex == 6 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings6; return }
+		if wingIndex == 7 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings7; return }
+		if wingIndex == 8 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings8; return }
+		if wingIndex == 9 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings9; return }
+		if wingIndex == 10 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings10; return }
+		if wingIndex == 11 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings11; return }
+		if wingIndex == 12 { wingImage<HudImageWidget>.SpriteName = EResSprite.Wings12; return }
+		wingImage<HudImageWidget>.SpriteName = EResSprite.Wings1
+	}
+
+	func SetSOCCardBase(player entity<Player>, ui entity<CustomUI>, cardPath string, selected bool) {
+		SetSOCCardBaseWidget(GetWidgetByPath(player, ui, cardPath + "/card_normal_base"), selected)
 	}
 
 	func ApplySOCCardSelection(player entity<Player>, ui entity<CustomUI>, selectedIndex int) {
@@ -96,10 +116,63 @@ graph S_WingShopUI {
 			return
 		}
 
-		SetSOCCardImage(player, ui, "/card_normal_base", selectedIndex == 0)
-		SetSOCCardImage(player, ui, "/card_normal_base (1)", selectedIndex == 1)
-		SetSOCCardImage(player, ui, "/card_normal_base (2)", selectedIndex == 2)
-		SetSOCCardImage(player, ui, "/card_normal_base (3)", selectedIndex == 3)
+		SetSOCCardBase(player, ui, "/card_normal_base", selectedIndex == 0)
+		SetSOCCardBase(player, ui, "/card_normal_base (1)", selectedIndex == 1)
+		SetSOCCardBase(player, ui, "/card_normal_base (2)", selectedIndex == 2)
+		SetSOCCardBase(player, ui, "/card_normal_base (3)", selectedIndex == 3)
+	}
+
+	func GetSOCFirstWingIndex(tabIndex int) int {
+		if tabIndex == 1 { return 5 }
+		if tabIndex == 2 { return 9 }
+		return 1
+	}
+
+	func ApplySOCCardWingSprites(player entity<Player>, ui entity<CustomUI>, tabIndex int) {
+		if ui == nil {
+			return
+		}
+
+		var firstWingIndex = GetSOCFirstWingIndex(tabIndex)
+		SetSOCWingSprite(GetWidgetByPath(player, ui, "/card_normal_base/card_Wings1"), firstWingIndex)
+		SetSOCWingSprite(GetWidgetByPath(player, ui, "/card_normal_base (1)/card_Wings1"), firstWingIndex + 1)
+		SetSOCWingSprite(GetWidgetByPath(player, ui, "/card_normal_base (2)/card_Wings1"), firstWingIndex + 2)
+		SetSOCWingSprite(GetWidgetByPath(player, ui, "/card_normal_base (3)/card_Wings1"), firstWingIndex + 3)
+	}
+
+	func ApplySOCDetailWing(player entity<Player>, ui entity<CustomUI>, wingIndex int) {
+		if ui == nil {
+			return
+		}
+
+		SetSOCWingSprite(GetWidgetByPath(player, ui, "/detail_panel_Wings"), wingIndex)
+	}
+
+	func ApplySOCPanelState(player entity<Player>, ui entity<CustomUI>, tabIndex int, cardIndex int) {
+		if ui == nil {
+			return
+		}
+
+		SOCTabState[player] = tabIndex
+		SOCCardState[player] = cardIndex
+		ApplySOCTabSelection(player, ui, tabIndex)
+		ApplySOCCardWingSprites(player, ui, tabIndex)
+		ApplySOCCardSelection(player, ui, cardIndex)
+		ApplySOCDetailWing(player, ui, GetSOCFirstWingIndex(tabIndex) + cardIndex)
+	}
+
+	func GetCurrentSOCTabIndex(player entity<Player>) int {
+		if ContainKey(SOCTabState, player) {
+			return SOCTabState[player]
+		}
+		return 0
+	}
+
+	func GetCurrentSOCCardIndex(player entity<Player>) int {
+		if ContainKey(SOCCardState, player) {
+			return SOCCardState[player]
+		}
+		return 0
 	}
 
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
@@ -127,14 +200,12 @@ graph S_WingShopUI {
 			// BUY_F 面板：按已解锁数量恢复状态，not enough cup 恢复隐藏
 			ApplyBUY_FPanelState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
 			SetNotEnoughCupVisible(player, wingshopEntity as entity<CustomUI>, false)
-			ApplySOCTabSelection(player, wingshopEntity as entity<CustomUI>, 0)
-			ApplySOCCardSelection(player, wingshopEntity as entity<CustomUI>, -1)
+			ApplySOCPanelState(player, wingshopEntity as entity<CustomUI>, GetCurrentSOCTabIndex(player), GetCurrentSOCCardIndex(player))
 			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, wingshopEntity as entity<CustomUI>)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.WingShop_SOC_UI)
 			Wingshop[player] = createdEntity
-			ApplySOCTabSelection(player, createdEntity as entity<CustomUI>, 0)
-			ApplySOCCardSelection(player, createdEntity as entity<CustomUI>, -1)
+			ApplySOCPanelState(player, createdEntity as entity<CustomUI>, 0, 0)
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			WingSelectState[player] = 0
 			WingUnlockState[player] = 0
@@ -163,23 +234,25 @@ graph S_WingShopUI {
 			return
 		}
 		if wingIndex <= -10 {
-			var selectedIndex = 0 - wingIndex - 10
-			ApplySOCCardSelection(player, Wingshop[player] as entity<CustomUI>, selectedIndex)
+			var selectedCardIndex = 0 - wingIndex - 10
+			var currentTabIndex = GetCurrentSOCTabIndex(player)
+			ApplySOCPanelState(player, Wingshop[player] as entity<CustomUI>, currentTabIndex, selectedCardIndex)
 			return
 		}
 		if wingIndex < 0 {
-			var selectedIndex = 0
+			var selectedTabIndex = 0
 			if wingIndex == -2 {
-				selectedIndex = 1
+				selectedTabIndex = 1
 			}
 			if wingIndex == -3 {
-				selectedIndex = 2
+				selectedTabIndex = 2
 			}
-			ApplySOCTabSelection(player, Wingshop[player] as entity<CustomUI>, selectedIndex)
+			ApplySOCPanelState(player, Wingshop[player] as entity<CustomUI>, selectedTabIndex, 0)
 			return
 		}
 		WingSelectState[player] = wingIndex
 		ApplyWingSelectState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
+		ApplySOCDetailWing(player, Wingshop[player] as entity<CustomUI>, wingIndex)
 	}
 
 	// 玩家点击 BUY：校验金币 -> 扣款 -> 更新状态/UI -> 回推客户端成功
