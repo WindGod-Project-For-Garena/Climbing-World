@@ -573,6 +573,18 @@
             "fileType": "texture"
           },
           "scriptName": "card_normal_base",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "3mro5x6krnw-mnodn9fo-3hdcfmh7osf",
+            "filePath": "Assets\\UI\\material\\Wings1.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Wings1",
           "children": [],
           "_isNewInSession": true
         }

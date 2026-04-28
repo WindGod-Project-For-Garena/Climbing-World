@@ -128,13 +128,13 @@ graph S_WingShopUI {
 			ApplyBUY_FPanelState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
 			SetNotEnoughCupVisible(player, wingshopEntity as entity<CustomUI>, false)
 			ApplySOCTabSelection(player, wingshopEntity as entity<CustomUI>, 0)
-			ApplySOCCardSelection(player, wingshopEntity as entity<CustomUI>, 0)
+			ApplySOCCardSelection(player, wingshopEntity as entity<CustomUI>, -1)
 			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, wingshopEntity as entity<CustomUI>)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.WingShop_SOC_UI)
 			Wingshop[player] = createdEntity
 			ApplySOCTabSelection(player, createdEntity as entity<CustomUI>, 0)
-			ApplySOCCardSelection(player, createdEntity as entity<CustomUI>, 0)
+			ApplySOCCardSelection(player, createdEntity as entity<CustomUI>, -1)
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			WingSelectState[player] = 0
 			WingUnlockState[player] = 0
