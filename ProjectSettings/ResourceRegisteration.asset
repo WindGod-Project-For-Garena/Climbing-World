@@ -245,6 +245,18 @@
             "fileType": "ui"
           },
           "scriptName": "Backpack_SOC_UI",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "txfrb7vshc-7qpkabrd-54gioxwvfjs",
+            "filePath": "Assets\\UI\\QTE.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "QTE",
           "children": [],
           "_isNewInSession": true
         }

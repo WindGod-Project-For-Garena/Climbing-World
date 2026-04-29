@@ -1,0 +1,75 @@
+import "StdLibrary.fcc" as std
+import "Hud.fcc" as hud
+import "Player.fcc" as playerlib
+import "EditorGenLib.fcc" as gen
+
+[platform_client]
+graph C_QTE_button {
+	PointerX float = -242.0
+	PointerY float = -140.0
+	PointerMinY float = -160.0
+	PointerMaxY float = 160.0
+	GreenMinY float = -70.0
+	GreenMaxY float = 95.0
+	TapImpulse float = 42.0
+	FallPerTick float = 3.2
+	IsRunning bool = false
+
+	event OnAwake() {
+		PointerY = PointerMinY
+		IsRunning = true
+		ApplyPointer(thisEntity as entity<CustomUI>)
+		start QTEFallLoop(thisEntity as entity<CustomUI>)
+	}
+
+	func ClampPointer() {
+		if PointerY < PointerMinY {
+			PointerY = PointerMinY
+		}
+		if PointerY > PointerMaxY {
+			PointerY = PointerMaxY
+		}
+	}
+
+	func ApplyPointer(ui entity<CustomUI>) {
+		if ui == nil {
+			return
+		}
+		var pointer = GetWidgetByPath(GetLocalPlayer(), ui, "/QTEPointer")
+		if pointer == nil {
+			return
+		}
+		pointer<UIWidget>.AnchorPosition = Vector3{PointerX, PointerY, 0}
+	}
+
+	func IsInGreenZone() bool {
+		if PointerY >= GreenMinY && PointerY <= GreenMaxY {
+			return true
+		}
+		return false
+	}
+
+	async func QTEFallLoop(ui entity<CustomUI>) {
+		while IsRunning {
+			PointerY = PointerY - FallPerTick
+			ClampPointer()
+			ApplyPointer(ui)
+			WaitForMillisecond(33)
+		}
+	}
+
+	func QTEButton_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		if triggerPlayer != GetLocalPlayer() {
+			return
+		}
+		var ui = button<UIWidget>.ParentUI
+		PointerY = PointerY + TapImpulse
+		ClampPointer()
+		ApplyPointer(ui)
+		if IsInGreenZone() {
+			LogInfo("QTE hit: green")
+		} else {
+			LogInfo("QTE hit: red")
+		}
+	}
+}
