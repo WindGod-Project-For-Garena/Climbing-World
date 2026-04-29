@@ -3,13 +3,78 @@ import "Hud.fcc" as hud
 import "Player.fcc" as playerlib
 import "List.fcc" as List
 import "EditorGenLib.fcc" as gen
+import "../Player/C_P_Climbing2.fcg" as C_P_Climbing2
+import "../Player/C_PlayerWingsData.fcg" as C_PlayerWingsData
+import "Avatar.fcc" as avatar
 
 [platform_client]
 graph C_UI_AI {
+	bone entity<SkeletonPart> = nil
+	CurrentSOCTabIndex int = 0
+	CurrentSOCCardIndex int = 0
+
+	func GetWingGameplaySpeed(wingIndex int) float {
+		if wingIndex == 1  { return 58 }
+		if wingIndex == 2  { return 116 }
+		if wingIndex == 3  { return 232 }
+		if wingIndex == 4  { return 464 }
+		if wingIndex == 5  { return 928 }
+		if wingIndex == 6  { return 1856 }
+		if wingIndex == 7  { return 3712 }
+		if wingIndex == 8  { return 7424 }
+		if wingIndex == 9  { return 14848 }
+		if wingIndex == 10 { return 29696 }
+		if wingIndex == 11 { return 59392 }
+		if wingIndex == 12 { return 118784 }
+		return 58
+	}
+
+	func GetSOCFirstWingIndex(tabIndex int) int {
+		if tabIndex == 1 { return 5 }
+		if tabIndex == 2 { return 9 }
+		return 1
+	}
+
+	func GetCurrentSOCWingIndex() int {
+		return GetSOCFirstWingIndex(CurrentSOCTabIndex) + CurrentSOCCardIndex
+	}
+
+	func EquipWing(triggerPlayer entity<Player>, wingIndex int) {
+		var speed = GetWingGameplaySpeed(wingIndex)
+		triggerPlayer<C_P_Climbing2>.WingSpeed = speed
+		triggerPlayer<C_P_Climbing2>.WingSpeedDecay = speed
+		DispatchEventToEntity(__Custom6event_SetCurrentSpeed__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, speed})
+		bone = GetSkeletonPartByName(triggerPlayer, "bone_Left_Spine_Backpack")
+		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, wingIndex, bone})
+		LogInfo("C_UI_AI EquipWing: " + speed)
+	}
+
+	func EquipCurrentSOCWingIfOwned(triggerPlayer entity<Player>) {
+		var wingIndex = GetCurrentSOCWingIndex()
+		if wingIndex <= triggerPlayer<C_PlayerWingsData>.HighestWingIndex {
+			EquipWing(triggerPlayer, wingIndex)
+		}
+	}
+
+	func BuyWings(triggerPlayer entity<Player>, wingIndex int) {
+		triggerPlayer<C_PlayerWingsData>.HighestWingIndex = wingIndex
+		CurrentSOCTabIndex = 0
+		if wingIndex >= 5 {
+			CurrentSOCTabIndex = 1
+		}
+		if wingIndex >= 9 {
+			CurrentSOCTabIndex = 2
+		}
+		CurrentSOCCardIndex = wingIndex - GetSOCFirstWingIndex(CurrentSOCTabIndex)
+		EquipWing(triggerPlayer, wingIndex)
+	}
+
 	func RequestSOCTabSelection(triggerPlayer entity<Player>, selectedIndex int) {
 		if triggerPlayer != GetLocalPlayer() {
 			return
 		}
+		CurrentSOCTabIndex = selectedIndex
+		CurrentSOCCardIndex = 0
 		var tabRequestIndex = -1
 		if selectedIndex == 1 {
 			tabRequestIndex = -2
@@ -26,9 +91,11 @@ graph C_UI_AI {
 		if triggerPlayer != GetLocalPlayer() {
 			return
 		}
+		CurrentSOCCardIndex = selectedIndex
 
 		var nilBone entity<Skeleton> = nil
 		DispatchEventToEntity(__Custom6event_ShowWingSelect__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, -10 - selectedIndex, nilBone})
+		EquipCurrentSOCWingIfOwned(triggerPlayer)
 	}
 
 	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
@@ -57,5 +124,30 @@ graph C_UI_AI {
 
 	func card_normal_base_3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		RequestSOCCardSelection(triggerPlayer, 3)
+	}
+
+	func Buy_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		if triggerPlayer != GetLocalPlayer() {
+			return
+		}
+
+		EquipCurrentSOCWingIfOwned(triggerPlayer)
+		DispatchEventToEntity(__Custom6event___WingBuyUnlock__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, -1})
+	}
+
+	func Close_button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		if triggerPlayer != GetLocalPlayer() {
+			return
+		}
+
+		DispatchEventToEntity(__Custom6event_WingshopLeave__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+	}
+
+	event __Custom6event_BuyWings_success__(Wings int, player entity<Player>) {
+		if player != GetLocalPlayer() {
+			return
+		}
+		LogInfo("C_UI_AI BuyWings_success: " + Wings)
+		BuyWings(player, Wings)
 	}
 }

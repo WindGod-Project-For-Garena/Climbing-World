@@ -234,6 +234,19 @@
           },
           "scriptName": "WingShop_SOC_UI",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "gizqnvdovx-rctkxi8a-ilck6dz5f8u",
+            "filePath": "Assets\\UI\\Backpack_SOC_UI.ui",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "ui"
+          },
+          "scriptName": "Backpack_SOC_UI",
+          "children": [],
+          "_isNewInSession": true
         }
       ]
     },
@@ -717,8 +730,7 @@
             "fileType": "texture"
           },
           "scriptName": "Wings3",
-          "children": [],
-          "_isNewInSession": true
+          "children": []
         }
       ]
     },

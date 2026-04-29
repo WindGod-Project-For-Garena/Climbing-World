@@ -1,0 +1,214 @@
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+import "../BackpackDefs.fcc" as backpackdefs
+
+[platform_server]
+graph S_BackpackUI {
+    BackpackByPlayer Map<entity<Player>, entity<CustomUI>> = nil
+    BackpackTabByPlayer Map<entity<Player>, int> = nil
+    BackpackSlotByPlayer Map<entity<Player>, int> = nil
+
+    event OnAwake() {
+        BackpackByPlayer = map.New()
+        BackpackTabByPlayer = map.New()
+        BackpackSlotByPlayer = map.New()
+    }
+
+    func GetCurrentBackpackTab(player entity<Player>) int {
+        if ContainKey(BackpackTabByPlayer, player) {
+            return BackpackTabByPlayer[player]
+        }
+        return 0
+    }
+
+    func GetCurrentBackpackSlot(player entity<Player>) int {
+        if ContainKey(BackpackSlotByPlayer, player) {
+            return BackpackSlotByPlayer[player]
+        }
+        return 1
+    }
+
+    func ClampBackpackTab(tabIndex int) int {
+        if tabIndex < 0 {
+            return 0
+        }
+        if tabIndex > 3 {
+            return 3
+        }
+        return tabIndex
+    }
+
+    func ClampBackpackSlot(slotIndex int) int {
+        if slotIndex < 1 {
+            return 1
+        }
+        if slotIndex > 12 {
+            return 12
+        }
+        return slotIndex
+    }
+
+    func GetSlotPath(slotIndex int) string {
+        if slotIndex == 1 { return "/BackpackWindow/Slot01" }
+        if slotIndex == 2 { return "/BackpackWindow/Slot02" }
+        if slotIndex == 3 { return "/BackpackWindow/Slot03" }
+        if slotIndex == 4 { return "/BackpackWindow/Slot04" }
+        if slotIndex == 5 { return "/BackpackWindow/Slot05" }
+        if slotIndex == 6 { return "/BackpackWindow/Slot06" }
+        if slotIndex == 7 { return "/BackpackWindow/Slot07" }
+        if slotIndex == 8 { return "/BackpackWindow/Slot08" }
+        if slotIndex == 9 { return "/BackpackWindow/Slot09" }
+        if slotIndex == 10 { return "/BackpackWindow/Slot10" }
+        if slotIndex == 11 { return "/BackpackWindow/Slot11" }
+        if slotIndex == 12 { return "/BackpackWindow/Slot12" }
+        return "/BackpackWindow/Slot01"
+    }
+
+    func GetSlotImagePath(slotIndex int) string {
+        if slotIndex == 1 { return "/BackpackWindow/Slot01/Slot01_image" }
+        if slotIndex == 2 { return "/BackpackWindow/Slot02/Slot02_image" }
+        if slotIndex == 3 { return "/BackpackWindow/Slot03/Slot03_image" }
+        if slotIndex == 4 { return "/BackpackWindow/Slot04/Slot04_image" }
+        if slotIndex == 5 { return "/BackpackWindow/Slot05/Slot05_image" }
+        if slotIndex == 6 { return "/BackpackWindow/Slot06/Slot06_image" }
+        if slotIndex == 7 { return "/BackpackWindow/Slot07/Slot07_image" }
+        if slotIndex == 8 { return "/BackpackWindow/Slot08/Slot08_image" }
+        if slotIndex == 9 { return "/BackpackWindow/Slot09/Slot09_image" }
+        if slotIndex == 10 { return "/BackpackWindow/Slot10/Slot10_image" }
+        if slotIndex == 11 { return "/BackpackWindow/Slot11/Slot11_image" }
+        if slotIndex == 12 { return "/BackpackWindow/Slot12/Slot12_image" }
+        return "/BackpackWindow/Slot01/Slot01_image"
+    }
+
+    func SetBackpackWidgetColor(player entity<Player>, ui entity<CustomUI>, buttonPath string, imagePath string, color Color) {
+        if ui == nil {
+            return
+        }
+
+        var buttonWidget = GetWidgetByPath(player, ui, buttonPath)
+        if buttonWidget != nil {
+            buttonWidget<UIWidgetButton>.Color = color
+        }
+
+        var imageWidget = GetWidgetByPath(player, ui, imagePath)
+        if imageWidget != nil {
+            imageWidget<UIWidgetImage>.Color = color
+        }
+    }
+
+    func ApplyBackpackTabState(player entity<Player>, ui entity<CustomUI>, tabIndex int) {
+        if ui == nil {
+            return
+        }
+
+        SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabAll", "/BackpackWindow/TabAll/TabAll_image", #FFFFFF)
+        SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabGear", "/BackpackWindow/TabGear/TabGear_image", #FFFFFF)
+        SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabWings", "/BackpackWindow/TabWings/TabWings_image", #FFFFFF)
+        SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabItems", "/BackpackWindow/TabItems/TabItems_image", #FFFFFF)
+
+        if tabIndex == 0 { SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabAll", "/BackpackWindow/TabAll/TabAll_image", #70FF70) }
+        if tabIndex == 1 { SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabGear", "/BackpackWindow/TabGear/TabGear_image", #70FF70) }
+        if tabIndex == 2 { SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabWings", "/BackpackWindow/TabWings/TabWings_image", #70FF70) }
+        if tabIndex == 3 { SetBackpackWidgetColor(player, ui, "/BackpackWindow/TabItems", "/BackpackWindow/TabItems/TabItems_image", #70FF70) }
+    }
+
+    func ApplyBackpackSlotState(player entity<Player>, ui entity<CustomUI>, slotIndex int) {
+        if ui == nil {
+            return
+        }
+
+        for i = 1, 13, 1 {
+            SetBackpackWidgetColor(player, ui, GetSlotPath(i), GetSlotImagePath(i), #FFFFFF)
+        }
+        SetBackpackWidgetColor(player, ui, GetSlotPath(slotIndex), GetSlotImagePath(slotIndex), #FFE34A)
+    }
+
+    func ApplyBackpackState(player entity<Player>, ui entity<CustomUI>) {
+        var tabIndex = ClampBackpackTab(GetCurrentBackpackTab(player))
+        var slotIndex = ClampBackpackSlot(GetCurrentBackpackSlot(player))
+        BackpackTabByPlayer[player] = tabIndex
+        BackpackSlotByPlayer[player] = slotIndex
+        ApplyBackpackTabState(player, ui, tabIndex)
+        ApplyBackpackSlotState(player, ui, slotIndex)
+    }
+
+    func ShowBackpack(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        if ContainKey(BackpackByPlayer, player) {
+            var oldUI = BackpackByPlayer[player]
+            if oldUI != nil {
+                oldUI<CustomUI>.IsVisible = true
+                ApplyBackpackState(player, oldUI)
+                return
+            }
+        }
+        CreateCustomUI(out var createdUI, player, "/41/ScmgnVAH" as CustomUIAssetID)
+        BackpackByPlayer[player] = createdUI
+        if !ContainKey(BackpackTabByPlayer, player) {
+            BackpackTabByPlayer[player] = 0
+        }
+        if !ContainKey(BackpackSlotByPlayer, player) {
+            BackpackSlotByPlayer[player] = 1
+        }
+        ApplyBackpackState(player, createdUI)
+    }
+
+    func HideBackpack(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        if !ContainKey(BackpackByPlayer, player) {
+            return
+        }
+        var ui = BackpackByPlayer[player]
+        if ui != nil {
+            ui<CustomUI>.IsVisible = false
+        }
+    }
+
+    event __Custom6event_BackpackOpen__(player entity<Player>) {
+        ShowBackpack(player)
+    }
+
+    event __Custom6event_BackpackClose__(player entity<Player>) {
+        HideBackpack(player)
+    }
+
+    event __Custom6event_BackpackSelectTab__(player entity<Player>, tabIndex int) {
+        if player == nil {
+            return
+        }
+        var safeTabIndex = ClampBackpackTab(tabIndex)
+        BackpackTabByPlayer[player] = safeTabIndex
+        if ContainKey(BackpackByPlayer, player) {
+            ApplyBackpackTabState(player, BackpackByPlayer[player], safeTabIndex)
+        }
+    }
+
+    event __Custom6event_BackpackSelectSlot__(player entity<Player>, slotIndex int) {
+        if player == nil {
+            return
+        }
+        var safeSlotIndex = ClampBackpackSlot(slotIndex)
+        BackpackSlotByPlayer[player] = safeSlotIndex
+        if ContainKey(BackpackByPlayer, player) {
+            ApplyBackpackSlotState(player, BackpackByPlayer[player], safeSlotIndex)
+        }
+    }
+
+    event __Custom6event_BackpackSort__(player entity<Player>) {
+        LogInfo("Backpack sort requested")
+    }
+
+    event __Custom6event_BackpackUse__(player entity<Player>) {
+        LogInfo("Backpack use slot: " + GetCurrentBackpackSlot(player))
+    }
+
+    event __Custom6event_BackpackDrop__(player entity<Player>) {
+        LogInfo("Backpack drop slot: " + GetCurrentBackpackSlot(player))
+    }
+}

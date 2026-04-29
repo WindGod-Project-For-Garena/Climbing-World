@@ -67,6 +67,41 @@ graph S_WingsPrice {
 	}
 
 	// 将所有翅膀的售价和速度写入 WingsShop2 各个 /Wings{N}/BUY_F/price 和 /Wings{N}/BUY_F/Speed 标签
+	func GetWingName(wingIndex int) string {
+		return "Wings" + wingIndex
+	}
+
+	func GetWorldName(wingIndex int) string {
+		if wingIndex <= 4 {
+			return "China"
+		}
+		if wingIndex <= 8 {
+			return "Japan"
+		}
+		return "World 3"
+	}
+
+	func SetLabelText(player entity<Player>, wingshopUI entity<CustomUI>, path string, text string) {
+		var labelWidget = GetWidgetByPath(player, wingshopUI, path)
+		if labelWidget != nil {
+			labelWidget<HudLabelWidget>.Text = text
+		}
+	}
+
+	func RefreshWingDetailUI(player entity<Player>, wingshopUI entity<CustomUI>, wingIndex int) {
+		var price = GetPrice(wingIndex)
+		var speed = GetSpeed(wingIndex)
+		var priceText = FormatBigNumber(price)
+		var speedText = FormatBigNumber(speed)
+
+		SetLabelText(player, wingshopUI, "/Buy/Price", priceText)
+		SetLabelText(player, wingshopUI, "/Price", priceText)
+		SetLabelText(player, wingshopUI, "/Buy/Speed", speedText)
+		SetLabelText(player, wingshopUI, "/Speed", speedText)
+		SetLabelText(player, wingshopUI, "/detail_title_box/detail_name", GetWingName(wingIndex))
+		SetLabelText(player, wingshopUI, "/World_name", GetWorldName(wingIndex))
+	}
+
 	func RefreshAllWingPriceSpeedUI(player entity<Player>, wingshopUI entity<CustomUI>) {
 		for i = 1, 13, 1 {
 			var price = GetPrice(i)

@@ -1,0 +1,37 @@
+import "StdLibrary.fcc" as std
+import "Player.fcc" as playerlib
+
+// Custom event_BackpackOpen(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_BackpackOpen__( player entity<Player>)
+
+// Custom event_BackpackClose(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_BackpackClose__( player entity<Player>)
+
+// Custom event_BackpackSelectTab(player Player, tabIndex Int)
+[platform_client]
+[platform_server]
+event __Custom6event_BackpackSelectTab__( player entity<Player>,  tabIndex int)
+
+// Custom event_BackpackSelectSlot(player Player, slotIndex Int)
+[platform_client]
+[platform_server]
+event __Custom6event_BackpackSelectSlot__( player entity<Player>,  slotIndex int)
+
+// Custom event_BackpackSort(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_BackpackSort__( player entity<Player>)
+
+// Custom event_BackpackUse(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_BackpackUse__( player entity<Player>)
+
+// Custom event_BackpackDrop(player Player)
+[platform_client]
+[platform_server]
+event __Custom6event_BackpackDrop__( player entity<Player>)

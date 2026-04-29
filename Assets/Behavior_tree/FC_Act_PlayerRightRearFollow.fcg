@@ -1,0 +1,120 @@
+import "StdLibrary.fcc" as StdLib
+import "EditorGenLib.fcc" as EditorLib
+import "BehaviourTree.fcc" as BehaviourTree
+import "Animation.fcc" as Animation
+import "Player.fcc" as Player
+import "Math.fcc" as Math
+
+graph FC_Act_PlayerRightRearFollow {
+    BehindDist float = 1.4
+    RightDist float = 0.8
+    FollowLerp float = 0.35
+    SnapDist float = 6.0
+    LastStateName string = ""
+    LastLoop bool = false
+    LastSpeed float = 1.0
+
+    event OnNodeEnter(nodeName string, owner entity<BevTreeAttachable>) {
+        GetNodeVariable(thisEntity as entity<BevTreeCustomNode>, "BehindDist", out var behindDist)
+        GetNodeVariable(thisEntity as entity<BevTreeCustomNode>, "RightDist", out var rightDist)
+        GetNodeVariable(thisEntity as entity<BevTreeCustomNode>, "FollowLerp", out var followLerp)
+        GetNodeVariable(thisEntity as entity<BevTreeCustomNode>, "SnapDist", out var snapDist)
+        BehindDist = behindDist as float
+        RightDist = rightDist as float
+        FollowLerp = followLerp as float
+        SnapDist = snapDist as float
+    }
+
+    func PlayAction(owner entity<BevTreeAttachable>) BevTreeNodeStatus {
+        var target = GetFollowTarget()
+        if target == nil {
+            return BevTreeNodeStatus.Running
+        }
+
+        UpdateFollowPosition(owner, target)
+        UpdateMirrorAnimation(owner, target)
+        return BevTreeNodeStatus.Running
+    }
+
+    func GetFollowTarget() entity<Player> {
+        for index, player in GetAllPlayers() {
+            if player != nil && player<Player>.HP > 0 {
+                return player
+            }
+        }
+        return nil
+    }
+
+    func UpdateFollowPosition(owner entity<BevTreeAttachable>, target entity<Player>) {
+        var forward = target<Player>.Forward
+        forward.Y = 0
+        if Magnitude(forward) <= 0.01 {
+            forward = Vector3{0, 0, 1}
+        } else {
+            forward = Normalize(forward)
+        }
+
+        var right = Vector3{forward.Z, 0, -forward.X}
+        var targetPos = target<Player>.Position
+        var desiredPos = targetPos - forward * BehindDist + right * RightDist
+        desiredPos.Y = targetPos.Y
+
+        var ownerPos = owner<Transform>.Position
+        var delta = desiredPos - ownerPos
+        var dist = Magnitude(delta)
+        if dist > SnapDist {
+            owner<Transform>.Position = desiredPos
+        } else {
+            owner<Transform>.Position = ownerPos + delta * FollowLerp
+        }
+        owner<Transform>.Forward = forward
+    }
+
+    func UpdateMirrorAnimation(owner entity<BevTreeAttachable>, target entity<Player>) {
+        var controller = target<Player>.AnimationController
+        if controller == nil {
+            return
+        }
+
+        var currentState = controller<AnimationController>.CurrentState
+        if currentState == nil {
+            return
+        }
+
+        var stateName = currentState<AnimationState>.Name
+        if stateName == "" {
+            return
+        }
+
+        var playSpeed = currentState<AnimationState>.PlaySpeed
+        if playSpeed <= 0 {
+            playSpeed = 1.0
+        }
+
+        var isLoop = currentState<AnimationState>.IsLoop
+        if stateName == LastStateName && isLoop == LastLoop && playSpeed == LastSpeed {
+            return
+        }
+
+        if LastStateName != "" {
+            StopAnimation(owner as entity<AnimationControllerAttachable>, LastStateName)
+        }
+
+        if isLoop {
+            PlayAnimation(owner as entity<AnimationControllerAttachable>, stateName, playSpeed, LoopType.Loop)
+        } else {
+            PlayAnimation(owner as entity<AnimationControllerAttachable>, stateName, playSpeed, LoopType.Once)
+        }
+
+        LastStateName = stateName
+        LastLoop = isLoop
+        LastSpeed = playSpeed
+    }
+
+    event OnNodeExit(nodeName string, owner entity<BevTreeAttachable>) {
+        if LastStateName != "" {
+            StopAnimation(owner as entity<AnimationControllerAttachable>, LastStateName)
+        }
+        LastStateName = ""
+    }
+}

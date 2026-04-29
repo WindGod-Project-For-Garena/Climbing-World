@@ -1,0 +1,120 @@
+import "StdLibrary.fcc" as std
+import "Hud.fcc" as hud
+import "EditorGenLib.fcc" as gen
+import "../../BackpackDefs.fcc" as backpackdefs
+
+[platform_client]
+graph C_BackpackUI {
+    event OnAwake() {
+    }
+
+    func IsLocalTrigger(triggerPlayer entity<Player>) bool {
+        return triggerPlayer == GetLocalPlayer()
+    }
+
+    func SendSelectTab(triggerPlayer entity<Player>, tabIndex int) {
+        if !IsLocalTrigger(triggerPlayer) {
+            return
+        }
+        DispatchEventToEntity(__Custom6event_BackpackSelectTab__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, tabIndex})
+    }
+
+    func SendSelectSlot(triggerPlayer entity<Player>, slotIndex int) {
+        if !IsLocalTrigger(triggerPlayer) {
+            return
+        }
+        DispatchEventToEntity(__Custom6event_BackpackSelectSlot__, globalEntity, PlatformType.Server, List<object>{triggerPlayer, slotIndex})
+    }
+
+    func Close_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        if !IsLocalTrigger(triggerPlayer) {
+            return
+        }
+        DispatchEventToEntity(__Custom6event_BackpackClose__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+    }
+
+    func TabAll_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectTab(triggerPlayer, 0)
+    }
+
+    func TabGear_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectTab(triggerPlayer, 1)
+    }
+
+    func TabWings_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectTab(triggerPlayer, 2)
+    }
+
+    func TabItems_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectTab(triggerPlayer, 3)
+    }
+
+    func Sort_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        if !IsLocalTrigger(triggerPlayer) {
+            return
+        }
+        DispatchEventToEntity(__Custom6event_BackpackSort__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+    }
+
+    func Slot01_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 1)
+    }
+
+    func Slot02_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 2)
+    }
+
+    func Slot03_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 3)
+    }
+
+    func Slot04_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 4)
+    }
+
+    func Slot05_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 5)
+    }
+
+    func Slot06_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 6)
+    }
+
+    func Slot07_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 7)
+    }
+
+    func Slot08_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 8)
+    }
+
+    func Slot09_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 9)
+    }
+
+    func Slot10_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 10)
+    }
+
+    func Slot11_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 11)
+    }
+
+    func Slot12_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        SendSelectSlot(triggerPlayer, 12)
+    }
+
+    func Use_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        if !IsLocalTrigger(triggerPlayer) {
+            return
+        }
+        DispatchEventToEntity(__Custom6event_BackpackUse__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+    }
+
+    func Drop_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+        if !IsLocalTrigger(triggerPlayer) {
+            return
+        }
+        DispatchEventToEntity(__Custom6event_BackpackDrop__, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
+    }
+}

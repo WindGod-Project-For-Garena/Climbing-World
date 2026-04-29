@@ -1,0 +1,415 @@
+{
+  "rootEntity": "behaviorRoot",
+  "graphJson": {
+    "cells": [
+      {
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "size": {
+          "width": 180,
+          "height": 88
+        },
+        "view": "vue-shape-view",
+        "shape": "vue-shape",
+        "id": "behaviorRoot",
+        "component": "xbt-base-node",
+        "data": {},
+        "ports": {
+          "groups": {
+            "in": {
+              "position": "left",
+              "label": {
+                "position": "right"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--bg5)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            },
+            "inVal": {
+              "position": "left",
+              "label": {
+                "position": "right"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--t15)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            },
+            "out": {
+              "position": "absolute",
+              "label": {
+                "position": "left"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--bg5)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            },
+            "outVal": {
+              "position": "absolute",
+              "label": {
+                "position": "left"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--t15)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            }
+          },
+          "items": [
+            {
+              "group": "out",
+              "args": {
+                "x": 172,
+                "y": 69
+              },
+              "attrs": {
+                "text": {
+                  "text": "out"
+                }
+              },
+              "id": "9faed6bf-7d4c-4449-9494-34c9c2dee245"
+            }
+          ]
+        },
+        "zIndex": 1
+      },
+      {
+        "position": {
+          "x": 360,
+          "y": 0
+        },
+        "size": {
+          "width": 180,
+          "height": 88
+        },
+        "view": "vue-shape-view",
+        "shape": "vue-shape",
+        "id": "PrrFollowAct",
+        "component": "xbt-base-node",
+        "data": {},
+        "ports": {
+          "groups": {
+            "in": {
+              "position": "left",
+              "label": {
+                "position": "right"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--bg5)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            },
+            "inVal": {
+              "position": "left",
+              "label": {
+                "position": "right"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--t15)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            },
+            "out": {
+              "position": "absolute",
+              "label": {
+                "position": "left"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--bg5)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            },
+            "outVal": {
+              "position": "absolute",
+              "label": {
+                "position": "left"
+              },
+              "attrs": {
+                "circle": {
+                  "r": 4,
+                  "magnet": true,
+                  "stroke": "var(--t15)",
+                  "strokeWidth": 1,
+                  "fill": "var(--t15)"
+                },
+                "text": {
+                  "fill": "var(--t15)",
+                  "fontSize": 12
+                }
+              }
+            }
+          },
+          "items": [
+            {
+              "group": "in",
+              "args": {
+                "dx": 8,
+                "dy": 25
+              },
+              "attrs": {
+                "text": {
+                  "text": "in"
+                }
+              },
+              "id": "5c36d2bd-8df0-4a63-a277-3d77b809268d"
+            }
+          ]
+        },
+        "zIndex": 2
+      },
+      {
+        "shape": "edge",
+        "attrs": {
+          "line": {
+            "stroke": "var(--t11)",
+            "strokeWidth": 1
+          }
+        },
+        "id": "2f4c1ed3-df3e-47df-8890-5f78f28fe69b",
+        "zIndex": 3,
+        "source": {
+          "cell": "behaviorRoot",
+          "port": "9faed6bf-7d4c-4449-9494-34c9c2dee245"
+        },
+        "target": {
+          "cell": "PrrFollowAct",
+          "port": "5c36d2bd-8df0-4a63-a277-3d77b809268d"
+        }
+      }
+    ]
+  },
+  "apiTarget": 2,
+  "entityMap": {
+    "behaviorRoot": {
+      "_entityName": "XBTRootEntity",
+      "_tag": {
+        "type": "XBTRootEntity"
+      },
+      "_entityId": "behaviorRoot",
+      "children": [
+        {
+          "_tag": {
+            "type": "XBTEntity",
+            "resourceId": ""
+          },
+          "_entityId": "PrrFollowAct",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true,
+          "ecaScripts": [
+            {
+              "fileId": "btfollowact-mp0nq4w2-k7s9d1v3a5b",
+              "filePath": "Assets\\Behavior_tree\\FC_Act_PlayerRightRearFollow.fcg",
+              "_tag": {
+                "type": "GFileRefer"
+              },
+              "fileType": "ugcscript"
+            }
+          ],
+          "x": 360,
+          "y": 0,
+          "width": 180,
+          "height": 88,
+          "nodeInfo": {
+            "type": "action",
+            "name": "FollowPlayerAndCopyAnimation",
+            "id": "PrrFollowAct",
+            "varArr": [
+              {
+                "name": "BehindDist",
+                "type": "Float",
+                "val": 1.4
+              },
+              {
+                "name": "RightDist",
+                "type": "Float",
+                "val": 0.8
+              },
+              {
+                "name": "FollowLerp",
+                "type": "Float",
+                "val": 0.35
+              },
+              {
+                "name": "SnapDist",
+                "type": "Float",
+                "val": 6
+              }
+            ],
+            "ecaScript": null,
+            "iscustom": true,
+            "desc": "Follow the player near the right rear side and copy the player's current animation state.",
+            "icon": "General_Customize_20"
+          },
+          "readonlyScripts": [
+            null
+          ],
+          "_entityName": "XBTEntity"
+        }
+      ],
+      "prefabVariant": null,
+      "activeValue": null,
+      "unlockedValue": null,
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "ecaScripts": [],
+      "x": 0,
+      "y": 0,
+      "width": 180,
+      "height": 88,
+      "nodeInfo": {
+        "type": "root",
+        "name": "Root",
+        "id": "behaviorRoot",
+        "varArr": [],
+        "out": "",
+        "icon": "General_Root_20"
+      }
+    },
+    "PrrFollowAct": {
+      "_tag": {
+        "type": "XBTEntity",
+        "resourceId": ""
+      },
+      "_entityId": "PrrFollowAct",
+      "children": [],
+      "prefabVariant": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
+      "editorLockValue": false,
+      "editorVisibleValue": true,
+      "ecaScripts": [
+        {
+          "fileId": "btfollowact-mp0nq4w2-k7s9d1v3a5b",
+          "filePath": "Assets\\Behavior_tree\\FC_Act_PlayerRightRearFollow.fcg",
+          "_tag": {
+            "type": "GFileRefer"
+          },
+          "fileType": "ugcscript"
+        }
+      ],
+      "x": 360,
+      "y": 0,
+      "width": 180,
+      "height": 88,
+      "nodeInfo": {
+        "type": "action",
+        "name": "FollowPlayerAndCopyAnimation",
+        "id": "PrrFollowAct",
+        "varArr": [
+          {
+            "name": "BehindDist",
+            "type": "Float",
+            "val": 1.4
+          },
+          {
+            "name": "RightDist",
+            "type": "Float",
+            "val": 0.8
+          },
+          {
+            "name": "FollowLerp",
+            "type": "Float",
+            "val": 0.35
+          },
+          {
+            "name": "SnapDist",
+            "type": "Float",
+            "val": 6
+          }
+        ],
+        "ecaScript": null,
+        "iscustom": true,
+        "desc": "Follow the player near the right rear side and copy the player's current animation state.",
+        "icon": "General_Customize_20"
+      },
+      "readonlyScripts": [
+        null
+      ],
+      "_entityName": "XBTEntity"
+    }
+  }
+}
+//"{FE:{"v":"1.17.4335043","c":{"FF":5001},"s":100}

@@ -149,6 +149,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "qy6gz75fn1-e4ti0yg1-xddswsgpngw",
+      "filePath": "Assets\\FCG\\SeverFCG\\S_BackpackUI.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",
