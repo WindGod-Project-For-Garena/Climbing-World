@@ -249,7 +249,7 @@
         },
         {
           "refer": {
-            "fileId": "txfrb7vshc-7qpkabrd-54gioxwvfjs",
+            "fileId": "29kf8zg4wr-dkb319cy-wx2x4g8fi5h",
             "filePath": "Assets\\UI\\QTE.ui",
             "_tag": {
               "type": "GFileRefer"
@@ -257,8 +257,7 @@
             "fileType": "ui"
           },
           "scriptName": "QTE",
-          "children": [],
-          "_isNewInSession": true
+          "children": []
         }
       ]
     },
@@ -519,6 +518,30 @@
             "fileType": "prefab"
           },
           "scriptName": "CTower",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "56jp4le9uow-mojsxl4q-879o4ewkvb2",
+            "filePath": "Assets\\Prefabs\\Trail.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "Trail",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "mb7lx9ec689-mojto6pz-4ohj106m977",
+            "filePath": "Assets\\Prefabs\\NPCFollow_1.prefab",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "prefab"
+          },
+          "scriptName": "NPCFollow_1",
           "children": []
         }
       ]

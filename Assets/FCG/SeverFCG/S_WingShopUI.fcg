@@ -447,8 +447,7 @@ graph S_WingShopUI {
 
 		// 扣款
 		var newGold = gold - price
-		globalEntity<G_economy>.PlayerGold[player] = newGold
-		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
+		globalEntity<G_economy>.SetPlayerGold(player, newGold)
 		DispatchEventToEntity(__Custom6event_BuyWings_success__, Wingshop[player] as entity, PlatformType.Client, List<object>{wingIndex, player})
 		// 更新解锁状态与 UI
 		WingUnlockState[player] = wingIndex

@@ -452,8 +452,7 @@ graph S_treasureShopUI {
 			return
 		}
 		var newGold = gold - treasurePrice
-		globalEntity<G_economy>.PlayerGold[player] = newGold
-		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, newGold})
+		globalEntity<G_economy>.SetPlayerGold(player, newGold)
 		var growthValue = RollPowerGrowthByProbability(treasureIndex)
 		var nextPowerValue = globalEntity<S_power>.GetPlayerPowerValue(player) + growthValue
 		LogInfo("TreasureRollResult chest=" + convert.ToString(treasureIndex) + " price=" + FormatPrice(treasurePrice) + " goldBefore=" + FormatPrice(gold) + " goldAfter=" + FormatPrice(newGold) + " growth=" + convert.ToString(growthValue) + " tier=" + convert.ToString(GetGrowthTierByValue(treasureIndex, growthValue)))

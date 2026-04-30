@@ -27,8 +27,14 @@
               "_entityId": "jBARJliU",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -46,12 +52,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 2,
-              "_entityName": "Female_Idle"
+              "_entityName": "Female_Idle",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -63,15 +76,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Idle"
+      "_entityName": "Idle",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "HYuI2kw3",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -95,8 +128,14 @@
               "_entityId": "Bb2C2uOf",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -114,12 +153,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.533,
-              "_entityName": "Female_Sprint_Forward"
+              "_entityName": "Female_Sprint_Forward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -131,15 +177,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Sprint_Forward"
+      "_entityName": "Sprint_Forward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "w677JcyZ",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -163,8 +229,14 @@
               "_entityId": "rMZBSrE5",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -182,12 +254,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.6,
-              "_entityName": "Female_Move_Forward"
+              "_entityName": "Female_Move_Forward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -199,15 +278,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Move_Forward"
+      "_entityName": "Move_Forward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "cKwbblbC",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -231,8 +330,14 @@
               "_entityId": "5ETRPCxO",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -250,12 +355,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.633,
-              "_entityName": "Female_Move_Rightward"
+              "_entityName": "Female_Move_Rightward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -267,15 +379,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Move_Rightward"
+      "_entityName": "Move_Rightward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "NbVeF9gO",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -299,8 +431,14 @@
               "_entityId": "TdrD6KxB",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -318,12 +456,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.633,
-              "_entityName": "Female_Move_Leftward"
+              "_entityName": "Female_Move_Leftward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -335,15 +480,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Move_Leftward"
+      "_entityName": "Move_Leftward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "NlA9Nv2M",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -367,8 +532,14 @@
               "_entityId": "uUPdquJy",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -386,12 +557,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.633,
-              "_entityName": "Female_Move_Backward"
+              "_entityName": "Female_Move_Backward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -403,15 +581,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Move_Backward"
+      "_entityName": "Move_Backward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "qvimzbLI",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -435,8 +633,14 @@
               "_entityId": "q9n2Kxsf",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -454,12 +658,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 2,
-              "_entityName": "Female_Crouch"
+              "_entityName": "Female_Crouch",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -471,15 +682,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Crouch"
+      "_entityName": "Crouch",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "J6TPbiVa",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -503,8 +734,14 @@
               "_entityId": "wBG5zxBh",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -522,12 +759,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.867,
-              "_entityName": "Female_Crouch_Forward"
+              "_entityName": "Female_Crouch_Forward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -539,15 +783,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Crouch_Forward"
+      "_entityName": "Crouch_Forward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "ech0fxWF",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -571,8 +835,14 @@
               "_entityId": "AubBquVv",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -590,12 +860,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.867,
-              "_entityName": "Female_Crouch_Rightward"
+              "_entityName": "Female_Crouch_Rightward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -607,15 +884,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Crouch_Rightward"
+      "_entityName": "Crouch_Rightward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "klxeu3YN",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -639,8 +936,14 @@
               "_entityId": "rRhWxfHq",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -658,12 +961,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.867,
-              "_entityName": "Female_Crouch_Leftward"
+              "_entityName": "Female_Crouch_Leftward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -675,15 +985,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Crouch_Leftward"
+      "_entityName": "Crouch_Leftward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "HvNHAe7q",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -707,8 +1037,14 @@
               "_entityId": "jhSNzOT6",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -726,12 +1062,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.867,
-              "_entityName": "Female_Crouch_Backward"
+              "_entityName": "Female_Crouch_Backward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -743,15 +1086,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Crouch_Backward"
+      "_entityName": "Crouch_Backward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "aYNVjkQm",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -775,8 +1138,14 @@
               "_entityId": "ibxIjMoY",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -794,12 +1163,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 2,
-              "_entityName": "Female_Prone"
+              "_entityName": "Female_Prone",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -811,15 +1187,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Prone"
+      "_entityName": "Prone",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "AGyxO0ic",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -843,8 +1239,14 @@
               "_entityId": "0bDe3blo",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -861,13 +1263,20 @@
               },
               "wrapMode": 0,
               "startTime": 0,
-              "endTime": 1.333,
-              "_entityName": "Female_Prone_Forward"
+              "endTime": 1.6,
+              "_entityName": "Female_Prone_Forward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -879,15 +1288,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Prone_Forward"
+      "_entityName": "Prone_Forward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "wX4ChEoZ",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -911,8 +1340,14 @@
               "_entityId": "kMLFwZxI",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -930,12 +1365,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 1,
-              "_entityName": "Female_Prone_Rightward"
+              "_entityName": "Female_Prone_Rightward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -947,15 +1389,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Prone_Rightward"
+      "_entityName": "Prone_Rightward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "ypVCJCOb",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -979,8 +1441,14 @@
               "_entityId": "RrvFwC5z",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -998,12 +1466,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 1,
-              "_entityName": "Female_Prone_Leftward"
+              "_entityName": "Female_Prone_Leftward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1015,15 +1490,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Prone_Leftward"
+      "_entityName": "Prone_Leftward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "wPristGv",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1047,8 +1542,14 @@
               "_entityId": "ga2ezz4A",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1066,12 +1567,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 1,
-              "_entityName": "Female_Prone_Backward"
+              "_entityName": "Female_Prone_Backward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1083,15 +1591,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Prone_Backward"
+      "_entityName": "Prone_Backward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "rc8ps7cA",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1115,8 +1643,14 @@
               "_entityId": "2AAw3v8h",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1134,12 +1668,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 2,
-              "_entityName": "Female_Sitting"
+              "_entityName": "Female_Sitting",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1151,15 +1692,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Sitting"
+      "_entityName": "Sitting",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "uj0M1O1M",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1183,8 +1744,14 @@
               "_entityId": "p2Fm4oWi",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1202,12 +1769,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 1.6,
-              "_entityName": "Female_Down_Forward"
+              "_entityName": "Female_Down_Forward",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1219,15 +1793,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Down_Forward"
+      "_entityName": "Down_Forward",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "bufIFR1r",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1251,8 +1845,14 @@
               "_entityId": "J3BOqttt",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1270,12 +1870,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.433,
-              "_entityName": "Female_LeftHook"
+              "_entityName": "Female_LeftHook",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1287,15 +1894,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "LeftHook"
+      "_entityName": "LeftHook",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "m91z74Vu",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1319,8 +1946,14 @@
               "_entityId": "YYDMc4So",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1338,12 +1971,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.433,
-              "_entityName": "Female_RightHook"
+              "_entityName": "Female_RightHook",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1355,15 +1995,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "RightHook"
+      "_entityName": "RightHook",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "uYl9S7mE",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1387,8 +2047,14 @@
               "_entityId": "zYLww3S0",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1406,12 +2072,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 0.267,
-              "_entityName": "Female_BeHit"
+              "_entityName": "Female_BeHit",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1423,15 +2096,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "BeHit"
+      "_entityName": "BeHit",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "IyLF1TCs",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1455,8 +2148,14 @@
               "_entityId": "5N5SGK5x",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1474,12 +2173,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 3.833,
-              "_entityName": "Female_Agree"
+              "_entityName": "Female_Agree",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1491,15 +2197,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Agree"
+      "_entityName": "Agree",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "aUQLew8I",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1523,8 +2249,14 @@
               "_entityId": "78rUKvP5",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1542,12 +2274,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 5.5,
-              "_entityName": "Female_Stretch"
+              "_entityName": "Female_Stretch",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1559,15 +2298,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Stretch"
+      "_entityName": "Stretch",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "KL59Vlxe",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1591,8 +2350,14 @@
               "_entityId": "cYodBxpy",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1610,12 +2375,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 8.667,
-              "_entityName": "Female_Sad"
+              "_entityName": "Female_Sad",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1627,15 +2399,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Sad"
+      "_entityName": "Sad",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "tlACIJc2",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1659,8 +2451,14 @@
               "_entityId": "IcfqfWlT",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1678,12 +2476,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 6.5,
-              "_entityName": "Female_Shrug"
+              "_entityName": "Female_Shrug",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1695,15 +2500,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Shrug"
+      "_entityName": "Shrug",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "Ht8ogv1x",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1727,8 +2552,14 @@
               "_entityId": "nTIdDvcu",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1746,12 +2577,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 6.967,
-              "_entityName": "Female_Think"
+              "_entityName": "Female_Think",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1763,15 +2601,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Think"
+      "_entityName": "Think",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "QEumTa9y",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1795,8 +2653,14 @@
               "_entityId": "fPBvKzH5",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1814,12 +2678,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 4.167,
-              "_entityName": "Female_Reject"
+              "_entityName": "Female_Reject",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1831,15 +2702,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Reject"
+      "_entityName": "Reject",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "k1BPgo0D",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1863,8 +2754,14 @@
               "_entityId": "fOLfE0wN",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1882,12 +2779,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 4.333,
-              "_entityName": "Female_Cheer"
+              "_entityName": "Female_Cheer",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1899,15 +2803,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Cheer"
+      "_entityName": "Cheer",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "IRasA6rV",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1931,8 +2855,14 @@
               "_entityId": "ImhoVhXg",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -1950,12 +2880,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 3.833,
-              "_entityName": "Female_Goodbye"
+              "_entityName": "Female_Goodbye",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -1967,15 +2904,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Goodbye"
+      "_entityName": "Goodbye",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "yVMSUKtE",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -1999,8 +2956,14 @@
               "_entityId": "RmFJwtNE",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2018,12 +2981,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 8.267,
-              "_entityName": "Female_SideStretch"
+              "_entityName": "Female_SideStretch",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2035,15 +3005,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "SideStretch"
+      "_entityName": "SideStretch",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "xgK1ru6j",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2067,8 +3057,14 @@
               "_entityId": "RtrtfCit",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2086,12 +3082,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 2.333,
-              "_entityName": "Female_LieDown_Start"
+              "_entityName": "Female_LieDown_Start",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2103,15 +3106,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "LieDown_Start"
+      "_entityName": "LieDown_Start",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "PDDyjLwV",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2135,8 +3158,14 @@
               "_entityId": "Ju7vUy8M",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2154,12 +3183,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 1.667,
-              "_entityName": "Female_LieDown_Loop"
+              "_entityName": "Female_LieDown_Loop",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2171,15 +3207,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "LieDown_Loop"
+      "_entityName": "LieDown_Loop",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "S3LkWpD5",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2203,8 +3259,14 @@
               "_entityId": "9ZB5dec1",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2222,12 +3284,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 3.433,
-              "_entityName": "Female_LieDown_End"
+              "_entityName": "Female_LieDown_End",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2239,15 +3308,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "LieDown_End"
+      "_entityName": "LieDown_End",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "p8WyzJEs",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2271,8 +3360,14 @@
               "_entityId": "Ct4tMUxG",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2290,12 +3385,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 1.667,
-              "_entityName": "Female_DrawWeapon_Start"
+              "_entityName": "Female_DrawWeapon_Start",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2307,15 +3409,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "DrawWeapon_Start"
+      "_entityName": "DrawWeapon_Start",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "hGpWRkxZ",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2339,8 +3461,14 @@
               "_entityId": "jLxvV4NM",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2358,12 +3486,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 1.333,
-              "_entityName": "Female_DrawWeapon_Loop"
+              "_entityName": "Female_DrawWeapon_Loop",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2375,15 +3510,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "DrawWeapon_Loop"
+      "_entityName": "DrawWeapon_Loop",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "oSXlNia8",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2407,8 +3562,14 @@
               "_entityId": "LxkvXJid",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2426,12 +3587,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 3.667,
-              "_entityName": "Female_Disagree"
+              "_entityName": "Female_Disagree",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2443,15 +3611,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "Disagree"
+      "_entityName": "Disagree",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "RsadhLlD",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2475,8 +3663,14 @@
               "_entityId": "RmV6T6sC",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2494,12 +3688,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 3.8,
-              "_entityName": "Female_PassItem"
+              "_entityName": "Female_PassItem",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2511,15 +3712,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "PassItem"
+      "_entityName": "PassItem",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "CXaxxOzC",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2543,8 +3764,14 @@
               "_entityId": "OP8A7lcw",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2562,12 +3789,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 6.467,
-              "_entityName": "Female_LookAround"
+              "_entityName": "Female_LookAround",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2579,15 +3813,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "LookAround"
+      "_entityName": "LookAround",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "IFbyYecl",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2611,8 +3865,14 @@
               "_entityId": "agoQ9u3o",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2630,12 +3890,19 @@
               "wrapMode": 0,
               "startTime": 0,
               "endTime": 5.5,
-              "_entityName": "Female_RaiseHand"
+              "_entityName": "Female_RaiseHand",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2647,15 +3914,35 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "RaiseHand"
+      "_entityName": "RaiseHand",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "MUczoYCi",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     },
     {
       "_tag": {
@@ -2679,8 +3966,14 @@
               "_entityId": "AvPYeUPa",
               "children": [],
               "prefabVariant": null,
-              "activeValue": null,
-              "unlockedValue": null,
+              "activeValue": {
+                "selfValue": true,
+                "valueTag": "activeValue"
+              },
+              "unlockedValue": {
+                "selfValue": true,
+                "valueTag": "unlockedValue"
+              },
               "editorLockValue": false,
               "editorVisibleValue": true,
               "speed": 1,
@@ -2697,13 +3990,20 @@
               },
               "wrapMode": 0,
               "startTime": 0,
-              "endTime": 3.233,
-              "_entityName": "Female_DrawWeapon_End"
+              "endTime": 3.333,
+              "_entityName": "Female_DrawWeapon_End",
+              "postExtrapolate": 0
             }
           ],
           "prefabVariant": null,
-          "activeValue": null,
-          "unlockedValue": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
           "editorLockValue": false,
           "editorVisibleValue": true,
           "isLoop": false,
@@ -2715,25 +4015,59 @@
         }
       ],
       "prefabVariant": null,
-      "activeValue": null,
-      "unlockedValue": null,
+      "activeValue": {
+        "selfValue": true,
+        "valueTag": "activeValue"
+      },
+      "unlockedValue": {
+        "selfValue": true,
+        "valueTag": "unlockedValue"
+      },
       "editorLockValue": false,
       "editorVisibleValue": true,
       "isLoop": false,
       "_eventFrameList": [],
       "selectedBodyparts": [],
       "DisableChanged": false,
-      "_entityName": "DrawWeapon_End"
+      "_entityName": "DrawWeapon_End",
+      "eventFrameGroup": {
+        "_entityName": "",
+        "_tag": {
+          "type": "ACEventFrameGroup"
+        },
+        "_entityId": "N1bJLTKn",
+        "children": [],
+        "prefabVariant": null,
+        "activeValue": null,
+        "unlockedValue": null,
+        "editorLockValue": false,
+        "editorVisibleValue": true,
+        "DisableChanged": false
+      }
     }
   ],
   "prefabVariant": null,
-  "activeValue": null,
-  "unlockedValue": null,
+  "activeValue": {
+    "selfValue": true,
+    "valueTag": "activeValue"
+  },
+  "unlockedValue": {
+    "selfValue": true,
+    "valueTag": "unlockedValue"
+  },
   "editorLockValue": false,
   "editorVisibleValue": true,
-  "version": 0,
-  "preModel": null,
+  "version": 3,
+  "preModel": {
+    "fileId": "UMA_101000006",
+    "filePath": "lib://ffuma/101000006",
+    "_tag": {
+      "type": "GFileRefer"
+    },
+    "fileType": "uma"
+  },
   "bpcFile": null,
-  "_entityName": "FemaleDefault"
+  "_entityName": "FemaleDefault",
+  "aliasName": "FemaleDefault"
 }
-//"{FE:{"v":"0.0.0","c":{"FF":4701},"s":100}
+//"{FE:{"v":"1.17.4335043","c":{"FF":5001},"s":100}

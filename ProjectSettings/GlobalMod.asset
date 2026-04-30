@@ -157,6 +157,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "gx9qgk8383u-mojtytj7-zat0ly732in",
+      "filePath": "Assets\\FCG\\S_NPCFollower.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "_entityName": "T_43_YU_WS_MODULE_GLOBAL",

@@ -129,6 +129,14 @@
         "type": "GFileRefer"
       },
       "fileType": "ugcscript"
+    },
+    {
+      "fileId": "n4v5nytbuy-mojqi45i-jgkffa9tp4",
+      "filePath": "Assets\\FCG\\CustomFCG\\Player\\PlayerProneTrail.fcg",
+      "_tag": {
+        "type": "GFileRefer"
+      },
+      "fileType": "ugcscript"
     }
   ],
   "avatarInfo": null,

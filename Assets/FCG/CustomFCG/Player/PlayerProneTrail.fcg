@@ -1,0 +1,66 @@
+import "StdLibrary.fcc" as std
+import "Player.fcc" as player
+import "Animation.fcc" as anim
+import "EditorGenLib.fcc" as gen
+import "Playable.fcc" as playable
+
+[platform_client]
+graph PlayerProneTrail {
+    TrailEffect entity = nil
+    TrailFollow entity = nil
+
+    func StartTrail() {
+        LogInfo("StartTrail")
+        if TrailEffect != nil {
+            return
+        }
+
+        CreateFromPrefab(out var trailEntity, EResPrefab.Trail)
+        TrailEffect = trailEntity
+
+        if TrailEffect == nil {
+            return
+        }
+
+        TrailEffect<Transform>.Rotation = Vector3{0.0, 0.0, 0.0}
+        TrailEffect<Transform>.Scale = Vector3{0.75, 0.75, 0.75}
+        playable.CreateFollow(TrailEffect as entity<Entity>, thisEntity as entity<Entity>, Vector3{0.0, 0.15, -0.8}, CoordinateSystemType.LocalPosition, out var followEntity, true)
+        TrailFollow = followEntity
+    }
+
+    func StopTrail() {
+        if TrailEffect == nil {
+            return
+        }
+
+        if TrailFollow != nil {
+            Destroy(TrailFollow)
+            TrailFollow = nil
+        }
+
+        Destroy(TrailEffect)
+        TrailEffect = nil
+    }
+
+    event OnMove(pose PlayerPoseType) {
+        if pose == PlayerPoseType.Prone {
+            StartTrail()
+        } else {
+            StopTrail()
+        }
+    }
+
+    event OnIdle(pose PlayerPoseType) {
+        StopTrail()
+    }
+
+    event OnStandUP(prePose PlayerPoseType) {
+        if prePose == PlayerPoseType.Prone {
+            StopTrail()
+        }
+    }
+
+    event OnDestroy() {
+        StopTrail()
+    }
+}

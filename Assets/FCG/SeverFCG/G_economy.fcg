@@ -1,45 +1,123 @@
-// 经济系统：玩家为键，金币数为值
-// 玩家初次进入游戏时写入字典，经济初始为 100
-
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
 import "Player.fcc" as player
 import "List.fcc" as list
 import "EditorGenLib.fcc" as gen
+import "Database.fcc" as database
+import "Workflow.fcc" as workflow
 import "./S_power.fcg" as S_power
 import "./G_Tower.fcg" as G_Tower
 
-
 [platform_server]
 graph G_economy {
-
-	// 字典：玩家 -> 金币数
 	PlayerGold Map<entity<Player>, float> = nil
+	PlayerGoldLoaded Map<entity<Player>, bool> = nil
+	PlayerGoldDirtyBeforeLoad Map<entity<Player>, bool> = nil
+
+	SheetName string = "Coin"
+	DataKey string = "Gold"
+	MapCode string = ""
+	DefaultGold float = 0.0
+	MaxStorageRetry int = 10
+	HasWrittenAtEnd bool = false
 
 	event OnAwake() {
 		PlayerGold = map.New()
+		PlayerGoldLoaded = map.New()
+		PlayerGoldDirtyBeforeLoad = map.New()
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
-		// 玩家初次进入游戏，写入字典，经济初始为 100
-		PlayerGold[player] = 0.0
-		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, 0.0})
+		PlayerGold[player] = DefaultGold
+		PlayerGoldLoaded[player] = false
+		PlayerGoldDirtyBeforeLoad[player] = false
+		NotifyGoldChanged(player, DefaultGold)
+		start ReadPlayerGold(player)
 	}
 
-	event __Custom6event_BUYWings__(player entity<Player>, price float) {
+	event OnPlayerQuit(player entity<Player>) {
+		if ContainKey(PlayerGold, player) && IsPlayerGoldLoaded(player) {
+			var gold = PlayerGold[player]
+			start WritePlayerGoldValue(player, gold)
+		}
+
 		if ContainKey(PlayerGold, player) {
-			var gold float = PlayerGold[player]
-			gold = gold - price
-			if gold < 0.0 {
-				return
-			}
-			PlayerGold[player] = gold
-			// 经济值变更后通知 UI 控制器更新 P_IngameHud/GoldCoin 显示
-			DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
+			map.Remove(PlayerGold, player)
+		}
+		if ContainKey(PlayerGoldLoaded, player) {
+			map.Remove(PlayerGoldLoaded, player)
+		}
+		if ContainKey(PlayerGoldDirtyBeforeLoad, player) {
+			map.Remove(PlayerGoldDirtyBeforeLoad, player)
 		}
 	}
 
-	// 玩家落地时：奖励 = 下坠距离 * 玩家当前 power，并通知 UI 更新 GoldCoin
+	event OnPhaseStart(phase entity<Phase>) {
+		if HasWrittenAtEnd {
+			return
+		}
+		if phase<Phase>.Index == EPhase.GameEnd {
+			HasWrittenAtEnd = true
+			start WriteAllPlayerGold()
+		}
+	}
+
+	func GetPlayerGold(player entity<Player>) float {
+		if !ContainKey(PlayerGold, player) {
+			return DefaultGold
+		}
+		return PlayerGold[player]
+	}
+
+	func SetPlayerGold(player entity<Player>, gold float) {
+		if gold < 0.0 {
+			gold = 0.0
+		}
+		PlayerGold[player] = gold
+		if !IsPlayerGoldLoaded(player) {
+			PlayerGoldDirtyBeforeLoad[player] = true
+		} else {
+			start WritePlayerGoldValue(player, gold)
+		}
+		NotifyGoldChanged(player, gold)
+	}
+
+	func AddPlayerGold(player entity<Player>, value float) {
+		if value <= 0.0 {
+			return
+		}
+		SetPlayerGold(player, GetPlayerGold(player) + value)
+	}
+
+	func TrySubtractPlayerGold(player entity<Player>, value float) bool {
+		if value <= 0.0 {
+			return true
+		}
+
+		var currentGold = GetPlayerGold(player)
+		if currentGold < value {
+			return false
+		}
+
+		SetPlayerGold(player, currentGold - value)
+		return true
+	}
+
+	func IsPlayerGoldLoaded(player entity<Player>) bool {
+		if !ContainKey(PlayerGoldLoaded, player) {
+			return false
+		}
+		return PlayerGoldLoaded[player]
+	}
+
+	func NotifyGoldChanged(player entity<Player>, gold float) {
+		DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
+	}
+
+	event __Custom6event_BUYWings__(player entity<Player>, price float) {
+		TrySubtractPlayerGold(player, price)
+	}
+
 	func GetTowerEconomyMultiplier(towerIndex int) float {
 		if towerIndex == 2 {
 			return 320.0
@@ -57,19 +135,82 @@ graph G_economy {
 		if fallY <= 0.0 {
 			return
 		}
-		if ContainKey(PlayerGold, player) {
-			var powerValue float = globalEntity<S_power>.GetPlayerPowerValue(player)
-			var towerIndex int = globalEntity<G_Tower>.GetPlayerEconomyTowerIndex(player)
-			var towerEconomyMultiplier float = GetTowerEconomyMultiplier(towerIndex)
-			var reward float = fallY * powerValue * towerEconomyMultiplier
-			if reward <= 0.0 {
+
+		var powerValue float = globalEntity<S_power>.GetPlayerPowerValue(player)
+		var towerIndex int = globalEntity<G_Tower>.GetPlayerEconomyTowerIndex(player)
+		var towerEconomyMultiplier float = GetTowerEconomyMultiplier(towerIndex)
+		var reward float = fallY * powerValue * towerEconomyMultiplier
+		if reward <= 0.0 {
+			return
+		}
+
+		AddPlayerGold(player, reward)
+		DispatchEventToEntity(__Custom6event_ShowActualFallReward______, player, PlatformType.Client, List<object>{player, reward})
+	}
+
+	async func ReadPlayerGold(player entity<Player>) {
+		if player == nil {
+			return
+		}
+
+		var count = 0
+		var errorCode = StatusCode.DataStorageTimeout
+		while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+			ReadFromDataStore(SheetName, player<Player>.UserUID, DataKey, out var result, MapCode, out var statusCode)
+			errorCode = statusCode
+			if statusCode == StatusCode.NoError {
+				var loadedGold = DefaultGold
+				var shouldWriteLoadedGold = false
+				if result != nil {
+					loadedGold = result as float
+					if loadedGold < 0.0 {
+						loadedGold = DefaultGold
+					}
+				}
+
+				if ContainKey(PlayerGoldDirtyBeforeLoad, player) && PlayerGoldDirtyBeforeLoad[player] {
+					loadedGold = loadedGold + GetPlayerGold(player)
+					shouldWriteLoadedGold = true
+				}
+
+				PlayerGold[player] = loadedGold
+				PlayerGoldLoaded[player] = true
+				PlayerGoldDirtyBeforeLoad[player] = false
+				NotifyGoldChanged(player, loadedGold)
+				if shouldWriteLoadedGold {
+					start WritePlayerGoldValue(player, loadedGold)
+				}
 				return
 			}
-			var gold float = PlayerGold[player]
-			gold = gold + reward
-			PlayerGold[player] = gold
-			DispatchEventToEntity(Custom_eventGoldChanged, globalEntity, PlatformType.Server, List<object>{player, gold})
-			DispatchEventToEntity(__Custom6event_ShowActualFallReward______, player, PlatformType.Client, List<object>{player, reward})
+			count++
+		}
+
+		LogWarning("Read player gold failed.")
+	}
+
+	async func WriteAllPlayerGold() {
+		for player, gold in PlayerGold {
+			if IsPlayerGoldLoaded(player) {
+				wait WritePlayerGoldValue(player, gold)
+			}
+		}
+	}
+
+	async func WritePlayerGoldValue(player entity<Player>, gold float) {
+		if player == nil {
+			return
+		}
+
+		var count = 0
+		var errorCode = StatusCode.DataStorageTimeout
+		while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+			UpdateToDataStore(SheetName, player<Player>.UserUID, DataKey, gold, MapCode, out var statusCode)
+			errorCode = statusCode
+			count++
+		}
+
+		if errorCode != StatusCode.NoError {
+			LogWarning("Write player gold failed.")
 		}
 	}
 }

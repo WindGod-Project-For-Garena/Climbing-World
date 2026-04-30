@@ -1,0 +1,240 @@
+import "StdLibrary.fcc" as std
+import "Map.fcc" as map
+import "Playable.fcc" as playable
+import "Animation.fcc" as anim
+import "EditorGenLib.fcc" as gen
+import "./SeverFCG/G_economy.fcg" as G_economy
+import "Player.fcc" as Player
+
+[platform_server]
+graph S_NPCFollower {
+    PlayerNPC Map<entity<Player>, entity> = nil
+    PlayerNPCFollow Map<entity<Player>, entity> = nil
+    PlayerNPCLookAt Map<entity<Player>, entity> = nil
+    PlayerNPCState Map<entity<Player>, int> = nil
+    PlayerNPCPurchased Map<entity<Player>, bool> = nil
+    PlayerNPCLastPosition Map<entity<Player>, Vector3> = nil
+    PlayerNPCStillFrames Map<entity<Player>, int> = nil
+
+    NpcPrice float = 100.0
+    FollowOffset Vector3 = Vector3{0.0, 0.0, -2.0}
+    LookAtOffset Vector3 = Vector3{0.0, 1.2, 6.0}
+    MoveDistanceThresholdSq float = 0.01
+    IdleFrameThreshold int = 6
+
+    event OnAwake() {
+        PlayerNPC = map.New()
+        PlayerNPCFollow = map.New()
+        PlayerNPCLookAt = map.New()
+        PlayerNPCState = map.New()
+        PlayerNPCPurchased = map.New()
+        PlayerNPCLastPosition = map.New()
+        PlayerNPCStillFrames = map.New()
+    }
+
+    func GetNPCPrefab(npcIndex int) PrefabID {
+        return EResPrefab.NPCFollow_1
+    }
+
+    func RemoveNPC(player entity<Player>) {
+        if ContainKey(PlayerNPCLookAt, player) {
+            var lookAtEntity = PlayerNPCLookAt[player] as entity
+            Destroy(lookAtEntity)
+            map.Remove(PlayerNPCLookAt, player)
+        }
+
+        if ContainKey(PlayerNPCFollow, player) {
+            var followEntity = PlayerNPCFollow[player] as entity
+            Destroy(followEntity)
+            map.Remove(PlayerNPCFollow, player)
+        }
+
+        if ContainKey(PlayerNPC, player) {
+            var npcEntity = PlayerNPC[player] as entity
+            Destroy(npcEntity)
+            map.Remove(PlayerNPC, player)
+        }
+
+        if ContainKey(PlayerNPCState, player) {
+            map.Remove(PlayerNPCState, player)
+        }
+        if ContainKey(PlayerNPCLastPosition, player) {
+            map.Remove(PlayerNPCLastPosition, player)
+        }
+        if ContainKey(PlayerNPCStillFrames, player) {
+            map.Remove(PlayerNPCStillFrames, player)
+        }
+    }
+
+    func SpawnNPC(player entity<Player>, npcIndex int) {
+        RemoveNPC(player)
+
+        CreateFromPrefab(out var npcEntity, GetNPCPrefab(npcIndex))
+        if npcEntity == nil {
+            return
+        }
+
+        PlayerNPC[player] = npcEntity
+        playable.CreateFollow(npcEntity, player, FollowOffset, CoordinateSystemType.LocalPosition, out var followEntity, true)
+        playable.CreateLookAt(npcEntity, player, LookAtOffset, CoordinateSystemType.LocalPosition, out var lookAtEntity, true)
+        PlayerNPCFollow[player] = followEntity
+        PlayerNPCLookAt[player] = lookAtEntity
+        PlayerNPCLastPosition[player] = player<Player>.Position
+        PlayerNPCStillFrames[player] = 0
+        PlayNPCState(player, 3)
+    }
+
+    func PlayNPCState(player entity<Player>, state int) {
+        if !ContainKey(PlayerNPC, player) {
+            return
+        }
+        if ContainKey(PlayerNPCState, player) && PlayerNPCState[player] == state {
+            return
+        }
+
+        PlayerNPCState[player] = state
+        var npcEntity = PlayerNPC[player] as entity
+        var npcAnim = npcEntity as entity<AnimationControllerAble>
+        if npcAnim == nil {
+            return
+        }
+
+        StopAnimation(npcAnim, "Run")
+        StopAnimation(npcAnim, "Running")
+        StopAnimation(npcAnim, "Idle")
+        StopAnimation(npcAnim, "Climbing")
+        StopAnimation(npcAnim, "Falling")
+
+        if state == 2 {
+            PlayAnimation(npcAnim, "Falling", 1.0, LoopType.Loop)
+        } else if state == 1 {
+            PlayAnimation(npcAnim, "Climbing", 1.0, LoopType.Loop)
+        } else if state == 3 {
+            PlayAnimation(npcAnim, "Idle", 1.0, LoopType.Loop)
+        } else {
+            PlayAnimation(npcAnim, "Running", 1.0, LoopType.Loop)
+        }
+    }
+
+    func UpdateNPCMoveState(player entity<Player>) {
+        if !ContainKey(PlayerNPC, player) {
+            return
+        }
+
+        var currentPos = player<Player>.Position
+        if ContainKey(PlayerNPCState, player) {
+            var state = PlayerNPCState[player]
+            if state == 1 || state == 2 {
+                PlayerNPCLastPosition[player] = currentPos
+                PlayerNPCStillFrames[player] = 0
+                return
+            }
+        }
+
+        if !ContainKey(PlayerNPCLastPosition, player) {
+            PlayerNPCLastPosition[player] = currentPos
+            PlayerNPCStillFrames[player] = 0
+            PlayNPCState(player, 3)
+            return
+        }
+
+        var lastPos = PlayerNPCLastPosition[player]
+        var dx = currentPos.X - lastPos.X
+        var dy = currentPos.Y - lastPos.Y
+        var dz = currentPos.Z - lastPos.Z
+        var distSq = dx * dx + dy * dy + dz * dz
+        PlayerNPCLastPosition[player] = currentPos
+
+        if distSq > MoveDistanceThresholdSq {
+            PlayerNPCStillFrames[player] = 0
+            PlayNPCState(player, 0)
+            return
+        }
+
+        var stillFrames = 0
+        if ContainKey(PlayerNPCStillFrames, player) {
+            stillFrames = PlayerNPCStillFrames[player]
+        }
+        stillFrames = stillFrames + 1
+        PlayerNPCStillFrames[player] = stillFrames
+        if stillFrames >= IdleFrameThreshold {
+            PlayNPCState(player, 3)
+        }
+    }
+
+    func ResumeNPCMoveState(player entity<Player>) {
+        if !ContainKey(PlayerNPC, player) {
+            return
+        }
+
+        var currentPos = player<Player>.Position
+        var shouldRun = false
+        if ContainKey(PlayerNPCLastPosition, player) {
+            var lastPos = PlayerNPCLastPosition[player]
+            var dx = currentPos.X - lastPos.X
+            var dy = currentPos.Y - lastPos.Y
+            var dz = currentPos.Z - lastPos.Z
+            var distSq = dx * dx + dy * dy + dz * dz
+            if distSq > MoveDistanceThresholdSq {
+                shouldRun = true
+            }
+        }
+
+        PlayerNPCLastPosition[player] = currentPos
+        if shouldRun {
+            PlayerNPCStillFrames[player] = 0
+            PlayNPCState(player, 0)
+        } else {
+            PlayerNPCStillFrames[player] = IdleFrameThreshold
+            PlayNPCState(player, 3)
+        }
+    }
+
+    event OnUpdate() {
+        for player, npcEntity in PlayerNPC {
+            UpdateNPCMoveState(player)
+        }
+    }
+
+    event OnPlayerJoin(player entity<Player>) {
+        PlayerNPCPurchased[player] = true
+        SpawnNPC(player, 1)
+    }
+
+    event __Custom6event___NPCBuyUnlock____(player entity<Player>, npcIndex int) {
+        var gold float = 0.0
+        if ContainKey(globalEntity<G_economy>.PlayerGold, player) {
+            gold = globalEntity<G_economy>.PlayerGold[player]
+        }
+
+        if !ContainKey(PlayerNPCPurchased, player) || !PlayerNPCPurchased[player] {
+            if gold < NpcPrice {
+                DispatchEventToEntity(__Custom6event_ShowDEnough________, globalEntity, PlatformType.Server, List<object>{player, "You don't have enough money!"})
+                return
+            }
+
+            var newGold = gold - NpcPrice
+            globalEntity<G_economy>.SetPlayerGold(player, newGold)
+            PlayerNPCPurchased[player] = true
+        }
+
+        SpawnNPC(player, npcIndex)
+    }
+
+    event __Custom6event_ClimbStateChanged__(player entity<Player>, bIsClimb bool, bIsFall bool, ishanging bool) {
+        if bIsFall {
+            PlayNPCState(player, 2)
+        } else if bIsClimb || ishanging {
+            PlayNPCState(player, 1)
+        } else {
+            ResumeNPCMoveState(player)
+        }
+    }
+
+    event OnPlayerQuit(player entity<Player>) {
+        RemoveNPC(player)
+        if ContainKey(PlayerNPCPurchased, player) {
+            map.Remove(PlayerNPCPurchased, player)
+        }
+    }
+}

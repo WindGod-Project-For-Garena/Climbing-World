@@ -54,7 +54,7 @@
         "priority": 0,
         "image": {
           "source": {
-            "fileId": "e5s31xxgfw-pc7oyfub-dpvniaesuv6",
+            "fileId": "krsnz8ttt9-gayeubye-o33auk6ji92",
             "filePath": "Assets\\UI\\QTE\\Sprite\\qte_panel.png",
             "_tag": {
               "type": "GFileRefer"
@@ -158,7 +158,7 @@
         "priority": 0,
         "image": {
           "source": {
-            "fileId": "7pw61rdq4a-ldv40bj2-wpjp6utem67",
+            "fileId": "7v90td12ws-gmsqj34w-582mwfrpa37",
             "filePath": "Assets\\UI\\QTE\\Sprite\\qte_pointer.png",
             "_tag": {
               "type": "GFileRefer"
@@ -270,7 +270,7 @@
             "priority": 0,
             "image": {
               "source": {
-                "fileId": "gbpub4yajn-vsj8b9wq-n70rkavgl2g",
+                "fileId": "w53j88kacu-jjhx751e-mpot8d0gj8n",
                 "filePath": "Assets\\UI\\QTE\\Sprite\\qte_button.png",
                 "_tag": {
                   "type": "GFileRefer"
@@ -367,7 +367,7 @@
         "priority": 0,
         "button": {
           "spriteName": {
-            "fileId": "cy7u9laoxa-vzqbt3cw-281lmkj2as2",
+            "fileId": "1k6r8yp79p-f6ho6a9k-mf4yrh0vrwt",
             "filePath": "Assets\\UI\\QTE\\Sprite\\qte_button_transparent.png",
             "_tag": {
               "type": "GFileRefer"
