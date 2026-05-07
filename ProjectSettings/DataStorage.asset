@@ -18,67 +18,11 @@
   "editorVisibleValue": true,
   "modId": 31,
   "storageOpen": true,
-  "rankSheets": [
-    {
-      "sheetOrder": 1,
-      "sheetName": "Coin",
-      "sheetId": "tGZh3CzL",
-      "type": "Int",
-      "keyType": "String",
-      "usePlayerID": true,
-      "columns": []
-    },
-    {
-      "sheetOrder": 1,
-      "sheetName": "Cup",
-      "sheetId": "tVFycCoQ",
-      "type": "Int",
-      "keyType": "String",
-      "usePlayerID": true,
-      "columns": []
-    }
-  ],
+  "rankSheets": [],
   "dataSheets": [],
   "dataSheetsClient": [],
   "statisticalSheets": [],
-  "multicolumnSheets": [
-    {
-      "sheetName": "PlayerProgress",
-      "sheetId": "A8hwZpJW",
-      "type": "MultiColumn",
-      "columns": [
-        {
-          "name": "TowerLevel",
-          "type": "Int",
-          "saved": true
-        },
-        {
-          "name": "col2",
-          "type": "Int",
-          "saved": true
-        },
-        {
-          "name": "PowerMultiplier",
-          "type": "Float",
-          "saved": true
-        }
-      ],
-      "keyType": "String"
-    },
-    {
-      "sheetName": "PlayerTutorial",
-      "sheetId": "ZuRLIIdB",
-      "type": "MultiColumn",
-      "columns": [
-        {
-          "name": "IsNewPlayer",
-          "type": "Bool",
-          "saved": false
-        }
-      ],
-      "keyType": "String"
-    }
-  ],
+  "multicolumnSheets": [],
   "multicolumnSheetsClient": [],
   "craftlandLeadboard": null,
   "showSwitch": true
