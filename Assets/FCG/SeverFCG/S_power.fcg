@@ -1,26 +1,51 @@
 import "StdLibrary.fcc" as std
 import "Map.fcc" as map
+import "List.fcc" as list
 import "Playable.fcc" as playable
 import "EditorGenLib.fcc" as gen
 import "Player.fcc" as playerlib
 import "Convert.fcc" as convert
 import "Hud.fcc" as Hud
 import "Math.fcc" as math   
+import "Database.fcc" as database
+import "Workflow.fcc" as workflow
 
 [platform_server]
 graph S_power {
     PlayerPower Map<entity<Player>, entity> = nil
     PlayerPowerFollow Map<entity<Player>, entity> = nil
     PlayerPowerValue Map<entity<Player>, float> = nil
+    PlayerTowerLevel Map<entity<Player>, int> = nil
+    PlayerWingLevel Map<entity<Player>, int> = nil
+    PlayerProgressLoaded Map<entity<Player>, bool> = nil
+    PlayerProgressDirty Map<entity<Player>, bool> = nil
+    PlayerProgressDirtyBeforeLoad Map<entity<Player>, bool> = nil
+    PlayerProgressReadStarted Map<entity<Player>, bool> = nil
     FollowOffset Vector3 = Vector3{0, 1.5, 0}
+    ProgressSheetName string = "PlayerProgress"
+    ProgressDataKey string = "Progress"
+    ProgressMapCode string = ""
+    DefaultTowerLevel int = 1
+    DefaultWingLevel int = 0
+    DefaultPowerMultiplier float = 1.0
+    MaxStorageRetry int = 10
+    HasWrittenAtEnd bool = false
 
     event OnAwake() {
         PlayerPower = map.New()
         PlayerPowerFollow = map.New()
         PlayerPowerValue = map.New()
+        PlayerTowerLevel = map.New()
+        PlayerWingLevel = map.New()
+        PlayerProgressLoaded = map.New()
+        PlayerProgressDirty = map.New()
+        PlayerProgressDirtyBeforeLoad = map.New()
+        PlayerProgressReadStarted = map.New()
+        HasWrittenAtEnd = false
     }
 
     event OnPlayerJoin(player entity<Player>) {
+        EnsurePlayerProgress(player)
         // 避免重复创建
         if ContainKey(PlayerPower, player) {
             return
@@ -34,11 +59,35 @@ graph S_power {
         }
 
         PlayerPower[player] = powerEntity
-        PlayerPowerValue[player] = 1.0
-        UpdatePowerEntityText(player, 1.0)
+        var storedPower = GetPlayerPowerMultiplier(player)
+        PlayerPowerValue[player] = storedPower
+        UpdatePowerEntityText(player, storedPower)
+        start ApplyStoredPowerWhenReady(player)
 
         playable.CreateFollow(powerEntity, player, FollowOffset, CoordinateSystemType.LocalPosition, out var followEntity, true)
         PlayerPowerFollow[player] = followEntity
+    }
+
+    async func ApplyStoredPowerWhenReady(player entity<Player>) {
+        EnsurePlayerProgress(player)
+        for i = 0, 60, 1 {
+            if IsPlayerProgressLoaded(player) {
+                break
+            }
+            WaitForMillisecond(100)
+        }
+        SetPlayerPowerValue(player, GetPlayerPowerMultiplier(player))
+    }
+
+    func SetPlayerPowerValue(player entity<Player>, powerValue float) {
+        if player == nil {
+            return
+        }
+        if powerValue < 1.0 {
+            powerValue = 1.0
+        }
+        PlayerPowerValue[player] = powerValue
+        UpdatePowerEntityText(player, powerValue)
     }
 
     event __Custom6event_AddPowerGrowth______(player entity<Player>, powerGrowth int) {
@@ -55,8 +104,8 @@ graph S_power {
         }
         var growthValue = convert.IntToFloat(powerGrowth) / 100.0
         var totalPower = currentPower + growthValue
-        PlayerPowerValue[player] = totalPower
-        UpdatePowerEntityText(player, totalPower)
+        SetPlayerPowerValue(player, totalPower)
+        SetPlayerPowerMultiplier(player, totalPower)
     }
 
     func GetPlayerPowerValue(player entity<Player>) float {
@@ -68,6 +117,306 @@ graph S_power {
             return 1.0
         }
         return powerValue
+    }
+
+    event OnUserQuitOrUserMatchEnd(player entity<Player>) {
+        wait SavePlayerProgress(player)
+    }
+
+    event OnRoundEnd(roundIndex int) {
+        start WriteAllPlayerProgress()
+    }
+
+    event OnGameEnd() {
+        if HasWrittenAtEnd {
+            return
+        }
+        HasWrittenAtEnd = true
+        wait WriteAllPlayerProgress()
+    }
+
+    func EnsureStorageReady() {
+        if PlayerPowerValue == nil {
+            PlayerPowerValue = map.New()
+        }
+        if PlayerTowerLevel == nil {
+            PlayerTowerLevel = map.New()
+        }
+        if PlayerWingLevel == nil {
+            PlayerWingLevel = map.New()
+        }
+        if PlayerProgressLoaded == nil {
+            PlayerProgressLoaded = map.New()
+        }
+        if PlayerProgressDirty == nil {
+            PlayerProgressDirty = map.New()
+        }
+        if PlayerProgressDirtyBeforeLoad == nil {
+            PlayerProgressDirtyBeforeLoad = map.New()
+        }
+        if PlayerProgressReadStarted == nil {
+            PlayerProgressReadStarted = map.New()
+        }
+    }
+
+    func EnsurePlayerProgress(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        EnsureStorageReady()
+        if !ContainKey(PlayerTowerLevel, player) {
+            PlayerTowerLevel[player] = DefaultTowerLevel
+            PlayerWingLevel[player] = DefaultWingLevel
+            PlayerPowerValue[player] = DefaultPowerMultiplier
+            PlayerProgressLoaded[player] = false
+            PlayerProgressDirty[player] = false
+            PlayerProgressDirtyBeforeLoad[player] = false
+            PlayerProgressReadStarted[player] = false
+        }
+        if !ContainKey(PlayerProgressReadStarted, player) || !PlayerProgressReadStarted[player] {
+            PlayerProgressReadStarted[player] = true
+            start ReadPlayerProgress(player)
+        }
+    }
+
+    func RemovePlayerProgress(player entity<Player>) {
+        if ContainKey(PlayerTowerLevel, player) {
+            map.Remove(PlayerTowerLevel, player)
+        }
+        if ContainKey(PlayerWingLevel, player) {
+            map.Remove(PlayerWingLevel, player)
+        }
+        if ContainKey(PlayerProgressLoaded, player) {
+            map.Remove(PlayerProgressLoaded, player)
+        }
+        if ContainKey(PlayerProgressDirty, player) {
+            map.Remove(PlayerProgressDirty, player)
+        }
+        if ContainKey(PlayerProgressDirtyBeforeLoad, player) {
+            map.Remove(PlayerProgressDirtyBeforeLoad, player)
+        }
+        if ContainKey(PlayerProgressReadStarted, player) {
+            map.Remove(PlayerProgressReadStarted, player)
+        }
+    }
+
+    func ClampTowerLevel(value int) int {
+        if value < 1 {
+            return 1
+        }
+        if value > 4 {
+            return 4
+        }
+        return value
+    }
+
+    func ClampWingLevel(value int) int {
+        if value < 0 {
+            return 0
+        }
+        if value > 12 {
+            return 12
+        }
+        return value
+    }
+
+    func ClampPowerMultiplier(value float) float {
+        if value < DefaultPowerMultiplier {
+            return DefaultPowerMultiplier
+        }
+        return value
+    }
+
+    func MarkPlayerProgressDirty(player entity<Player>) {
+        if !IsPlayerProgressLoaded(player) {
+            PlayerProgressDirtyBeforeLoad[player] = true
+        } else {
+            PlayerProgressDirty[player] = true
+        }
+    }
+
+    func IsPlayerProgressLoaded(player entity<Player>) bool {
+        EnsureStorageReady()
+        if !ContainKey(PlayerProgressLoaded, player) {
+            return false
+        }
+        return PlayerProgressLoaded[player]
+    }
+
+    func GetPlayerTowerLevel(player entity<Player>) int {
+        if player == nil {
+            return DefaultTowerLevel
+        }
+        EnsurePlayerProgress(player)
+        return ClampTowerLevel(PlayerTowerLevel[player] as int)
+    }
+
+    func SetPlayerTowerLevel(player entity<Player>, towerLevel int) {
+        if player == nil {
+            return
+        }
+        EnsurePlayerProgress(player)
+        PlayerTowerLevel[player] = ClampTowerLevel(towerLevel)
+        MarkPlayerProgressDirty(player)
+    }
+
+    func GetPlayerWingLevel(player entity<Player>) int {
+        if player == nil {
+            return DefaultWingLevel
+        }
+        EnsurePlayerProgress(player)
+        return ClampWingLevel(PlayerWingLevel[player] as int)
+    }
+
+    func SetPlayerWingLevel(player entity<Player>, wingLevel int) {
+        if player == nil {
+            return
+        }
+        EnsurePlayerProgress(player)
+        PlayerWingLevel[player] = ClampWingLevel(wingLevel)
+        MarkPlayerProgressDirty(player)
+    }
+
+    func GetPlayerPowerMultiplier(player entity<Player>) float {
+        if player == nil {
+            return DefaultPowerMultiplier
+        }
+        EnsurePlayerProgress(player)
+        return ClampPowerMultiplier(PlayerPowerValue[player] as float)
+    }
+
+    func SetPlayerPowerMultiplier(player entity<Player>, powerMultiplier float) {
+        if player == nil {
+            return
+        }
+        EnsurePlayerProgress(player)
+        SetPlayerPowerValue(player, ClampPowerMultiplier(powerMultiplier))
+        MarkPlayerProgressDirty(player)
+    }
+
+    async func ReadPlayerProgress(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        EnsureStorageReady()
+
+        var count = 0
+        var errorCode = StatusCode.DataStorageTimeout
+        while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+            ReadFromDataStore(ProgressSheetName, player<Player>.UserUID, ProgressDataKey, out var result, ProgressMapCode, out var statusCode)
+            errorCode = statusCode
+            if statusCode == StatusCode.NoError {
+                var loadedTowerLevel = DefaultTowerLevel
+                var loadedWingLevel = DefaultWingLevel
+                var loadedPowerMultiplier = DefaultPowerMultiplier
+                var shouldWriteLoadedProgress = false
+
+                if result != nil {
+                    var values = result as List<object>
+                    if values != nil {
+                        if list.Length(values) > 0 {
+                            loadedTowerLevel = values[0] as int
+                        }
+                        if list.Length(values) > 1 {
+                            loadedWingLevel = values[1] as int
+                        }
+                        if list.Length(values) > 2 {
+                            loadedPowerMultiplier = values[2] as float
+                        }
+                    }
+                }
+
+                loadedTowerLevel = ClampTowerLevel(loadedTowerLevel)
+                loadedWingLevel = ClampWingLevel(loadedWingLevel)
+                loadedPowerMultiplier = ClampPowerMultiplier(loadedPowerMultiplier)
+
+                if ContainKey(PlayerProgressDirtyBeforeLoad, player) && PlayerProgressDirtyBeforeLoad[player] {
+                    var currentTowerLevel = GetPlayerTowerLevel(player)
+                    if currentTowerLevel > loadedTowerLevel {
+                        loadedTowerLevel = currentTowerLevel
+                    }
+
+                    var currentWingLevel = GetPlayerWingLevel(player)
+                    if currentWingLevel > loadedWingLevel {
+                        loadedWingLevel = currentWingLevel
+                    }
+
+                    var currentPowerMultiplier = GetPlayerPowerMultiplier(player)
+                    var pendingPowerGrowth = currentPowerMultiplier - DefaultPowerMultiplier
+                    if pendingPowerGrowth > 0.0 {
+                        loadedPowerMultiplier = loadedPowerMultiplier + pendingPowerGrowth
+                    }
+                    shouldWriteLoadedProgress = true
+                }
+
+                PlayerTowerLevel[player] = loadedTowerLevel
+                PlayerWingLevel[player] = loadedWingLevel
+                PlayerPowerValue[player] = loadedPowerMultiplier
+                PlayerProgressLoaded[player] = true
+                PlayerProgressDirty[player] = shouldWriteLoadedProgress
+                PlayerProgressDirtyBeforeLoad[player] = false
+                UpdatePowerEntityText(player, loadedPowerMultiplier)
+                if shouldWriteLoadedProgress {
+                    start SavePlayerProgress(player)
+                }
+                return
+            }
+            count++
+        }
+
+        LogWarning("Read player progress failed.")
+    }
+
+    async func SavePlayerProgress(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        EnsurePlayerProgress(player)
+        if !IsPlayerProgressLoaded(player) {
+            return
+        }
+        if ContainKey(PlayerProgressDirty, player) && !PlayerProgressDirty[player] {
+            return
+        }
+
+        var towerLevel = GetPlayerTowerLevel(player)
+        var wingLevel = GetPlayerWingLevel(player)
+        var powerMultiplier = GetPlayerPowerMultiplier(player)
+        wait WritePlayerProgressValue(player, towerLevel, wingLevel, powerMultiplier)
+    }
+
+    async func WriteAllPlayerProgress() {
+        EnsureStorageReady()
+        for player, towerLevel in PlayerTowerLevel {
+            if IsPlayerProgressLoaded(player) {
+                wait SavePlayerProgress(player)
+            }
+        }
+    }
+
+    async func WritePlayerProgressValue(player entity<Player>, towerLevel int, wingLevel int, powerMultiplier float) {
+        if player == nil {
+            return
+        }
+
+        var values = List<object>{towerLevel, wingLevel, powerMultiplier}
+        var count = 0
+        var errorCode = StatusCode.DataStorageTimeout
+        while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+            UpdateToDataStore(ProgressSheetName, player<Player>.UserUID, ProgressDataKey, values, ProgressMapCode, out var statusCode)
+            errorCode = statusCode
+            count++
+        }
+
+        if errorCode != StatusCode.NoError {
+            LogWarning("Write player progress failed.")
+        } else if ContainKey(PlayerProgressDirty, player) {
+            if ContainKey(PlayerTowerLevel, player) && ContainKey(PlayerWingLevel, player) && ContainKey(PlayerPowerValue, player) {
+                if PlayerTowerLevel[player] == towerLevel && PlayerWingLevel[player] == wingLevel && PlayerPowerValue[player] == powerMultiplier {
+                    PlayerProgressDirty[player] = false
+                }
+            }
+        }
     }
 
     func FormatPowerDisplayValue(powerValue float) string {
@@ -136,6 +485,8 @@ graph S_power {
     }
 
     event OnPlayerQuit(player entity<Player>) {
+        wait SavePlayerProgress(player)
+
         if ContainKey(PlayerPowerFollow, player) {
             var followEntity = PlayerPowerFollow[player] as entity
             Destroy(followEntity)
@@ -150,5 +501,6 @@ graph S_power {
         if ContainKey(PlayerPowerValue, player) {
             map.Remove(PlayerPowerValue, player)
         }
+        RemovePlayerProgress(player)
     }
 }

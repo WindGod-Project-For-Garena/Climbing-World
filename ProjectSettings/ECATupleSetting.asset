@@ -4,6 +4,116 @@
     "type": "ECATupleSettingAsset"
   },
   "_entityId": "dGjBvLF6",
-  "tupleDefines": {}
+  "tupleDefines": {
+    "tGZh3CzL_Value": {
+      "label": "Coin_Value",
+      "name": "tGZh3CzL_Value",
+      "info": [
+        {
+          "label": "Value",
+          "name": "Value",
+          "type": "Int",
+          "index": 0
+        }
+      ]
+    },
+    "tGZh3CzL": {
+      "label": "Coin",
+      "name": "tGZh3CzL",
+      "info": [
+        {
+          "label": "Rank",
+          "name": "Rank",
+          "type": "Int",
+          "index": 0
+        },
+        {
+          "label": "Key",
+          "name": "Key",
+          "type": "String",
+          "index": 1
+        },
+        {
+          "label": "Value",
+          "name": "Value",
+          "type": "tGZh3CzL_Value",
+          "index": 2
+        }
+      ]
+    },
+    "tVFycCoQ_Value": {
+      "label": "Cup_Value",
+      "name": "tVFycCoQ_Value",
+      "info": [
+        {
+          "label": "Value",
+          "name": "Value",
+          "type": "Int",
+          "index": 0
+        }
+      ]
+    },
+    "tVFycCoQ": {
+      "label": "Cup",
+      "name": "tVFycCoQ",
+      "info": [
+        {
+          "label": "Rank",
+          "name": "Rank",
+          "type": "Int",
+          "index": 0
+        },
+        {
+          "label": "Key",
+          "name": "Key",
+          "type": "String",
+          "index": 1
+        },
+        {
+          "label": "Value",
+          "name": "Value",
+          "type": "tVFycCoQ_Value",
+          "index": 2
+        }
+      ]
+    },
+    "A8hwZpJW": {
+      "label": "PlayerProgress",
+      "name": "A8hwZpJW",
+      "info": [
+        {
+          "label": "TowerLevel",
+          "name": "TowerLevel",
+          "type": "Int",
+          "index": 0
+        },
+        {
+          "label": "col2",
+          "name": "col2",
+          "type": "Int",
+          "index": 1
+        },
+        {
+          "label": "PowerMultiplier",
+          "name": "PowerMultiplier",
+          "type": "Float",
+          "index": 2
+        }
+      ]
+    },
+    "ZuRLIIdB": {
+      "label": "PlayerTutorial",
+      "name": "ZuRLIIdB",
+      "info": [
+        {
+          "label": "IsNewPlayer",
+          "name": "IsNewPlayer",
+          "type": "Bool",
+          "index": 0
+        }
+      ]
+    }
+  },
+  "children": []
 }
-//"{FE:{"v":"1.16.4197289","c":{"FF":5001},"s":100}
+//"{FE:{"v":"1.17.4335043","c":{"FF":5001},"s":100}

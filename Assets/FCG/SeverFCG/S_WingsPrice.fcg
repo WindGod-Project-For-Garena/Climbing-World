@@ -73,12 +73,12 @@ graph S_WingsPrice {
 
 	func GetWorldName(wingIndex int) string {
 		if wingIndex <= 4 {
-			return "China"
+			return "France"
 		}
 		if wingIndex <= 8 {
-			return "Japan"
+			return "China"
 		}
-		return "World 3"
+		return "Japan"
 	}
 
 	func SetLabelText(player entity<Player>, wingshopUI entity<CustomUI>, path string, text string) {

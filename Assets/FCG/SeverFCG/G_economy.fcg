@@ -2,16 +2,17 @@ import "StdLibrary.fcc" as std
 import "Map.fcc" as map
 import "Player.fcc" as player
 import "List.fcc" as list
-import "EditorGenLib.fcc" as gen
 import "Database.fcc" as database
 import "Workflow.fcc" as workflow
 import "./S_power.fcg" as S_power
 import "./G_Tower.fcg" as G_Tower
+import "EditorGenLib.fcc" as EditorGenLib
 
 [platform_server]
 graph G_economy {
 	PlayerGold Map<entity<Player>, float> = nil
 	PlayerGoldLoaded Map<entity<Player>, bool> = nil
+	PlayerGoldDirty Map<entity<Player>, bool> = nil
 	PlayerGoldDirtyBeforeLoad Map<entity<Player>, bool> = nil
 
 	SheetName string = "Coin"
@@ -24,22 +25,25 @@ graph G_economy {
 	event OnAwake() {
 		PlayerGold = map.New()
 		PlayerGoldLoaded = map.New()
+		PlayerGoldDirty = map.New()
 		PlayerGoldDirtyBeforeLoad = map.New()
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
 		PlayerGold[player] = DefaultGold
 		PlayerGoldLoaded[player] = false
+		PlayerGoldDirty[player] = false
 		PlayerGoldDirtyBeforeLoad[player] = false
 		NotifyGoldChanged(player, DefaultGold)
 		start ReadPlayerGold(player)
 	}
 
+	event OnUserQuitOrUserMatchEnd(player entity<Player>) {
+		wait SavePlayerGold(player)
+	}
+
 	event OnPlayerQuit(player entity<Player>) {
-		if ContainKey(PlayerGold, player) && IsPlayerGoldLoaded(player) {
-			var gold = PlayerGold[player]
-			start WritePlayerGoldValue(player, gold)
-		}
+		wait SavePlayerGold(player)
 
 		if ContainKey(PlayerGold, player) {
 			map.Remove(PlayerGold, player)
@@ -47,19 +51,24 @@ graph G_economy {
 		if ContainKey(PlayerGoldLoaded, player) {
 			map.Remove(PlayerGoldLoaded, player)
 		}
+		if ContainKey(PlayerGoldDirty, player) {
+			map.Remove(PlayerGoldDirty, player)
+		}
 		if ContainKey(PlayerGoldDirtyBeforeLoad, player) {
 			map.Remove(PlayerGoldDirtyBeforeLoad, player)
 		}
 	}
 
-	event OnPhaseStart(phase entity<Phase>) {
+	event OnRoundEnd(roundIndex int) {
+		start WriteAllPlayerGold()
+	}
+
+	event OnGameEnd() {
 		if HasWrittenAtEnd {
 			return
 		}
-		if phase<Phase>.Index == EPhase.GameEnd {
-			HasWrittenAtEnd = true
-			start WriteAllPlayerGold()
-		}
+		HasWrittenAtEnd = true
+		wait WriteAllPlayerGold()
 	}
 
 	func GetPlayerGold(player entity<Player>) float {
@@ -77,7 +86,7 @@ graph G_economy {
 		if !IsPlayerGoldLoaded(player) {
 			PlayerGoldDirtyBeforeLoad[player] = true
 		} else {
-			start WritePlayerGoldValue(player, gold)
+			PlayerGoldDirty[player] = true
 		}
 		NotifyGoldChanged(player, gold)
 	}
@@ -175,10 +184,11 @@ graph G_economy {
 
 				PlayerGold[player] = loadedGold
 				PlayerGoldLoaded[player] = true
+				PlayerGoldDirty[player] = shouldWriteLoadedGold
 				PlayerGoldDirtyBeforeLoad[player] = false
 				NotifyGoldChanged(player, loadedGold)
 				if shouldWriteLoadedGold {
-					start WritePlayerGoldValue(player, loadedGold)
+					start SavePlayerGold(player)
 				}
 				return
 			}
@@ -188,10 +198,28 @@ graph G_economy {
 		LogWarning("Read player gold failed.")
 	}
 
+	async func SavePlayerGold(player entity<Player>) {
+		if player == nil {
+			return
+		}
+		if !ContainKey(PlayerGold, player) {
+			return
+		}
+		if !IsPlayerGoldLoaded(player) {
+			return
+		}
+		if ContainKey(PlayerGoldDirty, player) && !PlayerGoldDirty[player] {
+			return
+		}
+
+		var gold = PlayerGold[player]
+		wait WritePlayerGoldValue(player, gold)
+	}
+
 	async func WriteAllPlayerGold() {
 		for player, gold in PlayerGold {
 			if IsPlayerGoldLoaded(player) {
-				wait WritePlayerGoldValue(player, gold)
+				wait SavePlayerGold(player)
 			}
 		}
 	}
@@ -211,6 +239,10 @@ graph G_economy {
 
 		if errorCode != StatusCode.NoError {
 			LogWarning("Write player gold failed.")
+		} else if ContainKey(PlayerGoldDirty, player) {
+			if ContainKey(PlayerGold, player) && PlayerGold[player] == gold {
+				PlayerGoldDirty[player] = false
+			}
 		}
 	}
 }

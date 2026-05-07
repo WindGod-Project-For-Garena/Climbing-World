@@ -1,5 +1,5 @@
-// TreasureShop 根节点挂载的客户端脚本：参照 C_WingshopUI 模式
-// 按钮点击派发事件到服务端，由服务端统一控制 Select 显隐与 Panel 显隐
+// TreasureShop root client script.
+// Buttons only dispatch requests; the server owns tab state, selection, display refresh and buying.
 
 import "StdLibrary.fcc" as std
 import "Hud.fcc" as hud
@@ -12,49 +12,82 @@ graph C_treasureUI {
 	event OnAwake() {
 	}
 
+	func RequestTreasureSelect(triggerPlayer entity<Player>, requestIndex int) {
+		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, requestIndex})
+	}
+
 	func Close_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
 		DispatchEventToEntity(__Custom6event_TreasureshopLeave____, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 
-	func Treasure1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 1})
+	func SelectTreasureWorldTab(button entity<UIWidgetButton>, triggerPlayer entity<Player>, selectedIndex int) {
+		var tabRequestIndex = -1
+		if selectedIndex == 1 {
+			tabRequestIndex = -2
+		}
+		if selectedIndex == 2 {
+			tabRequestIndex = -3
+		}
+		RequestTreasureSelect(triggerPlayer, tabRequestIndex)
 	}
 
-	func Treasure2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 2})
+	func SelectTreasureWorldCard(button entity<UIWidgetButton>, triggerPlayer entity<Player>, selectedIndex int) {
+		RequestTreasureSelect(triggerPlayer, -10 - selectedIndex)
 	}
 
-	func Treasure3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 3})
+	func TreasureWorld1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectTreasureWorldTab(button, triggerPlayer, 0)
 	}
 
-	func Treasure4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 4})
+	func TreasureWorld2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectTreasureWorldTab(button, triggerPlayer, 1)
 	}
 
-	func Treasure5_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 5})
+	func TreasureWorld3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectTreasureWorldTab(button, triggerPlayer, 2)
 	}
 
-	func Treasure6_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 6})
+	func UP_Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestTreasureSelect(triggerPlayer, -4)
 	}
 
-	func Treasure7_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 7})
+	func Down_Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		RequestTreasureSelect(triggerPlayer, -5)
 	}
 
-	func Treasure8_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 8})
+
+	func TreasureDisplayCard1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectTreasureWorldCard(button, triggerPlayer, 0)
 	}
 
-	func Treasure9_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		DispatchEventToEntity(__Custom6event_ShowTreasureSelect______, globalEntity, PlatformType.Server, List<object>{triggerPlayer, 9})
+	func TreasureDisplayCard2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectTreasureWorldCard(button, triggerPlayer, 1)
 	}
 
+	func TreasureDisplayCard3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		SelectTreasureWorldCard(button, triggerPlayer, 2)
+	}
+
+	func Treasure1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 1) }
+	func Treasure2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 2) }
+	func Treasure3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 3) }
+	func Treasure4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 4) }
+	func Treasure5_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 5) }
+	func Treasure6_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 6) }
+	func Treasure7_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 7) }
+	func Treasure8_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 8) }
+	func Treasure9_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 9) }
+	func Treasure10_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 10) }
+	func Treasure11_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 11) }
+	func Treasure12_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { RequestTreasureSelect(triggerPlayer, 12) }
+
+	// Legacy handler names kept so old UI references do not fail while the file is being refreshed.
+	func Tower1_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { Treasure1_button(button, triggerPlayer) }
+	func Wing2_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { Treasure2_button(button, triggerPlayer) }
+	func Wing3_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { Treasure3_button(button, triggerPlayer) }
+	func Wing4_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) { Treasure4_button(button, triggerPlayer) }
 
 	func Button_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
-		
 		DispatchEventToEntity(__Custom6event_TreasureOpenBox______, globalEntity, PlatformType.Server, List<object>{triggerPlayer})
 	}
 }

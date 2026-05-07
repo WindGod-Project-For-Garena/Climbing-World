@@ -42,11 +42,11 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 0,
+            "x": 118,
             "y": 0
           },
           "sizeDelta": {
-            "x": 1280,
+            "x": 2140,
             "y": 720
           }
         },
@@ -146,11 +146,11 @@
             "y": 0.5
           },
           "anchoredPosition": {
-            "x": 0,
+            "x": -76,
             "y": 315
           },
           "sizeDelta": {
-            "x": 1280,
+            "x": 1432,
             "y": 90
           }
         },
@@ -1155,7 +1155,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -1259,7 +1259,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -1870,7 +1870,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -1974,7 +1974,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -2053,6 +2053,110 @@
           "entityTagData": {
             "tagPointers": []
           }
+        },
+        {
+          "_entityName": "MercenaryCaptain_OwnedCheck (1)",
+          "_tag": {
+            "type": "UIImageEntity",
+            "resourceId": ""
+          },
+          "_entityId": "rQYdngLu",
+          "children": [],
+          "prefabVariant": null,
+          "activeValue": {
+            "selfValue": true,
+            "valueTag": "activeValue"
+          },
+          "unlockedValue": {
+            "selfValue": true,
+            "valueTag": "unlockedValue"
+          },
+          "propsData": {
+            "activeSelf": true,
+            "transform": {
+              "rotate": 0,
+              "anchorMin": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchorMax": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchoredPosition": {
+                "x": 314,
+                "y": 64
+              },
+              "sizeDelta": {
+                "x": 66,
+                "y": 56
+              }
+            },
+            "alpha": 100,
+            "priority": 0,
+            "image": {
+              "source": {
+                "fileId": "zly3ulhhik-wor787uy-3roxs69ufmq",
+                "filePath": "Assets\\UI\\CharacterShop_SOC_UI\\Sprite\\check.png",
+                "_tag": {
+                  "type": "GFileRefer"
+                },
+                "fileType": "texture"
+              },
+              "color": "#ffffff",
+              "reverse": {
+                "x": false,
+                "y": false
+              },
+              "fillType": 1,
+              "slicedBorder": {
+                "left": 0,
+                "right": 0,
+                "top": 0,
+                "bottom": 0
+              },
+              "tiledBorder": {
+                "left": 0,
+                "right": 0,
+                "top": 0,
+                "bottom": 0
+              },
+              "centerInvisible": false,
+              "fillDir": 0,
+              "fillAmount": 0,
+              "invertFill": false,
+              "flip": 0,
+              "gradient": 1,
+              "gradientTop": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+              },
+              "gradientBottom": {
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 1
+              }
+            }
+          },
+          "ecaScripts": [],
+          "ecaProps": {
+            "HudImageWidget": {},
+            "HudWidget": {},
+            "Entity": {}
+          },
+          "componentList": [],
+          "entityTagData": {
+            "tagPointers": []
+          },
+          "editorLockValue": false,
+          "editorVisibleValue": true
         }
       ],
       "prefabVariant": null,
@@ -2481,7 +2585,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -2585,7 +2689,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -2689,7 +2793,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -3196,7 +3300,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -3911,7 +4015,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -4626,7 +4730,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -5341,7 +5445,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -6056,7 +6160,7 @@
           "children": [],
           "prefabVariant": null,
           "activeValue": {
-            "selfValue": true,
+            "selfValue": false,
             "valueTag": "activeValue"
           },
           "unlockedValue": {
@@ -6502,7 +6606,7 @@
         "alpha": 100,
         "priority": 0,
         "text": {
-          "value": "ELVEN ARCHER",
+          "value": "Kelly",
           "key": "",
           "font": "Default",
           "fontSize": 39,
@@ -6586,7 +6690,7 @@
           },
           "sizeDelta": {
             "x": 230,
-            "y": 315
+            "y": 314
           }
         },
         "alpha": 100,
@@ -6641,394 +6745,6 @@
       "ecaScripts": [],
       "ecaProps": {
         "HudImageWidget": {},
-        "HudWidget": {},
-        "Entity": {}
-      },
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      }
-    },
-    {
-      "_entityName": "RangeIcon",
-      "_tag": {
-        "type": "UIImageEntity",
-        "resourceId": ""
-      },
-      "_entityId": "SiqKhXBu",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "propsData": {
-        "activeSelf": true,
-        "transform": {
-          "rotate": 0,
-          "anchorMin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchorMax": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "pivot": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchoredPosition": {
-            "x": 300,
-            "y": -150
-          },
-          "sizeDelta": {
-            "x": 70,
-            "y": 70
-          }
-        },
-        "alpha": 100,
-        "priority": 0,
-        "image": {
-          "source": {
-            "fileId": "kbrppq33np-jklxj36b-f12wxdms52d",
-            "filePath": "Assets\\UI\\CharacterShop_SOC_UI\\Sprite\\icon_range.png",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "texture"
-          },
-          "color": "#ffffff",
-          "reverse": {
-            "x": false,
-            "y": false
-          },
-          "fillType": 1,
-          "slicedBorder": {
-            "left": 0,
-            "right": 0,
-            "top": 0,
-            "bottom": 0
-          },
-          "tiledBorder": {
-            "left": 0,
-            "right": 0,
-            "top": 0,
-            "bottom": 0
-          },
-          "centerInvisible": false,
-          "fillDir": 0,
-          "fillAmount": 0,
-          "invertFill": false,
-          "flip": 0,
-          "gradient": 1,
-          "gradientTop": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "gradientBottom": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          }
-        }
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "HudImageWidget": {},
-        "HudWidget": {},
-        "Entity": {}
-      },
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      }
-    },
-    {
-      "_entityName": "RangeText",
-      "_tag": {
-        "type": "UITextEntity",
-        "resourceId": ""
-      },
-      "_entityId": "lNmwP8nq",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "propsData": {
-        "activeSelf": true,
-        "transform": {
-          "rotate": 0,
-          "anchorMin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchorMax": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "pivot": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchoredPosition": {
-            "x": 470,
-            "y": -150
-          },
-          "sizeDelta": {
-            "x": 260,
-            "y": 54
-          }
-        },
-        "alpha": 100,
-        "priority": 0,
-        "text": {
-          "value": "Range + 25m",
-          "key": "",
-          "font": "Default",
-          "fontSize": 33,
-          "fontStyle": {
-            "bold": true,
-            "italic": false,
-            "underline": false
-          },
-          "color": "#ffffff",
-          "alignment": {
-            "h": "center",
-            "v": "middle"
-          },
-          "lineSpacing": 0,
-          "background": false,
-          "backgroundColor": "#e7b200",
-          "overflow": 0,
-          "backgroundRGBA": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0
-          },
-          "shadow": true,
-          "shadowColor": "#000000",
-          "shadowOffset": {
-            "x": 2,
-            "y": 2
-          }
-        }
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "HudLabelWidget": {},
-        "HudWidget": {},
-        "Entity": {}
-      },
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      }
-    },
-    {
-      "_entityName": "CritIcon",
-      "_tag": {
-        "type": "UIImageEntity",
-        "resourceId": ""
-      },
-      "_entityId": "yV2eMDEz",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "propsData": {
-        "activeSelf": true,
-        "transform": {
-          "rotate": 0,
-          "anchorMin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchorMax": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "pivot": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchoredPosition": {
-            "x": 300,
-            "y": -208
-          },
-          "sizeDelta": {
-            "x": 70,
-            "y": 70
-          }
-        },
-        "alpha": 100,
-        "priority": 0,
-        "image": {
-          "source": {
-            "fileId": "7sb8e49715-2eavp0df-hqtq87wrp1x",
-            "filePath": "Assets\\UI\\CharacterShop_SOC_UI\\Sprite\\icon_crit.png",
-            "_tag": {
-              "type": "GFileRefer"
-            },
-            "fileType": "texture"
-          },
-          "color": "#ffffff",
-          "reverse": {
-            "x": false,
-            "y": false
-          },
-          "fillType": 1,
-          "slicedBorder": {
-            "left": 0,
-            "right": 0,
-            "top": 0,
-            "bottom": 0
-          },
-          "tiledBorder": {
-            "left": 0,
-            "right": 0,
-            "top": 0,
-            "bottom": 0
-          },
-          "centerInvisible": false,
-          "fillDir": 0,
-          "fillAmount": 0,
-          "invertFill": false,
-          "flip": 0,
-          "gradient": 1,
-          "gradientTop": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          },
-          "gradientBottom": {
-            "r": 255,
-            "g": 255,
-            "b": 255,
-            "a": 1
-          }
-        }
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "HudImageWidget": {},
-        "HudWidget": {},
-        "Entity": {}
-      },
-      "componentList": [],
-      "entityTagData": {
-        "tagPointers": []
-      }
-    },
-    {
-      "_entityName": "CritText",
-      "_tag": {
-        "type": "UITextEntity",
-        "resourceId": ""
-      },
-      "_entityId": "cgJYG1aI",
-      "children": [],
-      "prefabVariant": null,
-      "activeValue": {
-        "selfValue": true,
-        "valueTag": "activeValue"
-      },
-      "unlockedValue": {
-        "selfValue": true,
-        "valueTag": "unlockedValue"
-      },
-      "editorLockValue": false,
-      "editorVisibleValue": true,
-      "propsData": {
-        "activeSelf": true,
-        "transform": {
-          "rotate": 0,
-          "anchorMin": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchorMax": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "pivot": {
-            "x": 0.5,
-            "y": 0.5
-          },
-          "anchoredPosition": {
-            "x": 480,
-            "y": -208
-          },
-          "sizeDelta": {
-            "x": 285,
-            "y": 50
-          }
-        },
-        "alpha": 100,
-        "priority": 0,
-        "text": {
-          "value": "Crit Chance + 5%",
-          "key": "",
-          "font": "Default",
-          "fontSize": 27,
-          "fontStyle": {
-            "bold": true,
-            "italic": false,
-            "underline": false
-          },
-          "color": "#ffffff",
-          "alignment": {
-            "h": "center",
-            "v": "middle"
-          },
-          "lineSpacing": 0,
-          "background": false,
-          "backgroundColor": "#e7b200",
-          "overflow": 0,
-          "backgroundRGBA": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
-            "a": 0
-          },
-          "shadow": true,
-          "shadowColor": "#000000",
-          "shadowOffset": {
-            "x": 2,
-            "y": 2
-          }
-        }
-      },
-      "ecaScripts": [],
-      "ecaProps": {
-        "HudLabelWidget": {},
         "HudWidget": {},
         "Entity": {}
       },
@@ -7150,96 +6866,6 @@
           }
         },
         {
-          "_entityName": "BuyNowText",
-          "_tag": {
-            "type": "UITextEntity",
-            "resourceId": ""
-          },
-          "_entityId": "j1eraKaT",
-          "children": [],
-          "prefabVariant": null,
-          "activeValue": {
-            "selfValue": true,
-            "valueTag": "activeValue"
-          },
-          "unlockedValue": {
-            "selfValue": true,
-            "valueTag": "unlockedValue"
-          },
-          "editorLockValue": false,
-          "editorVisibleValue": true,
-          "propsData": {
-            "activeSelf": true,
-            "transform": {
-              "rotate": 0,
-              "anchorMin": {
-                "x": 0.5,
-                "y": 0.5
-              },
-              "anchorMax": {
-                "x": 0.5,
-                "y": 0.5
-              },
-              "pivot": {
-                "x": 0.5,
-                "y": 0.5
-              },
-              "anchoredPosition": {
-                "x": 0,
-                "y": 18
-              },
-              "sizeDelta": {
-                "x": 230,
-                "y": 48
-              }
-            },
-            "alpha": 100,
-            "priority": 0,
-            "text": {
-              "value": "BUY NOW",
-              "key": "",
-              "font": "Default",
-              "fontSize": 34,
-              "fontStyle": {
-                "bold": true,
-                "italic": false,
-                "underline": false
-              },
-              "color": "#ffffff",
-              "alignment": {
-                "h": "center",
-                "v": "middle"
-              },
-              "lineSpacing": 0,
-              "background": false,
-              "backgroundColor": "#e7b200",
-              "overflow": 0,
-              "backgroundRGBA": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 0
-              },
-              "shadow": true,
-              "shadowColor": "#000000",
-              "shadowOffset": {
-                "x": 2,
-                "y": 2
-              }
-            }
-          },
-          "ecaScripts": [],
-          "ecaProps": {
-            "HudLabelWidget": {},
-            "HudWidget": {},
-            "Entity": {}
-          },
-          "componentList": [],
-          "entityTagData": {
-            "tagPointers": []
-          }
-        },
-        {
           "_entityName": "CoinIcon",
           "_tag": {
             "type": "UIImageEntity",
@@ -7275,8 +6901,8 @@
                 "y": 0.5
               },
               "anchoredPosition": {
-                "x": -55,
-                "y": -22
+                "x": -75,
+                "y": 4
               },
               "sizeDelta": {
                 "x": 58,
@@ -7287,8 +6913,8 @@
             "priority": 0,
             "image": {
               "source": {
-                "fileId": "v0s3zv4siu-x2ia115g-ff8xmo1rgzv",
-                "filePath": "Assets\\UI\\CharacterShop_SOC_UI\\Sprite\\coin.png",
+                "fileId": "5060p9o2zw4-mo0wsnbk-1v25fwwiy5a",
+                "filePath": "Assets\\UI\\material\\Cup.png",
                 "_tag": {
                   "type": "GFileRefer"
                 },
@@ -7379,8 +7005,8 @@
                 "y": 0.5
               },
               "anchoredPosition": {
-                "x": 45,
-                "y": -22
+                "x": 31,
+                "y": 3
               },
               "sizeDelta": {
                 "x": 150,
@@ -7390,7 +7016,7 @@
             "alpha": 100,
             "priority": 0,
             "text": {
-              "value": "120",
+              "value": "0",
               "key": "",
               "font": "Default",
               "fontSize": 32,
@@ -7463,7 +7089,7 @@
           },
           "anchoredPosition": {
             "x": 430,
-            "y": -292
+            "y": -200
           },
           "sizeDelta": {
             "x": 310,

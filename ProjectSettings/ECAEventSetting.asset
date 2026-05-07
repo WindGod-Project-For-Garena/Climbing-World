@@ -1023,6 +1023,94 @@
       "apiTargetV2": "both",
       "version": 45,
       "key": "signal_51622488"
+    },
+    "signal_88510574": {
+      "name": "Custom event_eventGoldChanged",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100056,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "gold",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_88510574"
+    },
+    "signal_59984331": {
+      "name": "Custom event_BUYWings__",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100057,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "price",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_59984331"
+    },
+    "signal_17807516": {
+      "name": "Custom event_AddFallReward____",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100058,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "fallY",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_17807516"
+    },
+    "signal_67965983": {
+      "name": "Custom event_ShowActualFallReward______",
+      "eventType": 0,
+      "enitityType": "Component",
+      "typeID": 100059,
+      "props": [
+        {
+          "name": "player",
+          "value": "Player",
+          "key": 1
+        },
+        {
+          "name": "reward",
+          "value": "Float",
+          "key": 2
+        }
+      ],
+      "propCount": 2,
+      "apiTargetV2": "both",
+      "version": 45,
+      "key": "signal_67965983"
     }
   },
   "customName": {
@@ -1076,7 +1164,11 @@
     "Custom event__Custom6event___TowerUnlock____": "signal_25679713",
     "Custom event_ShowDEnough______": "signal_91424070",
     "Custom event_ShowTired____": "signal_12386035",
-    "Custom event___NPCBuyUnlock__": "signal_51622488"
+    "Custom event___NPCBuyUnlock__": "signal_51622488",
+    "Custom event_eventGoldChanged": "signal_88510574",
+    "Custom event_BUYWings__": "signal_59984331",
+    "Custom event_AddFallReward____": "signal_17807516",
+    "Custom event_ShowActualFallReward______": "signal_67965983"
   },
   "children": []
 }

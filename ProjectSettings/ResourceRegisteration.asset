@@ -766,6 +766,151 @@
           },
           "scriptName": "Wings3",
           "children": []
+        },
+        {
+          "refer": {
+            "fileId": "8w0ioiw9kec-mol381d6-h8ypblj87k",
+            "filePath": "Assets\\UI\\material\\Button\\QTE.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "QTE",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "6q86lvhgbxa-moax4l1y-qvbkjjxznc",
+            "filePath": "Assets\\UI\\material\\Button\\Jumping.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Key",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "udn83stardr-mnhh366y-fbb25e151nk",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure1.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure1",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "h09t3g6goqa-mnx45g6g-37xu26bp26q",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure2.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure2",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "fi5daq1g5l9-mnx49vhl-rvhkkmu1tqp",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure3.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure3",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "kdep2st2tje-mny339ct-18ghi1eijxw",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure4.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure4",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "hf3nhx8c934-mny33bse-5gc6t5kbq8h",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure5.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure5",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "jewd76gtpw-mny33d98-6e7vic2slei",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure6.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure6",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "pm7w66n51g9-mnx4x7pm-77qsnr9iwmf",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure7.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure7",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "larde65q1hj-mny1nghd-24xxjqpff1x",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure8.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure8",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "9covnxgf2sf-mny1o5l0-tq6z59dwyt",
+            "filePath": "Assets\\UI\\material\\Treasure\\Treasure9.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Treasure9",
+          "children": []
+        },
+        {
+          "refer": {
+            "fileId": "9srkzq33n1b-moax4c3b-zaou262os9",
+            "filePath": "Assets\\UI\\material\\Button\\Climbing.png",
+            "_tag": {
+              "type": "GFileRefer"
+            },
+            "fileType": "texture"
+          },
+          "scriptName": "Climbing",
+          "children": [],
+          "_isNewInSession": true
         }
       ]
     },

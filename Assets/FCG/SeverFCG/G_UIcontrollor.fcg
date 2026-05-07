@@ -102,6 +102,7 @@ graph G_UIcontrollor {
 		if goldCoinMutiWidget != nil {
 			GoldCoin_Muti_Widget[player] = goldCoinMutiWidget
 			SetGoldCoinMultiplierUI(player, globalEntity<S_power>.GetPlayerPowerValue(player))
+			start ApplyStoredGoldCoinMultiplierWhenReady(player)
 		}
 		if DEnoughEntity != nil {
 			DEnoughEntity<CustomUI>.IsVisible = false
@@ -239,6 +240,17 @@ graph G_UIcontrollor {
 		if goldCoinMutiWidget != nil {
 			goldCoinMutiWidget<HudLabelWidget>.Text = globalEntity<S_power>.FormatPowerDisplayValue(powerValue)
 		}
+	}
+
+	async func ApplyStoredGoldCoinMultiplierWhenReady(player entity<Player>) {
+		globalEntity<S_power>.EnsurePlayerProgress(player)
+		for i = 0, 60, 1 {
+			if globalEntity<S_power>.IsPlayerProgressLoaded(player) {
+				break
+			}
+			WaitForMillisecond(100)
+		}
+		SetGoldCoinMultiplierUI(player, globalEntity<S_power>.GetPlayerPowerMultiplier(player))
 	}
 
 	event __Custom6event_ShowDEnough________(player entity<Player>, tipText string) {

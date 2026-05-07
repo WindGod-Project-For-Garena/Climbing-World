@@ -16,6 +16,10 @@ import "./S_power.fcg" as S_power
 graph S_treasureShopUI {
 	TreasureShop Map<object, object> = nil
 	TreasureSelectState Map<entity<Player>, int> = nil
+	TreasureWorldTabState Map<entity<Player>, int> = nil
+	TreasureWorldCardState Map<entity<Player>, int> = nil
+	TreasureCardWidgetCount int = 9
+	TreasureCardsPerWorld int = 3
 	SlideStep float = 80.0
 	ProbabilityData Map<object, object> = nil
 	PowerGrowthData Map<object, object> = nil
@@ -28,6 +32,8 @@ graph S_treasureShopUI {
 	event OnAwake() {
 		TreasureShop = map.New()
 		TreasureSelectState = map.New()
+		TreasureWorldTabState = map.New()
+		TreasureWorldCardState = map.New()
 
 		ProbabilityData = map.New()
 		PowerGrowthData = map.New()
@@ -156,6 +162,255 @@ graph S_treasureShopUI {
 		return sign + convert.ToString(integerPart) + "." + decimalStr
 	}
 
+	func ClampTreasureWorldTabIndex(tabIndex int) int {
+		if tabIndex < 0 {
+			return 0
+		}
+		if tabIndex > 2 {
+			return 2
+		}
+		return tabIndex
+	}
+
+	func GetTreasureFirstIndexByWorld(tabIndex int) int {
+		if tabIndex == 1 {
+			return 4
+		}
+		if tabIndex == 2 {
+			return 7
+		}
+		return 1
+	}
+
+	func GetTreasureTabIndexByChest(treasureIndex int) int {
+		if treasureIndex >= 7 {
+			return 2
+		}
+		if treasureIndex >= 4 {
+			return 1
+		}
+		return 0
+	}
+
+	func GetTreasureCardIndexByChest(treasureIndex int) int {
+		if treasureIndex >= 7 {
+			return treasureIndex - 7
+		}
+		if treasureIndex >= 4 {
+			return treasureIndex - 4
+		}
+		return treasureIndex - 1
+	}
+
+	func GetTreasureIndexByDisplaySlot(tabIndex int, cardIndex int) int {
+		var firstTreasureIndex = GetTreasureFirstIndexByWorld(tabIndex)
+		return firstTreasureIndex + cardIndex
+	}
+
+	func ClampTreasureWorldCardIndex(tabIndex int, cardIndex int) int {
+		if cardIndex < 0 {
+			return 0
+		}
+		var maxCardIndex = TreasureCardsPerWorld - 1
+		var firstIndex = GetTreasureFirstIndexByWorld(tabIndex)
+		var lastAvailableIndex = TreasureChestCount - firstIndex
+		if lastAvailableIndex < maxCardIndex {
+			maxCardIndex = lastAvailableIndex
+		}
+		if maxCardIndex < 0 {
+			return 0
+		}
+		if cardIndex > maxCardIndex {
+			return maxCardIndex
+		}
+		return cardIndex
+	}
+
+	func GetCurrentTreasureWorldTabIndex(player entity<Player>) int {
+		if ContainKey(TreasureWorldTabState, player) {
+			return TreasureWorldTabState[player]
+		}
+		return 0
+	}
+
+	func GetCurrentTreasureWorldCardIndex(player entity<Player>) int {
+		if ContainKey(TreasureWorldCardState, player) {
+			return TreasureWorldCardState[player]
+		}
+		return 0
+	}
+
+	func GetTreasureCardPath(treasureIndex int) string {
+		if treasureIndex == 2 { return "/Panel/Roll/Layout/Tower2" }
+		if treasureIndex == 3 { return "/Panel/Roll/Layout/Tower3" }
+		if treasureIndex == 4 { return "/Panel/Roll/Layout/Tower4" }
+		if treasureIndex == 5 { return "/Panel/Roll/Layout/Wings5" }
+		if treasureIndex == 6 { return "/Panel/Roll/Layout/Wings6" }
+		if treasureIndex == 7 { return "/Panel/Roll/Layout/Wings7" }
+		if treasureIndex == 8 { return "/Panel/Roll/Layout/Wings8" }
+		if treasureIndex == 9 { return "/Panel/Roll/Layout/Wings9" }
+		if treasureIndex == 10 { return "/Panel/Roll/Layout/Wings10" }
+		if treasureIndex == 11 { return "/Panel/Roll/Layout/Wings11" }
+		if treasureIndex == 12 { return "/Panel/Roll/Layout/Wings12" }
+		return "/Panel/Roll/Layout/Tower1"
+	}
+
+	func GetTreasureDisplayCardPath(cardIndex int) string {
+		if cardIndex == 1 { return "/Panel/bigblue background (1)/TreasureCardSlot2" }
+		if cardIndex == 2 { return "/Panel/bigblue background (1)/TreasureCardSlot3" }
+		return "/Panel/bigblue background (1)/TreasureCardSlot1"
+	}
+
+	func SetTreasureImageSprite(treasureImage entity, treasureIndex int) {
+		if treasureImage == nil { return }
+		if treasureIndex == 1 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure1; return }
+		if treasureIndex == 2 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure2; return }
+		if treasureIndex == 3 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure3; return }
+		if treasureIndex == 4 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure4; return }
+		if treasureIndex == 5 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure5; return }
+		if treasureIndex == 6 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure6; return }
+		if treasureIndex == 7 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure7; return }
+		if treasureIndex == 8 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure8; return }
+		if treasureIndex == 9 { treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure9; return }
+		treasureImage<HudImageWidget>.SpriteName = EResSprite.Treasure1
+	}
+
+	func SetTreasureDisplayCardBase(player entity<Player>, ui entity<CustomUI>, cardIndex int, selected bool) {
+		var cardPath = GetTreasureDisplayCardPath(cardIndex)
+		var cardBase = GetWidgetByPath(player, ui, cardPath + "/card_normal_base")
+		if cardBase != nil {
+			if selected {
+				cardBase<HudImageWidget>.SpriteName = EResSprite.card_selected_base
+			} else {
+				cardBase<HudImageWidget>.SpriteName = EResSprite.card_normal_base
+			}
+		}
+		var selectWidget = GetWidgetByPath(player, ui, cardPath + "/Select")
+		if selectWidget != nil {
+			selectWidget<UIWidget>.IsVisible = selected
+		}
+	}
+
+	func ApplyTreasureDisplayCardSelection(player entity<Player>, ui entity<CustomUI>, selectedIndex int) {
+		SetTreasureDisplayCardBase(player, ui, 0, selectedIndex == 0)
+		SetTreasureDisplayCardBase(player, ui, 1, selectedIndex == 1)
+		SetTreasureDisplayCardBase(player, ui, 2, selectedIndex == 2)
+	}
+
+	func ApplyTreasureWorldCardSprites(player entity<Player>, ui entity<CustomUI>, tabIndex int) {
+		for cardIndex = 0, TreasureCardsPerWorld, 1 {
+			var treasureIndex = GetTreasureIndexByDisplaySlot(tabIndex, cardIndex)
+			var cardPath = GetTreasureDisplayCardPath(cardIndex)
+			var treasureImage = GetWidgetByPath(player, ui, cardPath + "/TreasureImage")
+			SetTreasureImageSprite(treasureImage, treasureIndex)
+			var cardWidget = GetWidgetByPath(player, ui, cardPath)
+			if cardWidget != nil {
+				cardWidget<UIWidget>.IsVisible = true
+			}
+		}
+	}
+
+	func HideOldTreasureRoll(player entity<Player>, ui entity<CustomUI>) {
+		var rollWidget = GetWidgetByPath(player, ui, "/Panel/Roll")
+		if rollWidget != nil {
+			rollWidget<UIWidget>.IsVisible = false
+		}
+	}
+
+	func SetTreasureWorldButtonColor(player entity<Player>, ui entity<CustomUI>, buttonPath string, selected bool) {
+		var buttonWidget = GetWidgetByPath(player, ui, buttonPath)
+		if buttonWidget != nil {
+			if selected {
+				buttonWidget<UIWidgetButton>.Color = #3FEA63
+			} else {
+				buttonWidget<UIWidgetButton>.Color = #3FA8E6
+			}
+		}
+
+		var buttonImage = GetWidgetByPath(player, ui, buttonPath + "/TabImage")
+		if buttonImage != nil {
+			if selected {
+				buttonImage<UIWidgetImage>.Color = #02FE00
+			} else {
+				buttonImage<UIWidgetImage>.Color = #02DAE8
+			}
+		}
+	}
+
+	func ApplyTreasureWorldTabSelection(player entity<Player>, ui entity<CustomUI>, selectedIndex int) {
+		if ui == nil {
+			return
+		}
+		SetTreasureWorldButtonColor(player, ui, "/Panel/TreasureWorld1_Button", selectedIndex == 0)
+		SetTreasureWorldButtonColor(player, ui, "/Panel/TreasureWorld2_Button", selectedIndex == 1)
+		SetTreasureWorldButtonColor(player, ui, "/Panel/TreasureWorld3_Button", selectedIndex == 2)
+	}
+
+	func SetTreasureCardVisible(player entity<Player>, ui entity<CustomUI>, treasureIndex int, visible bool) {
+		var cardWidget = GetWidgetByPath(player, ui, GetTreasureCardPath(treasureIndex))
+		if cardWidget != nil {
+			cardWidget<UIWidget>.IsVisible = visible
+		}
+	}
+
+	func SetTreasureCardPosition(player entity<Player>, ui entity<CustomUI>, treasureIndex int, x float, y float) {
+		var cardWidget = GetWidgetByPath(player, ui, GetTreasureCardPath(treasureIndex))
+		if cardWidget != nil {
+			var pos = cardWidget<UIWidget>.AnchorPosition
+			cardWidget<UIWidget>.AnchorPosition = Vector3{x, y, pos.Z}
+		}
+	}
+
+	func ApplyTreasureWorldCardPositions(player entity<Player>, ui entity<CustomUI>, tabIndex int) {
+		var firstTreasureIndex = GetTreasureFirstIndexByWorld(tabIndex)
+		SetTreasureCardPosition(player, ui, firstTreasureIndex + 2, -145.0, 120.0)
+		SetTreasureCardPosition(player, ui, firstTreasureIndex + 1, 137.0, 120.0)
+		SetTreasureCardPosition(player, ui, firstTreasureIndex, -145.0, -144.0)
+	}
+
+	func ApplyTreasureWorldCardVisibility(player entity<Player>, ui entity<CustomUI>, tabIndex int) {
+		var firstTreasureIndex = GetTreasureFirstIndexByWorld(tabIndex)
+		for i = 1, TreasureCardWidgetCount + 1, 1 {
+			var visible = false
+			if i >= firstTreasureIndex && i < firstTreasureIndex + TreasureCardsPerWorld && i <= TreasureChestCount {
+				visible = true
+			}
+			SetTreasureCardVisible(player, ui, i, visible)
+		}
+	}
+
+	func ApplyTreasureWorldScrollPosition(player entity<Player>, ui entity<CustomUI>, tabIndex int) {
+		var layoutWidget = GetWidgetByPath(player, ui, "/Panel/Roll/Layout")
+		if layoutWidget == nil {
+			return
+		}
+		var pos = layoutWidget<UIWidget>.AnchorPosition
+		layoutWidget<UIWidget>.AnchorPosition = Vector3{pos.X, 0.0, pos.Z}
+	}
+
+	func ApplyTreasureWorldPanelState(player entity<Player>, ui entity<CustomUI>, tabIndex int, cardIndex int) {
+		if ui == nil {
+			return
+		}
+		tabIndex = ClampTreasureWorldTabIndex(tabIndex)
+		cardIndex = ClampTreasureWorldCardIndex(tabIndex, cardIndex)
+		var selectedTreasureIndex = GetTreasureIndexByDisplaySlot(tabIndex, cardIndex)
+		if selectedTreasureIndex < 1 || selectedTreasureIndex > TreasureChestCount {
+			return
+		}
+
+		TreasureWorldTabState[player] = tabIndex
+		TreasureWorldCardState[player] = cardIndex
+		TreasureSelectState[player] = selectedTreasureIndex
+		ApplyTreasureWorldTabSelection(player, ui, tabIndex)
+		HideOldTreasureRoll(player, ui)
+		ApplyTreasureWorldCardSprites(player, ui, tabIndex)
+		ApplyTreasureSelectState(player, ui, selectedTreasureIndex)
+		UpdateTreasureDisplay(player, ui, selectedTreasureIndex)
+	}
+
+
+
 	event __Custom6event_TreasureshopEnter____(player entity<Player>) {
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
 		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, false})
@@ -166,21 +421,20 @@ graph S_treasureShopUI {
 			if panelWidget != nil {
 				panelWidget<UIWidget>.IsVisible = true
 			}
-			var savedIndex = 0
+			var savedTabIndex = GetCurrentTreasureWorldTabIndex(player)
+			var savedCardIndex = GetCurrentTreasureWorldCardIndex(player)
 			if ContainKey(TreasureSelectState, player) {
-				savedIndex = TreasureSelectState[player]
+				var savedTreasureIndex = TreasureSelectState[player]
+				if savedTreasureIndex > 0 {
+					savedTabIndex = GetTreasureTabIndexByChest(savedTreasureIndex)
+					savedCardIndex = GetTreasureCardIndexByChest(savedTreasureIndex)
+				}
 			}
-			ApplyTreasureSelectState(player, treasureEntity as entity<CustomUI>, savedIndex)
-			if savedIndex > 0 {
-				UpdateTreasureDisplay(player, treasureEntity as entity<CustomUI>, savedIndex)
-			}
+			ApplyTreasureWorldPanelState(player, treasureEntity as entity<CustomUI>, savedTabIndex, savedCardIndex)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.Treasureshop2)
 			TreasureShop[player] = createdEntity
-			var createdUI = createdEntity as entity<CustomUI>
-			TreasureSelectState[player] = 1
-			ApplyTreasureSelectState(player, createdUI, 1)
-			UpdateTreasureDisplay(player, createdUI, 1)
+			ApplyTreasureWorldPanelState(player, createdEntity as entity<CustomUI>, 0, 0)
 		}
 	}
 
@@ -195,47 +449,63 @@ graph S_treasureShopUI {
 		}
 	}
 
+
+
 	event __Custom6event_ShowTreasureSelect______(player entity<Player>, treasureIndex int) {
 		if !ContainKey(TreasureShop, player) {
 			return
 		}
-		TreasureSelectState[player] = treasureIndex
-		ApplyTreasureSelectState(player, TreasureShop[player] as entity<CustomUI>, treasureIndex)
-		UpdateTreasureDisplay(player, TreasureShop[player] as entity<CustomUI>, treasureIndex)
-	}
+		var treasureUI = TreasureShop[player] as entity<CustomUI>
 
-	func ApplyTreasureSelectState(player entity<Player>, treasureUI entity<CustomUI>, treasureIndex int) {
-		if treasureIndex == 0 {
-			HideAllTreasureSelect(player, treasureUI)
+		if treasureIndex <= -10 {
+			var selectedCardIndex = 0 - treasureIndex - 10
+			ApplyTreasureWorldPanelState(player, treasureUI, GetCurrentTreasureWorldTabIndex(player), selectedCardIndex)
 			return
 		}
-		var s1 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower1/Select")
-		var s2 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower2/Select")
-		var s3 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower3/Select")
-		var s4 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower4/Select")
-		var s5 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings5/Select")
-		var s6 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings6/Select")
-		var s7 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings7/Select")
-		var s8 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings8/Select")
-		var s9 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings9/Select")
-		if s1 != nil { s1<UIWidget>.IsVisible = false }
-		if s2 != nil { s2<UIWidget>.IsVisible = false }
-		if s3 != nil { s3<UIWidget>.IsVisible = false }
-		if s4 != nil { s4<UIWidget>.IsVisible = false }
-		if s5 != nil { s5<UIWidget>.IsVisible = false }
-		if s6 != nil { s6<UIWidget>.IsVisible = false }
-		if s7 != nil { s7<UIWidget>.IsVisible = false }
-		if s8 != nil { s8<UIWidget>.IsVisible = false }
-		if s9 != nil { s9<UIWidget>.IsVisible = false }
-		if treasureIndex == 1 && s1 != nil { s1<UIWidget>.IsVisible = true }
-		if treasureIndex == 2 && s2 != nil { s2<UIWidget>.IsVisible = true }
-		if treasureIndex == 3 && s3 != nil { s3<UIWidget>.IsVisible = true }
-		if treasureIndex == 4 && s4 != nil { s4<UIWidget>.IsVisible = true }
-		if treasureIndex == 5 && s5 != nil { s5<UIWidget>.IsVisible = true }
-		if treasureIndex == 6 && s6 != nil { s6<UIWidget>.IsVisible = true }
-		if treasureIndex == 7 && s7 != nil { s7<UIWidget>.IsVisible = true }
-		if treasureIndex == 8 && s8 != nil { s8<UIWidget>.IsVisible = true }
-		if treasureIndex == 9 && s9 != nil { s9<UIWidget>.IsVisible = true }
+
+		if treasureIndex == -1 || treasureIndex == -2 || treasureIndex == -3 {
+			var selectedTabIndex = 0
+			if treasureIndex == -2 {
+				selectedTabIndex = 1
+			}
+			if treasureIndex == -3 {
+				selectedTabIndex = 2
+			}
+			ApplyTreasureWorldPanelState(player, treasureUI, selectedTabIndex, 0)
+			return
+		}
+
+		if treasureIndex == -4 {
+			var previousTabIndex = GetCurrentTreasureWorldTabIndex(player) - 1
+			if previousTabIndex < 0 {
+				previousTabIndex = 0
+			}
+			ApplyTreasureWorldPanelState(player, treasureUI, previousTabIndex, 0)
+			return
+		}
+
+		if treasureIndex == -5 {
+			var nextTabIndex = GetCurrentTreasureWorldTabIndex(player) + 1
+			if nextTabIndex > 2 {
+				nextTabIndex = 2
+			}
+			ApplyTreasureWorldPanelState(player, treasureUI, nextTabIndex, 0)
+			return
+		}
+
+		if treasureIndex < 1 || treasureIndex > TreasureChestCount {
+			return
+		}
+		ApplyTreasureWorldPanelState(player, treasureUI, GetTreasureTabIndexByChest(treasureIndex), GetTreasureCardIndexByChest(treasureIndex))
+	}
+
+
+	func ApplyTreasureSelectState(player entity<Player>, treasureUI entity<CustomUI>, treasureIndex int) {
+		HideAllTreasureSelect(player, treasureUI)
+		if treasureIndex <= 0 {
+			return
+		}
+		ApplyTreasureDisplayCardSelection(player, treasureUI, GetTreasureCardIndexByChest(treasureIndex))
 	}
 
 	func UpdateTreasureDisplay(player entity<Player>, treasureUI entity<CustomUI>, treasureIndex int) {
@@ -311,25 +581,10 @@ graph S_treasureShopUI {
 		}
 	}
 
+
+
 	func HideAllTreasureSelect(player entity<Player>, treasureUI entity<CustomUI>) {
-		var s1 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower1/Select")
-		var s2 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower2/Select")
-		var s3 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower3/Select")
-		var s4 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Tower4/Select")
-		var s5 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings5/Select")
-		var s6 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings6/Select")
-		var s7 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings7/Select")
-		var s8 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings8/Select")
-		var s9 = GetWidgetByPath(player, treasureUI, "/Panel/Roll/Layout/Wings9/Select")
-		if s1 != nil { s1<UIWidget>.IsVisible = false }
-		if s2 != nil { s2<UIWidget>.IsVisible = false }
-		if s3 != nil { s3<UIWidget>.IsVisible = false }
-		if s4 != nil { s4<UIWidget>.IsVisible = false }
-		if s5 != nil { s5<UIWidget>.IsVisible = false }
-		if s6 != nil { s6<UIWidget>.IsVisible = false }
-		if s7 != nil { s7<UIWidget>.IsVisible = false }
-		if s8 != nil { s8<UIWidget>.IsVisible = false }
-		if s9 != nil { s9<UIWidget>.IsVisible = false }
+		ApplyTreasureDisplayCardSelection(player, treasureUI, -1)
 	}
 
 	func GetTreasurePrice(treasureIndex int) float {

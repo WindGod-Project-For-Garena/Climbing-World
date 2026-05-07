@@ -23,10 +23,17 @@ graph C_Climbing_button {
 	}
 
 	func Pressclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		if triggerPlayer<C_P_Climbing2>.QTEActive {
+			triggerPlayer<C_P_Climbing2>.PressQTEButton()
+			return
+		}
 		triggerPlayer<C_P_Climbing2>.StartClimbing(triggerPlayer, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true)
 	}
 
 	func releaseclimbing_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		if triggerPlayer<C_P_Climbing2>.QTEActive {
+			return
+		}
 		triggerPlayer<C_P_Climbing2>.StartHanging(triggerPlayer, Vector3{GetLocalPlayer()<Player>.Position.X, GetLocalPlayer()<Player>.Position.Y, GetLocalPlayer()<Player>.Position.Z}, true)
 	}
 

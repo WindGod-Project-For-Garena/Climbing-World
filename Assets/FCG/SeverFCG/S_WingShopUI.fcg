@@ -11,6 +11,8 @@ import "Math.fcc" as Math
 import "Convert.fcc" as convert
 import "./S_WingsPrice.fcg" as S_WingsPrice
 import "./G_economy.fcg" as G_economy
+import "./S_power.fcg" as S_power
+import "./C_S_TutorialManager.fcg" as PlayerTutorial
 
 [platform_server]
 graph S_WingShopUI {
@@ -44,6 +46,43 @@ graph S_WingShopUI {
 
 	func GetWingshopHintPosition() Vector3 {
 		return worldPos
+	}
+
+	func GetCurrentStoredWingUnlockLevel(player entity<Player>) int {
+		var unlockLevel = globalEntity<S_power>.GetPlayerWingLevel(player)
+		if ContainKey(WingUnlockState, player) {
+			var localUnlock = WingUnlockState[player] as int
+			if localUnlock > unlockLevel {
+				unlockLevel = localUnlock
+			}
+		}
+		WingUnlockState[player] = unlockLevel
+		return unlockLevel
+	}
+
+	async func ApplyStoredWingUnlockWhenReady(player entity<Player>, wingshopUI entity<CustomUI>) {
+		globalEntity<S_power>.EnsurePlayerProgress(player)
+		for i = 0, 60, 1 {
+			if globalEntity<S_power>.IsPlayerProgressLoaded(player) {
+				break
+			}
+			WaitForMillisecond(100)
+		}
+
+		var unlockLevel = GetCurrentStoredWingUnlockLevel(player)
+		if !ContainKey(Wingshop, player) {
+			return
+		}
+		var currentUI = Wingshop[player] as entity<CustomUI>
+		if currentUI == nil || currentUI != wingshopUI {
+			return
+		}
+		ApplyWingBuyState(player, currentUI, unlockLevel)
+		ApplyBUY_FPanelState(player, currentUI, unlockLevel)
+		ApplySOCPanelState(player, currentUI, GetCurrentSOCTabIndex(player), GetCurrentSOCCardIndex(player))
+		if unlockLevel > 0 {
+			DispatchEventToEntity(__Custom6event_BuyWings_success__, currentUI as entity, PlatformType.Client, List<object>{unlockLevel, player})
+		}
 	}
 
 	event __Custom6event_RegisterWingshopHintPosition____(pos Vector3) {
@@ -198,7 +237,7 @@ graph S_WingShopUI {
 		if ContainKey(WingUnlockState, player) {
 			return WingUnlockState[player]
 		}
-		return 0
+		return GetCurrentStoredWingUnlockLevel(player)
 	}
 
 	func ApplySOCOwnedMarks(player entity<Player>, ui entity<CustomUI>, tabIndex int) {
@@ -321,6 +360,9 @@ graph S_WingShopUI {
 	event __Custom6event_WingshopEnter__(player entity<Player>) {
 		LogInfo("WingshopEnter")
 		DispatchEventToEntity(OnHideHint, player, PlatformType.Client, List<int>{3})
+		if player<PlayerTutorial>.ShouldRunNewPlayerTutorial(player) {
+			player<PlayerTutorial>.MarkNewPlayerTutorialDone()
+		}
 		DispatchEventToEntity(__Custom6event_SetDragUIVisible______, globalEntity, PlatformType.Server, List<object>{player, false})
 		if ContainKey(Wingshop, player) {
 			var wingshopEntity = Wingshop[player] as entity
@@ -335,29 +377,28 @@ graph S_WingShopUI {
 				savedIndex = WingSelectState[player]
 			}
 			ApplyWingSelectState(player, wingshopEntity as entity<CustomUI>, savedIndex)
-			var savedUnlock = 0
-			if ContainKey(WingUnlockState, player) {
-				savedUnlock = WingUnlockState[player]
-			}
+			var savedUnlock = GetCurrentStoredWingUnlockLevel(player)
 			ApplyWingBuyState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
 			// BUY_F 面板：按已解锁数量恢复状态，not enough cup 恢复隐藏
 			ApplyBUY_FPanelState(player, wingshopEntity as entity<CustomUI>, savedUnlock)
 			SetNotEnoughCupVisible(player, wingshopEntity as entity<CustomUI>, false)
 			ApplySOCPanelState(player, wingshopEntity as entity<CustomUI>, GetCurrentSOCTabIndex(player), GetCurrentSOCCardIndex(player))
 			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, wingshopEntity as entity<CustomUI>)
+			start ApplyStoredWingUnlockWhenReady(player, wingshopEntity as entity<CustomUI>)
 		} else {
 			CreateCustomUI(out var createdEntity, player, EResUI.WingShop_SOC_UI)
 			Wingshop[player] = createdEntity
 			ApplySOCPanelState(player, createdEntity as entity<CustomUI>, 0, 0)
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			WingSelectState[player] = 0
-			WingUnlockState[player] = 0
+			var initialUnlock = GetCurrentStoredWingUnlockLevel(player)
 			HideAllBUY(player, createdEntity as entity<CustomUI>)
-			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, 0)
+			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, initialUnlock)
 			// BUY_F 面板：首次创建时仅 Wings1/BUY_F 可见，not enough cup 隐藏
-			ApplyBUY_FPanelState(player, createdEntity as entity<CustomUI>, 0)
+			ApplyBUY_FPanelState(player, createdEntity as entity<CustomUI>, initialUnlock)
 			SetNotEnoughCupVisible(player, createdEntity as entity<CustomUI>, false)
 			globalEntity<S_WingsPrice>.RefreshAllWingPriceSpeedUI(player, createdEntity as entity<CustomUI>)
+			start ApplyStoredWingUnlockWhenReady(player, createdEntity as entity<CustomUI>)
 		}
 	}
 
@@ -451,6 +492,7 @@ graph S_WingShopUI {
 		DispatchEventToEntity(__Custom6event_BuyWings_success__, Wingshop[player] as entity, PlatformType.Client, List<object>{wingIndex, player})
 		// 更新解锁状态与 UI
 		WingUnlockState[player] = wingIndex
+		globalEntity<S_power>.SetPlayerWingLevel(player, wingIndex)
 		WingSelectState[player] = wingIndex
 		ApplyWingBuyState(player, Wingshop[player] as entity<CustomUI>, wingIndex)
 		ApplyBUY_FPanelState(player, Wingshop[player] as entity<CustomUI>, wingIndex)

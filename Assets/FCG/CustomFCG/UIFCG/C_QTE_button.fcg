@@ -16,10 +16,14 @@ graph C_QTE_button {
 	IsRunning bool = false
 
 	event OnAwake() {
+		ResetQTE()
+		start QTEFallLoop(thisEntity as entity<CustomUI>)
+	}
+
+	func ResetQTE() {
 		PointerY = PointerMinY
 		IsRunning = true
 		ApplyPointer(thisEntity as entity<CustomUI>)
-		start QTEFallLoop(thisEntity as entity<CustomUI>)
 	}
 
 	func ClampPointer() {
@@ -58,18 +62,21 @@ graph C_QTE_button {
 		}
 	}
 
-	func QTEButton_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+	func PressQTEInput(triggerPlayer entity<Player>) {
 		if triggerPlayer != GetLocalPlayer() {
 			return
 		}
-		var ui = button<UIWidget>.ParentUI
 		PointerY = PointerY + TapImpulse
 		ClampPointer()
-		ApplyPointer(ui)
+		ApplyPointer(thisEntity as entity<CustomUI>)
 		if IsInGreenZone() {
 			LogInfo("QTE hit: green")
 		} else {
 			LogInfo("QTE hit: red")
 		}
+	}
+
+	func QTEButton_button(button entity<UIWidgetButton>, triggerPlayer entity<Player>) {
+		PressQTEInput(triggerPlayer)
 	}
 }

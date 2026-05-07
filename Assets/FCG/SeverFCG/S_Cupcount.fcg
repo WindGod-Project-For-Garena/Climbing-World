@@ -3,33 +3,144 @@ import "Map.fcc" as map
 import "Hud.fcc" as hud
 import "Convert.fcc" as convert
 import "Player.fcc" as player
+import "Database.fcc" as database
+import "Workflow.fcc" as workflow
 import "./G_UIcontrollor.fcg" as G_UIcontrollor
 
 [platform_server]
 graph S_Cupcount {
 	// 玩家奖杯数（初始为 0）
 	PlayerCupCount Map<entity<Player>, int> = nil
+	PlayerCupLoaded Map<entity<Player>, bool> = nil
+	PlayerCupDirty Map<entity<Player>, bool> = nil
+	PlayerCupDirtyBeforeLoad Map<entity<Player>, bool> = nil
 	// 玩家 -> P_IngameHud 中 /Cupcpunt 文本控件
 	CupcountWidgetByPlayer Map<entity<Player>, entity> = nil
 
-	event OnGameStart() {
+	SheetName string = "Coin"
+	DataKey string = "Cup"
+	MapCode string = ""
+	DefaultCupCount int = 0
+	MaxStorageRetry int = 10
+	HasWrittenAtEnd bool = false
+
+	event OnAwake() {
 		LogInfo("S_Cupcount OnAwake")
 		PlayerCupCount = map.New()
+		PlayerCupLoaded = map.New()
+		PlayerCupDirty = map.New()
+		PlayerCupDirtyBeforeLoad = map.New()
 		CupcountWidgetByPlayer = map.New()
+		HasWrittenAtEnd = false
 	}
 
 	event OnPlayerJoin(player entity<Player>) {
-		PlayerCupCount[player] = 0
+		EnsureCupStorageReady()
+		PlayerCupCount[player] = DefaultCupCount
+		PlayerCupLoaded[player] = false
+		PlayerCupDirty[player] = false
+		PlayerCupDirtyBeforeLoad[player] = false
 		TryBindCupcountWidget(player)
 		RefreshCupcountUI(player)
+		start ReadPlayerCupCount(player)
+	}
+
+	event OnUserQuitOrUserMatchEnd(player entity<Player>) {
+		wait SavePlayerCupCount(player)
 	}
 
 	event OnPlayerQuit(leftPlayer entity<Player>) {
-		map.Remove(PlayerCupCount, leftPlayer)
-		map.Remove(CupcountWidgetByPlayer, leftPlayer)
+		wait SavePlayerCupCount(leftPlayer)
+
+		if ContainKey(PlayerCupCount, leftPlayer) {
+			map.Remove(PlayerCupCount, leftPlayer)
+		}
+		if ContainKey(PlayerCupLoaded, leftPlayer) {
+			map.Remove(PlayerCupLoaded, leftPlayer)
+		}
+		if ContainKey(PlayerCupDirty, leftPlayer) {
+			map.Remove(PlayerCupDirty, leftPlayer)
+		}
+		if ContainKey(PlayerCupDirtyBeforeLoad, leftPlayer) {
+			map.Remove(PlayerCupDirtyBeforeLoad, leftPlayer)
+		}
+		if ContainKey(CupcountWidgetByPlayer, leftPlayer) {
+			map.Remove(CupcountWidgetByPlayer, leftPlayer)
+		}
+	}
+
+	event OnRoundEnd(roundIndex int) {
+		start WriteAllPlayerCupCounts()
+	}
+
+	event OnGameEnd() {
+		if HasWrittenAtEnd {
+			return
+		}
+		HasWrittenAtEnd = true
+		wait WriteAllPlayerCupCounts()
+	}
+
+	func EnsureCupStorageReady() {
+		if PlayerCupCount == nil {
+			PlayerCupCount = map.New()
+		}
+		if PlayerCupLoaded == nil {
+			PlayerCupLoaded = map.New()
+		}
+		if PlayerCupDirty == nil {
+			PlayerCupDirty = map.New()
+		}
+		if PlayerCupDirtyBeforeLoad == nil {
+			PlayerCupDirtyBeforeLoad = map.New()
+		}
+		if CupcountWidgetByPlayer == nil {
+			CupcountWidgetByPlayer = map.New()
+		}
+	}
+
+	func GetPlayerCupCount(player entity<Player>) int {
+		EnsureCupStorageReady()
+		if !ContainKey(PlayerCupCount, player) {
+			return DefaultCupCount
+		}
+		return PlayerCupCount[player] as int
+	}
+
+	func SetPlayerCupCount(player entity<Player>, cupCount int) {
+		if player == nil {
+			return
+		}
+		EnsureCupStorageReady()
+		if cupCount < 0 {
+			cupCount = 0
+		}
+		PlayerCupCount[player] = cupCount
+		if !IsPlayerCupLoaded(player) {
+			PlayerCupDirtyBeforeLoad[player] = true
+		} else {
+			PlayerCupDirty[player] = true
+		}
+		RefreshCupcountUI(player)
+	}
+
+	func AddPlayerCupCount(player entity<Player>, value int) {
+		if value <= 0 {
+			return
+		}
+		SetPlayerCupCount(player, GetPlayerCupCount(player) + value)
+	}
+
+	func IsPlayerCupLoaded(player entity<Player>) bool {
+		EnsureCupStorageReady()
+		if !ContainKey(PlayerCupLoaded, player) {
+			return false
+		}
+		return PlayerCupLoaded[player]
 	}
 
 	func TryBindCupcountWidget(player entity<Player>) {
+		EnsureCupStorageReady()
 		if ContainKey(CupcountWidgetByPlayer, player) {
 			var oldWidget = CupcountWidgetByPlayer[player] as entity
 			if oldWidget != nil {
@@ -50,6 +161,7 @@ graph S_Cupcount {
 	}
 
 	func RefreshCupcountUI(player entity<Player>) {
+		EnsureCupStorageReady()
 		TryBindCupcountWidget(player)
 		if !ContainKey(CupcountWidgetByPlayer, player) {
 			return
@@ -58,7 +170,7 @@ graph S_Cupcount {
 		if cupWidget == nil {
 			return
 		}
-		var cupCount = 0
+		var cupCount = DefaultCupCount
 		if ContainKey(PlayerCupCount, player) {
 			cupCount = PlayerCupCount[player] as int
 		}
@@ -90,12 +202,99 @@ graph S_Cupcount {
 		if player == nil || cupTrigger == nil {
 			return
 		}
-		if !ContainKey(PlayerCupCount, player) {
-			PlayerCupCount[player] = 0
-		}
 		var delta = ResolveCupDeltaByTrigger(cupTrigger)
-		var currentCount = PlayerCupCount[player] as int
-		PlayerCupCount[player] = currentCount + delta
-		RefreshCupcountUI(player)
+		AddPlayerCupCount(player, delta)
+	}
+
+	async func ReadPlayerCupCount(player entity<Player>) {
+		if player == nil {
+			return
+		}
+		EnsureCupStorageReady()
+
+		var count = 0
+		var errorCode = StatusCode.DataStorageTimeout
+		while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+			ReadFromDataStore(SheetName, player<Player>.UserUID, DataKey, out var result, MapCode, out var statusCode)
+			errorCode = statusCode
+			if statusCode == StatusCode.NoError {
+				var loadedCupCount = DefaultCupCount
+				var shouldWriteLoadedCupCount = false
+				if result != nil {
+					loadedCupCount = result as int
+					if loadedCupCount < 0 {
+						loadedCupCount = DefaultCupCount
+					}
+				}
+
+				if ContainKey(PlayerCupDirtyBeforeLoad, player) && PlayerCupDirtyBeforeLoad[player] {
+					loadedCupCount = loadedCupCount + GetPlayerCupCount(player)
+					shouldWriteLoadedCupCount = true
+				}
+
+				PlayerCupCount[player] = loadedCupCount
+				PlayerCupLoaded[player] = true
+				PlayerCupDirty[player] = shouldWriteLoadedCupCount
+				PlayerCupDirtyBeforeLoad[player] = false
+				RefreshCupcountUI(player)
+				if shouldWriteLoadedCupCount {
+					start SavePlayerCupCount(player)
+				}
+				return
+			}
+			count++
+		}
+
+		LogWarning("Read player cup count failed.")
+	}
+
+	async func SavePlayerCupCount(player entity<Player>) {
+		if player == nil {
+			return
+		}
+		EnsureCupStorageReady()
+		if !ContainKey(PlayerCupCount, player) {
+			return
+		}
+		if !IsPlayerCupLoaded(player) {
+			return
+		}
+		if ContainKey(PlayerCupDirty, player) && !PlayerCupDirty[player] {
+			return
+		}
+
+		var cupCount = PlayerCupCount[player] as int
+		wait WritePlayerCupCountValue(player, cupCount)
+	}
+
+	async func WriteAllPlayerCupCounts() {
+		EnsureCupStorageReady()
+		for player, cupCount in PlayerCupCount {
+			if IsPlayerCupLoaded(player) {
+				wait SavePlayerCupCount(player)
+			}
+		}
+	}
+
+	async func WritePlayerCupCountValue(player entity<Player>, cupCount int) {
+		if player == nil {
+			return
+		}
+
+		var count = 0
+		var errorCode = StatusCode.DataStorageTimeout
+		while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+			UpdateToDataStore(SheetName, player<Player>.UserUID, DataKey, cupCount, MapCode, out var statusCode)
+			errorCode = statusCode
+			count++
+		}
+
+		if errorCode != StatusCode.NoError {
+			LogWarning("Write player cup count failed.")
+		} else if ContainKey(PlayerCupDirty, player) {
+			if ContainKey(PlayerCupCount, player) && PlayerCupCount[player] == cupCount {
+				PlayerCupDirty[player] = false
+			}
+		}
 	}
 }

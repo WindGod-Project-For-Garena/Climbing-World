@@ -9,6 +9,7 @@ import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 import "Math.fcc" as Math
 import "./S_Cupcount.fcg" as S_Cupcount
+import "./S_power.fcg" as S_power
 
 
 [platform_server]
@@ -24,6 +25,40 @@ graph S_TowershopUI {
 		Towershop = map.New()
 		TowerSelectState = map.New()
 		TowerUnlockState = map.New()
+	}
+
+	func GetCurrentTowerUnlockLevel(player entity<Player>) int {
+		var unlockLevel = globalEntity<S_power>.GetPlayerTowerLevel(player)
+		if ContainKey(TowerUnlockState, player) {
+			var localUnlock = TowerUnlockState[player] as int
+			if localUnlock > unlockLevel {
+				unlockLevel = localUnlock
+			}
+		}
+		TowerUnlockState[player] = unlockLevel
+		return unlockLevel
+	}
+
+	async func ApplyStoredTowerUnlockWhenReady(player entity<Player>, towershopUI entity<CustomUI>) {
+		globalEntity<S_power>.EnsurePlayerProgress(player)
+		for i = 0, 60, 1 {
+			if globalEntity<S_power>.IsPlayerProgressLoaded(player) {
+				break
+			}
+			WaitForMillisecond(100)
+		}
+
+		var unlockLevel = GetCurrentTowerUnlockLevel(player)
+		if !ContainKey(Towershop, player) {
+			return
+		}
+		var currentUI = Towershop[player] as entity<CustomUI>
+		if currentUI == nil || currentUI != towershopUI {
+			return
+		}
+		ApplyWingBuyState(player, currentUI, unlockLevel)
+		ApplyTower4CupImageState(player, currentUI, unlockLevel)
+		DispatchEventToEntity(__Custom6event__Custom6event___TowerUnlock______, currentUI as entity, PlatformType.Client, List<object>{player, unlockLevel})
 	}
 
 
@@ -43,13 +78,11 @@ graph S_TowershopUI {
 				savedIndex = TowerSelectState[player]
 			}
 			ApplyTowerSelectState(player, TowershopEntity as entity<CustomUI>, savedIndex)
-			var savedUnlock = 1
-			if ContainKey(TowerUnlockState, player) {
-				savedUnlock = TowerUnlockState[player]
-			}
+			var savedUnlock = GetCurrentTowerUnlockLevel(player)
 			ApplyWingBuyState(player, TowershopEntity as entity<CustomUI>, savedUnlock)
 			ApplyTower4CupImageState(player, TowershopEntity as entity<CustomUI>, savedUnlock)
 			SetTower4NotEnoughCupVisible(player, TowershopEntity as entity<CustomUI>, false)
+			start ApplyStoredTowerUnlockWhenReady(player, TowershopEntity as entity<CustomUI>)
 		} else {
             LogInfo("TowershopEnter2")
 			CreateCustomUI(out var createdEntity, player, EResUI.TowerShop)
@@ -57,12 +90,13 @@ graph S_TowershopUI {
 			Towershop[player] = createdEntity
 			HideAllWingSelect(player, createdEntity as entity<CustomUI>)
 			TowerSelectState[player] = 0
-			TowerUnlockState[player] = 1
+			var initialUnlock = GetCurrentTowerUnlockLevel(player)
 			HideAllBUY(player, createdEntity as entity<CustomUI>)
-			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, 1)
+			ApplyWingBuyState(player, createdEntity as entity<CustomUI>, initialUnlock)
 			// Tower UI 首次创建时，Cupimage 可见；Cupimage2 在解锁 Tower2 后显示
-			ApplyTower4CupImageState(player, createdEntity as entity<CustomUI>, 1)
+			ApplyTower4CupImageState(player, createdEntity as entity<CustomUI>, initialUnlock)
 			SetTower4NotEnoughCupVisible(player, createdEntity as entity<CustomUI>, false)
+			start ApplyStoredTowerUnlockWhenReady(player, createdEntity as entity<CustomUI>)
 		}
 	}
 
@@ -109,6 +143,7 @@ graph S_TowershopUI {
 		DeductPlayerCupByTowerUnlock(player, Towerindex)
 		SetTower4NotEnoughCupVisible(player, Towershop[player] as entity<CustomUI>, false)
 		TowerUnlockState[player] = Towerindex
+		globalEntity<S_power>.SetPlayerTowerLevel(player, Towerindex)
 		ApplyWingBuyState(player, Towershop[player] as entity<CustomUI>, Towerindex)
 		ApplyTower4CupImageState(player, Towershop[player] as entity<CustomUI>, Towerindex)
 		DispatchEventToEntity(__Custom6event_TowerTrigger__, globalEntity, PlatformType.Server, List<object>{player, Towerindex, nil})
@@ -127,10 +162,7 @@ graph S_TowershopUI {
 	}
 
 	func GetPlayerCupCount(player entity<Player>) int {
-		if ContainKey(globalEntity<S_Cupcount>.PlayerCupCount, player) {
-			return globalEntity<S_Cupcount>.PlayerCupCount[player] as int
-		}
-		return 0
+		return globalEntity<S_Cupcount>.GetPlayerCupCount(player)
 	}
 
 	func GetTowerUnlockCupCost(Towerindex int) int {
@@ -153,8 +185,7 @@ graph S_TowershopUI {
 		if nextCup < 0 {
 			nextCup = 0
 		}
-		globalEntity<S_Cupcount>.PlayerCupCount[player] = nextCup
-		globalEntity<S_Cupcount>.RefreshCupcountUI(player)
+		globalEntity<S_Cupcount>.SetPlayerCupCount(player, nextCup)
 	}
 
 	func ApplyTower4CupImageState(player entity<Player>, TowershopUI entity<CustomUI>, unlockCount int) {

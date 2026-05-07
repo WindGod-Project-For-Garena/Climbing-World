@@ -12,6 +12,7 @@ import "Math.fcc" as math
 import "./G_Tower.fcg" as G_Tower
 import "./G_Climbing.fcg" as G_Climbing
 import "./C_S_DefaultUI.fcg" as DefaultUI
+import "./C_S_TutorialManager.fcg" as PlayerTutorial
 
 
 [platform_server]
@@ -26,7 +27,23 @@ graph TowerLocationGuide {
         if player != thisEntity {
             return
         }
+        thisEntity<PlayerTutorial>.EnsureNewPlayerStorage(player)
+        for i = 0, 60, 1 {
+            if thisEntity<PlayerTutorial>.IsNewPlayerLoaded(player) {
+                break
+            }
+            WaitForMillisecond(100)
+        }
+        if !thisEntity<PlayerTutorial>.IsNewPlayerLoaded(player) {
+            return
+        }
+        if !thisEntity<PlayerTutorial>.ShouldRunNewPlayerTutorial(player) {
+            return
+        }
         WaitForMillisecond(3000)
+        if !thisEntity<PlayerTutorial>.ShouldRunNewPlayerTutorial(player) {
+            return
+        }
         summonPosition = globalEntity<G_Tower>.GetPlayerTowerTriggerPosition(thisEntity as entity<Player>)
         if summonPosition.X == 0 && summonPosition.Y == 0 && summonPosition.Z == 0 {
             return

@@ -14,6 +14,7 @@ import "Player.fcc" as playerlib
 import "Hud.fcc" as hud
 import "EditorGenLib.fcc" as gen
 import "Camera.fcc" as camerafcc
+import "../UIFCG/C_QTE_button.fcg" as C_QTE_button
 
 [platform_client]
 graph C_P_Climbing2 {
@@ -49,6 +50,7 @@ graph C_P_Climbing2 {
 	fallVelocity float = 0
 	// 下落开始时记录的 Y 轴高度，用于落地时结算金币奖励
 	FallStartY float = 0
+	ReachedTowerTop bool = false
 	// 落地传送后的本地镜头轻微抖动序号（用于避免重复抖动冲突）
 	landingShakeSeq int = 0
 	DragUI entity<CustomUI> = nil
@@ -57,13 +59,10 @@ graph C_P_Climbing2 {
 	QTEUI entity<CustomUI> = nil
 	QTEActive bool = false
 	QTESeq int = 0
+	QTEClimbingFrames int = 0
 	QTELastTriggerFrame int = 0
 	QTEIntervalFrames int = 300
 	QTEDurationMs int = 3000
-	QTEPointerX float = -242.0
-	QTEPointerMinY float = -160.0
-	QTEGreenMinY float = -70.0
-	QTEGreenMaxY float = 95.0
 	QTESuccessSpeedMultiplier float = 1.1
 	ClimbStateIdle int = 0
 	ClimbStateClimbing int = 1
@@ -161,15 +160,44 @@ graph C_P_Climbing2 {
 		ClimbingButtonUI<CustomUI>.IsVisible = false
 	}
 
+	func RestoreClimbingButtonSprite() {
+		if ClimbingButtonUI == nil {
+			return
+		}
+		var climbing = GetWidgetByPath(GetLocalPlayer(), ClimbingButtonUI, "/Climbing")
+		if climbing == nil {
+			return
+		}
+		climbing<HudImageWidget>.SpriteName = EResSprite.Climbing
+	}
+
+	func ApplyQTEButtonSprite() {
+		if ClimbingButtonUI == nil {
+			return
+		}
+		var climbing = GetWidgetByPath(GetLocalPlayer(), ClimbingButtonUI, "/Climbing")
+		if climbing == nil {
+			return
+		}
+		climbing<HudImageWidget>.SpriteName = EResSprite.QTE
+	}
+
 	func ResetQTEPointer() {
 		if QTEUI == nil {
 			return
 		}
-		var pointer = GetWidgetByPath(GetLocalPlayer(), QTEUI, "/QTEPointer")
-		if pointer == nil {
+		QTEUI<C_QTE_button>.ResetQTE()
+	}
+
+	func HideQTEInnerButton() {
+		if QTEUI == nil {
 			return
 		}
-		pointer<UIWidget>.AnchorPosition = Vector3{QTEPointerX, QTEPointerMinY, 0}
+		var qteButton = GetWidgetByPath(GetLocalPlayer(), QTEUI, "/QTEButton")
+		if qteButton == nil {
+			return
+		}
+		qteButton<UIWidget>.IsVisible = false
 	}
 
 	func ShowQTEUI(currentClimbingFrames int) {
@@ -179,6 +207,7 @@ graph C_P_Climbing2 {
 		if QTEActive {
 			return
 		}
+		ShowClimbingButtonUI()
 		if QTEUI == nil {
 			CreateCustomUIClient(out var createdQTE, EResUI.QTE)
 			if createdQTE == nil {
@@ -190,40 +219,48 @@ graph C_P_Climbing2 {
 		QTESeq = QTESeq + 1
 		QTELastTriggerFrame = currentClimbingFrames
 		QTEUI<CustomUI>.IsVisible = true
+		HideQTEInnerButton()
 		ResetQTEPointer()
+		ApplyQTEButtonSprite()
 		start ResolveQTEAfterDelay(QTESeq)
 	}
 
 	func HideQTEUI() {
 		QTEActive = false
+		RestoreClimbingButtonSprite()
 		if QTEUI == nil {
 			return
 		}
 		QTEUI<CustomUI>.IsVisible = false
 	}
 
-	func GetQTEPointerY() float {
-		if QTEUI == nil {
-			return QTEPointerMinY
-		}
-		var pointer = GetWidgetByPath(GetLocalPlayer(), QTEUI, "/QTEPointer")
-		if pointer == nil {
-			return QTEPointerMinY
-		}
-		var pointerPos = pointer<UIWidget>.AnchorPosition
-		return pointerPos.Y
-	}
-
-	func IsQTEGreen(pointerY float) bool {
-		if pointerY >= QTEGreenMinY && pointerY <= QTEGreenMaxY {
-			return true
-		}
-		return false
-	}
-
 	func ApplyQTESuccessReward() {
 		WingSpeedDecay = WingSpeedDecay * QTESuccessSpeedMultiplier
 		LogInfo("Climb QTE success: speed +10%")
+	}
+
+	func PressQTEButton() bool {
+		if thisEntity<Player> != GetLocalPlayer() {
+			return false
+		}
+		if !QTEActive {
+			return false
+		}
+		if QTEUI != nil {
+			QTEUI<C_QTE_button>.PressQTEInput(GetLocalPlayer())
+		}
+		return true
+	}
+
+	func IsQTESuccess() bool {
+		if QTEUI == nil {
+			return false
+		}
+		return QTEUI<C_QTE_button>.IsInGreenZone()
+	}
+
+	func ApplyQTEFailPenalty() {
+		LogInfo("Climb QTE failed: keep climbing")
 	}
 
 	async func ResolveQTEAfterDelay(seq int) {
@@ -235,22 +272,20 @@ graph C_P_Climbing2 {
 			HideQTEUI()
 			return
 		}
-		var pointerY = GetQTEPointerY()
-		var isSuccess = IsQTEGreen(pointerY)
+		var isSuccess = IsQTESuccess()
 		HideQTEUI()
 		if isSuccess {
 			ApplyQTESuccessReward()
 			return
 		}
-		LogInfo("Climb QTE failed")
-		var fallPos = GetLocalPlayer()<Player>.Position
-		StartFalling(GetLocalPlayer(), Vector3{fallPos.X, fallPos.Y, fallPos.Z}, true)
+		ApplyQTEFailPenalty()
 	}
 
 	func StartClimbing(targetPlayer entity<Player>, startPos Vector3, dispatchNow bool) bool {
 		if IsFalling() {
 			return false
 		}
+		ReachedTowerTop = false
 		player = targetPlayer
 		Curent_height = startPos
 		Tower_Height = startPos.Y
@@ -265,6 +300,7 @@ graph C_P_Climbing2 {
 		if IsFalling() {
 			return false
 		}
+		ReachedTowerTop = false
 		player = targetPlayer
 		Curent_height = hangPos
 		Tower_Height = hangPos.Y
@@ -279,6 +315,7 @@ graph C_P_Climbing2 {
 		var wasFalling = IsFalling()
 		HideClimbingButtonUI()
 		HideQTEUI()
+		ReachedTowerTop = false
 		player = targetPlayer
 		Curent_height = startPos
 		if !wasFalling {
@@ -307,9 +344,11 @@ graph C_P_Climbing2 {
 		climbingStartFrame = 0
 		climbSessionStartFrame = 0
 		maxSessionHeightY = 0
+		QTEClimbingFrames = 0
 		Tower_Height = 0
 		WingSpeedDecay = WingSpeed
 		FallStartY = 0
+		ReachedTowerTop = false
 		hasPendingRewardReport = false
 		ForceSendClimbStateChanged()
 	}
@@ -348,6 +387,7 @@ graph C_P_Climbing2 {
 		if climbState != ClimbStateClimbing && climbState != ClimbStateHanging {
 			climbingStartFrame = 0
 			hasTriggeredTiredUI = false
+			QTEClimbingFrames = 0
 			QTELastTriggerFrame = 0
 			HideQTEUI()
 		}
@@ -357,9 +397,12 @@ graph C_P_Climbing2 {
 			SetLocalPlayerForward(defaultForward)
 			fallVelocity = 0
 			Tower_Height = 9280
+			FallStartY = 9280
+			ReachedTowerTop = true
 			Curent_height = Vector3{HighClimbTeleportPos.X, HighClimbTeleportPos.Y, HighClimbTeleportPos.Z}
 			climbSessionStartFrame = 0
 			maxSessionHeightY = 0
+			QTEClimbingFrames = 0
 			HideClimbingButtonUI()
 			HideQTEUI()
 			SetClimbState(ClimbStateIdle)
@@ -368,6 +411,10 @@ graph C_P_Climbing2 {
 		}
 
 		var smCurrentY = GetLocalPlayer()<Player>.Position.Y
+		if climbState == ClimbStateIdle && ReachedTowerTop && smCurrentY < 9275 {
+			FallStartY = 9280
+			StartFalling(GetLocalPlayer(), Vector3{GetLocalPlayer()<Player>.Position.X, smCurrentY, GetLocalPlayer()<Player>.Position.Z}, true)
+		}
 		if (climbState == ClimbStateClimbing || climbState == ClimbStateHanging) && (Tower_Height - smCurrentY) > 10 {
 			FallStartY = Tower_Height
 			StartFalling(GetLocalPlayer(), Vector3{GetLocalPlayer()<Player>.Position.X, smCurrentY, GetLocalPlayer()<Player>.Position.Z}, true)
@@ -428,12 +475,13 @@ graph C_P_Climbing2 {
 				WingSpeedDecay = WingSpeed
 			}
 		} else if climbState == ClimbStateClimbing {
+			QTEClimbingFrames = QTEClimbingFrames + 1
 			if climbingStartFrame == 0 {
 				climbingStartFrame = frame
 			}
 			var smClimbingFrames = frame - climbingStartFrame
-			if !QTEActive && smClimbingFrames >= QTEIntervalFrames && (smClimbingFrames - QTELastTriggerFrame) >= QTEIntervalFrames {
-				ShowQTEUI(smClimbingFrames)
+			if !QTEActive && QTEClimbingFrames >= QTEIntervalFrames && (QTEClimbingFrames - QTELastTriggerFrame) >= QTEIntervalFrames {
+				ShowQTEUI(QTEClimbingFrames)
 			}
 			if WingSpeed < 464 && smClimbingFrames >= 600 {
 				if !hasTriggeredTiredUI {

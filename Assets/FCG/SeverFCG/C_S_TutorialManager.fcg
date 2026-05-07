@@ -1,8 +1,62 @@
 import "StdLibrary.fcc" as StdLib
 import "EditorGenLib.fcc" as EditorLib
+import "Database.fcc" as database
+import "Workflow.fcc" as workflow
+import "Player.fcc" as Player
+import "List.fcc" as list
 
+[platform_server]
 graph PlayerTutorial {
-    isDoneFishingTutorial bool
+    isDoneFishingTutorial bool = false
+    isNewPlayer bool = true
+    isNewPlayerLoaded bool = false
+    isNewPlayerDirty bool = false
+    isNewPlayerReadStarted bool = false
+
+    SheetName string = "PlayerTutorial"
+    DataKey string = "Tutorial"
+    MapCode string = ""
+    DefaultIsNewPlayer bool = true
+    MaxStorageRetry int = 10
+    HasWrittenAtEnd bool = false
+
+    event OnPlayerJoin(player entity<Player>) {
+        if player != thisEntity {
+            return
+        }
+        isNewPlayer = DefaultIsNewPlayer
+        isNewPlayerLoaded = false
+        isNewPlayerDirty = false
+        isNewPlayerReadStarted = false
+        HasWrittenAtEnd = false
+        EnsureNewPlayerStorage(player)
+    }
+
+    event OnUserQuitOrUserMatchEnd(player entity<Player>) {
+        if player != thisEntity {
+            return
+        }
+        wait SaveNewPlayerFlag(player)
+    }
+
+    event OnPlayerQuit(player entity<Player>) {
+        if player != thisEntity {
+            return
+        }
+        wait SaveNewPlayerFlag(player)
+    }
+
+    event OnRoundEnd(roundIndex int) {
+        wait SaveNewPlayerFlag(thisEntity as entity<Player>)
+    }
+
+    event OnGameEnd() {
+        if HasWrittenAtEnd {
+            return
+        }
+        HasWrittenAtEnd = true
+        wait SaveNewPlayerFlag(thisEntity as entity<Player>)
+    }
 
     func SetIsDoneFishingTutorial(value bool) {
         isDoneFishingTutorial = value
@@ -10,5 +64,136 @@ graph PlayerTutorial {
 
     func GetIsDoneFishingTutorial() bool {
         return isDoneFishingTutorial
+    }
+
+    func EnsureNewPlayerStorage(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        if player != thisEntity {
+            return
+        }
+        if !isNewPlayerReadStarted {
+            isNewPlayerReadStarted = true
+            start ReadNewPlayerFlag(player)
+        }
+    }
+
+    func IsNewPlayerLoaded(player entity<Player>) bool {
+        if player == nil {
+            return false
+        }
+        if player != thisEntity {
+            return false
+        }
+        return isNewPlayerLoaded
+    }
+
+    func ShouldRunNewPlayerTutorial(player entity<Player>) bool {
+        if player == nil {
+            return false
+        }
+        if player != thisEntity {
+            return false
+        }
+        EnsureNewPlayerStorage(player)
+        return isNewPlayer
+    }
+
+    func SetIsNewPlayer(value bool) {
+        EnsureNewPlayerStorage(thisEntity as entity<Player>)
+        isNewPlayer = value
+        isNewPlayerDirty = true
+        if isNewPlayerLoaded {
+            start SaveNewPlayerFlag(thisEntity as entity<Player>)
+        }
+    }
+
+    func MarkNewPlayerTutorialDone() {
+        SetIsNewPlayer(false)
+    }
+
+    async func ReadNewPlayerFlag(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        if player != thisEntity {
+            return
+        }
+
+        var count = 0
+        var errorCode = StatusCode.DataStorageTimeout
+        while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+            ReadFromDataStore(SheetName, player<Player>.UserUID, DataKey, out var result, MapCode, out var statusCode)
+            errorCode = statusCode
+            if statusCode == StatusCode.NoError {
+                var loadedIsNewPlayer = DefaultIsNewPlayer
+                if result != nil {
+                    var values = result as List<object>
+                    if values != nil && list.Length(values) > 0 {
+                        loadedIsNewPlayer = values[0] as bool
+                    } else {
+                        loadedIsNewPlayer = result as bool
+                    }
+                }
+
+                var shouldWriteLoadedValue = false
+                if isNewPlayerDirty {
+                    shouldWriteLoadedValue = true
+                } else {
+                    isNewPlayer = loadedIsNewPlayer
+                }
+
+                isNewPlayerLoaded = true
+                if shouldWriteLoadedValue {
+                    start SaveNewPlayerFlag(player)
+                }
+                return
+            }
+            count++
+        }
+
+        LogWarning("Read new player tutorial flag failed.")
+    }
+
+    async func SaveNewPlayerFlag(player entity<Player>) {
+        if player == nil {
+            return
+        }
+        if player != thisEntity {
+            return
+        }
+        if !isNewPlayerLoaded {
+            return
+        }
+        if !isNewPlayerDirty {
+            return
+        }
+
+        wait WriteNewPlayerFlagValue(player, isNewPlayer)
+    }
+
+    async func WriteNewPlayerFlagValue(player entity<Player>, value bool) {
+        if player == nil {
+            return
+        }
+        if player != thisEntity {
+            return
+        }
+
+        var values = List<object>{value}
+        var count = 0
+        var errorCode = StatusCode.DataStorageTimeout
+        while errorCode == StatusCode.DataStorageTimeout && count < MaxStorageRetry {
+            UpdateToDataStore(SheetName, player<Player>.UserUID, DataKey, values, MapCode, out var statusCode)
+            errorCode = statusCode
+            count++
+        }
+
+        if errorCode != StatusCode.NoError {
+            LogWarning("Write new player tutorial flag failed.")
+        } else if isNewPlayer == value {
+            isNewPlayerDirty = false
+        }
     }
 }
